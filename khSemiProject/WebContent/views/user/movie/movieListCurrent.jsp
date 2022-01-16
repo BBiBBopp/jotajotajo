@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html>
 
@@ -13,6 +13,10 @@
             <div id="container">
                 <h3>현재상영작</h3>
                 <!-- 현재상영작 목록 -->
+<!-- 여기는 github test때문에 추가하는 부분!!!!!! -->
+<div class="test-area">
+ddddddddd
+</div>
                 <div class="movie-list">
                     <div class="movie-one">
                         <img src="" alt="" class="movie-poster">
