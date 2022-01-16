@@ -23,7 +23,7 @@
 				<p>
 					서울특별시 중구 남대문로 120 대일빌딩 2F, 3F <br> 대표자명 *** 개인정보보호책임자 ***
 					사업자등록번호 123-45-67890 <br> COPYRIGHTⓒCINEMAHEAVEN.Inc All
-					rights reserved
+					rights reserved1
 				</p>
 			</div>
 		</div>
