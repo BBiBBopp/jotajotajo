@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .admin-sub-nav-area{
+            background-color: rgb(13, 71, 161);
+            width: 200px;
+            padding-bottom: 10px;
+        }
+        .logo-area{
+            width: 100%;
+            height: 100px;
+            margin: auto;
+        }
+        .admin-sub-nav-list{
+            list-style: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-sub-nav-area">
+        <div class="logo-area">
+            <img src="" alt="시네마 헤븐">
+        </div>
+        <ul class="admin-sub-nav-list">
+            <li>회원 관리</li>
+            <hr>
+            <li>영화 관리</li>
+            <hr>
+            <li>영화관 관리</li>
+            <hr>
+            <li>고객 관리</li>
+            <hr>
+            <li>투표 관리</li>
+            <hr>
+            <li>결제 내역 관리</li>
+        </ul>
+    </div>
+
+    <script>
+        $(function(){
+            $(".admin-sub-nav-list>li").click(function(){
+                $("li").css("cursor","pointer");
+            });
+        })
+    </script>
+</body>
+</html>
