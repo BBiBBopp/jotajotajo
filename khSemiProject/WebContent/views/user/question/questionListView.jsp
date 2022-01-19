@@ -7,14 +7,6 @@
 <title>1:1 문의 목록</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resource/css/question/question.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
@@ -43,7 +35,7 @@
 					<th width="100">등록일</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="Qlist">
 				<tr>
 					<td>1</td>
 					<td>일반 문의</td>

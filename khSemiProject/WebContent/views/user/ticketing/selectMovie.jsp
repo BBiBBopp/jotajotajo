@@ -100,8 +100,7 @@
 					</div>
 					
 					<script>
-						$(function(){
-							
+						$(function(){		
 							$(".reserve-time-button").click(function(){
 								console.log("1");
 								location.href = "<%=contextPath%>/selectSeat.ti";
