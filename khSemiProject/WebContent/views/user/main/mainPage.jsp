@@ -81,6 +81,15 @@
         font-size: 25px;
     } */
 
+/*
+	.list_navi li {
+		float: left;
+        width: 14%;
+        text-align: center;
+        height: 100%;
+	}
+*/
+	
     .list_navi a {
         text-decoration: none;
         display: block;
