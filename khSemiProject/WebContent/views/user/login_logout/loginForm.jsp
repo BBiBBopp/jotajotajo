@@ -16,7 +16,7 @@
             </div>
             <div id="content_2">
                 <div id="login_form">
-                    <form action="" method="post" id="login_form_input">
+                    <form action="<%= contextPath %>/login.log" method="post" id="login_form_input">
                         <div id="id_pwd">
                             <input type="text" placeholder="아이디" name="userId" id="userId"><br>
                             <input type="password" placeholder="비밀번호" name="userPwd" id="userPwd">
@@ -34,7 +34,7 @@
                 </div>
                 <div id="ad">
                     <div id="ad_1">
-                        광고/투표독려
+                    	    광고/투표독려
                     </div>
                 </div>
             </div>
