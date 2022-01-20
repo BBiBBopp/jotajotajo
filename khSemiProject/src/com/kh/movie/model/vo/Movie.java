@@ -1,0 +1,121 @@
+package com.kh.movie.model.vo;
+
+public class Movie {
+	private int movieNo;
+	private String movieName;
+	private String genre;
+	private String director;
+	private String actor;
+	private int runtime;
+	private String grade;
+	private String synopsis;
+	private String status;
+	private double advanceRate;//예매율
+	
+	
+	public Movie() {
+		super();
+	}
+	
+	public Movie(int movieNo, String movieName, String genre, String director, String actor, int runtime, String grade,
+			String synopsis, String status) {
+		super();
+		this.movieNo = movieNo;
+		this.movieName = movieName;
+		this.genre = genre;
+		this.director = director;
+		this.actor = actor;
+		this.runtime = runtime;
+		this.grade = grade;
+		this.synopsis = synopsis;
+		this.status = status;
+	}
+
+	public Movie(int movieNo, String movieName, String genre, String director, String actor, int runtime, String grade,
+			String synopsis, String status, double advanceRate) {
+		super();
+		this.movieNo = movieNo;
+		this.movieName = movieName;
+		this.genre = genre;
+		this.director = director;
+		this.actor = actor;
+		this.runtime = runtime;
+		this.grade = grade;
+		this.synopsis = synopsis;
+		this.status = status;
+		this.advanceRate = advanceRate;
+	}
+
+	public int getMovieNo() {
+		return movieNo;
+	}
+	public void setMovieNo(int movieNo) {
+		this.movieNo = movieNo;
+	}
+	public String getMovieName() {
+		return movieName;
+	}
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public String getDirector() {
+		return director;
+	}
+	public void setDirector(String director) {
+		this.director = director;
+	}
+	public String getActor() {
+		return actor;
+	}
+	public void setActor(String actor) {
+		this.actor = actor;
+	}
+	public int getRuntime() {
+		return runtime;
+	}
+	public void setRuntime(int runtime) {
+		this.runtime = runtime;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	public String getSynopsis() {
+		return synopsis;
+	}
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public double getAdvanceRate() {
+		return advanceRate;
+	}
+
+	public void setAdvanceRate(double advanceRate) {
+		this.advanceRate = advanceRate;
+	}
+
+	@Override
+	public String toString() {
+		return "Movie [movieNo=" + movieNo + ", movieName=" + movieName + ", genre=" + genre + ", director=" + director
+				+ ", actor=" + actor + ", runtime=" + runtime + ", grade=" + grade + ", synopsis=" + synopsis
+				+ ", status=" + status + ", advanceRate=" + advanceRate + "]";
+	}
+	
+	
+	
+}
