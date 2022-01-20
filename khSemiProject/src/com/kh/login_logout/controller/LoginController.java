@@ -39,6 +39,31 @@ public class LoginController extends HttpServlet {
 		
 		Member loginUser = new LoginServcie().selectMember(memberId, memberPwd);
 		
+		if(loginUser != null && loginUser.getMemberId().equals("admin")) {
+			
+			// 관리자 아이디로 로그인 시 관리자페이지 첫메뉴바인 회원관리페이지로 보내기
+			
+		}else if(loginUser != null){
+			
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("loginUser", loginUser);
+			
+			session.setAttribute("alertMsg", "로그인하셨습니다.");
+			
+			response.sendRedirect("/cinemaHeaven");
+		
+		}else {
+			
+			request.getSession().setAttribute("alertMsg", "다시 로그인하세요.");
+			
+			response.sendRedirect(request.getContextPath()+"/loginForm.log");
+		}
+		
+		
+		
+		
+		/*
 		if(loginUser != null) {
 			
 			HttpSession session = request.getSession();
@@ -56,7 +81,7 @@ public class LoginController extends HttpServlet {
 			response.sendRedirect(request.getContextPath());
 			
 		}
-		
+		*/
 		
 	}
 

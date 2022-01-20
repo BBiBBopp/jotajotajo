@@ -25,7 +25,6 @@
 			}
 	</script>
 	
-	<a>왜 안뜨지?</a>
 	
 	<%@ include file="views/user/common/footer.jsp" %>
 </body>

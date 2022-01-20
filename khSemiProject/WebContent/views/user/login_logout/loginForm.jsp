@@ -14,6 +14,15 @@
 	
 	<%@ include file="../common/header.jsp" %>
 
+	<script>
+			var msg = "<%= alertMsg%>"
+			if(msg != "null"){ // 성공, 경고 메세지 문구가 담겨있을 경우
+				alert(msg);
+			
+			<% session.removeAttribute("alertMsg"); %>
+			// 해당 페이지가 로딩 될 때마다 뜨는 alert제거			
+			}
+	</script>
 
 	<div id="container">
             <div id="content_1">
