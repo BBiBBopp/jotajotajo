@@ -90,7 +90,7 @@
                 <main class="main-container">
                     <ul class="thumbnail-list">
                         <li class="thumbnail-item">
-                            <img src="../../../resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표1" class="thumbnail-image"
+                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표1" class="thumbnail-image"
                             class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 
                             <div class="modal" id="myModal">
@@ -124,7 +124,7 @@
                     </ul>
                     <ul class="thumbnail-list">
                         <li class="thumbnail-item">
-                            <img src="../../../resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표2" class="thumbnail-image">
+                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표2" class="thumbnail-image">
                             <span class="thumbnail-title">영화2 <br><br>
                             <div class="checkbox"><input type="radio" name="radio1" id="radio1" value="1" class="checkbox1">
                             </div></span></li>
@@ -132,7 +132,7 @@
                     </ul>
                     <ul class="thumbnail-list">
                         <li class="thumbnail-item">
-                            <img src="../../../resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표3" class="thumbnail-image">
+                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표3" class="thumbnail-image">
                             <span class="thumbnail-title">영화3 <br><br>
                             <div class="checkbox"><input type="radio" name="radio1" id="radio1" value="1" class="checkbox1">
                             </div></span></li>
@@ -140,7 +140,7 @@
                     </ul>
                     <ul class="thumbnail-list">
                         <li class="thumbnail-item">
-                            <img src="../../../resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표4" class="thumbnail-image">
+                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표4" class="thumbnail-image">
                             <span class="thumbnail-title">영화4 <br><br>
                             <div class="checkbox"><input type="radio" name="radio1" id="radio1" value="1" class="checkbox1">
                             </div></span></li>
