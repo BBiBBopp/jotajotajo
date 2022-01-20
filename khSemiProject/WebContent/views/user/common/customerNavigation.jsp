@@ -16,7 +16,7 @@
            <a href="">FAQ</a> 
         </div>
         <div class="sub-nav-list qeustion-form">
-            <a href="">1:1문의</a> 
+            <a href="<%=request.getContextPath()%>/enroll-form.qu">1:1문의</a> 
         </div>
         <div class="sub-nav-list">
            <a href="">공지사항</a> 

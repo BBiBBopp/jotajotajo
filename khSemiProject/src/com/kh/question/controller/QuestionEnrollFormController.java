@@ -1,26 +1,23 @@
 package com.kh.question.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.question.model.service.QuestionService;
-
 /**
- * Servlet implementation class QuestionListController
+ * Servlet implementation class QuestionEnrollFormController
  */
-@WebServlet("/list.qu")
-public class QuestionListController extends HttpServlet {
+@WebServlet("/enroll-form.qu")
+public class QuestionEnrollFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionListController() {
+    public QuestionEnrollFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,9 +26,7 @@ public class QuestionListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		new QuestionService().selectQuestionList();
-		
-		request.getRequestDispatcher("/views/user/question/questionListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/user/question/questionEnrollForm.jsp").forward(request, response);
 	}
 
 	/**

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
  <title>좌석 선택</title>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/ticketing/seat.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/user/ticketing/seat.css">
 </head>
 <body>
 	<div id="wrap">
@@ -96,24 +96,50 @@
 								<div class="ticket-price-title">가격</div>
 								<div class="ticket-price">0원</div>
 							</div>
-							<form action="moveKakao.do" class="seatForm" method="post">
-								<input type="hidden" class="title" name="title"> <input
-									type="hidden" class="selectedTheater" name="selectedTheater">
-								<input type="hidden" class="reserveDate" name="movieDate">
-								<input type="hidden" class="runningTime" name="runningTime">
-								<input type="hidden" class="movieAge" name="movieAge"
-									value="">
+							<form action="" class="seatForm" method="post">
+								<input type="hidden" class="title" name="title" value="라라랜드"> 
+								<input type="hidden" class="selectedTheater" name="selectedTheater" value="강남점">
+								<input type="hidden" class="reserveDate" name="movieDate" value="2022/01/01">
+								<input type="hidden" class="runningTime" name="runningTime" value="2:30">
+								<input type="hidden" class="movieAge" name="movieAge" value="15">
 								<!-- 티켓의수(선택한 좌석) -->
-								<input type="hidden" class="ticketNumber" name="ticketNumber">
-								<input type="hidden" class="selectedSeat" name="selectedSeat">
+								<input type="hidden" class="ticketNumber" name="ticketNumber" value="3">
+								<input type="hidden" class="selectedSeat" name="selectedSeat" value="2">
 								<!-- 결제 정보 -->
-								<input type="hidden" class="payMoney" name="payMoney">
-								<button type="button" class="reserve-button">결제하기</button>
+								<input type="hidden" class="payMoney" name="payMoney" value="30000">
 								<div class="poster">
 									<img src="" alt="영화포스터">
 								</div>
+								<button type="button" class="reserve-button" onclick="kakaopay();">결제하기</button>
 							</form>
 						</div>
+						
+						<script>
+							function kakaopay(){
+								$.ajax({
+									url : pay.ti,
+									type : 'POST',
+									dataType : 'json',
+									contentType: 'application/json; charset=UTF-8',
+									data: {
+										moiveName : 'title', // movieName in MOVIE
+										theaterNo : 'selectedTheater', // theaterNo in THEATER
+										runSch : 'movieDate', // runSch in SCHEDULE
+										runtime : 'runningTime', // runTime in MOVIE
+										rate : 'movieAge', // rate in MOVIE
+										ticketNumber : 'ticketNumber', // 
+										selectedSeat : 'selectedSeat', // seatNo in seat (,로 구분)
+										payment : 'payMoney' // payment in PAYMENT
+									},
+									success : function(result){
+										
+									},
+									error : function(){
+										alert("결제에 실패했습니다.");
+									}
+								})
+							}
+						</script>
 
 					</div>
 					<div class="seat-container">
@@ -139,7 +165,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- <%@ include file="../common/footer.jsp" %> -->
 		</div>
+        <!-- <%@ include file="../common/footer.jsp" %> -->
+    </div>
 </body>
 </html>

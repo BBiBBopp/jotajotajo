@@ -11,6 +11,9 @@
 <body>
 
 	<%@ include file="../common/header.jsp"%>
+	<div class="sub_nav" style="float:left;">
+		<%@ include file="../common/customerNavigation.jsp"%>
+	</div>
 	<div class="outer">
 
 		<br>
@@ -31,15 +34,16 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td colspan="3" class="Qcontent"><textarea name="" id=""
-						cols="50" rows="15" style="resize: none;"></textarea></td>
+				<td colspan="3" class="Qcontent">
+					<textarea name="" id="" cols="50" rows="15" style="resize: none;"></textarea>
+				</td>
 			</tr>
 			<tr>
 				<th>사진 첨부</th>
 				<td colspan="3" class="Qanswer">
 					<p class="pic-disc">
-						* JPEG, PNG형식의 5M 이하의 파일만 첨부 가능합니다. <br> * 개인정보가 포함된 이미지 등록은
-						자제하여 주시기 바랍니다. <br>
+						* JPEG, PNG형식의 5M 이하의 파일만 첨부 가능합니다. <br> 
+						* 개인정보가 포함된 이미지 등록은 자제하여 주시기 바랍니다. <br>
 					</p> <input type="file" name="" id="">
 				</td>
 			</tr>

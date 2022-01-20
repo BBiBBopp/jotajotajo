@@ -36,7 +36,7 @@
 				</tr>
 			</thead>
 			<tbody class="Qlist">
-				<tr>
+				<tr class="Qlist-data">
 					<td>1</td>
 					<td>일반 문의</td>
 					<td>결제 취소 되나요?</td>
@@ -45,6 +45,14 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<script>
+			$(function(){
+				$(".Qlist-data").click(function(){
+					location.href = '<%=contextPath%>/detail.qu';
+				})
+			})
+		</script>
 	</div>
 </body>
 </html>
