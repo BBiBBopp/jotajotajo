@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.member.model.vo.Member" %>
 <%
 	String alertMsg = (String)session.getAttribute("alertMsg");
-	String loginUser = (String)session.getAttribute("loginUser");
+	Member loginUser = (Member)session.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -12,7 +13,7 @@
 
 </head>
 <body>
-	<%@ include file="views/common/header.jsp" %>
+	<%@ include file="views/user/common/header.jsp" %>
 	
 	<script>
 			var msg = "<%= alertMsg%>"
@@ -26,6 +27,6 @@
 	
 	<a>왜 안뜨지?</a>
 	
-	<%@ include file="views/common/footer.jsp" %>
+	<%@ include file="views/user/common/footer.jsp" %>
 </body>
 </html>
