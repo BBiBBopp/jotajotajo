@@ -141,7 +141,7 @@
                     	<input type="button" value="더보기" style="float:right;">
                     </p>
                     <hr size="1" noshade>
-                    <pre>고객센터      <button>FAQ</button>      <button>1:1문의</button></pre>
+                    <pre>고객센터      <button onclick="location.href='../notice/FAQView.jsp'">FAQ</button>      <button>1:1문의</button></pre>
                     <hr size="1" noshade>
 
                 </div>
