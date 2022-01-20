@@ -43,7 +43,7 @@
                         <br clear="both">
                         
                         <div id="search_id_pwd">
-                            <a href="">아이디찾기</a>&emsp;|&emsp;
+                            <a href="<%= contextPath %>/sidForm.sch">아이디찾기</a>&emsp;|&emsp;
                             <a href="">비밀번호찾기</a>
                         </div>
                     </form>

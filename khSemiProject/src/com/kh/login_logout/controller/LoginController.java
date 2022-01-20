@@ -47,41 +47,20 @@ public class LoginController extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			
-			session.setAttribute("loginUser", loginUser);
+			session.setAttribute("loginUser", loginUser); 
 			
 			session.setAttribute("alertMsg", "로그인하셨습니다.");
 			
 			response.sendRedirect("/cinemaHeaven");
-		
+			// 로그인정보, 경고메세지들고 메인페이지로 이동
+			
 		}else {
 			
 			request.getSession().setAttribute("alertMsg", "다시 로그인하세요.");
 			
 			response.sendRedirect(request.getContextPath()+"/loginForm.log");
+			// 경고메세지들고 다시 로그인폼으로 이동
 		}
-		
-		
-		
-		
-		/*
-		if(loginUser != null) {
-			
-			HttpSession session = request.getSession();
-			
-			session.setAttribute("loginUser", loginUser);
-			
-			session.setAttribute("alertMsg", "로그인하셨습니다.");
-			
-			response.sendRedirect("/cinemaHeaven");
-			
-		} else {
-			
-			request.getSession().setAttribute("alertMsg", "다시 로그인하세요.");
-			
-			response.sendRedirect(request.getContextPath());
-			
-		}
-		*/
 		
 	}
 
