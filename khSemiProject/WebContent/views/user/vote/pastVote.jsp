@@ -7,12 +7,12 @@
 <title>이전 투표 목록</title>
 
 	<style>
-        div {
+    div {
             /* border: 1px solid black; */
             box-sizing: border-box;
         }
 
-        .wrap>div { width: 100%; }
+    .wrap>div { width: 100%; }
 
     #header { height: 10%; }
     /* #navi_area {height: 10%;} */
@@ -27,7 +27,8 @@
     .container_7 { height: 20%; }
 
     .container{
-        /* width: 900px; */
+    	margin-top : -100px;
+       /* width: 900px; */
         border: 1px solid black;
         display: inline-block;
         position: relative;
@@ -37,7 +38,7 @@
     .poster1{
         width: 430px;
         height: 200px;
-        float: right;
+       /* float: right; */
         margin-right: 100px;
         margin-top: auto;
         
@@ -53,7 +54,7 @@
 
 		<div id="container">
                 <div class="container_5">
-                   <br><br><br><br><br><br><br><br><br>
+                   <br><br><br><br>
                     <p>이전투표목록</p>
                     <hr size="4"  color="gray">
                     
@@ -67,10 +68,11 @@
                 <div class="container_7">
                     <hr size="4"  color="gray">
                     <img src="../../../resource/css/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터3" class="poster1">
+                    <hr size="4"  color="gray">
                 </div>
             </div>
 
-
+	<br><br><br><br><br><br><br><br><br><br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 	
 	
