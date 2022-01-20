@@ -21,6 +21,14 @@ public class Member {
 		
 	}
 	
+	public Member(int memberNo, String memberId, String memberPwd, String memberName) {
+		super();
+		this.memberNo = memberNo;
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+	}
+
 	public Member(int memberNo, String memberId, String memberPwd, String memberName, String birth, String gender,
 			String email, String phone, String interest, int point, Date createDate, String memberStatus) {
 		super();

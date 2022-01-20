@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	String loginUser = (String)session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +14,17 @@
 <body>
 	<%@ include file="views/common/header.jsp" %>
 	
+	<script>
+			var msg = "<%= alertMsg%>"
+			if(msg != "null"){ // 성공, 경고 메세지 문구가 담겨있을 경우
+				alert(msg);
+			
+			<% session.removeAttribute("alertMsg"); %>
+			// 해당 페이지가 로딩 될 때마다 뜨는 alert제거			
+			}
+	</script>
 	
-	
+	<a>왜 안뜨지?</a>
 	
 	<%@ include file="views/common/footer.jsp" %>
 </body>
