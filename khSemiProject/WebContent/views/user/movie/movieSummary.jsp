@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.ArrayList, com.kh.movie.model.vo.*" %>
+<%
+	Movie mv = (Movie)request.getAttribute("mv");
+	ArrayList<Picture> picList = (ArrayList<Picture>)request.getAttribute("pList");
+	String[] actorList = (String[])request.getAttribute("actorList");
+%>
+
 	<!-- 해결해야하는 문제점
 1. slide 이미지가 로딩 안되는 것 
 2. 포스터와 텍스트가 엇갈리게 나오는것
@@ -29,14 +36,13 @@
 				<!-- The slideshow -->
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="../../../resource/image/flower1.png" alt="Los Angeles">
+						<img src="<%= contextPath %><%= picList.get(1).getFilePath()+picList.get(1).getChangeName() %>" alt="">
 					</div>
+				<% for(int i = 2; i<picList.size(); i++){ %>
 					<div class="carousel-item">
-						<img src="../../../resource/image/flower2.png" alt="Chicago">
+						<img src="<%= contextPath %><%= picList.get(i).getFilePath()+picList.get(i).getChangeName() %>" alt="">
 					</div>
-					<div class="carousel-item">
-						<img src="../../../resource/image/flower3.png" alt="New York">
-					</div>
+				<%} %>
 				</div>
 
 				<!-- Left and right controls -->
@@ -53,11 +59,11 @@
 			<!-- 영화 요약 정보 영역 -->
 			<div class="movie-summary">
 				<div id="movie-summary-poster">
-					<img src="" alt="">
+					<img src="<%= contextPath %><%= picList.get(0).getFilePath()+picList.get(0).getChangeName() %>" alt="">
 				</div>
 				<div id="movie-summary-text">
 					<br>
-					<h3>영화타이틀</h3>
+					<h3><%=mv.getMovieName() %></h3>
 					<ul>
 						<li>
 							<span>관람객 평점</span>
@@ -87,7 +93,9 @@
 					<!-- 버튼 영역 -->
 					<!-- <div class="d-flex justify-content-end"> -->
 					<div>
-						<a href="#찜하기" class="btn btn-danger">&#xf004;</a>
+						<a href="#찜하기" class="btn btn-danger">
+							&#xf004;
+						</a>
 						<a href="#예매로이동" class="btn btn-danger">예매하기</a>
 					</div>
 				</div>
