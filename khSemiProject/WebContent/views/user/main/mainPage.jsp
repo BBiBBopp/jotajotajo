@@ -11,12 +11,7 @@
         /* border: 1px solid black; */
         box-sizing: border-box;
     }
-    /* .wrap{
-    width: 1000px;
-    height: 1500px;
-    margin-left: auto;
-    margin-right: auto;
-    } */
+
 
     .wrap>div { width: 100%; }
 
@@ -40,7 +35,7 @@
     .thumbnail-image0 {
         width: 750px;
         height: 400px;
-        margin-top: 120px;
+        margin-top: 30px;
         margin-left: auto;
         margin-right: auto;
         display: flex;
@@ -54,6 +49,7 @@
     }
 
     .thumbnail-image {
+    	
         width: 150px;
         height: 200px;
     }
@@ -74,50 +70,17 @@
         height: 25px;
     }
 
-    /* .service_area2 {
-        position: relative;
-        margin-top: 20px;
-        margin-left: 40px;
-        font-size: 25px;
-    } */
+ 
 
 /*
 	.list_navi li {
-		float: left;
+		
         width: 14%;
         text-align: center;
         height: 100%;
 	}
 */
 	
-    .list_navi a {
-        text-decoration: none;
-        display: block;
-        line-height: 35px; 
-        transform: scale(1);
-    }
-    .list a:hover {
-        color: skyblue;
-        font-size: 17px;
-       
-    }
-
-    .list_navi > li > ul {
-        list-style-type: none;
-        padding: 0px;
-        display: none;
-    }
-
-    .list_navi > li > a:hover+ul {
-        display: block;
-    }
-
-    .list_navi > li > ul:hover {
-        display: block;
-    }
-
-    .list_navi > li > ul a{font-size: 13px;}
-    .list_navi > li > ul a:hover{font-size: 17px;}
 
 
 </style>
@@ -134,7 +97,7 @@
 
             <div id="container">
                 <div id="container_1">
-                    <img src="resource/image/52ef372732ec3bbee5fb9159477006ad.jpg" alt="영화0" class="thumbnail-image0">
+                    <img src="../../../resource/css/52ef372732ec3bbee5fb9159477006ad.jpg" alt="영화0" class="thumbnail-image0">
 
                 </div>
                 <div id="container_2">
@@ -146,27 +109,27 @@
                         <ul class="thumbnail-list">
                             <li class="thumbnail-item">
                                 
-                                <img src="../resource/image/abbca385468091a7ba232e09.jpg" alt="영화1" class="thumbnail-image">
+                                <img src="../../../resource/css/abbca385468091a7ba232e09.jpg" alt="영화1" class="thumbnail-image">
                                 <span class="thumbnail-title">영화 <br> 예매율</span></li>
                         </ul>
                         <ul class="thumbnail-list">
                             <li class="thumbnail-item">
-                                <img src="../resource/image/abbca385468091a7ba232e09.jpg" alt="영화2" class="thumbnail-image">
+                                <img src="../../../resource/css/abbca385468091a7ba232e09.jpg" alt="영화2" class="thumbnail-image">
                                 <span class="thumbnail-title">영화 <br> 예매율</span></li>
                         </ul>
                         <ul class="thumbnail-list">
                             <li class="thumbnail-item">
-                                <img src="../resource/image/abbca385468091a7ba232e09.jpg" alt="영화3" class="thumbnail-image">
+                                <img src="../../../resource/css/abbca385468091a7ba232e09.jpg" alt="영화3" class="thumbnail-image">
                                 <span class="thumbnail-title">영화 <br> 예매율</span></li>
                         </ul>
                         <ul class="thumbnail-list">
                             <li class="thumbnail-item">
-                                <img src="../resource/image/abbca385468091a7ba232e09.jpg" alt="영화4" class="thumbnail-image">
+                                <img src="../../../resource/css/abbca385468091a7ba232e09.jpg" alt="영화4" class="thumbnail-image">
                                 <span class="thumbnail-title">영화 <br> 예매율</span></li>
                         </ul>
                         <ul class="thumbnail-list">
                             <li class="thumbnail-item">
-                                <img src="../resource/image/abbca385468091a7ba232e09.jpg" alt="영화5" class="thumbnail-image">
+                                <img src="../../../resource/css/abbca385468091a7ba232e09.jpg" alt="영화5" class="thumbnail-image">
                                 <span class="thumbnail-title">영화 <br> 예매율</span></li>
                         </ul>
                 
@@ -174,7 +137,9 @@
                 </div>
                 <div id="container_3">
                     <hr size="1" noshade>
-                    <p>공지사항</p>
+                    <p>공지사항
+                    	<input type="button" value="더보기" style="float:right;">
+                    </p>
                     <hr size="1" noshade>
                     <pre>고객센터      <button>FAQ</button>      <button>1:1문의</button></pre>
                     <hr size="1" noshade>
