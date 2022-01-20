@@ -58,16 +58,16 @@
                     <p>이전투표목록</p>
                     <hr size="4"  color="gray">
                     
-                    <img src="../../../resource/css/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터1" class="poster1">
+                    <img src="../../../resource/css/image/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터1" class="poster1">
 
                 </div>
                 <div class="container_6">
                     <hr size="4"  color="gray">
-                    <img src="../../../resource/css/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터2" class="poster1">
+                    <img src="../../../resource/css/image/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터2" class="poster1">
                 </div>
                 <div class="container_7">
                     <hr size="4"  color="gray">
-                    <img src="../../../resource/css/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터3" class="poster1">
+                    <img src="../../../resource/css/image/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터3" class="poster1">
                     <hr size="4"  color="gray">
                 </div>
             </div>
