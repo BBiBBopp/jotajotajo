@@ -91,7 +91,8 @@
 	<%@ include file="../common/header.jsp" %>
 	    <script>
         window.onload =function () {
-            window.open("popup. html",  "popupNo1", "width=300, height=360");
+            window.open("popup.html",  "popupNo1", "width=300, height=360");
+        /*    window.close(button onclick="location.href='../vote/votePage.jsp'"); */
          }
         </script>
 
@@ -102,7 +103,7 @@
                 </div>
                 <div id="container_2">
                     <!-- <div class="service_area2">현재 상영 영화</div> -->
-                    <br><br>
+                    <br>
                     <div style="font-size: x-large;"><b>현재 상영 영화</b></div>
                     
                     <main class="main-container">
