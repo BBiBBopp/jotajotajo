@@ -69,25 +69,26 @@
 
 	<%@ include file="../common/header.jsp" %>
 
-		<div id="container"> <br><br> <br> <br> <br> <br>  
+		<div id="container">  <br><br>
             <h2>투표결과</h2>
             
             <div id="container_8">
                 
-                <img src="resource/image/1328780_2035540_4726.jpg" alt="포스터1" class="poster1">
+                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터1" class="poster1">
                 
             </div>
             <div id="container_9">
-                <img src="resource/image/1328780_2035540_4726.jpg" alt="포스터2" class="poster2">
+                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터2" class="poster2">
                 
-                <img src="resource/image/1328780_2035540_4726.jpg" alt="포스터3" class="poster3">
-                <img src="resource/image/1328780_2035540_4726.jpg" alt="포스터4" class="poster4">
+                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터3" class="poster3">
+                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터4" class="poster4">
             
             </div>
             
         </div>
 
-
+ 	<br><br><br><br><br><br>  
+ 	
 	<%@ include file="../common/footer.jsp" %>
 
 
