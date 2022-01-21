@@ -43,10 +43,10 @@ div {
   right: 27px;
 }
 
-#navi_area {
+/* #navi_area {
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
-}
+} */
 
 #navi_area .group_nav {
   position: relative;
