@@ -21,13 +21,19 @@ public class Member {
 		
 	}
 	
-	public Member(int memberNo, String memberId, String memberPwd, String memberName) {
+	
+	
+	
+
+	public Member(String memberId, Date createDate) { // 아이디찾기 결과 뿌려줄때 필요
 		super();
-		this.memberNo = memberNo;
 		this.memberId = memberId;
-		this.memberPwd = memberPwd;
-		this.memberName = memberName;
+		this.createDate = createDate;
 	}
+
+
+
+
 
 	public Member(int memberNo, String memberId, String memberPwd, String memberName, String birth, String gender,
 			String email, String phone, String interest, int point, Date createDate, String memberStatus) {

@@ -20,4 +20,15 @@ public class LoginServcie {
 		return m;
 	}
 
+	public Member searchId(Member m) {
+		
+		Connection conn = getConnection();
+		
+		Member searchMem = new LoginDao().searchId(conn, m);
+		
+		close(conn);
+		
+		return searchMem;
+	}
+
 }

@@ -27,7 +27,7 @@ public class LoginFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/user/login_logout/loginForm.jsp").forward(request, response);
+		request.getRequestDispatcher("views/user/loginLogout/loginForm.jsp").forward(request, response);
 		
 	}
 

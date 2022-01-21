@@ -27,7 +27,7 @@ public class SearchIdFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("views/user/login_logout/searchId.jsp").forward(request, response);
+		request.getRequestDispatcher("views/user/loginLogout/searchId.jsp").forward(request, response);
 		
 	}
 

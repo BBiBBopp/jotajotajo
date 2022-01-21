@@ -49,7 +49,15 @@ public class LoginDao {
 				m = new Member(rset.getInt("MEMBER_NO")
 									  , rset.getString("MEMBER_ID")
 									  , rset.getString("MEMBER_PWD")
-									  , rset.getString("MEMBER_NAME"));
+									  , rset.getString("MEMBER_NAME")
+									  , rset.getString("BIRTH")
+									  , rset.getString("GENDER")
+									  , rset.getString("EMAIL")
+									  , rset.getString("PHONE")
+									  , rset.getString("INTEREST")
+									  , rset.getInt("POINT")
+									  , rset.getDate("CREATE_DATE")
+									  , rset.getString("MEMBER_STATUS"));
 			}
 			
 		} catch (SQLException e) {
@@ -59,6 +67,40 @@ public class LoginDao {
 			close(pstmt);
 		}
 		return m;
+	}
+
+	public Member searchId(Connection conn, Member m) {
+		
+		Member searchMem = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchId");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getMemberName());
+			pstmt.setString(2, m.getBirth());
+			pstmt.setString(3, m.getPhone());
+			pstmt.setString(4, m.getEmail());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				searchMem = new Member(rset.getString("MEMBER_ID")
+									 , rset.getDate("CREATE_DATE"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return searchMem;
 	}
 	
 	

@@ -82,22 +82,17 @@
     }
     .btn_div a{
         text-decoration: none;
+        color: white;
+        font-weight: bolder;
         font-size: 15px;
     }
     #again{
-        background-color: lightgray
+        background-color: lightgray;
     }
     #enrollment{
         background-color: rgb(13, 71, 161);
     }
-    #again_1{
-        color: black;
-        font-weight: bold;
-    }
-    #enrollment_1{
-        font-weight: bolder;
-        color: white;
-    }
+    
 
 
 

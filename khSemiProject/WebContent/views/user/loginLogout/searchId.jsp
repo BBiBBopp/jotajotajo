@@ -19,7 +19,7 @@
             <div id="content_2">
                 <div id="choose">
                     <div>
-                        <a href="" id="search_id_text">아이디 찾기</a>
+                        <a href="<%= contextPath %>/login.log" id="search_id_text">아이디 찾기</a>
                     </div>
                     <div>
                         <a href="">비밀번호 찾기</a>
@@ -39,7 +39,7 @@
                         <hr>
                     </p>
                 </div>
-                <form action="" method="post">
+                <form action="<%=contextPath %>/sid.sch" method="post">
                     <div id="check_info">
                         <div id="info_keyword">
                             	이름 <br>
@@ -48,14 +48,14 @@
                           	  이메일 <br>
                         </div>
                         <div id="info_input">
-                            <input type="text" name="userName"> <br>
+                            <input type="text" name="memberName"> <br>
                             <input type="text" name="birth"> <br>
                             <input type="text" name="phone"> <br>
                             <input type="email" name="email"> <br>
                         </div>
                     </div>
                     <div id="btn">
-                        <button><a href="">아이디 찾기</a></button>
+                        <button type="submit">아이디 찾기</button>
                     </div>
                 </form>
             </div>

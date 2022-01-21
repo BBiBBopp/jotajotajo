@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.member.model.vo.Member" %>
+<%
+	Member searchMem = (Member)request.getAttribute("searchMem");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +23,7 @@
             <div id="content_2">
                 <div class="choose">
                     <div>
-                        <a href="" id="search_id_text">아이디 찾기</a>
+                        <a href="<%= contextPath %>/login.log" id="search_id_text">아이디 찾기</a>
                     </div>
                     <div>
                         <a href="">비밀번호 찾기</a>
@@ -33,27 +37,32 @@
             </div>
             <div id="content_3">
                 <div class="result_text">
-                    <p>
-                        	결과
+                    <div class="result">
+                       	 결과
                         <hr>
-                    </p>
+                    </div>
                 </div>
                 <div class="show_result">
-                    <div id="radio_button">
-                        <input type="radio" checked> 
-                    </div>
-                    <div class="input_place">
-                        <p id="input_userId">userId 넣을 곳</p>
-                    </div>
-                    <div class="input_place">
-                        <p id="inpput_enrollment_date">가입일 넣을 곳</p>
-                    </div>
+                    <table class="result_table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="memInfo">아이디</th>
+                                <th class="memInfo">가입일</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align">
+                                <td><input type="radio" checked></td>
+                                <td><%= searchMem.getMemberId() %></td>
+                                <td><%= searchMem.getCreateDate() %></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <button id="login_btn"><a href="">로그인</a></button>                
+                <button id="login_btn"><a href="<%=contextPath%>/loginForm.log">로그인</a></button>                
             </div>
         </div>
-	
-	
 	
 	
 	<%@ include file="../common/footer.jsp" %>
