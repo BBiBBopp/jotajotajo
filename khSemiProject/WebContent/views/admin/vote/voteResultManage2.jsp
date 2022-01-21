@@ -8,6 +8,9 @@
  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 </head>
 <body>
+
+	<%@ include file="../common/menubar.jsp" %>
+
 	<div class="form-inline">
     	<h2>투표 결과</h2>  <br><br>
 
