@@ -17,6 +17,70 @@
 <link rel="stylesheet" href="../../../resource/css/00_stylesheet.css">
 <link rel="stylesheet" href="../../../resource/css/01_minStylesheet.css">
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+<link rel="stylesheet" href="style.css">
+
+
+
+<style>
+
+body{
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+.search-box{
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 30px;
+  background-color: #fff;
+  border: 1px solid #51e3d4;
+  border-radius: 30px;
+  transition: 0.4s;
+  width:30px;
+}
+.search-box:hover{
+  box-shadow: 0px 0px .5px 1px #51e3d4;
+  width: 282px;
+}
+.search-btn{
+  text-decoration: none;
+  float: right;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #51e3d4;
+}
+.search-box:hover > .search-btn{
+  background-color: #fff;
+}
+.search-txt{
+  display: flex;
+  padding: 0;
+  width: 0px;
+  border:none;
+  background: none;
+  outline: none;
+  float: left;
+  font-size: 1rem;
+  line-height: 30px;
+  transition: .4s;
+}
+.search-box:hover > .search-txt{
+  width: 240px;
+  padding: 0 6px;
+}
+</style>
+
+
+
 </head>
 <div id="header">
 	<div class="logo_area">
@@ -25,9 +89,15 @@
 				src="<%=contextPath %>/resource/css/image/cinema_logo900.jpg" alt="시네마헤븐"></a>
 		</div>
 		<div class="service_area">
-			<a href="" class="link search">검색</a>
+			<!-- <a href="" class="link search">검색</a>  -->
 			<!-- 검색 지우고 돋보기 이미지 넣기 -->
-			<a href="" class="link login">로그인</a> <a href="" class="link signIn">회원가입</a>
+			<a href="" class="link login">로그인</a> <a href="" class="link signIn">회원가입</a> <br><br><br>
+			    <div class="search-box">
+      				<input type="text" class="search-txt">
+      				<a class="search-btn" href="#">
+        			<i class="fas fa-search"></i>
+      				</a>
+    			</div>
 		</div>
 	</div>
 	<div id="navi_area">
