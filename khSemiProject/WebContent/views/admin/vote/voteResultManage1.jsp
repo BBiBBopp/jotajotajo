@@ -12,9 +12,13 @@
 </head>
 <body>
 
+		<%@ include file="../common/menubar.jsp" %>
+		
 	    <div class="container">
         <h2>투표 결과</h2> <br>
-        <p align="right"><button>등록</button> <button>수정</button> <button>삭제</button></p>
+        <p align="right"><button class="btn btn-sm btn-primary">등록</button> 
+        &nbsp;&nbsp;<button class="btn btn-sm btn-primary">수정</button> 
+        &nbsp;&nbsp;<button class="btn btn-sm btn-danger">삭제</button></p>
         <table class="table table-bordered">
             <thead>
                 <tr bgcolor="lightgray">
