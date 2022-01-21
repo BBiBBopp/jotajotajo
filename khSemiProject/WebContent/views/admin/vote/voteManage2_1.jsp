@@ -14,8 +14,9 @@
 
 		<%@ include file="../common/menubar.jsp" %>
 
-	    <div class="container">
+	    <div class="content">
         <h2>투표관리</h2> <br>
+        <div style="width:1200px">
         <p align="right"><button class="btn btn-sm btn-primary">수정</button>
         &nbsp;&nbsp;<button class="btn btn-sm btn-danger">삭제</button></p>
         <table class="table table-bordered">
@@ -64,6 +65,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </div>
 
 </body>
