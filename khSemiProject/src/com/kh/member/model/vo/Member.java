@@ -21,6 +21,7 @@ public class Member {
 		
 	}
 	
+<<<<<<< HEAD
 	public Member(int memberNo, String memberId, String memberPwd, String memberName) {
 		super();
 		this.memberNo = memberNo;
