@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>movie-mapper</comment>
+	<entry key="selectCurrentList">
+		SELECT *      
+		FROM (SELECT ROWNUM RNUM, A.*
+      		  FROM (
+					SELECT MNO, MNAME, GENRE, RATE
+					FROM MOVIE 
+					WHERE STATUS = 'Y'
+					) A)
+		WHERE RNUM BETWEEN ? AND ?
+		
+		<!-- SELECT *
+		FROM (
+		SELECT MNO, MNAME, GENRE, RATE, 예매율
+		FROM MOVIE 
+		WHERE STATUS = 'Y'
+		ORDER BY 예매율
+		)
+		WHERE ROWNUM BETWEEN ? AND ?
+		rownum은 rename해줘야하는거 체크하기 -->
+	</entry>
+	
+	
+	<!-- 
+	예매율 : 조회한 기간의 관객수 / 배정된 좌석수 
+	배정된 좌석 수 : 상영일정 테이블에서 영화번호, 상영관 번호에서 좌석수 조회해서 다 더하기
+	SELECT COUNT('MNO') FROM 
+	영화 관람등급을 NOT NULL로 둘지 고민
+	 -->
+	 <entry key="selectMovie">
+	 	SELECT *
+	 	FROM MOVIE
+	 	WHERE MNO=?
+	 </entry>
+	 <entry key="selectPicture">
+	 	SELECT * FROM PICTURE WHERE MNO=?
+	 </entry>
+	 <entry key="selectPosterList">
+	 	SELECT * FROM PICTURE WHERE FILE_LEVEL=1 AND MNO=?
+	 </entry>
+</properties>

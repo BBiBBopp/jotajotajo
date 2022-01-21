@@ -5,6 +5,28 @@
     <head>
         <meta charset="UTF-8">
         <title>영화 목록 메인</title>
+        <style>
+            .movie-one {
+                width: 180px;
+                height: 300px;
+                text-align: center;
+                margin: auto;
+                display: inline-block;
+                position: relative;
+            }
+
+            .poster-button {
+                display: none;
+            }
+            .movie-poster+div{
+                opacity: 0;
+            }
+            .movie-poster+div:hover {
+                opacity: 1;
+                position: absolute;
+                top: 0px;
+            }
+        </style>
     </head>
 
     <body>
@@ -12,7 +34,7 @@
         <%@ include file="../common/header.jsp" %>
             <div id="container">
                 <h3>현재상영작</h3>
-                <p>더보기</p>
+                <a href="<%= contextPath %>/currentList.mo">더보기</a>
                 <!-- 현재상영작 목록 -->
                 <div class="movie-list">
                     <div class="movie-one">
@@ -82,7 +104,7 @@
                 </div>
 
                 <h3>추천상영작</h3>
-                <p>더보기</p>
+                <a href="<%= contextPath %>/recommendList.mo">더보기</a>
                 <!-- 추천버튼 -->
                 <!-- 로그인 되어있지 않으면 무작위로 하나, 로그인 되어있으면 선택한 내용으로 class btn-primary 교체 -->
                 <button class="btn btn-sm btn-light">#공포</button>
