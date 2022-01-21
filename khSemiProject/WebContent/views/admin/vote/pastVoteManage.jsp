@@ -20,8 +20,9 @@
 
 	<%@ include file="../common/menubar.jsp" %>
 
-	<div class="container">
+	<div class="content">
         <h2>이전투표목록</h2> <br>
+        <div style="width:800px">
         <p align="right"><button class="btn btn-sm btn-primary">등록</button>
         &nbsp;&nbsp;<button class="btn btn-sm btn-primary">수정</button>
         &nbsp;&nbsp;<button class="btn btn-sm btn-danger">삭제</button></p>
@@ -52,8 +53,10 @@
             </tbody>
         </table>
         <br>
-    <P align="right">포스터 등록 <input type="submit" value="파일 등록" class="btn btn-sm btn-secondary"></P>
+    <p align="right">포스터 등록 <input type="submit" value="파일 등록" class="btn btn-sm btn-secondary"></p>
+        </div>
     </div>
+    
 	
 </body>
 </html>
