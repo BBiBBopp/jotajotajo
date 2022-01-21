@@ -7,6 +7,7 @@ public class test {
 	
 	public static void main(String[] args) throws IOException { 
 		System.out.println(getRamdomPassword(10)); 
+		
 		} 
 	
 	public static String getRamdomPassword(int len) {
