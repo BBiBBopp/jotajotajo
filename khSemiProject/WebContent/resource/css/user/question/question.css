@@ -57,7 +57,7 @@ div {
 	height: 40px;
 }
 
-.Qlist>tr:hover {
+.Qlist-data:hover {
 	cursor: pointer;
 	background: rgb(189, 226, 238);
 }

@@ -1,21 +1,34 @@
 package com.kh.question.model.vo;
 
-public class question {
+public class Question {
 	private int askNo; //ASK_NO	NUMBER
 	private String askDate; //ASK_DATE	DATE
+	private int askType; // ASK_TYPE INT
 	private String askTitle; //ASK_TITLE	VARCHAR2(20 BYTE)
 	private String askContent; //ASK_CONTENT	VARCHAR2(1000 BYTE)
 	private String commentDate; //COMMENT_DATE	DATE
 	private String comment; //COMMENT	VARCHAR2(1000 BYTE)
 	private int memberNo; //MEMBER_NO --askWriter	NUMBER
-	public question() {
+	public Question() {
 		super();
 	}
-	public question(int askNo, String askDate, String askTitle, String askContent, String commentDate, String comment,
-			int memberNo) {
+	public Question(int askNo, String askDate, int askType, String askTitle, String askContent, String commentDate,
+			String comment, int memberNo) {
 		super();
 		this.askNo = askNo;
 		this.askDate = askDate;
+		this.askType = askType;
+		this.askTitle = askTitle;
+		this.askContent = askContent;
+		this.commentDate = commentDate;
+		this.comment = comment;
+		this.memberNo = memberNo;
+	}
+	public Question(String askDate, int askType, String askTitle, String askContent, String commentDate, String comment,
+			int memberNo) {
+		super();
+		this.askDate = askDate;
+		this.askType = askType;
 		this.askTitle = askTitle;
 		this.askContent = askContent;
 		this.commentDate = commentDate;
@@ -33,6 +46,12 @@ public class question {
 	}
 	public void setAskDate(String askDate) {
 		this.askDate = askDate;
+	}
+	public int getAskType() {
+		return askType;
+	}
+	public void setAskType(int askType) {
+		this.askType = askType;
 	}
 	public String getAskTitle() {
 		return askTitle;
@@ -66,7 +85,8 @@ public class question {
 	}
 	@Override
 	public String toString() {
-		return "question [askNo=" + askNo + ", askDate=" + askDate + ", askTitle=" + askTitle + ", askContent="
-				+ askContent + ", commentDate=" + commentDate + ", comment=" + comment + ", memberNo=" + memberNo + "]";
+		return "Question [askNo=" + askNo + ", askDate=" + askDate + ", askType=" + askType + ", askTitle=" + askTitle
+				+ ", askContent=" + askContent + ", commentDate=" + commentDate + ", comment=" + comment + ", memberNo="
+				+ memberNo + "]";
 	}
 }

@@ -39,9 +39,10 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal" onclick="history.back();">Close</button>
+						data-dismiss="modal" >아니오</button>
+					<!-- onclick="history.back();" 넣기 -->
 					<button type="button" class="btn btn-primary"
-						onclick="location.href='<%=request.getContextPath()%>/login.log'">Understood</button>
+						onclick="location.href='<%=request.getContextPath()%>/login.log'">로그인 페이지로 이동</button>
 				</div>
 			</div>
 		</div>
