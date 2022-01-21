@@ -12,16 +12,6 @@
 	
 	<%@ include file="../common/header.jsp" %>
 
-	<script>
-			var msg = "<%= alertMsg%>"
-			if(msg != "null"){ // 성공, 경고 메세지 문구가 담겨있을 경우
-				alert(msg);
-			
-			<% session.removeAttribute("alertMsg"); %>
-			// 해당 페이지가 로딩 될 때마다 뜨는 alert제거			
-			}
-	</script>
-
 	<div id="container">
             <div id="content_1">
                 <p id="login">로그인</p>
@@ -42,7 +32,7 @@
                         
                         <div id="search_id_pwd">
                             <a href="<%= contextPath %>/sidForm.sch">아이디찾기</a>&emsp;|&emsp;
-                            <a href="">비밀번호찾기</a>
+                            <a href="<%= contextPath%>/spwdForm.sch">비밀번호찾기</a>
                         </div>
                     </form>
                 </div>
