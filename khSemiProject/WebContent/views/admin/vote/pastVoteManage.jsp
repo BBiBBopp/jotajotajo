@@ -9,6 +9,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+<style>
+	table {
+		width:300px;
+	}
+</style>
 </head>
 <body>
 
@@ -22,8 +28,8 @@
         <table class="table table-bordered">
             <thead>
                 <tr bgcolor="lightgray">
-                    <th>no.</th>
-                    <th>파일</th>
+                    <th width="200">no.</th>
+                    <th width="200">파일</th>
                 </tr>
             </thead>
             <tbody>
