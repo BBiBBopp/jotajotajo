@@ -14,12 +14,15 @@
 
 		<%@ include file="../common/menubar.jsp" %>
 		
-	    <div class="container">
+	    <div class="content">
         <h2>투표 결과</h2> <br>
+        <div style="width:800px">
         <p align="right"><button class="btn btn-sm btn-primary">등록</button> 
         &nbsp;&nbsp;<button class="btn btn-sm btn-primary">수정</button> 
         &nbsp;&nbsp;<button class="btn btn-sm btn-danger">삭제</button></p>
-        <table class="table table-bordered">
+        
+        
+        <table class="table table-bordered"width="600">
             <thead>
                 <tr bgcolor="lightgray">
                     <th>no.</th>
@@ -45,6 +48,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </div>
 	
 	
