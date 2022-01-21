@@ -11,10 +11,13 @@
 <body>
 
 	<%@ include file="../common/header.jsp"%>
-	<div class="sub_nav" style="float:left;">
+	<div class="sub_nav" style="float: left;">
 		<%@ include file="../common/subNavigation.jsp"%>
 	</div>
-
+	
+	<% if (loginUser == null) { %>
+		<%@ include file="../common/loginCheck.jsp"%>
+	<% } %>
 	<div class="outer">
 		<br>
 		<h1 class="title">문의 내역 확인</h1>
@@ -45,7 +48,7 @@
 				</tr>
 			</tbody>
 		</table>
-		
+
 		<script>
 			$(function(){
 				$(".Qlist-data").click(function(){

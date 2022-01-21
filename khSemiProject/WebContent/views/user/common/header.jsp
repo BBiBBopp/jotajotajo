@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.kh.member.model.vo.Member" %>
 <% 
 	String contextPath = request.getContextPath();	
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	Member loginUser = (Member)session.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +20,16 @@
 <link rel="stylesheet" href="<%= contextPath %>/resource/css/user/00_stylesheet.css">
 
 </head>
+<body>
+	<script>
+		var msg = "<%= alertMsg%>"
+		if(msg != "null"){ // 성공, 경고 메세지 문구가 담겨있을 경우
+				alert(msg);
+				
+		<% session.removeAttribute("alertMsg"); %>
+		// 해당 페이지가 로딩 될 때마다 뜨는 alert제거			
+		}
+	</script>
 <div id="header">
 	<div class="logo_area">
 		<div class="logo_bg">

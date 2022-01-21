@@ -23,7 +23,6 @@ public class LoginDao {
 		try {
 			prop.loadFromXML(new FileInputStream(fileName));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
