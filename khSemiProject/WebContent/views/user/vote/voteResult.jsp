@@ -28,11 +28,14 @@
     #container_8 { 
         width: 60%; 
     }
-    #container_9 { width: 40%; }
+    #container_9 { 
+    	width: 40%; 
+    	
+    	}
 
     .poster1{
         width: 400px;
-        height: 620px;
+        height: 710px;
         float: right;
         margin-top: 0px;
 
@@ -69,25 +72,44 @@
 
 	<%@ include file="../common/header.jsp" %>
 
-		<div id="container">  <br><br>
+		<div id="container">  <br><br><br><br>
             <h2>투표결과</h2>
             
+            <br><br><br><br>
+            <p style="text-align:center;font-size:28px;">1위 영화는 4월에 상영됩니다!</p>
             <div id="container_8">
-                
                 <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터1" class="poster1">
+                
+                <p><p style="font-size:20px;">현재순위</p><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                
+                <span style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                1위 : 영화1 00%</span> </p>
                 
             </div>
             <div id="container_9">
-                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터2" class="poster2">
-                
-                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터3" class="poster3">
-                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터4" class="poster4">
-            
+                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터2" class="poster2"> 
+                <p style="font-size:20px;">2위 : 영화2 00%</p>
+    
             </div>
+
+                
+            <div id="container_9">    
+                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터3" class="poster3">
+               <p style="font-size:20px;">3위 : 영화3 00%</p>
+                
+            </div>   
+            <div id="container_9">  
+                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터4" class="poster4">
+               <p style="font-size:20px;">&nbsp;&nbsp;&nbsp;4위 : 영화4 00%</p>
+            </div>   
+            
             
         </div>
 
- 	<br><br><br><br><br><br>  
+ 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+   
  	
 	<%@ include file="../common/footer.jsp" %>
 
