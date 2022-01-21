@@ -16,7 +16,7 @@
     .wrap>div { width: 100%; }
 
     #header { height: 10%; }
-    /* #navi_area {height: 10%;} */
+    #navi_area {height: 10%;} 
     #footer { height: 10%; }
     #container { height: 70%; }
 
@@ -80,6 +80,8 @@
         height: 100%;
 	}
 */
+
+
 	
 
 
@@ -90,10 +92,10 @@
 <body>
 	<%@ include file="../common/header.jsp" %>
 	    <script>
-        window.onload =function () {
-            window.open("popup.html",  "popupNo1", "width=300, height=360");
-        /*    window.close(button onclick="location.href='../vote/votePage.jsp'"); */
-         }
+        /* window.onload =function () {
+            window.open("popup.html",  "popupNo1", "width=300, height=360"); */
+        /*    window.close(button onclick="location.href='../vote/votePage.jsp'"); 
+         } */
         </script>
 
             <div id="container">
@@ -103,15 +105,22 @@
                 </div>
                 <div id="container_2">
                     <!-- <div class="service_area2">현재 상영 영화</div> -->
-                    <br>
+                    <br><br><br>
                     <div style="font-size: x-large;"><b>현재 상영 영화</b></div>
                     
                     <main class="main-container">
                         <ul class="thumbnail-list">
                             <li class="thumbnail-item">
-                                
+                            
+                              <div class="over">
                                 <img src="../../../resource/css/image/abbca385468091a7ba232e09.jpg" alt="영화1" class="thumbnail-image">
+                                
+                                 
+                                 </div>  
+                                
                                 <span class="thumbnail-title">영화 <br> 예매율</span></li>
+                               
+                                
                         </ul>
                         <ul class="thumbnail-list">
                             <li class="thumbnail-item">
@@ -136,18 +145,23 @@
                 
                     </main>
                 </div>
+                <br><br><br><br>
+                
                 <div id="container_3">
                     <hr size="1" noshade>
                     <p>공지사항
-                    	<input type="button" value="더보기" style="float:right;">
+                    	<input type="button" class="btn btn-sm btn-primary" value="더보기" style="float:right;">
                     </p>
                     <hr size="1" noshade>
-                    <pre>고객센터      <button onclick="location.href='../notice/FAQView.jsp'">FAQ</button>      <button>1:1문의</button></pre>
+                    <p>고객센터 &nbsp;&nbsp;&nbsp;&nbsp;<button onclick="location.href='../notice/FAQView.jsp'" class="btn btn-sm btn-primary">FAQ</button>
+                          	 &nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-primary">1:1문의</button>
+                          	 <span style="float:right;">1544-0000</span></p>
                     <hr size="1" noshade>
 
                 </div>
             </div>
 	
+	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
