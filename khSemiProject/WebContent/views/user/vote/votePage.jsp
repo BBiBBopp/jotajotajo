@@ -19,12 +19,12 @@
 
     .wrap>div { width: 100%; }
 
-#header { height: 10%; }
-/* #navi_area {height: 10%;} */
-#footer { height: 10%; }
-#container { height: 70%; }
+	#header { height: 10%; }
+	/* #navi_area {height: 10%;} */
+	#footer { height: 10%; }
+	#container { height: 70%; }
 
-.thumbnail-image0 {
+	.thumbnail-image0 {
         width: 700px;
         height: 400px;
         margin-top: 300px;
@@ -68,11 +68,11 @@
     }
 
     .checkbox input.checkbox1{
-    font-size: 1em;
-    width: 1.25em; /* 너비 설정 */
-    height: 1.25em; /* 높이 설정 */
-    vertical-align: right;
-}
+	    font-size: 1em;
+	    width: 1.25em; /* 너비 설정 */
+	    height: 1.25em; /* 높이 설정 */
+	    vertical-align: right;
+	}
 
     </style>
 
@@ -150,7 +150,7 @@
             </div>
             <br><br><br><br><br>    
 
-            <div align="center"><button>투표하기</button></div>
+            <div align="center"><button class="btn btn-sm btn-primary">투표하기</button></div>
         </div>
         <br><br><br><br><br><br>    
 	
