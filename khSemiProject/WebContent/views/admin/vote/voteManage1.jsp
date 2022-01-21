@@ -16,8 +16,9 @@
 
 	<%@ include file="../common/menubar.jsp" %>
 
-	<div class="container">
+	<div class="content">
         <h2>투표 관리</h2> <br>
+        <div style="width:800px">
         <p align="right"><button class="btn btn-sm btn-primary">등록</button>
         &nbsp;&nbsp;<button class="btn btn-sm btn-primary">수정</button> 
         &nbsp;&nbsp;<button class="btn btn-sm btn-danger">삭제</button></p>
@@ -41,17 +42,18 @@
                     <td align="center"><button>완료</button></td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>2월 투표</td>
+                    <td>2</td>
+                    <td>12월 투표</td>
                     <td align="center"><button>완료</button></td>
                 </tr>
                 <tr>
-                    <td>11</td>
-                    <td>2월 투표</td>
+                    <td>1</td>
+                    <td>11월 투표</td>
                     <td align="center"><button>완료</button></td>
                 </tr>
             </tbody>
         </table>
+        </div>
     </div>
 </body>
 </html>
