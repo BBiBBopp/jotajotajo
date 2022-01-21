@@ -1,154 +1,207 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% String contextPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>약관동의</title>
-<style>
-	
-	.outer, .header{
-		margin: 0 auto;
-	}
-	.terms{
-		overflow:scroll; 
-		width:500px; 
-		height:150px; 
-		padding:10px; 
-		
-	}
-	.member-area{
-		width: 100%;
-		margin: 0 auto;
-    	max-width: 700px;
-    	min-width: 460px;
-	}
-	.logo_bg {
-	position: relative;
-	margin: auto;
-	height: 100%;
-	background-color: white;
-	
-	}
-	.logo_bg img {
-	height: 170px;
-	display: block;
-	margin: auto;
-	}
-	.member-area>fieldset>form>ul>li{
-        list-style: none;
-    }
-	
-</style>
-</head>
+<title>회원가입</title>
+<link rel="stylesheet" href="<%=contextPath %>/resource/css/member/memberForm.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resource/js/member.js"></script>
 <body>
+</head>
+
 	<div class="header">
 		<div class="logo_bg">
-			<a href=""><img src="<%=request.getContextPath() %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐"></a>
+			<img src="<%=contextPath %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐">
 		</div>
-	</div>
+	</div> 
 	<div class="outer">
-		<div class="member-area">
+		<div class="member-area" align="center">
             <fieldset>
             <legend>회원가입</legend>
-            <form action="" method="post">
+            <form action="<%=contextPath %>/insert.me" method="post">
                 <ul>
                     <li>
-                        <label for="memberId">아이디</label> 
-                        <button id="idCheck">중복체크</button>
+                    	<div class="id-area">
+                    		<div align="left" style="width: 280px">
+                        		<label for="memberId">아이디</label>
+                    		</div>
+                    		<div align="right" style="width: 120px">
+	                    		<input type="button" class="member_btn id_check_btn" id="idCheck" value="중복체크">
+                    		</div>
+	                    </div>
                     </li>
                     <li>
-                        <input type="text" name="memberId" id="memberId">
+                        <input type="text" class="member_input" name="memberId" id="memberId" maxlength="20" required placeholder="영문 대.소문자, 숫자 _,-만 입력 가능하고 5에서 20자리">
+                    </li>
+                     <li class="id_text error_text">
                     </li>
                     <li>
                         <label for="memberPwd">비밀번호</label>
                     </li>
                     <li>
-                        <input type="password" name="memberPwd" id="memberPwd">
+                        <input type="password" class="member_input" name="memberPwd" id="memberPwd" maxlength="16" required placeholder="영문 대문자와 소문자, 숫자, 특수문자를 하나 이상 포함하여 8~16">
+                    </li>
+                    <li class="pwd_text error_text">
                     </li>
                     <li>
                         <label for="pwdCheck">비밀번호 확인</label>
                     </li>
                     <li>
-                        <input type="password" id="pwdCheck">
+                        <input type="password" class="member_input" id="pwdCheck" required placeholder="비밀번호 한번 더 입력해 주세요.">
+                    </li>
+                    <li class="pwdCheck_text error_text">
                     </li>
                     <li>
                         <label for="memberName">이름</label>
                     </li>
                     <li>
-                        <input type="text" name="memberName" id="memberName">
+                        <input type="text" class="member_input" name="memberName" id="memberName" required placeholder="2~6자 한글만">
+                    </li>
+                    <li class="name_text error_text">
                     </li>
                     <li>
-                        <label for="">생년월일</label>
+                        <label for="yyyy">생년월일</label>
                     </li>
                     <li>
-                        <input type="text" name="" id="">
-                        <select name="" id="">
+                        <input type="text" name="yyyy" id="yyyy" class="birth_input" maxlength="4" placeholder="년" required>
+                        <select name="mm" id="mm" class="birth_input">
                             <option value="0">월</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
                         </select>
-                        <input type="">
+                        <input type="text" name="dd" id="dd" class="birth_input" maxlength="2" placeholder="일" required>
                     </li>
                     <li>
                         <label for="gender">성별</label>
                     </li>
                     <li>
-                        <select name="" id="">
-                            <option value="">성별</option>
+                        <select name="gender" id="gender" class="member_input">
+                            <option value="0">성별</option>
+                            <option value="남">남</option>
+                            <option value="여">여</option>
                         </select>
                     </li>
                     <li>
                         <label for="email">이메일</label>
                     </li>
                     <li>
-                        <input type="text" id="email" name="email">
-                        <button id="emailCheck">이메일 인증</button>
+                        <input type="text" id="email" name="email" class="member_input" required placeholder="@ 포함으로 입력 해주세요.">
+                    </li>
+                     <li class="email_text error_text">
                     </li>
                     <li>
-                        <input type="text" id="check">
-                        <button id="CheckBtn">인증번호 확인</button>
+                        <input type="button" id="emailCheck" class="member_input member_btn" value="이메일 인증" >
+                    </li>
+                    <li>
+                        <input type="text" id="email_check" class="member_input">
+                    </li>
+                    <li>
+                        <input type="button" id="CheckBtn" class="member_input member_btn" value="인증번호 확인">
+                    </li>
+                     <li class="email_certification_text error_text">
                     </li>
                     <li>
                         <label for="phone">휴대전화</label>
                     </li>
                     <li>
-                        <input type="text" name="phone" id="phone">
+                        <input type="text" name="phone" id="phone" class="member_input" required placeholder="-포함 숫자만 입력해주세요.">
+                    </li>
+                    <li class="phone_text error_text">
                     </li>
                     <li>
-                        <label for="">관심장르(중복 가능)</label>
+						관심장르(중복 가능)
                     </li>
                     <li> 
-						액션<input type="checkbox" name="" id="">
-						애니메이션<input type="checkbox" name="" id="">
-						드라마<input type="checkbox" name="" id="">
+						<div class="form-check-inline interest_div">
+							<label class="form-check-label">
+								<input type="checkbox" name="interest" class="form-check-input" value="action">액션
+							</label>
+						</div>
+						<div class="form-check-inline interest_div">
+							<label class="form-check-label">
+								<input type="checkbox" name="interest" class="form-check-input" value="animation">애니메이션
+						  </label>
+						</div>
+						<div class="form-check-inline interest_div">
+							<label class="form-check-label">
+								<input type="checkbox" name="interest" class="form-check-input" value="drama">드마라
+							</label>
+						</div>
                     </li>
                     <li> 
-						스릴러<input type="checkbox" name="" id="">
-						코미디<input type="checkbox" name="" id="">
-						로맨스/멜로<input type="checkbox" name="" id="">
+						<div class="form-check-inline interest_div">
+							<label class="form-check-label">
+								<input type="checkbox" name="interest" class="form-check-input" value="thriller">스릴러
+							</label>
+						</div>
+						<div class="form-check-inline interest_div">
+							<label class="form-check-label">
+								<input type="checkbox" name="interest" class="form-check-input" value="romance">로맨스멜로
+						  </label>
+						</div>
+						<div class="form-check-inline interest_div">
+							<label class="form-check-label">
+								<input type="checkbox" name="interest" class="form-check-input" value="comedy">코미디
+							</label>
+						</div>
                     </li>
                     <li> 
-						범죄<input type="checkbox" name="" id="">
-						공포<input type="checkbox" name="" id="">
-						미스터리<input type="checkbox" name="" id="">
+						<div class="form-check-inline interest_div">
+							<label class="form-check-label">
+								<input type="checkbox" name="interest" class="form-check-input" value="crime">범죄
+							</label>
+						</div>
+						<div class="form-check-inline interest_div">
+							<label class="form-check-label">
+								<input type="checkbox" name="interest" class="form-check-input" value="fear">공포
+						  </label>
+						</div>
+						<div class="form-check-inline interest_div">
+							<label class="form-check-label">
+								<input type="checkbox" name="interest" class="form-check-input" value="mystery">미스터리
+							</label>
+						</div>
                     </li>
                     <li> 
-						성인물<input type="checkbox" name="" id="">
-						사극<input type="checkbox" name="" id="">
-						SF<input type="checkbox" name="" id="">
+						<div class="form-check-inline interest_div">
+							<label class="form-check-label">
+								<input type="checkbox" name="interest" class="form-check-input" value="adult">성인물
+							</label>
+						</div>
+						<div class="form-check-inline interest_div">
+							<label class="form-check-label">
+								<input type="checkbox" name="interest" class="form-check-input" value="history">사극
+						  </label>
+						</div>
+						<div class="form-check-inline interest_div">
+							<label class="form-check-label">
+								<input type="checkbox" name="interest" class="form-check-input" value="SF">SF
+							</label>
+						</div>
                     </li>
-                    
                 </ul>
                 <div>
-                    <input type="reset" value="취소">
-                    <input type="submit" value="가입">
+                    <input class="member_input member_btn insert_btn" type="submit" value="가입">
                 </div>
             </form>
             </fieldset>
 		</div>
-		
-
 	</div>
-
-	
+	<br>
 </body>
 </html>

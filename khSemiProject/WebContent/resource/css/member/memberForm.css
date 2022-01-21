@@ -1,0 +1,65 @@
+@charset "UTF-8";
+.member-area{
+		width: 400px;
+		margin: 0 auto;
+    	max-width: 700px;
+    	min-width: 460px;
+	}
+	.logo_bg {
+	position: relative;
+	margin: auto;
+	height: 100%;
+	background-color: white;
+	
+	}
+	.logo_bg img {
+	height: 170px;
+	display: block;
+	margin: auto;
+	}
+	.member-area>fieldset>form>ul>li{
+        list-style: none;
+        text-align: left;
+        margin: 7px 0px;
+    }
+    
+    .member_input{
+    	width: 400px;
+    	height: 40px;
+    }
+    .id-area{
+    	display: flex;
+    }
+    .member-area{
+    	font-size: 20px;
+    }
+    .id-text{
+    	font-size : 15px;
+    }
+    .birth_input{
+    	width: 130px;
+    	height: 40px;
+    }
+    .member_btn{
+    	background: rgb(13, 71, 161);
+    	color : white;
+    }
+    .id_check_btn{
+    	width: 120px;
+    	height: 40px;
+    }
+    .interest_div{
+    	width: 120px;
+    }
+    label{
+    	font-size: 20px;
+    	font-weight: bold;
+    	padding-top: 2px;
+    }
+    ::placeholder {
+    	font-size: 13px;
+    }
+    
+    .error_text{
+    	font-size: 13px;
+    }

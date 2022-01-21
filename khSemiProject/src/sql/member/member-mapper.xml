@@ -2,19 +2,28 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<comment>회원 쿼리</comment>
-	<entry key="selectMember">
+	<entry key="idCheck">
+		SELECT COUNT(*) COUNT FROM MEMBER
+		WHERE MEMBER_ID = ?
+	</entry>
+	<entry key="emailCheck">
+		SELECT COUNT(*) COUNT FROM MEMBER
+		WHERE email = ?
+	</entry>
+	<entry key="memberSelect">
 	
 	</entry>
-	<entry key="selectMemberList">
+	<entry key="memberSelectList">
 	
 	</entry>
-	<entry key="insertMember">
+	<entry key="memberInsert">
+		INSERT INTO MEMBER(MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NAME, BIRTH, GENDER, EMAIL, PHONE, INTEREST)
+		VALUES(SEQ_MEM_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)
+	</entry>
+	<entry key="memberUpdate">
 	
 	</entry>
-	<entry key="updateMember">
-	
-	</entry>
-	<entry key="deleteMember">
+	<entry key="memberDelete">
 	
 	</entry>
 

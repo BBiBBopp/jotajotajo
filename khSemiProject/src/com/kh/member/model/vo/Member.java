@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Member {
 	
 	private int memberNo; // MEMBER_NO	NUMBER -> 번호
-	private String memberId; //NENBER_ID VARCHAR2(20 BYTE) -> 아이디(UNIQUE)
+	private String memberId; //MEMBER_ID VARCHAR2(20 BYTE) -> 아이디(UNIQUE)
 	private String memberPwd; // MEMBER_PWD	VARCHAR2(1000 BYTE) - > 패스워드
 	private String memberName; // MEMBER_NAME	VARCHAR2(30 BYTE) - > 이름
 	private String birth; // BIRTH	VARCHAR2(20 BYTE) - > 생년월일

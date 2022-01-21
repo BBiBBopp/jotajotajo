@@ -7,39 +7,6 @@
 <title>회원 수정</title>
 
 <style type="text/css">
-	.menubar>ul {
-        list-style-type: none;
-        padding: 0px;
-        margin: 0px;
-        width: 200px;
-        background: rgb(13, 71, 161);
-        height: 100%;
-        overflow: auto;
-        position: fixed;
-	}
-
-	.menubar li a {
-        text-decoration: none;
-        padding: 10px;
-        display: block;
-        color: white;
-        font-weight: bold;
-	}
-
-	.menubar li a:hover {
-        background: #333;
-        color: #fff;
-	}
-	
-	.menubar li a.home>img {
-        width: 180px;
-        height: 160px;
-	}
-	
-	.content {
-        margin-left: 220px;
-        
-	}
     #temporaryEmailBtn , .btn-area>input, #searchBtn{
         width: 160px;
         height: 40px;
@@ -53,23 +20,11 @@
         color: white;
     }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <div class="outer">
         <div class="menubar">
-            <ul>
-                <li><a class="home" href="#"><img src="<%=request.getContextPath() %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐"></a></li>
-                <li><a href="#">회원관리</a></li>
-                <li><a href="#">영화 목록 관리</a></li>
-                <li><a href="#">영화관 관리</a></li>
-                <li><a href="#">고객센터</a></li>
-                <li><a href="#">투표관리</a></li>
-            </ul>
+           <%@ include file="../common/menubar.jsp" %>
         </div>
         <div class="content">
             <div class="container">
@@ -82,8 +37,9 @@
                             <tr>
                                 <th>아이디</th>
                             </tr>
-                                <td>user01</td>
                             <tr>
+                                <td>user01</td>
+                            </tr>
                             <tr>
                                 <td>
                                     <button id="temporaryEmailBtn">임시 비밀번호 발급</button>
@@ -124,7 +80,6 @@
         </div>
     </div>
     
-    </div>
 
 <div class="cd1">
   
