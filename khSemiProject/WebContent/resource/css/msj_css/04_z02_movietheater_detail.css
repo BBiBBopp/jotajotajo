@@ -1,0 +1,69 @@
+    div {
+        border: 1px solid black;
+        display: block;
+    } 
+    /* ------------------------------------------------ */
+    /* container영역 */
+    #container {
+        width: 1000px;
+        height: 1600px;
+        margin: auto;
+    }
+    #content_1{
+        width: 100%;
+        height: 10%;
+        text-align: center;
+    }
+    #content_1>h1{
+        text-align: center;
+        font-weight: bolder;
+        font-size: 30px;
+        color: rgb(13, 71, 161);
+        margin-top: 40px;
+    }
+    #content_2{
+        width: 100%;
+        height: 20%;
+    }
+    #content_2 div{
+        float: left;
+    }
+    #theater_back{
+        width: 75%;
+        height: 100%;
+        background-color: rgb(231, 231, 231);
+        margin-left: 15%;
+        border-radius: 15px;
+        /* position: relative; */
+    }
+    #theater_pic{
+        width: 50%;
+        height: 100%;
+        /* position: absolute; */
+    }
+    #theater_pic>img{
+        width: 250px;
+        height: 250px;
+        margin-left: 65px;
+        margin-top: 20px;
+        
+    }
+    #theater_info{
+        width: 50%;
+        height: 100%;
+        padding-left: 15px;    
+        padding-top: 30px;    
+    }
+    #theater_info>p{
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+
+
+
+
+
+
+
+    

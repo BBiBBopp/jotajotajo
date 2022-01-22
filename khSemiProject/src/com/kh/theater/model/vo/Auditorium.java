@@ -1,4 +1,4 @@
-package com.kh.theater.vo;
+package com.kh.theater.model.vo;
 
 public class Auditorium {
 

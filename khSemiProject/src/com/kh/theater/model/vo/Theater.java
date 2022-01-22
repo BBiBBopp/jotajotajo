@@ -1,4 +1,4 @@
-package com.kh.theater.vo;
+package com.kh.theater.model.vo;
 
 public class Theater {
 
@@ -16,6 +16,18 @@ public class Theater {
 	public Theater() {
 		super();
 	}
+	
+
+	public Theater(int theaterNo, String theaterName, int auditoriumNum, int seatNum, String address, String phone) {
+		super();
+		this.theaterNo = theaterNo;
+		this.theaterName = theaterName;
+		this.auditoriumNum = auditoriumNum;
+		this.seatNum = seatNum;
+		this.address = address;
+		this.phone = phone;
+	}
+
 
 	public Theater(int theaterNo, String theaterName, int auditoriumNum, int seatNum, String address, String phone,
 			String traffic, String location, String parking, String theaterImgPath) {

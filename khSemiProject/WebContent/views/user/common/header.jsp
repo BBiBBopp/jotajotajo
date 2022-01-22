@@ -55,7 +55,7 @@
 		<div class="group_nav">
 			<ul class="list_navi">
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">영화</a></li>
-				<li class="nav_item"><a href="<%=contextPath%>/mtList.th?currentPage=1" class="link nav">영화관</a></li>
+				<li class="nav_item"><a href="<%=contextPath%>/tList.th?currentPage=1" class="link nav">영화관</a></li>
 				<li class="nav_item"><a href="<%=contextPath%>/selectMovie.ti" class="link nav">예매</a></li>
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">투표하기</a></li>
 				<li class="nav_item"><a href="../notice/FAQView.jsp" class="link nav">고객센터</a></li>

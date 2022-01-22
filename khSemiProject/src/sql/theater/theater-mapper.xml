@@ -8,7 +8,17 @@
 		  FROM THEATER
 	</entry>
 	
-	
+	<entry key="selectList">
+		SELECT *
+			FROM (
+				SELECT ROWNUM RNUM, A.*
+				FROM (
+						SELECT *
+						 FROM THEATER
+						ORDER 
+		 				   BY THEATER_NO DESC) A)
+				WHERE RNUM BETWEEN ? AND ?
+	</entry>
 	
 	
 	

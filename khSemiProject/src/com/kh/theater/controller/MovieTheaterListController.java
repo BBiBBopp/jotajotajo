@@ -1,18 +1,22 @@
 package com.kh.theater.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.theater.model.service.TheaterService;
+import com.kh.theater.model.vo.Theater;
 
 /**
  * Servlet implementation class MovieTheaterListController
  */
-@WebServlet("/mtList.th")
+@WebServlet("/tList.th")
 public class MovieTheaterListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,15 +46,33 @@ public class MovieTheaterListController extends HttpServlet {
 		
 		listCount = new TheaterService().selectListCount();
 		
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		currentPage = Integer.parseInt(request.getParameter("currentPage")); // "1"
 		
+		pageLimit = 10;
 		
+		boardLimit = 10;
 		
+		maxPage = (int)Math.ceil((double)listCount / boardLimit);
 		
+		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
 		
+		endPage = startPage + pageLimit - 1;
 		
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
 		
+		// 여기까지 총 7개의 변수 할당
+		// 7개의 변수를 가지고 해당되는 범위에 따른 게시글 10개씩만 SELECT
+		// Service단으로 7개의 변수 토스
 		
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit,
+				maxPage, startPage, endPage);
+		
+		ArrayList<Theater> list = new TheaterService().selectList(pi);
+		
+		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
 		
 		request.getRequestDispatcher("views/user/theater/movieTheaterList.jsp").forward(request, response);
 		
