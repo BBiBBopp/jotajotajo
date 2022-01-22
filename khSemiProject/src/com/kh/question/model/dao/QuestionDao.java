@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
+import com.kh.question.model.vo.Q_Attachment;
 import com.kh.question.model.vo.Question;
 
 public class QuestionDao {
@@ -94,5 +95,48 @@ public class QuestionDao {
 		}
 
 		return q;
+	}
+
+	public int insertQuestion(Connection conn, Question q) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertQuestion");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, q.getAskTypeNo());
+			pstmt.setString(2, q.getAskTitle());
+			pstmt.setString(3, q.getAskContent());
+			pstmt.setInt(4, q.getMemberNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertQAttachment(Connection conn, Q_Attachment at) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertQAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
 }

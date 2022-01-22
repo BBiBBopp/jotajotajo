@@ -42,7 +42,7 @@
 						data-dismiss="modal" >아니오</button>
 					<!-- onclick="history.back();" 넣기 -->
 					<button type="button" class="btn btn-primary"
-						onclick="location.href='<%=request.getContextPath()%>/login.log'">로그인 페이지로 이동</button>
+						onclick="location.href='<%=request.getContextPath()%>/loginForm.log'">로그인 페이지로 이동</button>
 				</div>
 			</div>
 		</div>

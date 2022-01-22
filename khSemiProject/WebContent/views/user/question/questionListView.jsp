@@ -28,7 +28,7 @@
 	<div class="sub_nav" style="float: left;">
 		<%@ include file="../common/subNavigation.jsp"%>
 	</div>
-		<!-- 로그인 안돼있으면 못들어옴 -->
+	<!-- 로그인 안돼있으면 못들어옴 -->
 	<% if (loginUser == null) { %>
 		<%@ include file="../common/loginCheck.jsp"%>
 	<% } 

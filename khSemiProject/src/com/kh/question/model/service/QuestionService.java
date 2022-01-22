@@ -1,12 +1,12 @@
 package com.kh.question.model.service;
 
-import static com.kh.common.JDBCTemplate.close;
-import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.question.model.dao.QuestionDao;
+import com.kh.question.model.vo.Q_Attachment;
 import com.kh.question.model.vo.Question;
 
 public class QuestionService {
@@ -29,6 +29,25 @@ public class QuestionService {
 		close(conn);
 		
 		return Qdetail;
+	}
+
+	public int insertQuestion(Question q, Q_Attachment at) {
+		Connection conn = getConnection();
+		
+		int result1 = new QuestionDao().insertQuestion(conn, q);
+		int result2 = 1;
+		
+		if(at != null) {
+			result2 = new QuestionDao().insertQAttachment(conn, at);
+		}
+		
+		if((result1 * result2) > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return (result1 * result2);
 	}
 
 }

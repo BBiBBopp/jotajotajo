@@ -27,6 +27,7 @@ public class QuestionEnrollFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("views/user/question/questionEnrollForm.jsp").forward(request, response);
+	
 	}
 
 	/**
