@@ -23,12 +23,12 @@ public class LoginDao {
 		try {
 			prop.loadFromXML(new FileInputStream(fileName));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
 	}
-
+	
 	public Member selectMember(Connection conn, String memberId, String memberPwd) {
 
 		Member m = null;
