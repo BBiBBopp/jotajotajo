@@ -44,7 +44,11 @@
 		<div class="service_area">
 			<a href="1" class="link search">검색</a>
 			<!-- 검색 지우고 돋보기 이미지 넣기 -->
+			<% if(loginUser == null) { %>
 			<a href = "<%=contextPath%>/loginForm.log" class="link login">로그인</a> <a href="" class="link signIn">회원가입</a>
+			<% } else { %>
+			<a href = "<%= contextPath %>/logout.log" class="link login">로그아웃</a> <a href="" class="link signIn">마이페이지</a>
+			<% } %>
 		</div>
 	</div>
 	<div id="navi_area">
