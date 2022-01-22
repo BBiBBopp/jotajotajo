@@ -22,7 +22,7 @@
 		
 		
 		<form id="enroll-form" action="<%= contextPath %>/insert.qu" method="post">
-
+		<input type="hidden" name="memberNo" value="<%= loginUser.getMemberNo() %>">
 		<table class="list-area Qform">
 			<tr>
 				<th>제목</th>
