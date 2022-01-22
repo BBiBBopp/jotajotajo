@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-<<<<<<< HEAD
 import com.kh.login_logout.model.service.LoginService;
 import com.kh.member.model.vo.Member;
 
