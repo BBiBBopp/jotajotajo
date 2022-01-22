@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.theater.model.service.TheaterService;
+
 /**
  * Servlet implementation class MovieTheaterListController
  */
@@ -27,9 +29,30 @@ public class MovieTheaterListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		// 페이징 처리
+		// 필요한 변수들
+		int listCount;
+		int currentPage;
+		int pageLimit;
+		int boardLimit;
+		
+		int maxPage;
+		int startPage;
+		int endPage;
+		
+		listCount = new TheaterService().selectListCount();
+		
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		request.getRequestDispatcher("views/user/theater/movieTheaterList.jsp").forward(request, response);
 		
 	}
 
