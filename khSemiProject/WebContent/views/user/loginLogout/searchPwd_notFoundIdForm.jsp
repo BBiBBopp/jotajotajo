@@ -19,10 +19,10 @@
             <div id="content_2">
                 <div class="choose">
                     <div>
-                        <a href="" id="search_id_text">아이디 찾기</a>
+                        <a href="<%= contextPath %>/sidForm.sch" id="search_id_text">아이디 찾기</a>
                     </div>
                     <div>
-                        <a href="" id="search_pwd_text">비밀번호 찾기</a>
+                        <a href="<%= contextPath%>/spwdForm.sch" id="search_pwd_text">비밀번호 찾기</a>
                     </div>
                 </div>
             </div>
@@ -30,11 +30,11 @@
                 <div class="ment">
                     <p id="ment_1">
                         <b>입력하신 아이디에 일치하는 회원정보가 없습니다. <br>
-                        다시 입력하거나 회원가입을 해주세요.</b>
+                        	다시 입력하거나 회원가입을 해주세요.</b>
                     </p>
                 </div>
                 <div class="btn_div">
-                    <button id="again"><a href="" id="again_1">다시입력</a></button>
+                    <button id="again" onclick="history.back();">다시입력</button>
                     <button id="enrollment"><a href="" id="enrollment_1">회원가입</a></button>
                 </div>
 

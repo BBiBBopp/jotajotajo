@@ -15,12 +15,12 @@
                 <h1>극장 안내</h1>
             </div>
             <div id="content_2">
-                <table border="1">
+                <table class="table">
                     <thead>
                         <tr>
-                            <th width="250">극장명</th>
-                            <th  width="350">주소</th>
-                            <th  width="250">전화번호</th>
+                            <th>극장명</th>
+                            <th>주소</th>
+                            <th>전화번호</th>
                         </tr>
                     </thead>
                     <tbody>

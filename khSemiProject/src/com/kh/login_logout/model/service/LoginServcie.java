@@ -31,4 +31,44 @@ public class LoginServcie {
 		return searchMem;
 	}
 
+	public Member searchPwd(String memberId) {
+
+		Connection conn = getConnection();
+		
+		Member searchMem = new LoginDao().searchPwd(conn, memberId);
+		
+		close(conn);
+		
+		return searchMem;
+	}
+
+	public Member pwdCertify(String memberId, String email) {
+
+		Connection conn = getConnection();
+		
+		Member searchMem = new LoginDao().pwdCertify(conn, memberId, email);
+		
+		close(conn);
+		
+		return searchMem;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 }

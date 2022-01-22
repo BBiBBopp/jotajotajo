@@ -26,7 +26,7 @@
                         <a href="<%= contextPath %>/login.log" id="search_id_text">아이디 찾기</a>
                     </div>
                     <div>
-                        <a href="">비밀번호 찾기</a>
+                        <a href="<%= contextPath%>/spwdForm.sch">비밀번호 찾기</a>
                     </div>
                 </div>
                 <div class="ment">

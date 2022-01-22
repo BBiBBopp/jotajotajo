@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.member.model.vo.Member" %>
+<%
+	Member searchMem = (Member)request.getAttribute("searchMem");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,10 +23,10 @@
             <div id="content_2">
                 <div class="choose">
                     <div>
-                        <a href="" id="search_id_text">아이디 찾기</a>
+                        <a href="<%= contextPath %>/sidForm.sch" id="search_id_text">아이디 찾기</a>
                     </div>
                     <div>
-                        <a href="" id="search_pwd_text">비밀번호 찾기</a>
+                        <a href="<%= contextPath%>/spwdForm.sch" id="search_pwd_text">비밀번호 찾기</a>
                     </div>
                 </div>
                 <div class="ment">
@@ -39,17 +43,18 @@
                         <hr>
                     </p>
                 </div>
-                <form action="" method="post">
+                <form action="<%=contextPath %>/spwdcerti.sch" method="post">
                     <div class="check_info">
                         <div id="info_keyword">
                             	내 정보에 등록된 이메일 인증 (ex.XXXX@XXX.COM)<br>
                         </div>
                         <div id="info_input">
+                        	<input type="hidden" name="memberId" value="<%= searchMem.getMemberId()%>">
                             <input type="email" name="email"> <br>
                         </div>
                     </div>
                     <div class="btn_div">
-                        <button><a href="">다음단계</a></button>
+                        <button type="submit">인증하기</button>
                     </div>
                 </form>
                 

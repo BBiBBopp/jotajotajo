@@ -47,8 +47,6 @@ public class SearchIdController extends HttpServlet {
 		
 		Member searchMem = new LoginServcie().searchId(m);
 		
-		System.out.println(searchMem);
-		
 		if(searchMem != null) {
 			
 			request.setAttribute("searchMem", searchMem);

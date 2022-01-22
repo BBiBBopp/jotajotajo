@@ -1,4 +1,4 @@
-package com.kh.theater.controller;
+package com.kh.login_logout.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.theater.model.service.TheaterService;
-
 /**
- * Servlet implementation class MovieTheaterListController
+ * Servlet implementation class LogoutController
  */
-@WebServlet("/mtList.th")
-public class MovieTheaterListController extends HttpServlet {
+@WebServlet("/logout.log")
+public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MovieTheaterListController() {
+    public LogoutController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,31 +27,11 @@ public class MovieTheaterListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 페이징 처리
-		// 필요한 변수들
-		int listCount;
-		int currentPage;
-		int pageLimit;
-		int boardLimit;
+		request.getSession().invalidate();
 		
-		int maxPage;
-		int startPage;
-		int endPage;
+		request.getSession().setAttribute("alertMsg", "로그아웃하셨습니다.");
 		
-		listCount = new TheaterService().selectListCount();
-		
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		request.getRequestDispatcher("views/user/theater/movieTheaterList.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath());
 		
 	}
 

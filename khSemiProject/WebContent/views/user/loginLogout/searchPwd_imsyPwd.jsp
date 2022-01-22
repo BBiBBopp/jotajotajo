@@ -19,10 +19,10 @@
             <div id="content_2">
                 <div class="choose">
                     <div>
-                        <a href="" id="search_id_text">아이디 찾기</a>
+                        <a href="<%= contextPath %>/sidForm.sch" id="search_id_text">아이디 찾기</a>
                     </div>
                     <div>
-                        <a href="" id="search_pwd_text">비밀번호 찾기</a>
+                        <a href="<%= contextPath%>/spwdForm.sch" id="search_pwd_text">비밀번호 찾기</a>
                     </div>
                 </div>
                 <div class="ment">
@@ -39,7 +39,7 @@
                         <hr>
                     </p>
                 </div>
-                <form action="" method="post">
+                <form action="<%= contextPath %>/spwdimsy.sch" method="post">
                     <div class="check_info">
                         <div id="info_keyword">
                             임시비밀번호를 받으실 이메일을 입력하세요.
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="btn_div">
-                        <button><a href="">다음단계</a></button>
+                        <button type="submit">다음단계</button>
                     </div>
                 </form>
                 
