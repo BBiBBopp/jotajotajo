@@ -20,7 +20,7 @@
 <script	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="<%= contextPath %>/resource/css/00_stylesheet.css">
+<link rel="stylesheet" href="<%= contextPath %>/resource/css/user/00_stylesheet.css">
 
 </head>
 	
@@ -55,7 +55,7 @@
 		<div class="group_nav">
 			<ul class="list_navi">
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">영화</a></li>
-				<li class="nav_item"><a href="<%= contextPath %>/mtList.th" class="link nav">영화관</a></li>
+				<li class="nav_item"><a href="<%=contextPath%>/mtList.th?currentPage=1" class="link nav">영화관</a></li>
 				<li class="nav_item"><a href="<%=contextPath%>/selectMovie.ti" class="link nav">예매</a></li>
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">투표하기</a></li>
 				<li class="nav_item"><a href="../notice/FAQView.jsp" class="link nav">고객센터</a></li>

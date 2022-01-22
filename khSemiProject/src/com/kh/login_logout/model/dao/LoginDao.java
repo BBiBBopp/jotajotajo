@@ -23,7 +23,7 @@ public class LoginDao {
 		try {
 			prop.loadFromXML(new FileInputStream(fileName));
 		} catch (IOException e) {
-<<<<<<< HEAD
+
 			e.printStackTrace();
 		}
 		
@@ -35,62 +35,8 @@ public class LoginDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectMember");
 		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, memberId);
-			pstmt.setString(2, memberPwd);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				m = new Member(rset.getInt("MEMBER_NO")
-									  , rset.getString("MEMBER_ID")
-									  , rset.getString("MEMBER_PWD")
-									  , rset.getString("MEMBER_NAME"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return m;
-	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-}
-=======
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-
 	public Member selectMember(Connection conn, String memberId, String memberPwd) {
 
 		Member m = null;
