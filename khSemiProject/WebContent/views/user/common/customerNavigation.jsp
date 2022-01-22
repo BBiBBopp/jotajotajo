@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/common/subNav.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/user/common/subNav.css">
 </head>
 <body>
 	 <div class="sub-nav-area">

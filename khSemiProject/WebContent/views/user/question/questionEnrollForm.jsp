@@ -19,23 +19,28 @@
 		<br>
 		<h1 class="title">문의 작성하기</h1>
 		<br> <br> <br>
+		
+		
+		<form id="enroll-form" action="<%= contextPath %>/insert.qu" method="post">
 
 		<table class="list-area Qform">
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="" id="" style="width: 100%"></td>
 				<th>문의 유형</th>
-				<td><select name="Qtype" id="Qtype" style="width: 100%">
-						<option value="general">일반문의</option>
-						<option value="compliment">칭찬</option>
-						<option value="complain">불만</option>
-						<option value="suggest">제안</option>
-				</select></td>
+				<td>
+					<select name="Qtype" id="Qtype" style="width: 100%">
+						<option value="1">일반문의</option>
+						<option value="2">칭찬</option>
+						<option value="3">불만</option>
+						<option value="4">제안</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<th>내용</th>
 				<td colspan="3" class="Qcontent">
-					<textarea name="" id="" cols="50" rows="15" style="resize: none;"></textarea>
+					<textarea name="" id="" style="width:150px" rows="15" style="resize: none;"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -48,6 +53,7 @@
 				</td>
 			</tr>
 		</table>
+		</form>
 	</div>
 </body>
 </html>

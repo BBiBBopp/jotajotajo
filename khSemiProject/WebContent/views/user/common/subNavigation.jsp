@@ -18,7 +18,7 @@
         <div class="sub-nav-list member-info">
             <a href="">회원정보</a> 
         </div>
-        <div class="sub-nav-list Qlist">
+        <div class="sub-nav-list Qlist-view">
            <a href="<%=request.getContextPath()%>/list.qu">문의내역 확인</a> 
         </div>
         <div class="sub-nav-list ticket-list">
@@ -26,14 +26,14 @@
         </div>
         <div class="sub-nav-bottom" style="border: none;">
             <span>시네마 헤븐 고객센터</span>
-            For Your Convinience
+            For Your Convenience
             <br><br>
             9:30 ~ 18:30
         </div>
     </div>
     <script>
     	$(function(){
-    		$(".Qlist").click(function(){
+    		$(".Qlist-view").click(function(){
     			location.href = "<%=request.getContextPath()%>/list.qu";
     		})
     	});

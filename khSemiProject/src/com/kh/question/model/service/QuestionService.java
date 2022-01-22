@@ -21,4 +21,14 @@ public class QuestionService {
 		return list;
 	}
 
+	public Question selectQuestionDetail(int questionNo) {
+		Connection conn = getConnection();
+		
+		Question Qdetail = new QuestionDao().selectQuestionDetail(conn, questionNo);
+		
+		close(conn);
+		
+		return Qdetail;
+	}
+
 }

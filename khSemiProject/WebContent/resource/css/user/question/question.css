@@ -14,7 +14,7 @@ div {
 /* subNavigation영역 */
 .sub_nav {
 	float: left;
-	width: 400px;
+	width: 300px;
 	height: auto;
 }
 
@@ -37,15 +37,6 @@ div {
 	margin-left: 20px;
 }
 
-.Qform th, td {
-	border: 1px solid lightgray;
-	padding: 5px;
-}
-
-.Qform td {
-	text-align: left;
-}
-
 .list-area>thead {
 	border-bottom: 1px solid gray;
 	background-color: lightgray;
@@ -56,6 +47,16 @@ div {
 .list-area>tbody>tr {
 	height: 40px;
 }
+
+.Qform th, td {
+	border: 1px solid lightgray;
+	padding: 5px;
+}
+
+.Qform td {
+	text-align: left;
+}
+
 
 .Qlist-data:hover {
 	cursor: pointer;

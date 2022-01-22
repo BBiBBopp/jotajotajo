@@ -1,15 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import = "com.kh.question.model.vo.Question" %>
+<%
+	Question q = (Question)request.getAttribute("Qdetail");	
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>답변 상세 확인</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/user/question/question.css">
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<div class="sub_nav" style="float: left;">
-		<%@ include file="../common/customerNavigation.jsp"%>
+		<%@ include file="../common/subNavigation.jsp"%>
 	</div>
 	<div class="outer">
 		<br>
@@ -21,26 +26,26 @@
 				class="btn btn-sm btn-primary">1:1 문의하기</a> <br> <br>
 		</div>
 
-		<table class="list-area">
+		<table class="list-area Qform">
 			<tr>
 				<th>제목</th>
-				<td colspan="5">결제 취소 되나요?</td>
+				<td colspan="5"><%= q.getAskTitle() %></td>
 			</tr>
 			<tr>
 				<th>등록일</th>
-				<td>2022.01.02</td>
+				<td><%= q.getAskDate() %></td>
 				<th>문의 유형</th>
-				<td>일반문의</td>
+				<td><%= q.getAskTypeTxt() %></td>
 				<th>답변 상태</th>
-				<td>처리 완료</td>
+				<td><%= q.getStatus() %></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td colspan="5" class="Qcontent">결제 취소 해주세요</td>
+				<td colspan="5" class="Qcontent"><%= q.getAskContent() %></td>
 			</tr>
 			<tr>
 				<th></th>
-				<td colspan="5" class="Qanswer">안녕하세요, 시네마헤븐 고객센터 입니다. ~</td>
+				<td colspan="5" class="Qanswer"><%= q.getComment() %></td>
 			</tr>
 		</table>
 	</div>

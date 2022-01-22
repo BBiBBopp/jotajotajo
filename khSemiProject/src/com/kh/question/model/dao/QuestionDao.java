@@ -37,7 +37,7 @@ public class QuestionDao {
 		ArrayList<Question> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectQ");
+		String sql = prop.getProperty("selectQ-list");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -49,9 +49,7 @@ public class QuestionDao {
 										  rset.getString("ASK_DATE"),
 										  rset.getInt("ASK_TYPE"),
 										  rset.getString("ASK_TITLE"),
-										  rset.getString("ASK_CONTENT"),
 										  rset.getString("COMMENT_DATE"),
-										  rset.getString("ASK_COMMENT"),
 										  rset.getInt("MEMBER_NO")
 										 );
 				list.add(q);		
@@ -64,5 +62,37 @@ public class QuestionDao {
 		}
 
 		return list;
+	}
+
+	public Question selectQuestionDetail(Connection conn, int questionNo) {
+		Question q = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectQ");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, questionNo);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				q = new Question(rset.getString("ASK_DATE"),
+						  		 rset.getInt("ASK_TYPE"),
+						  		 rset.getString("ASK_TITLE"),
+						  		 rset.getString("ASK_CONTENT"),
+						  		 rset.getString("COMMENT_DATE"),
+						  		 rset.getString("ASK_COMMENT"),
+						  		 rset.getInt("MEMBER_NO")
+						 );
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return q;
 	}
 }
