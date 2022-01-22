@@ -42,7 +42,7 @@
 			<img src="../resource/image/cinema_logo900.jpg" alt="시네마헤븐"></a>
 		</div>
 		<div class="service_area">
-			<a href="1" class="link search">검색</a>
+			<a href="" class="link search">검색</a>
 			<!-- 검색 지우고 돋보기 이미지 넣기 -->
 			<% if(loginUser == null) { %>
 			<a href = "<%=contextPath%>/loginForm.log" class="link login">로그인</a> <a href="" class="link signIn">회원가입</a>

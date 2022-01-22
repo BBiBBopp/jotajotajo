@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="selectQ">
+SELECT 
+		ASK_NO,
+		TO_CHAR(ASK_DATE,'YYYY/MM/DD') ASK_DATE,
+		ASK_TYPE, 
+		ASK_TITLE, 
+		ASK_CONTENT, 
+		COMMENT_DATE, 
+		ASK_COMMENT, 
+		MEMBER_NO
+	FROM 
+		ASK
+	WHERE
+		MEMBER_NO = ?
+	ORDER BY 
+		ASK_NO DESC
+</entry>
+
+
+</properties>
