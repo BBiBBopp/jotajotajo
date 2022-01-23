@@ -69,9 +69,10 @@ public class MovieTheaterListController extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit,
 				maxPage, startPage, endPage);
 		
-		ArrayList<Theater> list = new TheaterService().selectList(pi);
+		ArrayList<Theater> theaterList = new TheaterService().selectList(pi);
 		
-		request.setAttribute("list", list);
+		request.getSession().setAttribute("theaterList", theaterList);
+
 		request.setAttribute("pi", pi);
 		
 		request.getRequestDispatcher("views/user/theater/movieTheaterList.jsp").forward(request, response);

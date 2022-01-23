@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.kh.theater.model.vo.Theater, com.kh.common.model.vo.PageInfo" %>
 <%
-	ArrayList<Theater> list = (ArrayList<Theater>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	
 	// 페이징 바 만들 때 필요한 변수 미리 세팅
@@ -37,13 +36,13 @@
                     </thead>
                     <tbody>
                     <!-- 게시글 출력 -->
-                    <% if(list.isEmpty()) { %>
+                    <% if(theaterList.isEmpty()) { %>
                     	<tr>
                     		<td colspan="3">조회된 게시글이 없습니다.</td>
                     	</tr>
                     <% } else { %>
                     	<!-- 반복 : list에 있는 값을 순차적으로 접근해서 뽑아오기 -->
-                    	<% for(Theater t : list){ %>
+                    	<% for(Theater t : theaterList){ %>
                         <tr>
                         	<td hidden><%= t.getTheaterNo() %></td>
                             <td><%= t.getTheaterName()%></td>
@@ -72,13 +71,13 @@
                 <div id="paging_btn" class="paging-area">
                     <!-- 페이징 버튼 -->
 			<% if(currentPage != 1) { %>
-            	<button onclick="location.href='<%= contextPath%>/mtList.th?currentPage=<%= currentPage - 1 %>'">&lt;</button>
+            	<button onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= currentPage - 1 %>'">&lt;</button>
 			<% } %>
 	
 
 			<%for(int i = startPage; i <= endPage; i++) { %>
 				<% if( i != currentPage){ %>
-            		<button onclick="location.href='<%= contextPath%>/mtList.th?currentPage=<%= i %>'"><%= i %></button>
+            		<button onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= i %>'"><%= i %></button>
 				<% }else{ %>
 	            	<button disabled><%= i %></button>
             	<% } %>
@@ -86,7 +85,7 @@
             
             <!-- 페이징바에서 > 를 담당 : 다음페이지 이동 -->
             <% if(currentPage != maxPage) { %>
-            	<button onclick="location.href='<%= contextPath%>/mtList.th?currentPage=<%= currentPage + 1 %>'">&gt;</button>
+            	<button onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= currentPage + 1 %>'">&gt;</button>
 			<% } %>
         </div>
                 </div>

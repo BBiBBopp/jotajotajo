@@ -20,6 +20,12 @@
 				WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
+	<entry key="selectTheater">
+		SELECT * 
+		  FROM THEATER
+		 WHERE THEATER_NO = ?
+	</entry>
+	
 	
 	
 	

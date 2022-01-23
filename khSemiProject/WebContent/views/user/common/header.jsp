@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.kh.member.model.vo.Member" %>
+<%@ page import="com.kh.member.model.vo.Member, java.util.ArrayList, com.kh.theater.model.vo.Theater" %>
 <% 
 	String contextPath = request.getContextPath();	
 
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	
 	String alertMsg = (String)session.getAttribute("alertMsg");
+	
+	ArrayList<Theater> theaterList = (ArrayList<Theater>)session.getAttribute("theaterList");
 	
 %>
 <!DOCTYPE html>

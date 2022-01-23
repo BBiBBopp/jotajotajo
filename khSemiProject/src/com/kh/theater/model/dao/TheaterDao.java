@@ -89,7 +89,7 @@ public class TheaterDao {
 								   rset.getString("TRAFFIC"),
 								   rset.getString("LOCATION"),
 								   rset.getString("PARKING"),
-								   rset.getString("THEATER_IMG_PATH")));
+								   rset.getInt("THEATER_IMG")));
 			}
 			
 		} catch (SQLException e) {
@@ -100,6 +100,45 @@ public class TheaterDao {
 		}
 		
 		return list;
+	}
+
+
+	public Theater selectTheater(Connection conn, int theaterNo) {
+		
+		Theater t = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectTheater");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, theaterNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				t = new Theater(rset.getInt("THEATER_NO"),
+						   rset.getString("THEATER_NAME"),
+						   rset.getInt("AUDITORIUM_NUM"),
+						   rset.getInt("SEAT_NUM"),
+						   rset.getString("ADDRESS"),
+						   rset.getString("PHONE"),
+						   rset.getString("TRAFFIC"),
+						   rset.getString("LOCATION"),
+						   rset.getString("PARKING"),
+						   rset.getInt("THEATER_IMG"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return t;
 	}
 
 	

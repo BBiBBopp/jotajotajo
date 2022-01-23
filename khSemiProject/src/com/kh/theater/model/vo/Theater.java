@@ -11,7 +11,7 @@ public class Theater {
 	private String traffic;
 	private String location;
 	private String parking;
-	private String theaterImgPath;
+	private int theaterImg;
 	
 	public Theater() {
 		super();
@@ -30,7 +30,7 @@ public class Theater {
 
 
 	public Theater(int theaterNo, String theaterName, int auditoriumNum, int seatNum, String address, String phone,
-			String traffic, String location, String parking, String theaterImgPath) {
+			String traffic, String location, String parking, int theaterImg) {
 		super();
 		this.theaterNo = theaterNo;
 		this.theaterName = theaterName;
@@ -41,7 +41,7 @@ public class Theater {
 		this.traffic = traffic;
 		this.location = location;
 		this.parking = parking;
-		this.theaterImgPath = theaterImgPath;
+		this.theaterImg = theaterImg;
 	}
 
 
@@ -135,13 +135,13 @@ public class Theater {
 	}
 
 
-	public String getTheaterImgPath() {
-		return theaterImgPath;
+	public int getTheaterImg() {
+		return theaterImg;
 	}
 
 
-	public void setTheaterImgPath(String theaterImgPath) {
-		this.theaterImgPath = theaterImgPath;
+	public void setTheaterImgPath(int theaterImg) {
+		this.theaterImg = theaterImg;
 	}
 
 
@@ -149,7 +149,7 @@ public class Theater {
 	public String toString() {
 		return "Theater [theaterNo=" + theaterNo + ", theaterName=" + theaterName + ", auditoriumNum=" + auditoriumNum
 				+ ", seatNum=" + seatNum + ", address=" + address + ", phone=" + phone + ", traffic=" + traffic
-				+ ", location=" + location + ", parking=" + parking + ", theaterImgPath=" + theaterImgPath + "]";
+				+ ", location=" + location + ", parking=" + parking + ", theaterImg=" + theaterImg + "]";
 	}
 	
 }

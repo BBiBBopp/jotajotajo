@@ -1,12 +1,12 @@
     div {
-        border: 1px solid black;
+        /* border: 1px solid black; */
         display: block;
     } 
     /* ------------------------------------------------ */
     /* container영역 */
     #container {
         width: 1000px;
-        height: 1600px;
+        height: auto;
         margin: auto;
     }
     #content_1{
@@ -29,8 +29,8 @@
         float: left;
     }
     #theater_back{
-        width: 75%;
-        height: 100%;
+        width: 65%;
+        height: 85%;
         background-color: rgb(231, 231, 231);
         margin-left: 15%;
         border-radius: 15px;
@@ -55,8 +55,8 @@
         padding-top: 30px;    
     }
     #theater_info>p{
-        font-size: 18px;
-        line-height: 28px;
+        font-size: 16px;
+        line-height: 26px;
     }
 
 
