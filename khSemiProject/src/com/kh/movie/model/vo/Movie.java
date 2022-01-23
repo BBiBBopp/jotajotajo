@@ -9,13 +9,6 @@ public class Movie {
 	private String director;
 	private String actor;
 	private int runtime;
-<<<<<<< Updated upstream
-	private String grade;
-	private String synopsis;
-	private String status;
-	private double advanceRate;//예매율
-	
-=======
 	private String rate;
 	private String synopsis;
 	private String status;
@@ -138,7 +131,6 @@ public class Movie {
 		this.advanceRate = advanceRate;
 	}
 
->>>>>>> Stashed changes
 	
 	
 	public int getMovieLike() {
