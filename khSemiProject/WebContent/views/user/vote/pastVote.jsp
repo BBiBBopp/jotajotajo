@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>이전 투표 목록</title>
+<link rel="stylesheet" href="../../../resource/css/00_stylesheet.css">
 
 	<style>
     div {

@@ -33,7 +33,12 @@
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">영화</a></li>
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">영화관</a></li>
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">예매</a></li>
-				<li class="nav_item"><a href="../vote/votePage.jsp" class="link nav">투표하기</a></li>
+				<li class="nav_item"><a href="../vote/votePage.jsp" class="link nav">투표하기</a>
+					<ul>
+						<li><a href=""></a>투표결과</li>
+						<li><a href=""></a>이전 투표목록</li>
+					</ul>
+				</li>
 				<li class="nav_item"><a href="../notice/FAQView.jsp" class="link nav">고객센터</a></li>
 			</ul>
 		</div>

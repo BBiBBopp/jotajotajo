@@ -43,10 +43,10 @@ div {
   right: 27px;
 }
 
-/* #navi_area {
+#navi_area {
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
-} */
+} 
 
 #navi_area .group_nav {
   position: relative;
@@ -125,4 +125,27 @@ div {
 .crop_info {
   height: 100%;
   color: gray;
+}
+
+
+
+.list_navi{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.list_navi a{
+	display: block;
+}
+.list_navi > li > ul {
+	list-style-type: none;
+	padding: 0px;
+	display: none;  
+}  
+.list_navi > li > a:hover+ul {
+	display: block;  
+}
+
+.list_navi > li > ul:hover {
+	display: block;  
 }

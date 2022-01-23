@@ -49,3 +49,25 @@
         margin-left: 220px;
         
 }
+
+
+#manage{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+#manage a{
+	display: block;
+}
+#manage > li > ul {
+	list-style-type: none;
+	padding: 0px;
+	display: none;  
+}  
+#manage > li > a:hover+ul {
+	display: block;  
+}
+
+#manage > li > ul:hover {
+	display: block;  
+}

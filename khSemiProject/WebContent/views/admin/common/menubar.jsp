@@ -13,13 +13,19 @@
 </head>
 <body>
 	<div class="menubar">
-		<ul>
+		<ul id="manage">
 			<li><a class="home" href="#"><img src="<%=contextPath %>/resource/css/image/cinema_logo900.jpg" alt="시네마헤븐"></a></li>
 			<li><a href="#">회원관리</a></li>
 			<li><a href="#">영화 목록 관리</a></li>
 			<li><a href="#">영화관 관리</a></li>
 			<li><a href="#">고객센터</a></li>
-			<li><a href="#">투표관리</a></li>
+			<li><a href="#">투표관리</a>
+				<ul>
+					<li><a href="<%=contextPath %>/manage.vot1">투표</a></li>
+					<li><a href="<%=contextPath %>/manage.vot2">투표결과</a></li>
+					<li><a href="<%=contextPath %>/manage.vot3">이전투표목록</a></li>
+				</ul>
+			</li>
 		</ul>
 	</div>
 </body>

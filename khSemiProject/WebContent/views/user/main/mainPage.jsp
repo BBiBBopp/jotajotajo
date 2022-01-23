@@ -16,7 +16,7 @@
     .wrap>div { width: 100%; }
 
     #header { height: 10%; }
-    #navi_area {height: 10%;} 
+    /* #navi_area {height: 10%;} */
     #footer { height: 10%; }
     #container { height: 70%; }
 
@@ -90,7 +90,7 @@
 
 </head>
 <body>
-	<%@ include file="../common/header.jsp" %>
+	<%@ include file="views/user/common/header.jsp" %>
 	    <script>
         /* window.onload =function () {
             window.open("popup.html",  "popupNo1", "width=300, height=360"); */
@@ -100,7 +100,7 @@
 
             <div id="container">
                 <div id="container_1">
-                    <img src="../../../resource/css/image/52ef372732ec3bbee5fb9159477006ad.jpg" alt="영화0" class="thumbnail-image0">
+                    <img src="resource/css/image/52ef372732ec3bbee5fb9159477006ad.jpg" alt="영화0" class="thumbnail-image0">
 
                 </div>
                 <div id="container_2">
@@ -113,7 +113,7 @@
                             <li class="thumbnail-item">
                             
                               <div class="over">
-                                <img src="../../../resource/css/image/abbca385468091a7ba232e09.jpg" alt="영화1" class="thumbnail-image">
+                                <img src="resource/css/image/abbca385468091a7ba232e09.jpg" alt="영화1" class="thumbnail-image">
                                 
                                  
                                  </div>  
@@ -124,22 +124,22 @@
                         </ul>
                         <ul class="thumbnail-list">
                             <li class="thumbnail-item">
-                                <img src="../../../resource/css/image/abbca385468091a7ba232e09.jpg" alt="영화2" class="thumbnail-image">
+                                <img src="resource/css/image/abbca385468091a7ba232e09.jpg" alt="영화2" class="thumbnail-image">
                                 <span class="thumbnail-title">영화 <br> 예매율</span></li>
                         </ul>
                         <ul class="thumbnail-list">
                             <li class="thumbnail-item">
-                                <img src="../../../resource/css/image/abbca385468091a7ba232e09.jpg" alt="영화3" class="thumbnail-image">
+                                <img src="resource/css/image/abbca385468091a7ba232e09.jpg" alt="영화3" class="thumbnail-image">
                                 <span class="thumbnail-title">영화 <br> 예매율</span></li>
                         </ul>
                         <ul class="thumbnail-list">
                             <li class="thumbnail-item">
-                                <img src="../../../resource/css/image/abbca385468091a7ba232e09.jpg" alt="영화4" class="thumbnail-image">
+                                <img src="resource/css/image/abbca385468091a7ba232e09.jpg" alt="영화4" class="thumbnail-image">
                                 <span class="thumbnail-title">영화 <br> 예매율</span></li>
                         </ul>
                         <ul class="thumbnail-list">
                             <li class="thumbnail-item">
-                                <img src="../../../resource/css/image/abbca385468091a7ba232e09.jpg" alt="영화5" class="thumbnail-image">
+                                <img src="resource/css/image/abbca385468091a7ba232e09.jpg" alt="영화5" class="thumbnail-image">
                                 <span class="thumbnail-title">영화 <br> 예매율</span></li>
                         </ul>
                 
@@ -162,6 +162,6 @@
             </div>
 	
 	<br><br><br>
-	<%@ include file="../common/footer.jsp" %>
+	<%@ include file="views/user/common//footer.jsp" %>
 </body>
 </html>

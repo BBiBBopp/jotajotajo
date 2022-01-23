@@ -14,8 +14,8 @@
 <script	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="../../../resource/css/00_stylesheet.css">
-<link rel="stylesheet" href="../../../resource/css/01_minStylesheet.css">
+<link rel="stylesheet" href="resource/css/00_stylesheet.css">
+<link rel="stylesheet" href="resource/css/01_minStylesheet.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 <link rel="stylesheet" href="style.css">
@@ -79,7 +79,14 @@ body{
 }
 </style>
 
-
+<script>
+	$(function(){
+		$('.search-btn').on('click', function(){
+			var search = $('#search').val();
+			location.href="<%=contextPath %>/search.all?search="+search;
+		})
+	})
+</script>
 
 </head>
 <div id="header">
@@ -93,8 +100,8 @@ body{
 			<!-- 검색 지우고 돋보기 이미지 넣기 -->
 			<a href="" class="link login">로그인</a> <a href="" class="link signIn">회원가입</a> <br><br><br>
 			    <div class="search-box">
-      				<input type="text" class="search-txt">
-      				<a class="search-btn" href="#">
+      				<input type="text" id="search" name="search" class="search-txt">
+      				<a class="search-btn">
         			<i class="fas fa-search"></i>
       				</a>
     			</div>
@@ -106,7 +113,12 @@ body{
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">영화</a></li>
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">영화관</a></li>
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">예매</a></li>
-				<li class="nav_item"><a href="<%=contextPath %>/list.vot" class="link nav">투표하기</a></li>
+				<li class="nav_item"><a href="<%=contextPath %>/list.vot" class="link nav">투표하기</a>
+					<ul>
+						<li><a href=""></a>투표결과</li>
+						<li><a href=""></a>이전 투표목록</li>
+					</ul>
+				</li>
 				<li class="nav_item"><a href="../notice/FAQView.jsp" class="link nav">고객센터</a></li>
 			</ul>
 		</div>
