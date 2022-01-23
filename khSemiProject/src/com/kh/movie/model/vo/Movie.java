@@ -1,5 +1,7 @@
 package com.kh.movie.model.vo;
 
+import java.sql.Date;
+
 public class Movie {
 	private int movieNo;
 	private String movieName;
@@ -7,17 +9,28 @@ public class Movie {
 	private String director;
 	private String actor;
 	private int runtime;
+<<<<<<< Updated upstream
 	private String grade;
 	private String synopsis;
 	private String status;
 	private double advanceRate;//예매율
+	
+=======
+	private String rate;
+	private String synopsis;
+	private String status;
+	private Date releaseDate;
+	private double reviewAvg;
+	private int movieLike;
+	private double advanceRate;//예매율
+	private String myLike;
 	
 	
 	public Movie() {
 		super();
 	}
 	
-	public Movie(int movieNo, String movieName, String genre, String director, String actor, int runtime, String grade,
+	public Movie(int movieNo, String movieName, String genre, String director, String actor, int runtime, String rate,
 			String synopsis, String status) {
 		super();
 		this.movieNo = movieNo;
@@ -26,12 +39,12 @@ public class Movie {
 		this.director = director;
 		this.actor = actor;
 		this.runtime = runtime;
-		this.grade = grade;
+		this.rate = rate;
 		this.synopsis = synopsis;
 		this.status = status;
 	}
 
-	public Movie(int movieNo, String movieName, String genre, String director, String actor, int runtime, String grade,
+	public Movie(int movieNo, String movieName, String genre, String director, String actor, int runtime, String rate,
 			String synopsis, String status, double advanceRate) {
 		super();
 		this.movieNo = movieNo;
@@ -40,10 +53,26 @@ public class Movie {
 		this.director = director;
 		this.actor = actor;
 		this.runtime = runtime;
-		this.grade = grade;
+		this.rate = rate;
 		this.synopsis = synopsis;
 		this.status = status;
 		this.advanceRate = advanceRate;
+	}
+
+	public Date getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
+	public double getReviewAvg() {
+		return reviewAvg;
+	}
+
+	public void setReviewAvg(double reviewAvg) {
+		this.reviewAvg = reviewAvg;
 	}
 
 	public int getMovieNo() {
@@ -82,11 +111,11 @@ public class Movie {
 	public void setRuntime(int runtime) {
 		this.runtime = runtime;
 	}
-	public String getGrade() {
-		return grade;
+	public String getRate() {
+		return rate;
 	}
-	public void setGrade(String grade) {
-		this.grade = grade;
+	public void setRate(String rate) {
+		this.rate = rate;
 	}
 	public String getSynopsis() {
 		return synopsis;
@@ -109,12 +138,35 @@ public class Movie {
 		this.advanceRate = advanceRate;
 	}
 
+>>>>>>> Stashed changes
+	
+	
+	public int getMovieLike() {
+		return movieLike;
+	}
+
+	public void setMovieLike(int movieLike) {
+		this.movieLike = movieLike;
+	}
+
+	
+	
+	public String getMyLike() {
+		return myLike;
+	}
+
+	public void setMyLike(String myLike) {
+		this.myLike = myLike;
+	}
+
 	@Override
 	public String toString() {
 		return "Movie [movieNo=" + movieNo + ", movieName=" + movieName + ", genre=" + genre + ", director=" + director
-				+ ", actor=" + actor + ", runtime=" + runtime + ", grade=" + grade + ", synopsis=" + synopsis
-				+ ", status=" + status + ", advanceRate=" + advanceRate + "]";
+				+ ", actor=" + actor + ", runtime=" + runtime + ", rate=" + rate + ", synopsis=" + synopsis
+				+ ", status=" + status + ", releaseDate=" + releaseDate + ", reviewAvg=" + reviewAvg + ", movieLike="
+				+ movieLike + ", advanceRate=" + advanceRate + ", myLike=" + myLike + "]";
 	}
+
 	
 	
 	

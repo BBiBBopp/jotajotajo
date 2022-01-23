@@ -9,23 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.member.model.vo.Member;
 import com.kh.movie.model.service.MovieService;
-import com.kh.movie.model.vo.Movie;
-import com.kh.movie.model.vo.Picture;
 import com.kh.movie.model.vo.Review;
 
 /**
- * Servlet implementation class MovieReviewController
+ * Servlet implementation class AjaxReviewListController
  */
-@WebServlet("/review.mo")
-public class MovieReviewController extends HttpServlet {
+@WebServlet("/list.re")
+public class AjaxReviewListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MovieReviewController() {
+    public AjaxReviewListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,31 +34,16 @@ public class MovieReviewController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int movieNo = Integer.parseInt(request.getParameter("mno"));
+		int memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
+		int sCount = Integer.parseInt(request.getParameter("sCount"));
+		int eCount = Integer.parseInt(request.getParameter("eCount"));
 		
-		int memberNo = 0;
-		Member mem = (Member)request.getSession().getAttribute("loginUser");
-		if(mem != null)
-			memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
+		ArrayList<Review> list = new MovieService().selectReviewList(movieNo, memberNo, sCount, eCount);
 		
-		int sCount = 1;
-		int eCount = 10;
+		System.out.println(list);
+		response.setContentType("application/json; charset=UTF-8");
 		
-		
-		
-		Movie mvSummary= new MovieService().selectMovieSummary(movieNo, memberNo);
-		
-		ArrayList<Picture> picList = new MovieService().selectPicture(movieNo);
-		
-//		ArrayList<Review> reviewList = new MovieService().selectReviewList(movieNo, memberNo, sCount, eCount);
-
-//		System.out.println(mvSummary);
-		request.setAttribute("mv", mvSummary);
-		request.setAttribute("picList", picList);
-//		request.setAttribute("reviewList", reviewList);
-		
-		request.getRequestDispatcher("views/user/movie/movieReviewView.jsp").forward(request, response);
-	
-	
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

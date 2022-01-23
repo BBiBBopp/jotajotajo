@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
 import com.kh.movie.model.service.MovieService;
 import com.kh.movie.model.vo.Movie;
 import com.kh.movie.model.vo.Picture;
@@ -34,8 +35,12 @@ public class MovieDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int movieNo = Integer.parseInt(request.getParameter("mno"));
 		
-		Movie mv = new MovieService().selectMovie(movieNo);
-
+		int memberNo = 0;
+		Member mem = (Member)request.getSession().getAttribute("loginUser");
+		if(mem != null)
+			memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
+		
+		Movie mv = new MovieService().selectMovieDetail(movieNo, memberNo);
 		ArrayList<Picture> picList = new MovieService().selectPicture(movieNo);
 		
 		String[] actorList;
@@ -46,9 +51,9 @@ public class MovieDetailController extends HttpServlet {
 		}
 		
 		request.setAttribute("mv", mv);
-		request.setAttribute("pList", picList);
+		request.setAttribute("picList", picList);
 		request.setAttribute("actorList", actorList);
-		
+		System.out.println(mv.getMyLike());
 		if(mv!= null && picList.size() > 0) {//성공. 포스터는 필수이므로 size는 항상 0보다 크다
 			request.getRequestDispatcher("views/user/movie/movieDetailView.jsp").forward(request, response);
 		}else {//실패
