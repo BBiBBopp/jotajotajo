@@ -8,21 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.kh.member.model.vo.Member;
 import com.kh.movie.model.service.MovieService;
 
 /**
- * Servlet implementation class AjaxReviewLikeController
+ * Servlet implementation class ReviewReportController
  */
-@WebServlet("/like.re")
-public class AjaxReviewLikeController extends HttpServlet {
+@WebServlet("/report.re")
+public class ReviewReportController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxReviewLikeController() {
+    public ReviewReportController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +29,21 @@ public class AjaxReviewLikeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-
-		int memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
-		String isLike = request.getParameter("isLike");//해당 리뷰를 내가 '좋아요' 눌렀을 경우 1, 아닐 경우 0을 반환
+		int reportReason = Integer.parseInt(request.getParameter("reportReason"));
 		
-		int result = 0;
-		
-		if(isLike.equals("Y")) {//reviewlike존재함
-			result = new MovieService().deleteReviewLike(memberNo, reviewNo);
-		}else {
-			result = new MovieService().insertReviewLike(memberNo, reviewNo);
-		}
-		System.out.println(reviewNo +":"+memberNo+":"+isLike);
+		int result = new MovieService().reportReview(reviewNo, reportReason);
+		String text="";
 		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().print(result);
 		
-	
+		if(result>0)
+			text="완료";
+		else
+			text="실패";
+
+			String printResult="<script>alert('신고 "+text+".');window.close();</script>";
+		
+		response.getWriter().print(printResult);	
 	}
 
 	/**

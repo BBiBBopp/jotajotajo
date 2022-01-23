@@ -13,15 +13,18 @@
 		<!--header-->
 		<%@ include file="../common/header.jsp" %>
 			<div id="container">
+				
 				<!--영화 정보 상단 -->
 				<%@ include file="movieSummary.jsp" %>
-
+				<% String[] actorList = (String[])request.getAttribute("actorList"); %>
 					<!-- 영화정보/평점 및 리뷰 버튼 영역 -->
 					<div class="movie-body">
+					
 						<div class="movie-toggle">
 							<a href="<%= contextPath %>/detail.mo?mno=<%= mv.getMovieNo() %>" class="movie-menu-half movie-active-menu">영화 정보</a><a
-								href="<%= contextPath %>/review.mo?mno=<%= mv.getMovieNo() %>" class="movie-menu-half">평점 및 리뷰 </a>
+							href="<%= contextPath %>/review.mo?mno=<%= mv.getMovieNo() %>" class="movie-menu-half">평점 및 리뷰 </a>
 						</div>
+						
 						<br>
 
 						<!-- 영화 정보 영역 -->

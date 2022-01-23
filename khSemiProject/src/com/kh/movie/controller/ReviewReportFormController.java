@@ -1,28 +1,25 @@
 package com.kh.movie.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.kh.member.model.vo.Member;
-import com.kh.movie.model.service.MovieService;
+import com.kh.movie.model.vo.Review;
 
 /**
- * Servlet implementation class AjaxReviewLikeController
+ * Servlet implementation class ReviewReportFormController
  */
-@WebServlet("/like.re")
-public class AjaxReviewLikeController extends HttpServlet {
+@WebServlet("/reportForm.re")
+public class ReviewReportFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxReviewLikeController() {
+    public ReviewReportFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +28,21 @@ public class AjaxReviewLikeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+//		request.setCharacterEncoding("UTF-8");
+		
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-
-		int memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
-		String isLike = request.getParameter("isLike");//해당 리뷰를 내가 '좋아요' 눌렀을 경우 1, 아닐 경우 0을 반환
+		String reviewWriter = request.getParameter("reviewWriter");
+		String reviewContent = request.getParameter("reviewContent");//10자 추출
 		
-		int result = 0;
+		Review re = new Review();
+		re.setReviewNo(reviewNo);
+		re.setReviewWriter(reviewWriter);
+		re.setReviewContent(reviewContent);
 		
-		if(isLike.equals("Y")) {//reviewlike존재함
-			result = new MovieService().deleteReviewLike(memberNo, reviewNo);
-		}else {
-			result = new MovieService().insertReviewLike(memberNo, reviewNo);
-		}
-		System.out.println(reviewNo +":"+memberNo+":"+isLike);
-		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().print(result);
+		System.out.println(re);
+		request.setAttribute("re", re);
 		
-	
+		request.getRequestDispatcher("views/user/movie/movieReviewReport.jsp").forward(request, response);
 	}
 
 	/**
