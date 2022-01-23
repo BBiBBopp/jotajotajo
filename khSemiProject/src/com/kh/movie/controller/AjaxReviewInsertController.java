@@ -1,7 +1,6 @@
 package com.kh.movie.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,23 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.vo.Member;
 import com.kh.movie.model.service.MovieService;
-import com.kh.movie.model.vo.Movie;
-import com.kh.movie.model.vo.Picture;
 import com.kh.movie.model.vo.Review;
 
 /**
- * Servlet implementation class MovieReviewController
+ * Servlet implementation class ArajReviewInsertController
  */
-@WebServlet("/review.mo")
-public class MovieReviewController extends HttpServlet {
+@WebServlet("/insert.re")
+public class AjaxReviewInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MovieReviewController() {
+    public AjaxReviewInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,31 +30,24 @@ public class MovieReviewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int movieNo = Integer.parseInt(request.getParameter("mno"));
+//		String memberNo = String.valueOf(((Member)request.getSession().getAttribute("loginUser")).getMemberNo());
+		String memberNo = "1";
+		String reviewContent = request.getParameter("reviewContent");
+		int starCount = 10;
+		if(request.getParameter("starCount") != null)
+			starCount = Integer.parseInt(request.getParameter("starCount"));
+		Review re = new Review();
+		re.setMovieNo(movieNo);
+		re.setReviewWriter(memberNo);
+		re.setReviewContent(reviewContent);
+		re.setReviewGrade(starCount);
+//		re.setPayNo();
 		
-		int memberNo = 0;
-		Member mem = (Member)request.getSession().getAttribute("loginUser");
-		if(mem != null)
-			memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
+		int result = new MovieService().insertReview(re);
 		
-		int sCount = 1;
-		int eCount = 10;
-		
-		
-		
-		Movie mvSummary= new MovieService().selectMovieSummary(movieNo, memberNo);
-		
-		ArrayList<Picture> picList = new MovieService().selectPicture(movieNo);
-		
-//		ArrayList<Review> reviewList = new MovieService().selectReviewList(movieNo, memberNo, sCount, eCount);
-
-//		System.out.println(mvSummary);
-		request.setAttribute("mv", mvSummary);
-		request.setAttribute("picList", picList);
-//		request.setAttribute("reviewList", reviewList);
-		
-		request.getRequestDispatcher("views/user/movie/movieReviewView.jsp").forward(request, response);
-	
+		response.getWriter().print(result);
 	
 	}
 

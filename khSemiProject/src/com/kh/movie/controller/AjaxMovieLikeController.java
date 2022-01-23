@@ -1,8 +1,6 @@
 package com.kh.movie.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,21 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.member.model.vo.Member;
 import com.kh.movie.model.service.MovieService;
-import com.kh.movie.model.vo.Movie;
-import com.kh.movie.model.vo.Picture;
-import com.kh.movie.model.vo.Review;
 
 /**
- * Servlet implementation class MovieReviewController
+ * Servlet implementation class AjaxMovieLikeController
  */
-@WebServlet("/review.mo")
-public class MovieReviewController extends HttpServlet {
+@WebServlet("/like.mo")
+public class AjaxMovieLikeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MovieReviewController() {
+    public AjaxMovieLikeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,31 +30,19 @@ public class MovieReviewController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int movieNo = Integer.parseInt(request.getParameter("mno"));
+		int memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
+		String isLike = request.getParameter("isLike");
 		
-		int memberNo = 0;
-		Member mem = (Member)request.getSession().getAttribute("loginUser");
-		if(mem != null)
-			memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
+		int result = 0;
 		
-		int sCount = 1;
-		int eCount = 10;
+		if(isLike.equals("Y")) {//reviewlike존재함
+			result = new MovieService().deleteMovieLike(movieNo, memberNo);
+		}else {
+			result = new MovieService().insertMovieLike(movieNo, memberNo);
+		}
 		
-		
-		
-		Movie mvSummary= new MovieService().selectMovieSummary(movieNo, memberNo);
-		
-		ArrayList<Picture> picList = new MovieService().selectPicture(movieNo);
-		
-//		ArrayList<Review> reviewList = new MovieService().selectReviewList(movieNo, memberNo, sCount, eCount);
-
-//		System.out.println(mvSummary);
-		request.setAttribute("mv", mvSummary);
-		request.setAttribute("picList", picList);
-//		request.setAttribute("reviewList", reviewList);
-		
-		request.getRequestDispatcher("views/user/movie/movieReviewView.jsp").forward(request, response);
-	
-	
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().print(result);
 	}
 
 	/**
