@@ -37,7 +37,6 @@
 	            			<p>검색된 영화가 없습니다.</p>
             			 <% } else {%>
 	                		<% for(SearchMovie sb : movieList) {%>
-		                
 			                    <%= sb.getmNo() %>
 			                    <%= sb.getmName() %>
 			                    <%= sb.getGenre() %>
@@ -61,17 +60,15 @@
 	            			<p>검색된 영화관이 없습니다.</p>
             			 <% } else {%>
 	                		<% for(Theater th : theaterList) {%>
-		                
 			                    <%= th.getTheaterNo() %>
 			                    <%= th.getTheaterName() %>
 			                    <%= th.getAddress() %>
-			                    
 	                		<% } %>
 	                	 <% } %>
 	                <p align="right">더보기 ></p>
 	                <hr size="1"  color="lightgray"> <br><br>
                 </div>
-                
+               
                 <div>
                 <h3>영화 리뷰</h3>
 	                <hr size="4"  color="lightgray">
@@ -79,11 +76,9 @@
 	            			<p>검색된 리뷰가 없습니다.</p>
             			 <% } else {%>
 	                		<% for(Review r : reviewList) {%>
-		                
 			                    <%= r.getReviewNo() %>
 			                    <%= r.getReviewContent() %>
 			                    <%= r.getMno() %>
-			                    
 	                		<% } %>
 	                	 <% } %>
 	                <p align="right">더보기 ></p>

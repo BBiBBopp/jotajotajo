@@ -37,7 +37,7 @@ body{
   transform: translate(-50%,-50%);
   height: 50px;
   background-color: #fff;
-  border: 1px solid #51e3d4;
+  border: 1px solid #bb97fb;
   border-radius: 30px;
   transition: 0.4s;
   width:30px;
@@ -56,7 +56,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #51e3d4;
+  color: #bb97fb;
 }
 .search-box:hover > .search-btn{
   background-color: #fff;
@@ -115,8 +115,8 @@ body{
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">예매</a></li>
 				<li class="nav_item"><a href="<%=contextPath %>/list.vot" class="link nav">투표하기</a>
 					<ul>
-						<li><a href="<%=contextPath %>/vote.re" class="link nav"></a>투표결과</li>
-						<li><a href="<%=contextPath %>/vote.pa" class="link nav"></a>이전 투표목록</li>
+						<li><a href="<%=contextPath %>/vote.re" class="link nav">투표결과</a></li>
+						<li><a href="<%=contextPath %>/vote.pa" class="link nav">이전 투표목록</a></li>
 					</ul>
 				</li>
 				<li class="nav_item"><a href="../notice/FAQView.jsp" class="link nav">고객센터</a></li>
