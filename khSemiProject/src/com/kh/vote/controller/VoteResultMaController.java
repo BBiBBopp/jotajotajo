@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class VoteResultController
  */
-@WebServlet("/vote.re")
-public class VoteResultController extends HttpServlet {
+@WebServlet("/manage.vot2")
+public class VoteResultMaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VoteResultController() {
+    public VoteResultMaController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,7 @@ public class VoteResultController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.getRequestDispatcher("views/user/vote/voteResult.jsp").forward(request, response);
+		request.getRequestDispatcher("views/admin/vote/voteResultManage1.jsp").forward(request, response);
 	}
 
 	/**

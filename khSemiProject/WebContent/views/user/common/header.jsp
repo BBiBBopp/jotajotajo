@@ -35,7 +35,7 @@ body{
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  height: 30px;
+  height: 50px;
   background-color: #fff;
   border: 1px solid #51e3d4;
   border-radius: 30px;
@@ -98,7 +98,7 @@ body{
 		<div class="service_area">
 			<!-- <a href="" class="link search">검색</a>  -->
 			<!-- 검색 지우고 돋보기 이미지 넣기 -->
-			<a href="" class="link login">로그인</a> <a href="" class="link signIn">회원가입</a> <br><br><br>
+			<a href="" class="link login">로그인</a> <a href="" class="link signIn">회원가입</a> <br><br><br><br>
 			    <div class="search-box">
       				<input type="text" id="search" name="search" class="search-txt">
       				<a class="search-btn">
@@ -115,8 +115,8 @@ body{
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">예매</a></li>
 				<li class="nav_item"><a href="<%=contextPath %>/list.vot" class="link nav">투표하기</a>
 					<ul>
-						<li><a href=""></a>투표결과</li>
-						<li><a href=""></a>이전 투표목록</li>
+						<li><a href="<%=contextPath %>/vote.re" class="link nav"></a>투표결과</li>
+						<li><a href="<%=contextPath %>/vote.pa" class="link nav"></a>이전 투표목록</li>
 					</ul>
 				</li>
 				<li class="nav_item"><a href="../notice/FAQView.jsp" class="link nav">고객센터</a></li>

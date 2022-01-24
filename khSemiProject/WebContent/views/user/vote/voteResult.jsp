@@ -36,7 +36,7 @@
 
     .poster1{
         width: 400px;
-        height: 710px;
+        height: 690px;
         float: right;
         margin-top: 0px;
 
@@ -64,7 +64,12 @@
        margin-left: 10px;
     }
 
-
+	#container_9_1{
+		height:50%
+	}
+	container_9_2{
+		height:50%
+	}
     </style>
 
 
@@ -82,45 +87,41 @@
                 <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터1" class="poster1">
                 
                 <p><p style="font-size:20px;">현재순위</p><br><br><br><br><br><br><br><br><br><br><br><br>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br>
                 
                 <span style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 1위 : 영화1 00%</span> </p>
                 
             </div>
             <div id="container_9">
-            	<div style="display:inline-block;vertical-align:top;">
-                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터2" class="poster2">
-                <p style="font-size:20px;">2위 : 영화2 00%</p>
+            	<div style="display:vertical-align:top;">
+					
+                	<img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터2" class="poster2">
+                	<p style="font-size:20px;">2위 : 영화2 00%</p>
            
+           		</div>
 				
-				<p>123</p>
-				
-                <div style="display:inline-block;vertical-align:top;">
+            	<div id="container_9_1" style="display:inline-block;">    
+	                <div style="display:vertical-align:top;">
+	                	<img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터3" class="poster3">
+	               		<p style="font-size:20px;">&nbsp;&nbsp;&nbsp;3위 : 영화3 00%</p>
+	            	</div>   
+				</div> 
+            	<div id="container_9_2" style="display:vertical-align:top;">  
+            		<div style="display:vertical-align:top;">
+	                	<img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터4" class="poster4">
+	               		<p style="font-size:20px;">&nbsp;&nbsp;&nbsp;4위 : 영화4 00%</p>
+					</div>
+            	</div>   
 
-                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터3" class="poster3">
-               <p style="font-size:20px;">3위 : 영화3 00%</p>
-                <img src="../../../resource/css/image/1328780_2035540_4726.jpg" alt="포스터4" class="poster4">
-               <p style="font-size:20px;">&nbsp;&nbsp;&nbsp;4위 : 영화4 00%</p>
-               </div>
             </div>
 
-
-
-            <div id="container_9" style="display:inline-block;vertical-align:top;">    
-                
-            </div>   
-
-                
-            <div id="container_9">  
-            </div>   
-            
             
         </div>
 
  	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-   
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br>
  	
 	<%@ include file="../common/footer.jsp" %>
 

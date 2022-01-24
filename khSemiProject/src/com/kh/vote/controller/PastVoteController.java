@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class PastVoteController
  */
-@WebServlet("/manage.vot3")
+@WebServlet("/vote.pa")
 public class PastVoteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,7 +26,8 @@ public class PastVoteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/admin/vote/pastVoteManage.jsp").forward(request, response);
+
+		request.getRequestDispatcher("views/user/vote/pastVote.jsp").forward(request, response);
 	
 	}
 
