@@ -33,11 +33,13 @@ public class AjaxSelectMovieController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// service에서 DB에 있는 데이터 받아오기
-		ArrayList<Movie> list = new TicketService().selectMovie();
+		// ArrayList<Movie> list = new TicketService().selectMovie();
+		
+		// System.out.println(list);
 				
 		// Gson으로 응답
 		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(list, response.getWriter());
+		// new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

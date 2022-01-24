@@ -10,10 +10,10 @@ import com.kh.ticket.model.dao.TicketDao;
 
 public class TicketService {
 
-	public ArrayList<Movie> selectMovie() {
+	public ArrayList<Movie> selectMovieName() {
 		Connection conn = getConnection();
 		
-		ArrayList<Movie> mList = new TicketDao().selectMovie(conn);
+		ArrayList<Movie> mList = new TicketDao().selectMovieName(conn);
 		
 		close(conn);
 		

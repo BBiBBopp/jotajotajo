@@ -1,6 +1,7 @@
 package com.kh.movie.model.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Movie {
 	private int movieNo;
@@ -14,10 +15,28 @@ public class Movie {
 	private String status;
 	private double advanceRate;//예매율
 	private Date releaseDate; // 재개봉일
+	private Timestamp runSch; // 상영일&상영시간
 	
 
 	public Movie() {
 		super();
+	}
+
+	public Movie(int movieNo, String movieName, String genre, String director, String actor, int runtime, String rate,
+			String synopsis, String status, double advanceRate, Date releaseDate, Timestamp runSch) {
+		super();
+		this.movieNo = movieNo;
+		this.movieName = movieName;
+		this.genre = genre;
+		this.director = director;
+		this.actor = actor;
+		this.runtime = runtime;
+		this.rate = rate;
+		this.synopsis = synopsis;
+		this.status = status;
+		this.advanceRate = advanceRate;
+		this.releaseDate = releaseDate;
+		this.runSch = runSch;
 	}
 
 	public Movie(int movieNo, String movieName, String genre, String director, String actor, int runtime, String rate,
@@ -61,6 +80,19 @@ public class Movie {
 		this.releaseDate = releaseDate;
 	}
 	
+	
+
+	public Movie(int movieNo, String movieName, String genre, int runtime, String rate, String status,
+			Timestamp runSch) {
+		super();
+		this.movieNo = movieNo;
+		this.movieName = movieName;
+		this.genre = genre;
+		this.runtime = runtime;
+		this.rate = rate;
+		this.status = status;
+		this.runSch = runSch;
+	}
 
 	public Date getReleaseDate() {
 		return releaseDate;

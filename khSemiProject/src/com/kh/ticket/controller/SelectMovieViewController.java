@@ -32,7 +32,11 @@ public class SelectMovieViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 넘어갈 창 보여주기
+		// service에서 DB에 있는 데이터 받아오기
+		ArrayList<Movie> mlist = new TicketService().selectMovieName();
+		ArrayList<Theater> tlist = new TicketService().selectTicketNameAll();
+		// 응답
+		request.setAttribute("mlist", mlist);
 		request.getRequestDispatcher("/views/user/ticketing/selectMovie.jsp").forward(request, response);
 	}
 

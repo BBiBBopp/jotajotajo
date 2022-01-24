@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+<entry key="selectMovieName">
+	SELECT  DISTINCT
+			MNO, 
+			MNAME, 
+			RATE  
+		FROM 
+			MOVIE
+        JOIN 
+        	SCHEDULE S 
+        	USING
+        		(MNO)
+		WHERE 
+			RUN_SCH > SYSDATE
+</entry>
 <entry key="selectMovie">
 	SELECT 
 			MNO, 
@@ -9,12 +23,13 @@
 			RTIME, 
 			RATE, 
 			STATUS, 
-			TO_CHAR(RUN_SCH,'YYYY/MM/DD HH24:MI:SS') AS 상영시간
+			TO_CHAR(RUN_SCH,'YYYY-MM-DD HH24:MI:SS') AS 상영시간
 		FROM 
 			MOVIE
         JOIN 
         	SCHEDULE S 
-        	USING(MNO)
+        	USING
+        		(MNO)
 		WHERE 
 			RUN_SCH > SYSDATE
 </entry>

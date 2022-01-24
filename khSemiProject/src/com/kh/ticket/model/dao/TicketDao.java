@@ -32,28 +32,23 @@ public class TicketDao {
 		}
 	}
 
-	public ArrayList<Movie> selectMovie(Connection conn) {
+	public ArrayList<Movie> selectMovieName(Connection conn) {
 		ArrayList<Movie> mList = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectMovie");
-		
+		String sql = prop.getProperty("selectMovieName");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
 			rset = pstmt.executeQuery();
-			
+
 			while(rset.next()) {
-				Movie m = new Movie(rset.getInt("MNO"),
-									rset.getString("MNAME"),
-									rset.getString("GENRE"),
-									rset.getInt("RTIME"),
-									rset.getString("RATE"),
-									rset.getString("STATUS"),
-									rset.getDate("RUN_SCH"));
-				
+				Movie m = new Movie();
+				m.setMovieNo(rset.getInt("MNO"));
+				m.setMovieName(rset.getString("MNAME"));
+				m.setRate(rset.getString("RATE"));
+
 				mList.add(m);
-				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -61,7 +56,6 @@ public class TicketDao {
 			close(rset);
 			close(pstmt);
 		}
-		
 		return mList;
 	}
 
