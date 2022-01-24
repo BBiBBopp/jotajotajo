@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.login_logout.model.service.LoginServcie;
+import com.kh.login_logout.model.service.LoginService;
 import com.kh.member.model.vo.Member;
 
 /**
@@ -35,7 +35,7 @@ public class SearchPwdController extends HttpServlet {
 		
 		String memberId = request.getParameter("memberId");
 		
-		Member searchMem = new LoginServcie().searchPwd(memberId);
+		Member searchMem = new LoginService().searchPwd(memberId);
 		
 		if(searchMem != null) {
 			

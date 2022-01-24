@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.login_logout.model.service.LoginServcie;
+import com.kh.login_logout.model.service.LoginService;
 import com.kh.member.model.vo.Member;
 
 /**
@@ -37,7 +37,7 @@ public class LoginController extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
 		
-		Member loginUser = new LoginServcie().selectMember(memberId, memberPwd);
+		Member loginUser = new LoginService().selectMember(memberId, memberPwd);
 		
 		if(loginUser != null && loginUser.getMemberId().equals("admin")) {
 			

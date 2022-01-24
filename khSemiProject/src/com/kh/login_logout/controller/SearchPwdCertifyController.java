@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.login_logout.model.service.LoginServcie;
+import com.kh.login_logout.model.service.LoginService;
 import com.kh.member.model.vo.Member;
 
 /**
@@ -36,9 +36,11 @@ public class SearchPwdCertifyController extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		String email = request.getParameter("email");
 		
-		Member searchMem = new LoginServcie().pwdCertify(memberId, email);
+		Member searchMem = new LoginService().pwdCertify(memberId, email);
 		
 		if(searchMem != null) {
+			
+			request.setAttribute("searchMem", searchMem);
 			
 			request.getRequestDispatcher("views/user/loginLogout/searchPwd_imsyPwd.jsp").forward(request, response);
 			// 임시비밀번호 발급 페이지로 잘 이동

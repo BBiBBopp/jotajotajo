@@ -7,7 +7,7 @@ import java.sql.Connection;
 import com.kh.login_logout.model.dao.LoginDao;
 import com.kh.member.model.vo.Member;
 
-public class LoginServcie {
+public class LoginService {
 
 	public Member selectMember(String memberId, String memberPwd) {
 		
@@ -51,6 +51,24 @@ public class LoginServcie {
 		close(conn);
 		
 		return searchMem;
+	}
+
+	public int updateImsyPwd(String memberId, String imsyPwd) { 
+		
+		Connection conn = getConnection();
+		
+		int result = new LoginDao().updateImsyPwd(conn, memberId, imsyPwd);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
 	}
 	
 	

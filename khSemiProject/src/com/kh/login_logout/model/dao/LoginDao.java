@@ -167,6 +167,35 @@ public class LoginDao {
 		
 		return m;
 	}
+
+	public int updateImsyPwd(Connection conn,String memberId, String imsyPwd) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateImsyPwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setString(1, imsyPwd);
+			pstmt.setString(2, memberId);
+			
+			System.out.println(memberId);
+			System.out.println(imsyPwd); 
+			
+			result = pstmt.executeUpdate();
+			System.out.println(result); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	
