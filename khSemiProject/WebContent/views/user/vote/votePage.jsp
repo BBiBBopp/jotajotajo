@@ -99,20 +99,21 @@
                                   
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                      <h4 class="modal-title">영화1</h4>
-                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    	
+	                                    <h4 class="modal-title">영화1</h4>
+	                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     
                                     <!-- Modal body -->
                                     <div class="modal-body">
-									제목 :	<br>
-									장르 :	<br>
-									연도 :
+										제목 :	<br>
+										장르 :	<br>
+										연도 :
                                     </div>
                                     
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                      	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                     </div>
                                     
                                   </div>
@@ -124,7 +125,35 @@
                     </ul>
                     <ul class="thumbnail-list">
                         <li class="thumbnail-item">
-                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표2" class="thumbnail-image">
+                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표2" class="thumbnail-image"
+                            class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+
+                            <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                  
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                    	
+	                                    <h4 class="modal-title">영화2</h4>
+	                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+										제목 :	<br>
+										장르 :	<br>
+										연도 :
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                      	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                              </div>
                             <span class="thumbnail-title">영화2 <br><br>
                             <div class="checkbox"><input type="radio" name="radio1" id="radio1" value="1" class="checkbox1">
                             </div></span></li>
@@ -132,7 +161,35 @@
                     </ul>
                     <ul class="thumbnail-list">
                         <li class="thumbnail-item">
-                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표3" class="thumbnail-image">
+                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표3" class="thumbnail-image"
+                            class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+
+                            <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                  
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                    	
+	                                    <h4 class="modal-title">영화3</h4>
+	                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+										제목 :	<br>
+										장르 :	<br>
+										연도 :
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                      	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                              </div>
                             <span class="thumbnail-title">영화3 <br><br>
                             <div class="checkbox"><input type="radio" name="radio1" id="radio1" value="1" class="checkbox1">
                             </div></span></li>
@@ -140,7 +197,35 @@
                     </ul>
                     <ul class="thumbnail-list">
                         <li class="thumbnail-item">
-                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표4" class="thumbnail-image">
+                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표4" class="thumbnail-image"
+                            class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+
+                            <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                  
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                    	
+	                                    <h4 class="modal-title">영화4</h4>
+	                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+										제목 :	<br>
+										장르 :	<br>
+										연도 :
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                      	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                              </div>
                             <span class="thumbnail-title">영화4 <br><br>
                             <div class="checkbox"><input type="radio" name="radio1" id="radio1" value="1" class="checkbox1">
                             </div></span></li>

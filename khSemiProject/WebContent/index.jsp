@@ -113,12 +113,12 @@
 
 <%@ include file="views/user/common/header.jsp" %>
 		<script language="javascript">
-		/*
+		
          window.open("08_2_popup.html", "a", "width=400, height=300, left=100, top=50");
          function moveClose() {
-        	  opener.location.href= "<%=contextPath %>/list.vot";
+        	  opener.location.href="<%=contextPath %>/list.vot";
         	  self.close();
-        	} */
+        	} 
         </script>
 
             <div id="container">

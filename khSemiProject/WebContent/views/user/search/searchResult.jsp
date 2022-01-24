@@ -17,6 +17,35 @@
 <meta charset="UTF-8">
 <title>검색 결과</title>
 <link rel="stylesheet" href="../../../resource/css/00_stylesheet.css">
+
+    <style>
+        div {
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+        #wrap{
+            width: 1000px;
+            height: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #container>div {
+            height: 100%;  
+            
+        }
+
+        #search1 {
+            height: 30%
+        }
+        #search2 {
+            height: 30%
+        }
+        #search3 {
+            height: 30%
+        }
+
+    </style>
 </head>
 <body>
 
@@ -30,7 +59,7 @@
                 <br><br>
 				                
 
-                <div>
+                <div id="search1">
 	                <h3>영화</h3> 
 	                <hr size="4" color="lightgray">
 	                	 <% if(movieList.isEmpty()){ %>
@@ -48,14 +77,16 @@
 		                
 	                		<% } %>
 	                	 <% } %>
+	                	 <br><br><br><br>
 	                <p align="right">더보기 ></p> 
 	                <hr size="1"  color="lightgray"> <br><br>
 	                
                 </div>
                 
-                <div>
+                <div >
 	                <h3>영화관</h3>
 	                <hr size="4"  color="lightgray">
+	                	<div >
 	                	<% if(theaterList.isEmpty()){ %>
 	            			<p>검색된 영화관이 없습니다.</p>
             			 <% } else {%>
@@ -65,6 +96,7 @@
 			                    <%= th.getAddress() %>
 	                		<% } %>
 	                	 <% } %>
+	                	 <br><br><br><br>
 	                <p align="right">더보기 ></p>
 	                <hr size="1"  color="lightgray"> <br><br>
                 </div>
@@ -81,6 +113,7 @@
 			                    <%= r.getMno() %>
 	                		<% } %>
 	                	 <% } %>
+	                	 <br><br><br><br>
 	                <p align="right">더보기 ></p>
 	                <hr size="1"  color="lightgray">
                 </div>

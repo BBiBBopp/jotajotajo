@@ -43,9 +43,7 @@ public class SearchMainController extends HttpServlet {
 		
 		request.setAttribute("movieList", movieList);
 		request.setAttribute("theaterList", theaterList);
-		//System.out.println(32);
 		request.setAttribute("reviewList", reviewList);
-		//System.out.println(movieList);
 		
 		request.getRequestDispatcher("views/user/search/searchResult.jsp").forward(request, response);
 	

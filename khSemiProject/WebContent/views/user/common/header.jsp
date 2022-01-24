@@ -37,13 +37,13 @@ body{
   transform: translate(-50%,-50%);
   height: 50px;
   background-color: #fff;
-  border: 1px solid #bb97fb;
+  border: 1px solid #0588ed;
   border-radius: 30px;
   transition: 0.4s;
   width:30px;
 }
 .search-box:hover{
-  box-shadow: 0px 0px .5px 1px #51e3d4;
+  box-shadow: 0px 0px .5px 1px #0588ed;
   width: 282px;
 }
 .search-btn{
@@ -56,7 +56,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #bb97fb;
+  color: #0588ed;
 }
 .search-box:hover > .search-btn{
   background-color: #fff;
@@ -92,7 +92,7 @@ body{
 <div id="header">
 	<div class="logo_area">
 		<div class="logo_bg">
-			<a href="index.html"><img
+			<a href="<%=contextPath %>/index.jsp"><img
 				src="<%=contextPath %>/resource/css/image/cinema_logo900.jpg" alt="시네마헤븐"></a>
 		</div>
 		<div class="service_area">
