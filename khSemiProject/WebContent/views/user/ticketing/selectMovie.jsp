@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import = "java.util.ArrayList, com.kh.movie.model.vo.Movie" %>
 <%
-	ArrayList<Movie> list = (ArrayList<Movie>)request.getAttribute("list");
+	ArrayList<Movie> mlist = (ArrayList<Movie>)request.getAttribute("mlist");
 	//	System.out.println(list);
 %>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
 				<div class="movie-part">
 					<div class="reserve-title">영화</div>
 					<div class="movie-list-wrapper">
-					<% for(Movie m : list) { %>
+					<% for(Movie m : mlist) { %>
 						<div class="movie-list">
 							<div class="movie-list-age"><%= m.getRate() %></div>
 							<div class="movie-list-title"><%= m.getMovieName() %></div>
