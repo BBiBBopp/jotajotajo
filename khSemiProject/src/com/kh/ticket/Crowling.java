@@ -16,6 +16,7 @@ public class Crowling {
 		
 		try {
 			Document doc = conn.get();
+			/* Elements */
 			Elements ranks = doc.select(".rank");
 			Elements imgs = doc.select(".thumb-img > img");
 			Elements movieAges = doc.select(".ico-grade");
@@ -23,6 +24,8 @@ public class Crowling {
 			Elements movieRates = doc.select(".percent span");
 			Elements movieOpenDates = doc.select(".txt-info strong");
 			Elements likes = doc.select(".count strong>i");
+			
+			/* logger.info("counts" + likes); */
 			
 			
 		} catch (IOException e) {

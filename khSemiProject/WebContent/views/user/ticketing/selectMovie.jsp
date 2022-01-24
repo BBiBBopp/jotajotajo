@@ -4,8 +4,9 @@
 <html>
 <head>
 <title>시네마헤븐</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resource/css/ticketing/reserve.css">
+	href="<%=request.getContextPath()%>/resource/css/user/ticketing/reserve.css">
 <link rel='stylesheet'
 	href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' />
 <link rel="stylesheet"
@@ -14,8 +15,10 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+<script src="resource/js/ticket/reserve.js"></script>
 </head>
 <body>
+<!-- 비로그인시 로그인페이지로 보내기 -->
 	<div id="wrap">
 		<%@ include file="../common/header.jsp"%>
 		<div id="container">
