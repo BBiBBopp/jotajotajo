@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.notice.model.dao.NoticeDao;
+import com.kh.notice.model.vo.Category;
 import com.kh.notice.model.vo.Notice;
 
 public class NoticeService {
@@ -88,5 +89,51 @@ public class NoticeService {
 		return list;
 	}
 
+	public ArrayList<Notice> selectNoticeAdminList(int startRow, int endRow) {
+		Connection conn = getConnection();
+		
+		ArrayList<Notice> list = new NoticeDao().selectNoticeAdminList(conn, startRow, endRow);
 
+		close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<Category> selectCategory(String type) {
+		Connection conn = getConnection();
+		
+		ArrayList<Category> list = new ArrayList<>();
+		if(type.equals("notice")) {
+			list = new NoticeDao().selectNoticeCategory(conn);
+		}else {
+			list = new NoticeDao().selectFAQCategory(conn);
+		}
+
+		close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<Notice> searchNoticeAdminList(String type, String keyword, int startRow, int endRow) {
+		Connection conn = getConnection();
+		
+		ArrayList<Notice> list = new NoticeDao().searchNoticeAdminList(conn, type, keyword, startRow, endRow);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public int deleteNotice(String[] deleteList) {
+		Connection conn = getConnection();
+		
+		int result = new NoticeDao().deleteNotice(conn, deleteList);
+		
+		if(result==deleteList.length)
+			commit(conn);
+		else
+			rollback(conn);
+		
+		return result;
+	}
 }

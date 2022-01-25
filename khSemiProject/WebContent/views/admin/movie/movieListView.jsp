@@ -17,24 +17,28 @@
 			<!-- 영화 기능들 -->
 			<div>
 
-				<button>영화 추가</button>
-				<button>영화 삭제</button>
+				<button class="btn btn-secondary">영화 추가</button>
+				<button class="btn btn-secondary">영화 삭제</button>
 				<!-- 삭제를 누를 경우 display:none; 속성이 사라짐 -->
 				<div class="delete-form">
-
-
+					<em>해리포터와 비밀의 방</em>
+					해당 영화를 삭제하시겠습니까?
+					<button class="btn btn-secondary">취소</button>
+					<button class="btn btn-danger">삭제</button>
 				</div>
+				<!-- 이 영역도 삭제폼으로 전달해야하는지? -->
 
-
-				<form>
+				<form id="delete-form">
 					<input type="search" name="keyword">
 					<input type="submit">
 				</form>
 			</div>
 
 			<!-- 목록 테이블 영역 -->
-			<table>
+			
+			<table class="table">
 				<tr>
+					<th></th>
 					<th>No.</th>
 					<th>제목</th>
 					<th>장르</th>
@@ -42,6 +46,7 @@
 					<th>재개봉일</th>
 				</tr>
 				<tr>
+					<td><input type="checkbox" name=""></td>
 					<td>123</td>
 					<td>해리포터와 마법사의 돌</td>
 					<td>판타지, 드라마</td>
@@ -49,6 +54,7 @@
 					<td>22.01.01</td>
 				</tr>
 				<tr>
+					<td><input type="checkbox" name=""></td>
 					<td>123</td>
 					<td>해리포터와 마법사의 돌</td>
 					<td>판타지, 드라마</td>
@@ -56,6 +62,7 @@
 					<td>22.01.01</td>
 				</tr>
 				<tr>
+					<td><input type="checkbox" name=""></td>
 					<td>123</td>
 					<td>해리포터와 마법사의 돌</td>
 					<td>판타지, 드라마</td>
@@ -63,6 +70,7 @@
 					<td>22.01.01</td>
 				</tr>
 				<tr>
+					<td><input type="checkbox" name=""></td>
 					<td>123</td>
 					<td>해리포터와 마법사의 돌</td>
 					<td>판타지, 드라마</td>
@@ -70,6 +78,7 @@
 					<td>22.01.01</td>
 				</tr>
 				<tr>
+					<td><input type="checkbox" name=""></td>
 					<td>123</td>
 					<td>해리포터와 마법사의 돌</td>
 					<td>판타지, 드라마</td>
@@ -77,6 +86,7 @@
 					<td>22.01.01</td>
 				</tr>
 				<tr>
+					<td><input type="checkbox" name=""></td>
 					<td>123</td>
 					<td>해리포터와 마법사의 돌</td>
 					<td>판타지, 드라마</td>
@@ -84,6 +94,7 @@
 					<td>22.01.01</td>
 				</tr>
 				<tr>
+					<td><input type="checkbox" name=""></td>
 					<td>123</td>
 					<td>해리포터와 마법사의 돌</td>
 					<td>판타지, 드라마</td>
@@ -91,6 +102,7 @@
 					<td>22.01.01</td>
 				</tr>
 				<tr>
+					<td><input type="checkbox" name=""></td>
 					<td>123</td>
 					<td>해리포터와 마법사의 돌</td>
 					<td>판타지, 드라마</td>
@@ -98,6 +110,7 @@
 					<td>22.01.01</td>
 				</tr>
 				<tr>
+					<td><input type="checkbox" name=""></td>
 					<td>123</td>
 					<td>해리포터와 마법사의 돌</td>
 					<td>판타지, 드라마</td>
@@ -105,6 +118,7 @@
 					<td>22.01.01</td>
 				</tr>
 				<tr>
+					<td><input type="checkbox" name=""></td>
 					<td>123</td>
 					<td>해리포터와 마법사의 돌</td>
 					<td>판타지, 드라마</td>

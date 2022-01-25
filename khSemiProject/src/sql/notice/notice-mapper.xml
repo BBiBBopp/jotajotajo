@@ -2,6 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<comment>notice-mapper</comment>
+	<!-- USER -->
 	<entry key="countNotice">
 		SELECT COUNT(NOTICE_NO) COUNT
 		FROM NOTICE
@@ -17,7 +18,7 @@
 					FROM NOTICE
 					WHERE STATUS = 'Y' AND NOTICE_CATEGORY = 20
 					ORDER BY NOTICE_NO DESC)
-					 A)
+					 )
 				WHERE RNUM BETWEEN ? AND ?
 		
 		UNION
@@ -54,7 +55,7 @@
 				WHERE STATUS = 'Y' AND NOTICE_CATEGORY = 20
 				    AND NOTICE_TITLE LIKE ?
 				ORDER BY NOTICE_NO DESC)
-			 A)
+			 )
 		WHERE RNUM BETWEEN ? AND ?
 
 		UNION
@@ -75,7 +76,7 @@
 				WHERE STATUS = 'Y' AND NOTICE_CATEGORY = 20
 				    AND NOTICE_CONTENT LIKE ?
 				ORDER BY NOTICE_NO DESC)
-			 A)
+			 )
 		WHERE RNUM BETWEEN ? AND ?
 		
 		UNION
@@ -113,7 +114,35 @@
 	            FROM NOTICE
 	            WHERE NOTICE_CATEGORY = ?
 	            ORDER BY NOTICE_NO DESC)
-	         A)
+	         )
 		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<!-- ADMIN -->
+	<entry key="selectNoticeAdminList">
+		SELECT NOTICE_NO, CATEGORY_CONTENT, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_DATE
+	    FROM (
+		        SELECT NOTICE_NO, CATEGORY_CONTENT, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_DATE, ROWNUM RNUM
+		        FROM (
+		            SELECT NOTICE_NO, CATEGORY_CONTENT, NOTICE_TITLE, CONCAT(SUBSTR(NOTICE_CONTENT,1,10), '...') NOTICE_CONTENT, NOTICE_DATE
+		            FROM NOTICE
+		                JOIN NOTICE_CATEGORY ON(NOTICE_CATEGORY = CATEGORY_NO)
+		            WHERE NOTICE_CATEGORY &lt; 99 AND STATUS = 'Y'
+		            ORDER BY NOTICE_NO DESC)
+		         )
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectNoticeCategory">
+		SELECT CATEGORY_NO, CATEGORY_CONTENT
+		FROM NOTICE_CATEGORY
+		WHERE CATEGORY_NO &lt; 99
+	</entry>
+	<entry key="selectFAQCategory">
+		SELECT CATEGORY_NO, CATEGORY_CONTENT
+		FROM NOTICE_CATEGORY
+		WHERE CATEGORY_NO &gt; 99
+	</entry>
+	<entry key="deleteNotice">
+		UPDATE NOTICE SET STATUS = 'N' WHERE NOTICE_NO = ?
 	</entry>
 </properties>

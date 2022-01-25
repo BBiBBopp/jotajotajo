@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.notice.model.vo.Category;
 import com.kh.notice.model.vo.Notice;
 
 import static com.kh.common.JDBCTemplate.*;
@@ -228,6 +229,140 @@ public class NoticeDao {
 		
 		return list;
 	}
+
+	public ArrayList<Notice> selectNoticeAdminList(Connection conn, int startRow, int endRow) {
+		ArrayList<Notice> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNoticeAdminList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Notice n = new Notice();
+				n.setNoticeNo(rset.getInt("NOTICE_NO"));
+				n.setNoticeCategory(rset.getString("CATEGORY_CONTENT"));
+				n.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				n.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				n.setNoticeDate(rset.getDate("NOTICE_DATE"));
+				
+				list.add(n);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public ArrayList<Category> selectNoticeCategory(Connection conn) {
+		ArrayList<Category> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNoticeCategory");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Category n = new Category();
+				n.setCategoryNo(rset.getInt("CATEGORY_NO"));
+				n.setCategoryContent(rset.getString("CATEGORY_CONTENT"));
+				
+				list.add(n);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public ArrayList<Category> selectFAQCategory(Connection conn) {
+		ArrayList<Category> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectFAQCategory");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Category n = new Category();
+				n.setCategoryNo(rset.getInt("CATEGORY_NO"));
+				n.setCategoryContent(rset.getString("CATEGORY_CONTENT"));
+				
+				list.add(n);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
-	
+	public ArrayList<Notice> searchNoticeAdminList(Connection conn, String type, String keyword, int startRow, int endRow) {
+		ArrayList<Notice> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchNoticeAdminList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Notice n = new Notice();
+				n.setNoticeNo(rset.getInt("NOTICE_NO"));
+				n.setNoticeCategory(rset.getString("CATEGORY_CONTENT"));
+				n.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				n.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				n.setNoticeDate(rset.getDate("NOTICE_DATE"));
+				n.setStatus(rset.getString("STATUS"));
+				
+				list.add(n);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int deleteNotice(Connection conn, String[] deleteList) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteNotice");
+		
+		try {
+			for(String str : deleteList) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(str));
+				pstmt.executeUpdate();
+				result++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }

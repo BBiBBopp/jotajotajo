@@ -14,27 +14,24 @@ import com.kh.notice.model.vo.Notice;
 import com.kh.notice.model.vo.PageInfo;
 
 /**
- * Servlet implementation class NoticeListController
+ * Servlet implementation class NoticeAdminListController
  */
-@WebServlet("/list.no")
-public class NoticeListController extends HttpServlet {
+@WebServlet("/adminList.no")
+public class NoticeAdminListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public NoticeAdminListController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public NoticeListController() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int listCount;
 		int currentPage;
 		int pageLimit;
@@ -45,14 +42,14 @@ public class NoticeListController extends HttpServlet {
 
 		int startCate = 10;
 		int endCate = 20;
+		
 		listCount = new NoticeService().countNotice(startCate, endCate);
 
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 
 		pageLimit = 10;
+		boardLimit = 20;
 
-		boardLimit = 5;
-		
 		maxPage = (int) Math.ceil((double) listCount / boardLimit);
 		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
 
@@ -64,21 +61,22 @@ public class NoticeListController extends HttpServlet {
 		int endRow = startRow + boardLimit - 1;
 
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-
-		ArrayList<Notice> list = new NoticeService().selectNoticeList(startRow, endRow);
-
+		
+		ArrayList<Notice> list = new ArrayList<>();
+		list = new NoticeService().selectNoticeAdminList(startRow, endRow);
+			
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
-
-		request.getRequestDispatcher("views/user/notice/noticeListView.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("views/admin/notice/noticeListView.jsp").forward(request, response);
+	
+	
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

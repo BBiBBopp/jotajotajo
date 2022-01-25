@@ -67,7 +67,6 @@
                         </thead>
                         <tbody>
                         <% if(list.isEmpty()){ %>
-                        
                         	<tr><td>공지사항이 존재하지 않습니다.</td></tr>
                         <% }else{ %>
                             <% for(Notice n : list){ %>

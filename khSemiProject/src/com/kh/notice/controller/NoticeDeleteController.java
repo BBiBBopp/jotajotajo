@@ -9,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.notice.model.service.NoticeService;
-import com.kh.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeDetailController
+ * Servlet implementation class NoticeDeleteController
  */
-@WebServlet("/detail.no")
-public class NoticeDetailController extends HttpServlet {
+@WebServlet("/delete.no")
+public class NoticeDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDetailController() {
+    public NoticeDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,19 +29,18 @@ public class NoticeDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int noticeNo = Integer.parseInt(request.getParameter("nno"));
+		String list = request.getParameter("list");
+		String[] deleteList = list.split(",");
 		
-		//조회수 올리기
-		int views = new NoticeService().increaseNoticeViews(noticeNo);
-		
-		//조회수가 올라가면 해당 글 들어가기
-		Notice n = null;
-		if(views>0) {
-			n = new NoticeService().selectNotice(noticeNo);
+		int result = new NoticeService().deleteNotice(deleteList);
+	
+		if(result>0) {//삭제 성공
+			request.getSession().setAttribute("alertMsg", "삭제 성공했습니다");
+		}else {
+			request.getSession().setAttribute("errorMsg", "삭제에 실패했습니다.");
 		}
 		
-		request.setAttribute("n", n);
-		request.getRequestDispatcher("views/user/notice/noticeDetailView.jsp").forward(request, response);
+		response.sendRedirect("adminList.no?currentPage=1&type=notice");
 	}
 
 	/**
