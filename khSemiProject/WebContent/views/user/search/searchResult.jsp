@@ -20,7 +20,7 @@
 
     <style>
         div {
-            border: 1px solid black;
+           /* border: 1px solid black; */
             box-sizing: border-box;
         }
         #wrap{
@@ -45,12 +45,16 @@
             height: 30%
         }
 
+	.movie_img{
+		width:150px;
+		height:200px;
+	}
     </style>
 </head>
 <body>
 
 	<%@ include file="../common/header.jsp" %>
-	<br><br><br>
+	<br>
 	
 	
 	<div id="container">
@@ -59,63 +63,93 @@
                 <br><br>
 				                
 
-                <div id="search1">
+                <div>
 	                <h3>영화</h3> 
 	                <hr size="4" color="lightgray">
-	                	 <% if(movieList.isEmpty()){ %>
-	            			<p>검색된 영화가 없습니다.</p>
-            			 <% } else {%>
-	                		<% for(SearchMovie sb : movieList) {%>
-			                    <%= sb.getmNo() %>
-			                    <%= sb.getmName() %>
-			                    <%= sb.getGenre() %>
-			                    <%= sb.getDirector() %>
-			                    <%= sb.getActor() %>
-			                    <%= sb.getrTime() %>
-			                    <%= sb.getFilePath() %>
-			                    <%= sb.getChangeName() %>
-		                
-	                		<% } %>
-	                	 <% } %>
-	                	 <br><br><br><br>
-	                <p align="right">더보기 ></p> 
-	                <hr size="1"  color="lightgray"> <br><br>
-	                
+	                <table>
+	                	<tr>
+		                	 <td><% if(movieList.isEmpty()){ %>
+		            			<p>검색된 영화가 없습니다.</p>
+		            		 </td>
+		            	</tr>
+		            	
+	            			 <% } else {%>
+		                		<% for(SearchMovie sb : movieList) {%>
+		                			<tr>
+				                   		<td rowspan="6"><a><img class="movie_img" src="<%=contextPath%><%=sb.getFilePath() %><%= sb.getChangeName() %>">
+				                   		</a></td>
+				                   	 </tr>
+				                   	 <tr>
+					                   	<td> | <%= sb.getmName() %></td>
+					                  	</tr> 	
+					                 <tr>  	
+					                    <td> | <%= sb.getGenre() %></td>
+					                 	</tr>   
+					                <tr>    
+					                    <td> | <%= sb.getDirector() %></td>
+				                   	</tr>
+					               
+					                <tr>
+					                    <td> | <%= sb.getActor() %></td>
+					                </tr> 
+					                 <tr>   
+					                    <td> | <%= sb.getrTime() %></td>
+					                </tr>
+		                		<% } %>
+		                	 <% } %>
+		                				 
+		                	 
+		                <p align="right">더보기 ></p> 
+		                <br><br>
+	            	</table>    
                 </div>
                 
                 <div >
 	                <h3>영화관</h3>
 	                <hr size="4"  color="lightgray">
-	                	<div >
-	                	<% if(theaterList.isEmpty()){ %>
-	            			<p>검색된 영화관이 없습니다.</p>
+	                <table>
+	                	<tr>
+	                		<td><% if(theaterList.isEmpty()){ %>
+	            				<p>검색된 영화관이 없습니다.</p>
+	            			</td>
+	            		</tr>
             			 <% } else {%>
 	                		<% for(Theater th : theaterList) {%>
-			                    <%= th.getTheaterNo() %>
-			                    <%= th.getTheaterName() %>
-			                    <%= th.getAddress() %>
+				                <tr>
+				                    <td><%= th.getTheaterName() %></td>
+				                
+				                    <td> | <%= th.getAddress() %></td>
+				                </tr>
 	                		<% } %>
 	                	 <% } %>
-	                	 <br><br><br><br>
+	                	 
 	                <p align="right">더보기 ></p>
-	                <hr size="1"  color="lightgray"> <br><br>
+	                <br><br>
+	                </table>
                 </div>
                
                 <div>
                 <h3>영화 리뷰</h3>
 	                <hr size="4"  color="lightgray">
-	                	<% if(reviewList.isEmpty()){ %>
-	            			<p>검색된 리뷰가 없습니다.</p>
+	                <table>
+	                	<tr>
+	                		<td>
+			                	<% if(reviewList.isEmpty()){ %>
+			            			<p>검색된 리뷰가 없습니다.</p>
+	            			</td>
+	            		</tr>
             			 <% } else {%>
 	                		<% for(Review r : reviewList) {%>
-			                    <%= r.getReviewNo() %>
-			                    <%= r.getReviewContent() %>
-			                    <%= r.getMno() %>
+	                		<tr>
+			                    <td><%= r.getReviewNo() %></td>
+			                    <td> | <%= r.getReviewContent() %></td>
+			                    <td> | <%= r.getMno() %></td>
+			                </tr>
 	                		<% } %>
 	                	 <% } %>
-	                	 <br><br><br><br>
-	                <p align="right">더보기 ></p>
-	                <hr size="1"  color="lightgray">
+	                	 
+	                	<p align="right">더보기 ></p>
+	               </table>  
                 </div>
             </div>
         </div>

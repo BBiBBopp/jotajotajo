@@ -59,20 +59,20 @@
                     <p style="font-size:30px;">이전투표목록</p> <br><br>
                     <hr size="4"  color="gray">
                     
-                    <img src="resource/css/image/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터1" class="poster1"
+                    <img src="resource/image/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터1" class="poster1"
                     style="vertical-align:middle;">
                     <span style="margin-top:20px;margin-left:160px;font-size:18px;">1월 투표결과</span>	
 
                 </div>
                 <div class="container_6">
                     <hr size="4"  color="gray">
-                    <img src="resource/css/image/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터2" class="poster1"
+                    <img src="resource/image/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터2" class="poster1"
                     style="vertical-align:middle;">
                     <span style="margin-top:20px;margin-left:160px;font-size:18px;">12월 투표결과</span>
                 </div>
                 <div class="container_7">
                     <hr size="4"  color="gray">
-                    <img src="resource/css/image/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터3" class="poster1"
+                    <img src="resource/image/52ef372732ec3bbee5fb9159477006ad.jpg" alt="포스터3" class="poster1"
                     style="vertical-align:middle;">
                     <span style="margin-top:20px;margin-left:160px;font-size:18px;">11월 투표결과</span>
                     <hr size="4"  color="gray">
