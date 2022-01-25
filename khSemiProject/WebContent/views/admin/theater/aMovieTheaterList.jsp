@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.kh.member.model.vo.Member, java.util.ArrayList, com.kh.theater.model.vo.Theater, com.kh.common.model.vo.PageInfo" %>
+<%@ page import="java.util.ArrayList, com.kh.theater.model.vo.Theater, com.kh.common.model.vo.PageInfo" %>
 <%
 	ArrayList<Theater> theaterList = (ArrayList<Theater>)session.getAttribute("theaterList");
 	
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	String alertMsg = (String)session.getAttribute("alertMsg");
 
 	// 페이징 바 만들 때 필요한 변수 미리 세팅
 	int currentPage = pi.getCurrentPage();
@@ -20,6 +22,17 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/admin/theater/05_z01_admin_movietheater.css">
 </head>
 <body>
+
+	<script>
+			var msg = "<%= alertMsg%>"
+			if(msg != "null"){ // 성공, 경고 메세지 문구가 담겨있을 경우
+				alert(msg);
+			
+			<% session.removeAttribute("alertMsg"); %>
+			// 해당 페이지가 로딩 될 때마다 뜨는 alert제거			
+			}
+		</script>
+	
 	<div id="container">
 		<div class="menutab">
         <%@ include file="../common/menubar.jsp" %>
@@ -30,7 +43,7 @@
                     <h2>등록된 영화관</h2>
                 </div>
                     <div id="add_delete_btn_div">
-                        <button>영화관 추가</button>
+                        <button><a href="<%= contextPath%>/atEnrollForm.th">영화관 추가</a></button>
                         <button>영화관 삭제</button>
                     </div>
             </div>
@@ -72,7 +85,7 @@
             	$(function(){
 					$(".table>tbody>tr").click(function(){
 						
-						location.href="<%= contextPath%>/atDetail.th?tno=" + $(this).children().eq(0).text();
+						location.href="<%= contextPath%>/atDetail.th?tno=" + $(this).children().eq(1).text();
 					})
             	})
             </script>

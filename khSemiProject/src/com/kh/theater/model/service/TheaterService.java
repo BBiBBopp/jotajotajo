@@ -1,7 +1,7 @@
 package com.kh.theater.model.service;
 
 import static com.kh.common.JDBCTemplate.close;
-import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.theater.model.dao.TheaterDao;
 import com.kh.theater.model.vo.Theater;
+import com.kh.theater.model.vo.TheaterAuditorium;
 
 public class TheaterService {
 
@@ -43,6 +44,36 @@ public class TheaterService {
 		close(conn);
 		
 		return t;
+	}
+
+	public TheaterAuditorium aSelectTheater(int theaterNo) {
+
+		Connection conn = getConnection();
+		
+		TheaterAuditorium ta = new TheaterDao().aSelectTheater(conn, theaterNo);
+		
+		close(conn);
+		
+		return ta;
+	}
+
+	public int insertTheater(TheaterAuditorium ta) {
+
+		Connection conn = getConnection();
+		
+		int result = new TheaterDao().insertTheater(conn, ta);
+		
+		int result2 = new TheaterDao().insertAuditorium(conn, ta);
+		
+		if(result * result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return (result * result2);
 	}
 
 }

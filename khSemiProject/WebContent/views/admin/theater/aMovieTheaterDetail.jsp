@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.theater.model.vo.TheaterAuditorium" %>
+<%
+TheaterAuditorium ta = (TheaterAuditorium)request.getAttribute("ta");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +20,7 @@
             	<div id="content_1">
                 	<div id="title">
                     	<h2>영화관 상세</h2>
+            		</div>
             	</div>
             	<div id="content_2">
                 	<div class="input_info">
@@ -28,17 +33,17 @@
                             	좌석수 <br>
                         	</div>
                         	<div id="input_tag">
-                            	<input type="text"><br>
-                            	<input type="text"><br>
-                            	<input type="text"><br>
-                            	<input type="text"><br>
-                            	<input type="text"><br>
+                            	<%= ta.getTheaterName() %><br>
+                            	<%= ta.getAddress() %><br>
+                            	<%= ta.getAuditoriumNum() %><br>
+                            	<%= ta.getPhone() %><br>
+                            	<%= ta.getSeatNum() %><br>
                         	</div>
                     	</div>
                     	<br clear="both">
                     	<div id="movietheater_file">
                         	<p>영화관 관련 이미지</p>
-                        	<input type="file">
+                        	<input type="file"  name="theaterImg">
                         	<p>클릭하면 열림</p>
                     	</div>
                 	</div>
@@ -52,10 +57,12 @@
                             </tr>
                         </thead>
                         <tbody>
+							
                             <tr>
-                                <td><input type="text" value="1">관</td>
-                                <td><input type="text" value="160">석</td>
+                                <td><%= ta.getAuditoriumName() %>관</td>
+                                <td><%= ta.getSeatNum() %>석</td>
                             </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -65,15 +72,14 @@
             <div id="content_3">
                 <hr>
                 <div id="ex_info">
-                    위치안내 &emsp;<input type="text" placeholder="위도, 경도를 ','를 포함하여 작성해주세요." style="width:380px;"></input><br><br>
-                    교통안내 &emsp;<textarea name="" id="" style="resize: none;" rows="10"></textarea><br><br>
-                    주차안내 &emsp;<textarea name="" id="" style="resize: none;" rows="10"></textarea><br><br>
-                    주의사항 &emsp;<textarea name="" id="" style="resize: none;" rows="10"></textarea><br><br>
+                    위치안내 &emsp;<%= ta.getLocation() %><br><br>
+                    교통안내 &emsp;<pre><%= ta.getTraffic()%></pre>
+                    주차안내 &emsp;<pre><%= ta.getParking()%></pre>
                 </div>
             </div>
             <div id="content_4">
                 <div>
-                    <button>수정하기</button>
+                    <button><a href="">수정하기</a></button>
                     <button>삭제하기</button>
                 </div>
             </div>

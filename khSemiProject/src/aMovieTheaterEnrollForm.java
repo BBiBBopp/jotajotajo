@@ -1,27 +1,23 @@
-package com.kh.theater.controller;
+
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.theater.model.service.TheaterService;
-import com.kh.theater.model.vo.TheaterAuditorium;
-
 /**
- * Servlet implementation class AMovieTheaterDetailController
+ * Servlet implementation class aMovieTheaterEnrollForm
  */
-@WebServlet("/atDetail.th")
-public class AMovieTheaterDetailController extends HttpServlet {
+@WebServlet("/atEnrollForm.th")
+public class aMovieTheaterEnrollForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AMovieTheaterDetailController() {
+    public aMovieTheaterEnrollForm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,18 +26,9 @@ public class AMovieTheaterDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		int theaterNo = Integer.parseInt(request.getParameter("tno"));
 		
-		TheaterAuditorium ta = new TheaterService().aSelectTheater(theaterNo);
+		request.getRequestDispatcher("views/admin/theater/aMovieTheaterInsert.jsp").forward(request, response);
 		
-		if(ta != null) {
-			
-			request.setAttribute("ta", ta);
-			
-			request.getRequestDispatcher("views/admin/theater/aMovieTheaterDetail.jsp").forward(request, response);
-			
-		}
 		
 	}
 

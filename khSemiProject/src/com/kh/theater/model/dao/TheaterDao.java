@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.kh.common.model.vo.PageInfo;
 import com.kh.theater.model.vo.Theater;
+import com.kh.theater.model.vo.TheaterAuditorium;
 
 public class TheaterDao {
 	
@@ -141,6 +142,109 @@ public class TheaterDao {
 		}
 		
 		return t;
+	}
+
+
+	public TheaterAuditorium aSelectTheater(Connection conn, int theaterNo) {
+
+		TheaterAuditorium ta = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		System.out.println(theaterNo);
+		
+		String sql = prop.getProperty("aSelectTheater");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, theaterNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				ta = new TheaterAuditorium(rset.getInt("THEATER_NO"),
+						   				   rset.getString("THEATER_NAME"),
+						   				   rset.getInt("AUDITORIUM_NUM"),
+						   				   rset.getInt("SEAT_NUM"),
+						   				   rset.getString("ADDRESS"),
+						   				   rset.getString("PHONE"),
+						   				   rset.getString("TRAFFIC"),
+						   				   rset.getString("LOCATION"),
+						   				   rset.getString("PARKING"),
+						   				   rset.getInt("THEATER_IMG"),
+						   				   rset.getString("UPLOAD_DATE"),
+						   				   rset.getInt("AUDITORIUM_NO"),
+						   				   rset.getString("AUDITORIUM_NAME"),
+						   				   rset.getInt("AUDITORIUM_SEAT_NUM"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(ta);
+		
+		return ta;
+	}
+
+
+	public int insertTheater(Connection conn, TheaterAuditorium ta) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertTheater");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, ta.getTheaterName());
+			pstmt.setInt(2, ta.getAuditoriumNum());
+			pstmt.setInt(3, ta.getSeatNum());
+			pstmt.setString(4, ta.getAddress());
+			pstmt.setString(5, ta.getPhone());
+			pstmt.setString(6, ta.getTraffic());
+			pstmt.setString(7, ta.getLocation());
+			pstmt.setString(8, ta.getParking());
+			pstmt.setInt(9, ta.getTheaterImg());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int insertAuditorium(Connection conn, TheaterAuditorium ta) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertAuditorium");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, ta.getAuditoriumName());
+			pstmt.setInt(2, ta.getAuditoriumSeatNum());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	

@@ -1,5 +1,5 @@
 div {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     display: block;
 } 
 /* ------------------------------------------------ */
@@ -18,11 +18,11 @@ div {
 
 #content_wrap{
     width: 79%;
-    height: 100%;
+   	margin-left : 250px;
 }
 #content_1{
     width: 100%;
-    height: 10%;
+    height: 100px;
 }
 #content_1>div{
     float: left;
@@ -33,7 +33,7 @@ div {
 }
 #title>h2{
     padding-left: 35px;
-    padding-top: 10px;
+    padding-top: 27px;
 }
 #content_2{
     width: 100%;
