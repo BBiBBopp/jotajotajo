@@ -168,7 +168,7 @@ public class LoginDao {
 		return m;
 	}
 
-	public int updateImsyPwd(Connection conn,String memberId, String imsyPwd) {
+	public int updateImsyPwd(Connection conn,String memberId, String changedPwd) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -178,15 +178,10 @@ public class LoginDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			
-			pstmt.setString(1, imsyPwd);
+			pstmt.setString(1, changedPwd);
 			pstmt.setString(2, memberId);
 			
-			System.out.println(memberId);
-			System.out.println(imsyPwd); 
-			
 			result = pstmt.executeUpdate();
-			System.out.println(result); 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

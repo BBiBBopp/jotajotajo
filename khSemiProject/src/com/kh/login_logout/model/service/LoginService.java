@@ -53,11 +53,11 @@ public class LoginService {
 		return searchMem;
 	}
 
-	public int updateImsyPwd(String memberId, String imsyPwd) { 
+	public int updateImsyPwd(String memberId, String changedPwd) { 
 		
 		Connection conn = getConnection();
 		
-		int result = new LoginDao().updateImsyPwd(conn, memberId, imsyPwd);
+		int result = new LoginDao().updateImsyPwd(conn, memberId, changedPwd);
 		
 		if(result > 0) {
 			commit(conn);

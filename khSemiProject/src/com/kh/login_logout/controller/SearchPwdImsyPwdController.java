@@ -1,6 +1,7 @@
 package com.kh.login_logout.controller;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.MailSend;
+import com.kh.common.SHA256;
 import com.kh.login_logout.model.service.LoginService;
 
 /**
@@ -74,10 +76,19 @@ public class SearchPwdImsyPwdController extends HttpServlet {
 		
 		ms.welcomeMailSend(email, imsyPwd, num);
 		
+		SHA256 sha256 = new SHA256();
+		
+		String changedPwd = null;
+		
+		try {
+			changedPwd = sha256.encrypt(imsyPwd);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
 		// 임시비밀번호 DB에 저장
 		
-		
-		int result = new LoginService().updateImsyPwd(memberId, imsyPwd);
+		int result = new LoginService().updateImsyPwd(memberId, changedPwd);
 		
 		if(result > 0) {
 

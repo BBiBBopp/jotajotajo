@@ -9,7 +9,6 @@
 	String alertMsg = (String)session.getAttribute("alertMsg");
 	
 	ArrayList<Theater> theaterList = (ArrayList<Theater>)session.getAttribute("theaterList");
-	
 %>
 <%
 	// 로그아웃 후 뒤로가기 했을 때 로그인이 되어 있지 않게 캐시 삭제
