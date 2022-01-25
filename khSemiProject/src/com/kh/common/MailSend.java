@@ -18,10 +18,10 @@ import javax.mail.internet.MimeMessage;
 public class MailSend {
 	
 	
-	public int welcomeMailSend(String email) {
+	public void welcomeMailSend(String email, Object temporary, int num) {
 		
 		
-		int authNumber = (int)(Math.random() * 899998)+100000;
+		
 		Properties prop1 = System.getProperties();
 
 		// 로그인시 TLS를 사용할 것인지 설정
@@ -76,7 +76,14 @@ public class MailSend {
 			msg.setSubject("환영합니다.", "UTF-8");
 
 			// Transport는 메일을 최종적으로 보내는 클래스로 메일을 보내는 부분이다.
-			msg.setText("인증 번호는 : " + authNumber + " 입니다.", "UTF-8");
+			if(num == 1) {
+				
+				msg.setText("인증 번호는 : " + temporary + " 입니다.", "UTF-8");
+			}else {
+				msg.setText("임시 비밀  번호는 : " + temporary + " 입니다.", "UTF-8");
+				
+			}
+					
 
 			Transport.send(msg);
 
@@ -87,7 +94,6 @@ public class MailSend {
 		}
 		
 		
-		return authNumber;
 	}
 
 }

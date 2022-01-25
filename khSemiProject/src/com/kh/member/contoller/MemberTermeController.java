@@ -1,27 +1,23 @@
 package com.kh.member.contoller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.service.MemberService;
-
-
 /**
- * Servlet implementation class AjaxIdCheckController
+ * Servlet implementation class MemberTermeController
  */
-@WebServlet("/idCheck.me")
-public class AjaxIdCheckController extends HttpServlet {
+@WebServlet("/terme.me")
+public class MemberTermeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxIdCheckController() {
+    public MemberTermeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,16 +26,8 @@ public class AjaxIdCheckController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		
-		
-		String memberId = request.getParameter("memberId");
-		
-		
-		int result = new MemberService().idCheck(memberId);
-		
-		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().print(result);
+		request.getRequestDispatcher("views/user/member/memberTerms.jsp").forward(request, response);
 		
 	}
 

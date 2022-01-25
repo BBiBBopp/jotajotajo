@@ -26,7 +26,7 @@
 		<div class="service_area">
 			<a href="" class="link search">검색</a>
 			<!-- 검색 지우고 돋보기 이미지 넣기 -->
-			<a href="" class="link login">로그인</a> <a href="" class="link signIn">회원가입</a>
+			<a href="" class="link login">로그인</a> <a href="<%=contextPath %>/terme.me" class="link signIn">회원가입</a>
 		</div>
 	</div>
 	<div id="navi_area">

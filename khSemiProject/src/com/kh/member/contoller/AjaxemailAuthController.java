@@ -2,6 +2,7 @@ package com.kh.member.contoller;
 
 import java.io.IOException;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.kh.common.MailSend;
-import com.kh.member.service.MemberService;
+import com.kh.member.model.service.MemberService;
 
 /**
  * Servlet implementation class AjaxemailAuthController
@@ -36,7 +37,6 @@ public class AjaxemailAuthController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String email = request.getParameter("email");
-		
 		int result = new MemberService().emailCheck(email); 
 		
 		
@@ -52,7 +52,8 @@ public class AjaxemailAuthController extends HttpServlet {
 			
 			MailSend ms = new MailSend();
 			
-			int authNumber = ms.welcomeMailSend(email);
+			int authNumber = (int)(Math.random() * 899998)+100000;
+			ms.welcomeMailSend(email, authNumber, 1);
 			
 			response.setContentType("application/json; charset=UTF-8");
 			JSONObject jObj = new JSONObject();
