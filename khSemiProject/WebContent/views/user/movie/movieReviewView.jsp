@@ -157,7 +157,6 @@
 									'eCount': e
 									},
 								success: function(list){//리스트 뿌리기
-									
 									$('#reviewListView').html(selectReview(list));
 								},
 								error: function(){
