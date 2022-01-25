@@ -9,11 +9,11 @@ import com.kh.member.model.vo.Member;
 
 public class LoginService {
 
-	public Member selectMember(String memberId, String memberPwd) {
+	public Member selectMember(String memberId, String changedPwd) {
 		
 		Connection conn = getConnection();
 		
-		Member m = new LoginDao().selectMember(conn, memberId, memberPwd);
+		Member m = new LoginDao().selectMember(conn, memberId, changedPwd);
 		
 		close(conn);
 		

@@ -1,6 +1,7 @@
 package com.kh.login_logout.controller;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.common.SHA256;
 import com.kh.login_logout.model.service.LoginService;
 import com.kh.member.model.vo.Member;
 
@@ -33,11 +35,28 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
+		SHA256 sha256 = new SHA256();
 		
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
 		
-		Member loginUser = new LoginService().selectMember(memberId, memberPwd);
+		String changedPwd = null;
+		
+		try {
+			changedPwd = sha256.encrypt(memberPwd);
+			
+//			System.out.println(memberPwd); // 입력된 비밀번호 확인
+			
+//			System.out.println(changedPwd.equals(sha256.encrypt(memberPwd))); // 암호화된 비밀번호화 일치하는지 확인
+			
+//			System.out.println(changedPwd);
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		
+		Member loginUser = new LoginService().selectMember(memberId, changedPwd);
 		
 		if(loginUser != null && loginUser.getMemberId().equals("admin")) {
 			

@@ -29,7 +29,7 @@ public class LoginDao {
 		
 	}
 	
-	public Member selectMember(Connection conn, String memberId, String memberPwd) {
+	public Member selectMember(Connection conn, String memberId, String changedPwd) {
 
 		Member m = null;
 		PreparedStatement pstmt = null;
@@ -41,7 +41,7 @@ public class LoginDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, memberId);
-			pstmt.setString(2, memberPwd);
+			pstmt.setString(2, changedPwd);
 			
 			rset = pstmt.executeQuery();
 			
