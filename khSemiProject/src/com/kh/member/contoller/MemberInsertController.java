@@ -1,6 +1,7 @@
 package com.kh.member.contoller;
 
 import java.io.IOException;
+
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.SHA256;
 import com.kh.member.model.vo.Member;
-import com.kh.member.service.MemberService;
+import com.kh.member.model.service.MemberService;
 
 /**
  * Servlet implementation class MemberInsertController
@@ -40,7 +41,7 @@ public class MemberInsertController extends HttpServlet {
 		// 가공
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
-
+		
 		SHA256 sha256 = new SHA256();
 
 		// SHA256으로 암호화된 비밀번호

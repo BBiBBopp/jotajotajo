@@ -16,6 +16,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class MailSend {
+<<<<<<< HEAD
    
    
    public void welcomeMailSend(String email, Object temporary, int num) {
@@ -23,6 +24,15 @@ public class MailSend {
       
       
       Properties prop1 = System.getProperties();
+=======
+	
+	
+	public void welcomeMailSend(String email, Object temporary, int num) {
+		
+		
+		
+		Properties prop1 = System.getProperties();
+>>>>>>> branch 'kp4979' of https://github.com/BBiBBopp/jotajotajo.git
 
       // 로그인시 TLS를 사용할 것인지 설정
       prop1.put("mail.smtp.starttls.enable", "true");
@@ -75,6 +85,7 @@ public class MailSend {
          // 메일의 제목 지정
          msg.setSubject("환영합니다.", "UTF-8");
 
+<<<<<<< HEAD
          // Transport는 메일을 최종적으로 보내는 클래스로 메일을 보내는 부분이다.
          if(num == 1) {
             
@@ -84,9 +95,21 @@ public class MailSend {
             
          }
                
+=======
+			// Transport는 메일을 최종적으로 보내는 클래스로 메일을 보내는 부분이다.
+			if(num == 1) {
+				
+				msg.setText("인증 번호는 : " + temporary + " 입니다.", "UTF-8");
+			}else {
+				msg.setText("임시 비밀  번호는 : " + temporary + " 입니다.", "UTF-8");
+				
+			}
+					
+>>>>>>> branch 'kp4979' of https://github.com/BBiBBopp/jotajotajo.git
 
          Transport.send(msg);
 
+<<<<<<< HEAD
       } catch (AddressException ae) {
          System.out.println("AddressException : " + ae.getMessage());
       } catch (MessagingException me) {
@@ -95,5 +118,15 @@ public class MailSend {
       
       
    }
+=======
+		} catch (AddressException ae) {
+			System.out.println("AddressException : " + ae.getMessage());
+		} catch (MessagingException me) {
+			System.out.println("MessagingException : " + me.getMessage());
+		}
+		
+		
+	}
+>>>>>>> branch 'kp4979' of https://github.com/BBiBBopp/jotajotajo.git
 
 }

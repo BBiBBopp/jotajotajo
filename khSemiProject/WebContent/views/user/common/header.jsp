@@ -53,11 +53,15 @@
 		<div class="service_area">
 			<a href="1" class="link search">검색</a>
 			<!-- 검색 지우고 돋보기 이미지 넣기 -->
+<<<<<<< HEAD
 			<% if(loginUser == null) { %>
 			<a href = "<%=contextPath%>/loginForm.log" class="link login">로그인</a> <a href="" class="link signIn">회원가입</a>
 			<% } else { %>
 			<a href = "<%= contextPath %>/logout.log" class="link login">로그아웃</a> <a href="" class="link signIn">마이페이지</a>
 			<% } %>
+=======
+			<a href="" class="link login">로그인</a> <a href="<%=contextPath %>/terme.me" class="link signIn">회원가입</a>
+>>>>>>> branch 'kp4979' of https://github.com/BBiBBopp/jotajotajo.git
 		</div>
 	</div>
 	<div id="navi_area">

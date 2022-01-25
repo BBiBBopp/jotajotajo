@@ -1,9 +1,19 @@
 @charset "UTF-8";
-.member-area{
+.member-area, .terms-area{
 		width: 400px;
 		margin: 0 auto;
     	max-width: 700px;
     	min-width: 460px;
+	}
+	.terms{
+		overflow:scroll; 
+		width:500px; 
+		height:150px; 
+		padding:10px; 
+		
+	}
+	.checkBox_text{
+		font-size: 11px;
 	}
 	.logo_bg {
 	position: relative;
@@ -40,7 +50,7 @@
     	width: 130px;
     	height: 40px;
     }
-    .member_btn{
+    .member_btn, #enroll_btn{
     	background: rgb(13, 71, 161);
     	color : white;
     }
@@ -59,7 +69,15 @@
     ::placeholder {
     	font-size: 13px;
     }
-    
     .error_text{
     	font-size: 13px;
     }
+    #cancle{
+    	background : white;
+    	color : rgb(13, 71, 161);
+    }
+    .terms{
+    	font-size: 9px;
+    }
+    
+    

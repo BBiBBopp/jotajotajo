@@ -8,13 +8,19 @@
 	</entry>
 	<entry key="emailCheck">
 		SELECT COUNT(*) COUNT FROM MEMBER
-		WHERE email = ?
+		WHERE EMAIL = ?
 	</entry>
 	<entry key="memberSelect">
 	
 	</entry>
-	<entry key="memberSelectList">
-	
+	<entry key="memberList">
+		SELECT * 
+			FROM ( SELECT ROWNUM RNUM, A.*
+				FROM (SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, BIRTH, GENDER, EMAIL, PHONE 
+					FROM MEMBER
+					ORDER BY MEMBER_NAME DESC ) A)
+	WHERE RNUM BETWEEN ? AND ?
+    AND MEMBER_NAME LIKE '%' || ? || '%'
 	</entry>
 	<entry key="memberInsert">
 		INSERT INTO MEMBER(MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NAME, BIRTH, GENDER, EMAIL, PHONE, INTEREST)
@@ -25,6 +31,16 @@
 	</entry>
 	<entry key="memberDelete">
 	
+	</entry>
+	<entry key="adminDetail">
+		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, EMAIL, PHONE
+		FROM MEMBER
+		WHERE MEMBER_NO = ?
+	</entry>
+	<entry key="memberListCount">
+		SELECT COUNT(*) COUNT 
+		FROM MEMBER
+		WHERE MEMBER_STATUS = 'Y'
 	</entry>
 
 </properties>
