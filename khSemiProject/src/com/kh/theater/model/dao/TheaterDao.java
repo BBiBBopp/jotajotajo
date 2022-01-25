@@ -89,7 +89,8 @@ public class TheaterDao {
 								   rset.getString("TRAFFIC"),
 								   rset.getString("LOCATION"),
 								   rset.getString("PARKING"),
-								   rset.getInt("THEATER_IMG")));
+								   rset.getInt("THEATER_IMG"),
+								   rset.getString("UPLOAD_DATE")));
 			}
 			
 		} catch (SQLException e) {
@@ -128,7 +129,8 @@ public class TheaterDao {
 						   rset.getString("TRAFFIC"),
 						   rset.getString("LOCATION"),
 						   rset.getString("PARKING"),
-						   rset.getInt("THEATER_IMG"));
+						   rset.getInt("THEATER_IMG"),
+						   rset.getString("UPLOAD_DATE"));
 			}
 			
 		} catch (SQLException e) {

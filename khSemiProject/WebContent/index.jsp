@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%@ include file="views/user/common/header.jsp" %>
-	
+	<a href="<%=contextPath%>/atList.th?currentPage=1">관리자 페이지</a>
 		
 	
 	

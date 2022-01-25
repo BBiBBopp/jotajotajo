@@ -87,9 +87,9 @@
             <% if(currentPage != maxPage) { %>
             	<button onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= currentPage + 1 %>'">&gt;</button>
 			<% } %>
+        	</div>
+          </div>
         </div>
-                </div>
-            </div>
             
         </div>
 	

@@ -1,36 +1,22 @@
 div {
-    /* border: 1px solid black; */
+    border: 1px solid black;
     display: block;
+	box-sizing: border-box;
 } 
 /* ------------------------------------------------ */
 /* container영역 */
 #container {
-    width: 1000px;
-    height: 600px;
-    margin: auto;
+    width: 1400px;
+    height: auto;
 }
 #container>div{
-    float: left;
+	float: left;
 }
-.menubar{
-    width: 20%;
-    height: 100%;
-}
-#logo{
-    width: 100%;
-    height: 180px;
-}
-#logo>img{
-    width: 180px;
-    height: 150px;
-}
-#menutab{
-    width: 100%;
-    height: 70%;
+.menutab{
+	width: 20%
 }
 #content_wrap{
-    width: 79%;
-    height: 100%;
+    width: 80%;
 }
 #content_1{
     width: 100%;
@@ -60,7 +46,7 @@ div {
 }
 #content_2>table{
     margin: auto;
-    width: 600px;
+    width: auto;
     text-align: center;
     margin-top: 30px;
 }
