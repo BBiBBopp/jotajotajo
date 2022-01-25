@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.movie.model.vo.Movie;
-import com.kh.theater.model.vo.Theater;
+import com.google.gson.Gson;
 import com.kh.ticket.model.service.TicketService;
 
 /**
- * Servlet implementation class SelectMovieController
+ * Servlet implementation class AjaxSelectPlaceController
  */
-@WebServlet("/MoView.ti")
-public class SelectMovieViewController extends HttpServlet {
+@WebServlet("/selectPl.ti")
+public class AjaxSelectPlaceController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectMovieViewController() {
+    public AjaxSelectPlaceController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +31,13 @@ public class SelectMovieViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// service에서 DB에 있는 데이터 받아오기
-		ArrayList<Movie> mlist = new TicketService().selectMovieName();
-		ArrayList<Theater> tlist = new TicketService().selectTheaterAll();
-		// 응답
-		request.setAttribute("mlist", mlist);
-		request.setAttribute("tlist", tlist);
-		request.getRequestDispatcher("/views/user/ticketing/selectMovie.jsp").forward(request, response);
+		String tAddr = request.getParameter("tAddr");
+		String mName = request.getParameter("mName");
+		
+		ArrayList<String> list = new TicketService().selectTheater(tAddr, mName);
+		
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

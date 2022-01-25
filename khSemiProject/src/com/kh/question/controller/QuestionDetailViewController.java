@@ -1,7 +1,6 @@
 package com.kh.question.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.question.model.service.QuestionService;
+import com.kh.question.model.vo.Q_Attachment;
 import com.kh.question.model.vo.Question;
 import com.kh.question.model.vo.QuestionMethod;
 
@@ -36,6 +36,7 @@ public class QuestionDetailViewController extends HttpServlet implements Questio
 		int questionNo = Integer.parseInt(request.getParameter("qno"));
 		// service로 보내기
 		Question Qdetail = new QuestionService().selectQuestionDetail(questionNo);
+		Q_Attachment Qat = new QuestionService().selectQAttachment(questionNo);
 		
 		// 값 바꿔주기
 		String qtxt = QuestionMethod.changeQType(Qdetail.getAskTypeNo());
@@ -48,6 +49,7 @@ public class QuestionDetailViewController extends HttpServlet implements Questio
 		
 		//값 가지고 보내기
 		request.setAttribute("Qdetail", Qdetail);
+		request.setAttribute("Qat", Qat);
 		request.getRequestDispatcher("views/user/question/questionDetailView.jsp").forward(request, response);
 	}
 

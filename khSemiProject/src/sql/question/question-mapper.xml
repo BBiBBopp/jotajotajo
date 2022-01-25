@@ -30,6 +30,17 @@ SELECT
 	WHERE
 		ASK_NO = ?
 </entry>
+<entry key="selectQAttachment">
+	SELECT
+		FILE_NO, 
+		ORIGIN_NAME,
+		CHANGE_NAME,
+		FILE_PATH
+	FROM 
+		A_ATTACHMENT
+	WHERE
+		ASK_NO = ?
+</entry>
 <entry key="insertQuestion">
 	INSERT 
 		INTO ASK

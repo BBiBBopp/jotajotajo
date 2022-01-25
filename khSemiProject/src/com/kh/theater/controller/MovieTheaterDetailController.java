@@ -1,7 +1,6 @@
-package com.kh.ticket.controller;
+package com.kh.theater.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,21 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.kh.movie.model.vo.Movie;
-import com.kh.ticket.model.service.TicketService;
+import com.kh.theater.model.service.TheaterService;
+import com.kh.theater.model.vo.Theater;
 
 /**
- * Servlet implementation class AjaxSelectMovieController
+ * Servlet implementation class MovieTheaterDetailController
  */
-@WebServlet("/selectMo.ti")
-public class AjaxSelectMovieController extends HttpServlet {
+@WebServlet("/tDetail.th")
+public class MovieTheaterDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxSelectMovieController() {
+    public MovieTheaterDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +30,20 @@ public class AjaxSelectMovieController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// service에서 DB에 있는 데이터 받아오기
-		// ArrayList<Movie> list = new TicketService().selectMovie();
 		
-		// System.out.println(list);
-				
-		// Gson으로 응답
-		response.setContentType("application/json; charset=UTF-8");
-		// new Gson().toJson(list, response.getWriter());
+		int theaterNo = Integer.parseInt(request.getParameter("tno"));
+		
+		Theater t = new TheaterService().selectTheater(theaterNo);
+		
+		if(t != null) {
+			
+			request.setAttribute("t", t);
+			
+			request.getRequestDispatcher("views/user/theater/movieTheaterDetail.jsp").forward(request, response);
+			
+			
+		}
+		
 	}
 
 	/**

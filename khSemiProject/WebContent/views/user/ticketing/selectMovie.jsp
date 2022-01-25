@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import = "java.util.ArrayList, com.kh.movie.model.vo.Movie" %>
+<%@ page import = "java.util.ArrayList, com.kh.movie.model.vo.Movie, com.kh.theater.model.vo.Theater" %>
 <%
 	ArrayList<Movie> mlist = (ArrayList<Movie>)request.getAttribute("mlist");
-	//	System.out.println(list);
+	ArrayList<Theater> tlist = (ArrayList<Theater>)request.getAttribute("tlist");
 %>
 <!DOCTYPE html>
 <html>
@@ -12,14 +12,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resource/css/user/ticketing/reserve.css">
-<link rel='stylesheet'
-	href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' />
-<link rel="stylesheet"
-	href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
 <script src="resource/js/ticket/reserve.js"></script>
 </head>
 <body>
@@ -32,7 +24,7 @@
 					<div class="reserve-title">영화</div>
 					<div class="movie-list-wrapper">
 					<% for(Movie m : mlist) { %>
-						<div class="movie-list">
+						<div class="movie-list" style="width: 100%">
 							<div class="movie-list-age"><%= m.getRate() %></div>
 							<div class="movie-list-title"><%= m.getMovieName() %></div>
 						</div>
@@ -44,37 +36,21 @@
 					<div class="theater-container">
 						<div class="theater-wrapper">
 							<div class="theater-location-wrapper">
-								<button class="theater-location">서울(30)</button>
-								<button class="theater-location">경기(43)</button>
-								<button class="theater-location">인천(10)</button>
-								<button class="theater-location">강원(5)</button>
+							<% for(Theater t : tlist) { %>
+								<button class="theater-location" disabled><%= t.getAddress() %>(<%= t.getTheaterNum() %>)</button>
+							<% } %>
 							</div>
 							<div class="theater-place-wrapper">
-								<button class="theater-place">천호</button>
-								<button class="theater-place">강변</button>
-								<button class="theater-place">건대입구</button>
-								<button class="theater-place">구로</button>
-								<button class="theater-place">대학로</button>
-								<button class="theater-place">동대문</button>
-								<button class="theater-place">목동</button>
-								<button class="theater-place">명동</button>
-								<button class="theater-place">미아</button>
-								<button class="theater-place">불광</button>
-								<button class="theater-place">상봉</button>
-								<button class="theater-place">송파</button>
-								<button class="theater-place">수유</button>
-								<button class="theater-place">압구정</button>
-								<button class="theater-place">여의도</button>
-								<button class="theater-place">영등포</button>
-								<button class="theater-place">왕십리</button>
-								<button class="theater-place">중계</button>
+								<!-- <button class="theater-place">천호</button> -->
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="day-part">
 					<div class="reserve-title">날짜</div>
-					<div class="reserve-date"></div>
+					<div class="reserve-date">
+
+					</div>
 				</div>
 				<div class="time-part">
 					<div class="reserve-title">시간</div>

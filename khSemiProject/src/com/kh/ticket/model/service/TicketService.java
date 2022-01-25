@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.movie.model.vo.Movie;
+import com.kh.theater.model.vo.Theater;
 import com.kh.ticket.model.dao.TicketDao;
 
 public class TicketService {
@@ -18,6 +19,35 @@ public class TicketService {
 		close(conn);
 		
 		return mList;
+	}
+
+	public ArrayList<Theater> selectTheaterAll() {
+		Connection conn = getConnection();
+		
+		ArrayList<Theater> tlist = new TicketDao().selectTheaterAll(conn);
+		
+		close(conn);
+		
+		return tlist;
+	}
+
+	public ArrayList<Theater> selectLocation(String mName) {
+		Connection conn = getConnection();
+		
+		ArrayList<Theater> tlist = new TicketDao().selectLocation(conn, mName);
+		
+		close(conn);
+		
+		return tlist;
+	}
+
+	public ArrayList<String> selectTheater(String tAddr, String mName) {
+		Connection conn = getConnection();
+		
+		ArrayList<String> list = new TicketDao().selectTheater(conn, tAddr, mName);
+		
+		close(conn);
+		return list;
 	}
 
 }

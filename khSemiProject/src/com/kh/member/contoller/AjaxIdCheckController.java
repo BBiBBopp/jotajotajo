@@ -1,29 +1,25 @@
-package com.kh.ticket.controller;
+package com.kh.member.contoller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.movie.model.vo.Movie;
-import com.kh.theater.model.vo.Theater;
-import com.kh.ticket.model.service.TicketService;
+import com.kh.member.service.MemberService;
 
 /**
- * Servlet implementation class SelectMovieController
+ * Servlet implementation class AjaxIdCheckController
  */
-@WebServlet("/MoView.ti")
-public class SelectMovieViewController extends HttpServlet {
+@WebServlet("/idCheck.me")
+public class AjaxIdCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectMovieViewController() {
+    public AjaxIdCheckController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +28,17 @@ public class SelectMovieViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// service에서 DB에 있는 데이터 받아오기
-		ArrayList<Movie> mlist = new TicketService().selectMovieName();
-		ArrayList<Theater> tlist = new TicketService().selectTheaterAll();
-		// 응답
-		request.setAttribute("mlist", mlist);
-		request.setAttribute("tlist", tlist);
-		request.getRequestDispatcher("/views/user/ticketing/selectMovie.jsp").forward(request, response);
+		request.setCharacterEncoding("UTF-8");
+		
+		
+		String memberId = request.getParameter("memberId");
+		
+		
+		int result = new MemberService().idCheck(memberId);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().print(result);
+		
 	}
 
 	/**

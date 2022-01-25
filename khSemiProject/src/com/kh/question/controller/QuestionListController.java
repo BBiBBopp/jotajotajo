@@ -34,7 +34,7 @@ public class QuestionListController extends HttpServlet implements QuestionMetho
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 값 뽑기
 		// int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		int memberNo = 1;
+		int memberNo = 2;
 		// service에 요청
 		ArrayList<Question> list = new QuestionService().selectQuestionList(memberNo);
 		

@@ -139,4 +139,31 @@ public class QuestionDao {
 
 		return result;
 	}
+
+	public Q_Attachment selectQAttachment(Connection conn, int questionNo) {
+		Q_Attachment Qat = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectQAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, questionNo);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				Qat = new Q_Attachment(rset.getInt("FILE_NO"),
+									   rset.getString("ORIGIN_NAME"),
+									   rset.getString("CHANGE_NAME"),
+									   rset.getString("FILE_PATH"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return Qat;
+	}
 }

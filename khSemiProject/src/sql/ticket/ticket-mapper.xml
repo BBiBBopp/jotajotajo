@@ -33,4 +33,60 @@
 		WHERE 
 			RUN_SCH > SYSDATE
 </entry>
+<!-- 특정 도에 위치한 영화관의 갯수 출력 -->
+<entry key="selectTheaterAll">
+	SELECT 
+			LOCATION, 
+			COUNT(LOCATION) AS COUNT
+		FROM 
+			(
+		 	 SELECT 
+		 			SUBSTR(ADDRESS, 1, INSTR(ADDRESS, ' ')) AS LOCATION
+				FROM 
+					THEATER
+			)
+	GROUP BY 
+			LOCATION
+</entry>
+<!-- 선택한 영화를 상영하는 지역 -->
+<entry key="selectLocation">
+	SELECT 
+			LOCATION, 
+			COUNT(LOCATION) AS COUNT
+	FROM 
+		(
+         SELECT 
+         		SUBSTR
+         			  (
+         			   ADDRESS, 
+         			   1, 
+         			   INSTR(ADDRESS, ' ')
+         			  ) 
+         		AS 
+         			LOCATION
+         FROM 
+         	 (
+         	  SELECT 
+         	  		DISTINCT ADDRESS
+              FROM 
+              		V_MOVIE
+              WHERE 
+              		MNAME = ? 
+             )
+      	)
+	GROUP BY 
+			LOCATION
+</entry>
+<entry key="selectTheater">
+	SELECT 
+		DISTINCT 
+			THEATER_NAME
+	FROM 
+			V_MOVIE
+	WHERE 
+			MNAME = ? 
+	AND 
+		ADDRESS 
+				LIKE ?
+</entry>
 </properties>

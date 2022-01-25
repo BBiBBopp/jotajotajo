@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import = "com.kh.question.model.vo.Question" %>
+<%@ page import = "com.kh.question.model.vo.Question, com.kh.question.model.vo.Q_Attachment" %>
 <%
 	Question q = (Question)request.getAttribute("Qdetail");	
+	Q_Attachment at = (Q_Attachment)request.getAttribute("Qat");
+	String filePath = request.getContextPath() + at.getFilePath() + at.getChangeName();
 %>
 <!DOCTYPE html>
 <html>
@@ -43,11 +45,32 @@
 				<th>내용</th>
 				<td colspan="5" class="Qcontent"><%= q.getAskContent() %></td>
 			</tr>
+			<% if(at != null) { %>
+			<tr>
+				<th>첨부 파일</th>
+				<td colspan="5" style="text-align: center;">
+					<img 
+						src="<%= filePath %>" 
+						alt="<%= at.getOriginName() %>"
+						class="Qat"
+						style="width: 600px;">
+						
+				</td>
+			</tr>
+			<% } %>
 			<tr>
 				<th></th>
 				<td colspan="5" class="Qanswer"><%= q.getComment() %></td>
 			</tr>
 		</table>
 	</div>
+	<script>
+		$(function(){
+			var $img = $('.Qat');
+			$img.click(function(){
+				window.open(this.src)
+			})
+		})
+	</script>
 </body>
 </html>

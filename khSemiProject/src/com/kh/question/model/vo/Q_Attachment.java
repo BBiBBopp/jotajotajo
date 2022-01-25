@@ -21,6 +21,14 @@ public class Q_Attachment {
 		this.uploadDate = uploadDate;
 		this.refNo = refNo;
 	}
+
+	public Q_Attachment(int fileNo, String originName, String changeName, String filePath) {
+		super();
+		this.fileNo = fileNo;
+		this.originName = originName;
+		this.changeName = changeName;
+		this.filePath = filePath;
+	}
 	public int getFileNo() {
 		return fileNo;
 	}

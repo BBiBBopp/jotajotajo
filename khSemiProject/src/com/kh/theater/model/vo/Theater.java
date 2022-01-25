@@ -12,7 +12,8 @@ public class Theater {
 	private String location;
 	private String parking;
 	private String theaterImgPath;
-	
+	private int theaterNum; // 특정 지역의 영화관 수
+
 	public Theater() {
 		super();
 	}
@@ -31,7 +32,22 @@ public class Theater {
 		this.parking = parking;
 		this.theaterImgPath = theaterImgPath;
 	}
-
+	
+	public Theater(int theaterNo, String theaterName, int auditoriumNum, int seatNum, String address, String phone,
+			String traffic, String location, String parking, String theaterImgPath, int theaterNum) {
+		super();
+		this.theaterNo = theaterNo;
+		this.theaterName = theaterName;
+		this.auditoriumNum = auditoriumNum;
+		this.seatNum = seatNum;
+		this.address = address;
+		this.phone = phone;
+		this.traffic = traffic;
+		this.location = location;
+		this.parking = parking;
+		this.theaterImgPath = theaterImgPath;
+		this.theaterNum = theaterNum;
+	}
 
 	public int getTheaterNo() {
 		return theaterNo;
@@ -130,6 +146,14 @@ public class Theater {
 
 	public void setTheaterImgPath(String theaterImgPath) {
 		this.theaterImgPath = theaterImgPath;
+	}
+	
+	public int getTheaterNum() {
+		return theaterNum;
+	}
+
+	public void setTheaterNum(int theaterNum) {
+		this.theaterNum = theaterNum;
 	}
 
 

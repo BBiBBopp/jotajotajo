@@ -96,7 +96,7 @@
 								<div class="ticket-price-title">가격</div>
 								<div class="ticket-price">0원</div>
 							</div>
-							<form action="" class="seatForm" method="post">
+							<form action="<%=contextPath%>/pay.ti" class="seatForm" method="post">
 								<input type="hidden" class="title" name="title" value="라라랜드"> 
 								<input type="hidden" class="selectedTheater" name="selectedTheater" value="강남점">
 								<input type="hidden" class="reserveDate" name="movieDate" value="2022/01/01">
@@ -110,14 +110,14 @@
 								<div class="poster">
 									<img src="" alt="영화포스터">
 								</div>
-								<button type="button" class="reserve-button" onclick="kakaopay();">결제하기</button>
+								<button type="submit" class="reserve-button">결제하기</button>
 							</form>
 						</div>
 						
 						<script>
 							function kakaopay(){
 								$.ajax({
-									url : pay.ti,
+									url : "pay.ti",
 									type : 'POST',
 									dataType : 'json',
 									contentType: 'application/json; charset=UTF-8',
@@ -132,7 +132,8 @@
 										payment : 'payMoney' // payment in PAYMENT
 									},
 									success : function(result){
-										
+										console.log(result)
+										alert(result.tid);
 									},
 									error : function(){
 										alert("결제에 실패했습니다.");
