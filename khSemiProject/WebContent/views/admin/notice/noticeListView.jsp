@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.ArrayList, com.kh.notice.model.vo.*" %>
+<%@ page import="java.util.ArrayList, com.kh.notice.model.vo.Notice, com.kh.common.model.vo.PageInfo" %>
 <% 
+	String tableType = (String)request.getAttribute("tableType");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
 %>
 <% 
 	String query ="";
 	String mapping = "";
-	if(request.getAttribute("type") == null){
+	if(request.getAttribute("pageType") == null){
+		query = "&tableType="+tableType;
 		mapping = "adminList.no";
 	}else{
-		query = "&type="+request.getAttribute("type")+"&keyword="+(String)request.getAttribute("keyword");
+		query = "&pageType="+request.getAttribute("pageType")+"&keyword="+(String)request.getAttribute("keyword")+"&tableType="+tableType;
 		mapping = "adminSearch.no";
 	}
 %>
@@ -19,7 +21,14 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>관리자 - 공지 목록</title>
+		<title>관리자 - 
+			<% if(tableType.equals("notice")){ %>
+	       		공지사항
+	       	<% }else{ %>
+	       		FAQ
+	       	<% }%> 
+           	목록
+        </title>
 	</head>
 
 	<body>
@@ -28,19 +37,26 @@
 		</div>
 		<div id="container">
 			<br>
-			<h3>공지사항 목록</h3>
+			<h3>
+				<% if(tableType.equals("notice")){ %>
+	           		공지사항
+	           	<% }else{ %>
+	           		FAQ
+	           	<% }%>
+				목록
+			</h3>
 			<div id="notice-menu">
-				<button type="button" class="btn btn-primary" onclick="location.href='<%= contextPath %>/insertForm.no?type=notice'">
-					공지 추가
+				<button type="button" class="btn btn-primary" onclick="location.href='<%= contextPath %>/insertForm.no?tableType=<%= tableType %>'">
+					추가
 				</button>
 				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteForm">
-				 	공지 삭제
+				 	삭제
 				</button>
 				
 				<div class="notice-search">
                     <form action="adminSearch.no" method="get">
                     	<input type="hidden" name="currentPage" value="1">
-                        <select name="type">
+                        <select name="pageType">
                             <option value="title">제목</option>
                             <option value="content">내용</option>
                         </select>
@@ -57,7 +73,13 @@
 				
 				      <!-- Modal Header -->
 				      <div class="modal-header">
-				        <h4 class="modal-title">공지사항 삭제</h4>
+				        <h4 class="modal-title">
+				       	<% if(tableType.equals("notice")){ %>
+                       		공지사항
+                       	<% }else{ %>
+                       		FAQ
+                       	<% }%>
+				         	삭제</h4>
 				        <button type="button" class="close" data-dismiss="modal">&times;</button>
 				      </div>
 				
@@ -75,8 +97,6 @@
 				    </div>
 				  </div>
 				</div>
-				
-				
 			</div>
 
 			<!-- 목록 테이블 영역 -->
@@ -94,7 +114,13 @@
 					</thead>
 					<tbody>
 						<% if(list == null || list.isEmpty()){ %>
-	                        	<tr><td>공지사항이 존재하지 않습니다.</td></tr>
+	                        	<tr><td>
+	                        	<% if(tableType.equals("notice")){ %>
+	                        	공지사항이
+	                        	<% }else{ %>
+	                        	FAQ가
+	                        	<% }%>
+	                        	 존재하지 않습니다.</td></tr>
 	                    <% }else{ %>
 							<% for(Notice n : list){ %>
 									<tr>
@@ -145,7 +171,7 @@
 	       		$('#notice-body tbody>tr>td').click(function(){
 	       			var loc = $(this).parent().children('td').eq(1).text();
 	       			if($(this).parent().children().eq(0).text()!=$(this).text())
-		       			location.href='<%= contextPath %>/updateForm.no?nno='+loc+'&type=notice';
+		       			location.href='<%= contextPath %>/updateForm.no?nno='+loc+'&tableType=<%= tableType %>';
 	       		})
 	       		
 	       		//체크가 될 경우 modal에 삭제 목록에 들어감. 해제될 경우 사라짐

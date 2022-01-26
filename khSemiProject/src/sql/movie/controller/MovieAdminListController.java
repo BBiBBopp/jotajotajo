@@ -1,6 +1,7 @@
 package com.kh.movie.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,19 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.movie.model.service.MovieService;
+import com.kh.movie.model.vo.Movie;
 
 /**
- * Servlet implementation class ReviewReportController
+ * Servlet implementation class MovieAdminListController
  */
-@WebServlet("/report.re")
-public class ReviewReportController extends HttpServlet {
+@WebServlet("/adminList.mo")
+public class MovieAdminListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewReportController() {
+    public MovieAdminListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,22 +32,25 @@ public class ReviewReportController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		int reportReason = Integer.parseInt(request.getParameter("reportReason"));
-		
-		int result = new MovieService().reportReview(reviewNo, reportReason);
-		
-		String text="";
-		if(result>0)
-			text="완료";
-		else
-			text="실패";
+		int currentPage = 1;
+		if(request.getParameter("currentPage") != null)
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 
-		response.setContentType("text/html; charset=UTF-8");
-
-		String printResult="<script>alert('신고 "+text+".');window.close();</script>";
+		int pageLimit=10;
+		int boardLimit= 20;
 		
-		response.getWriter().print(printResult);	
+		int listCount = new MovieService().countAllMovie();
+
+		PageInfo pi = new PageInfo().calcPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		
+		ArrayList<Movie> list = new ArrayList<>();
+		list = new MovieService().selectMovieAdminList(pi.getStartRow(), pi.getEndRow());
+		
+		request.setAttribute("pi", pi);
+		request.setAttribute("list", list);
+		
+		request.getRequestDispatcher("views/admin/movie/movieListView.jsp").forward(request, response);
+	
 	}
 
 	/**

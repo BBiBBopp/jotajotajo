@@ -1,26 +1,25 @@
 package com.kh.movie.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.movie.model.service.MovieService;
+import com.kh.movie.model.vo.Review;
 
 /**
- * Servlet implementation class ReviewReportController
+ * Servlet implementation class ReviewReportFormController
  */
-@WebServlet("/report.re")
-public class ReviewReportController extends HttpServlet {
+@WebServlet("/reportForm.re")
+public class ReviewReportFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewReportController() {
+    public ReviewReportFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,22 +28,21 @@ public class ReviewReportController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		request.setCharacterEncoding("UTF-8");
+		
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		int reportReason = Integer.parseInt(request.getParameter("reportReason"));
+		String reviewWriter = request.getParameter("reviewWriter");
+		String reviewContent = request.getParameter("reviewContent");//10자 추출
 		
-		int result = new MovieService().reportReview(reviewNo, reportReason);
+		Review re = new Review();
+		re.setReviewNo(reviewNo);
+		re.setReviewWriter(reviewWriter);
+		re.setReviewContent(reviewContent);
 		
-		String text="";
-		if(result>0)
-			text="완료";
-		else
-			text="실패";
-
-		response.setContentType("text/html; charset=UTF-8");
-
-		String printResult="<script>alert('신고 "+text+".');window.close();</script>";
+		System.out.println(re);
+		request.setAttribute("re", re);
 		
-		response.getWriter().print(printResult);	
+		request.getRequestDispatcher("views/user/movie/movieReviewReport.jsp").forward(request, response);
 	}
 
 	/**

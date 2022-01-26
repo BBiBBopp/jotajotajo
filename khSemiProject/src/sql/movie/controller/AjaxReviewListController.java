@@ -1,6 +1,7 @@
 package com.kh.movie.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,19 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.kh.member.model.vo.Member;
 import com.kh.movie.model.service.MovieService;
+import com.kh.movie.model.vo.Review;
 
 /**
- * Servlet implementation class ReviewReportController
+ * Servlet implementation class AjaxReviewListController
  */
-@WebServlet("/report.re")
-public class ReviewReportController extends HttpServlet {
+@WebServlet("/list.re")
+public class AjaxReviewListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewReportController() {
+    public AjaxReviewListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,22 +33,17 @@ public class ReviewReportController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		int reportReason = Integer.parseInt(request.getParameter("reportReason"));
+		int movieNo = Integer.parseInt(request.getParameter("mno"));
+		int memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
+		int sCount = Integer.parseInt(request.getParameter("sCount"));
+		int eCount = Integer.parseInt(request.getParameter("eCount"));
 		
-		int result = new MovieService().reportReview(reviewNo, reportReason);
+		ArrayList<Review> list = new MovieService().selectReviewList(movieNo, memberNo, sCount, eCount);
 		
-		String text="";
-		if(result>0)
-			text="완료";
-		else
-			text="실패";
-
-		response.setContentType("text/html; charset=UTF-8");
-
-		String printResult="<script>alert('신고 "+text+".');window.close();</script>";
+		System.out.println(list);
+		response.setContentType("application/json; charset=UTF-8");
 		
-		response.getWriter().print(printResult);	
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

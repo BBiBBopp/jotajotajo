@@ -1,4 +1,4 @@
-package com.kh.movie.controller;
+package com.kh.notice.controller;
 
 import java.io.IOException;
 
@@ -8,19 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.movie.model.service.MovieService;
+import com.kh.notice.model.service.NoticeService;
+import com.kh.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class ReviewReportController
+ * Servlet implementation class NoticeDetailController
  */
-@WebServlet("/report.re")
-public class ReviewReportController extends HttpServlet {
+@WebServlet("/detail.no")
+public class NoticeDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewReportController() {
+    public NoticeDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,22 +30,19 @@ public class ReviewReportController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		int reportReason = Integer.parseInt(request.getParameter("reportReason"));
+		int noticeNo = Integer.parseInt(request.getParameter("nno"));
 		
-		int result = new MovieService().reportReview(reviewNo, reportReason);
+		//조회수 올리기
+		int views = new NoticeService().increaseNoticeViews(noticeNo);
 		
-		String text="";
-		if(result>0)
-			text="완료";
-		else
-			text="실패";
-
-		response.setContentType("text/html; charset=UTF-8");
-
-		String printResult="<script>alert('신고 "+text+".');window.close();</script>";
+		//조회수가 올라가면 해당 글 들어가기
+		Notice n = null;
+		if(views>0) {
+			n = new NoticeService().selectNotice(noticeNo);
+		}
 		
-		response.getWriter().print(printResult);	
+		request.setAttribute("n", n);
+		request.getRequestDispatcher("views/user/notice/noticeDetailView.jsp").forward(request, response);
 	}
 
 	/**

@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.movie.model.service.MovieService;
 
 /**
- * Servlet implementation class ReviewReportController
+ * Servlet implementation class AjaxReviewDeleteController
  */
-@WebServlet("/report.re")
-public class ReviewReportController extends HttpServlet {
+@WebServlet("/delete.re")
+public class AjaxReviewDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewReportController() {
+    public AjaxReviewDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,22 +29,15 @@ public class ReviewReportController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		int reportReason = Integer.parseInt(request.getParameter("reportReason"));
 		
-		int result = new MovieService().reportReview(reviewNo, reportReason);
+		int result = new MovieService().deleteReview(reviewNo);
 		
-		String text="";
-		if(result>0)
-			text="완료";
-		else
-			text="실패";
-
 		response.setContentType("text/html; charset=UTF-8");
-
-		String printResult="<script>alert('신고 "+text+".');window.close();</script>";
-		
-		response.getWriter().print(printResult);	
+		response.getWriter().print(result);
+	
+	
 	}
 
 	/**

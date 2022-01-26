@@ -9,18 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.movie.model.service.MovieService;
+import com.kh.movie.model.vo.Review;
 
 /**
- * Servlet implementation class ReviewReportController
+ * Servlet implementation class ArajReviewInsertController
  */
-@WebServlet("/report.re")
-public class ReviewReportController extends HttpServlet {
+@WebServlet("/insert.re")
+public class AjaxReviewInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewReportController() {
+    public AjaxReviewInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,22 +30,25 @@ public class ReviewReportController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		int reportReason = Integer.parseInt(request.getParameter("reportReason"));
+		request.setCharacterEncoding("UTF-8");
+		int movieNo = Integer.parseInt(request.getParameter("mno"));
+//		String memberNo = String.valueOf(((Member)request.getSession().getAttribute("loginUser")).getMemberNo());
+		String memberNo = "1";
+		String reviewContent = request.getParameter("reviewContent");
+		int starCount = 10;
+		if(request.getParameter("starCount") != null)
+			starCount = Integer.parseInt(request.getParameter("starCount"));
+		Review re = new Review();
+		re.setMovieNo(movieNo);
+		re.setReviewWriter(memberNo);
+		re.setReviewContent(reviewContent);
+		re.setReviewGrade(starCount);
+//		re.setPayNo();
 		
-		int result = new MovieService().reportReview(reviewNo, reportReason);
+		int result = new MovieService().insertReview(re);
 		
-		String text="";
-		if(result>0)
-			text="완료";
-		else
-			text="실패";
-
-		response.setContentType("text/html; charset=UTF-8");
-
-		String printResult="<script>alert('신고 "+text+".');window.close();</script>";
-		
-		response.getWriter().print(printResult);	
+		response.getWriter().print(result);
+	
 	}
 
 	/**

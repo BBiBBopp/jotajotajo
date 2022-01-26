@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.ArrayList, com.kh.notice.model.vo.Category, com.kh.notice.model.vo.Notice" %>
 <% 
-	String type = (String)request.getAttribute("type");
+	String tableType = (String)request.getAttribute("tableType");
 	ArrayList<Category> category = (ArrayList<Category>)request.getAttribute("category");
 	Notice n = (Notice)request.getAttribute("n");
 %>
@@ -20,15 +20,18 @@
 		<div id="container">
 			<br>
 			<h3>고객센터 수정</h3>
-			<div id="type">
-				<button type="button" class="btn" onclick="location.href='<%= contextPath %>/updateForm.no?type=notice&nno=<%= n.getNoticeNo() %>'">공지사항</button>
-				<button type="button" class="btn" onclick="location.href='<%= contextPath %>/updateForm.no?type=faq&nno=<%= n.getNoticeNo() %>'">FAQ</button>
+			<div id="tableType">
+				<button type="button" class="btn" onclick="location.href='<%= contextPath %>/updateForm.no?tableType=notice&nno=<%= n.getNoticeNo() %>'">공지사항</button>
+				<button type="button" class="btn" onclick="location.href='<%= contextPath %>/updateForm.no?tableType=faq&nno=<%= n.getNoticeNo() %>'">FAQ</button>
 			</div>
-			<form action="<%= contextPath %>/update.no" method="post" enctype="multipart/form-data">
+			<form action="<%= contextPath %>/update.no" method="post">
 				<table width="800">
 					<tr>
 						<th>구분</th>
-						<td><select name="category">
+						<td>
+							<input type="hidden" name="tableType" value="<%= tableType %>">
+							<input type="hidden" name="nno" value="<%= n.getNoticeNo() %>">
+							<select name="category">
 								<% for(Category c : category){ %>
 									<% if(n.getNoticeCategory().equals(c.getCategoryContent())){ %>
 										<option selected value="<%= c.getCategoryNo() %>"><%= c.getCategoryContent() %></option>
@@ -36,7 +39,8 @@
 										<option value="<%= c.getCategoryNo() %>"><%= c.getCategoryContent() %></option>
 									<% } %>
 								<% } %>
-							</select></td>
+							</select>
+						</td>
 						<th>제목</th>
 						<td><input type="text" name="title" required value="<%= n.getNoticeTitle() %>"></td>
 					</tr>
@@ -65,14 +69,15 @@
 									}
 									return true;
 								}
+								
 								$(function(){
-									var $type = $('#type').children();
-									if('<%= type %>' == 'notice'){
-										$type.eq(0).addClass('btn-primary');
-										$type.eq(1).addClass('btn-secondary');
+									var $tableType = $('#tableType').children();
+									if('<%= tableType %>' == 'notice'){
+										$tableType.eq(0).addClass('btn-primary');
+										$tableType.eq(1).addClass('btn-secondary');
 									}else{
-										$type.eq(1).addClass('btn-primary');
-										$type.eq(0).addClass('btn-secondary');
+										$tableType.eq(1).addClass('btn-primary');
+										$tableType.eq(0).addClass('btn-secondary');
 									}
 								})
 							</script>

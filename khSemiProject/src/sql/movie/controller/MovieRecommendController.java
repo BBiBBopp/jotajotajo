@@ -1,6 +1,7 @@
 package com.kh.movie.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,19 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
 import com.kh.movie.model.service.MovieService;
+import com.kh.movie.model.vo.Movie;
 
 /**
- * Servlet implementation class ReviewReportController
+ * Servlet implementation class MovieRecommendController
  */
-@WebServlet("/report.re")
-public class ReviewReportController extends HttpServlet {
+@WebServlet("/recommendList.mo")
+public class MovieRecommendController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewReportController() {
+    public MovieRecommendController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,22 +32,17 @@ public class ReviewReportController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		int reportReason = Integer.parseInt(request.getParameter("reportReason"));
+//		로그인 되어있는 경우, MEMBER테이블에서 선호영화 조회해오는 것도 필요함 -> Member를 받아와서 선호영화에 들어가기
+//		로그인 안되어있는 경우 랜덤으로 1개 선택
 		
-		int result = new MovieService().reportReview(reviewNo, reportReason);
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");//로그인 유저 조회
 		
-		String text="";
-		if(result>0)
-			text="완료";
-		else
-			text="실패";
 
-		response.setContentType("text/html; charset=UTF-8");
+		String genres = new MovieService().selectMemberGenre(loginUser.getUserId());
+//		String[] genre = genres.split(",");
+		ArrayList<Movie> recommendList = new MovieService().selectRecommendList(count, genre);
 
-		String printResult="<script>alert('신고 "+text+".');window.close();</script>";
-		
-		response.getWriter().print(printResult);	
+//		request.setAttribute("recommendList", recommendList);
 	}
 
 	/**
