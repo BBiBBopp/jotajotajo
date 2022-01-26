@@ -1,0 +1,12 @@
+#container {
+  margin-left: 200px;
+  padding: 30px;
+}
+.question-list {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  text-align: center;
+}
+.question-list thead {
+  background-color: rgb(238, 237, 237);
+}
