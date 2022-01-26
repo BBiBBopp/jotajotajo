@@ -13,6 +13,7 @@
 	</div>
 	<div id="container">
 	<h1><b>1:1 문의 관리</b></h1>
+	
     <br>
     <table class="table question-list">
         <thead>
