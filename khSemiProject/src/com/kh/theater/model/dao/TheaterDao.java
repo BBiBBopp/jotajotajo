@@ -176,7 +176,7 @@ public class TheaterDao {
 						   				   rset.getString("UPLOAD_DATE"),
 						   				   rset.getInt("AUDITORIUM_NO"),
 						   				   rset.getString("AUDITORIUM_NAME"),
-						   				   rset.getInt("AUDITORIUM_SEAT_NUM"));
+						   				   rset.getInt("AUDITORIUMSEATNUM"));
 			}
 			
 		} catch (SQLException e) {

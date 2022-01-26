@@ -1,4 +1,4 @@
-package com.kh.login_logout.controller;
+package com.kh.theater.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SearchPwdFormController
+ * Servlet implementation class aMovieTheaterEnrollForm
  */
-@WebServlet("/spwdForm.sch")
-public class SearchPwdFormController extends HttpServlet {
+@WebServlet("/atEnrollForm.th")
+public class AMovieTheaterEnrollForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchPwdFormController() {
+    public AMovieTheaterEnrollForm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,8 @@ public class SearchPwdFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.getRequestDispatcher("views/user/loginLogout/searchPwd.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("views/admin/theater/aMovieTheaterInsert.jsp").forward(request, response);
 		
 		
 	}

@@ -1,10 +1,13 @@
-package com.kh.login_logout.model.service;
+package com.kh.loginLogout.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 
-import com.kh.login_logout.model.dao.LoginDao;
+import com.kh.loginLogout.model.dao.LoginDao;
 import com.kh.member.model.vo.Member;
 
 public class LoginService {

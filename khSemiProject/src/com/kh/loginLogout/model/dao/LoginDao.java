@@ -1,4 +1,4 @@
-package com.kh.login_logout.model.dao;
+package com.kh.loginLogout.model.dao;
 
 import static com.kh.common.JDBCTemplate.*;
 

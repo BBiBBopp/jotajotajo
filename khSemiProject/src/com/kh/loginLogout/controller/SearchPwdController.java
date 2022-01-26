@@ -1,23 +1,27 @@
-package com.kh.login_logout.controller;
+package com.kh.loginLogout.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.loginLogout.model.service.LoginService;
+import com.kh.member.model.vo.Member;
+
 /**
- * Servlet implementation class LogoutController
+ * Servlet implementation class SearchPwdController
  */
-@WebServlet("/logout.log")
-public class LogoutController extends HttpServlet {
+@WebServlet("/spwd.sch")
+public class SearchPwdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutController() {
+    public SearchPwdController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,11 +31,25 @@ public class LogoutController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getSession().invalidate();
+		request.setCharacterEncoding("UTF-8");
 		
-		request.getSession().setAttribute("alertMsg", "로그아웃하셨습니다.");
+		String memberId = request.getParameter("memberId");
 		
-		response.sendRedirect(request.getContextPath());
+		Member searchMem = new LoginService().searchPwd(memberId);
+		
+		if(searchMem != null) {
+			
+			request.setAttribute("searchMem", searchMem);
+			
+			request.getRequestDispatcher("views/user/loginLogout/searchPwd_tryCertify.jsp").forward(request, response);
+			// 성공하면 성공페이지로 잘 감
+			
+		} else {
+			
+			request.getRequestDispatcher("views/user/loginLogout/searchPwd_notFoundIdForm.jsp").forward(request, response);
+			// 실패하면 실패페이지로 잘 감
+		}
+		
 		
 	}
 

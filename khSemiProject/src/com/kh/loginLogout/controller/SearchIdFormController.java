@@ -1,6 +1,7 @@
-package com.kh.login_logout.controller;
+package com.kh.loginLogout.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

@@ -1,4 +1,4 @@
-package com.kh.login_logout.controller;
+package com.kh.loginLogout.controller;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.common.SHA256;
-import com.kh.login_logout.model.service.LoginService;
+import com.kh.loginLogout.model.service.LoginService;
 import com.kh.member.model.vo.Member;
 
 /**
