@@ -14,7 +14,7 @@
 <body>
 	<div class="menubar">
 		<ul id="manage">
-			<li><a class="home" href="#"><img src="<%=contextPath %>/resource/css/image/cinema_logo900.jpg" alt="시네마헤븐"></a></li>
+			<li><a class="home" href="#"><img src="<%=contextPath %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐"></a></li>
 			<li><a href="#">회원관리</a></li>
 			<li><a href="#">영화 목록 관리</a></li>
 			<li><a href="#">영화관 관리</a></li>

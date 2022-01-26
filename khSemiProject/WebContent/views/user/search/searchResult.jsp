@@ -108,9 +108,9 @@
             			 <% } else {%>
 	                		<% for(Theater th : theaterList) {%>
 				                <tr>
-				                    <td><%= th.getTheaterName() %></td>
+				                    <td><%= th.getTheaterName() %>&nbsp;&nbsp;&nbsp;</td>
 				                
-				                    <td> | <%= th.getAddress() %></td>
+				                    <td> | &nbsp;&nbsp;<%= th.getAddress() %></td>
 				                </tr>
 	                		<% } %>
 	                	 <% } %>
@@ -134,9 +134,10 @@
             			 <% } else {%>
 	                		<% for(Review r : reviewList) {%>
 	                		<tr>
-			                    <td><%= r.getReviewNo() %></td>
-			                    <td> | <%= r.getReviewContent() %></td>
-			                    <td> | <%= r.getMovieNo() %></td>
+			                    <td><%= r.getReviewNo() %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			                    <td><i> |&nbsp;&nbsp;&nbsp;&nbsp; <%= r.getReviewContent() %></i></td>
+			                    <td> |&nbsp;&nbsp;&nbsp;&nbsp; <%= r.getMovieNo() %></td>
+			                    
 			                </tr>
 	                		<% } %>
 	                	 <% } %>
