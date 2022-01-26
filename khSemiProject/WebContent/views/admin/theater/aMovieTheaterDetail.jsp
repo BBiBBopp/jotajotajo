@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.kh.theater.model.vo.TheaterAuditorium" %>
 <%
-TheaterAuditorium ta = (TheaterAuditorium)request.getAttribute("ta");
+	TheaterAuditorium ta = (TheaterAuditorium)request.getAttribute("ta");
+	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,18 @@ TheaterAuditorium ta = (TheaterAuditorium)request.getAttribute("ta");
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/admin/theater/05_z02_admin_movietheater_detail.css">
 </head>
 <body>
+
+	<script>
+			var msg = "<%= alertMsg%>"
+			if(msg != "null"){ // 성공, 경고 메세지 문구가 담겨있을 경우
+				alert(msg);
+			
+			<% session.removeAttribute("alertMsg"); %>
+			// 해당 페이지가 로딩 될 때마다 뜨는 alert제거			
+			}
+		</script>
+		
+		
 		<div id="container">
 			<div class="menutab">
        	 		<%@ include file="../common/menubar.jsp" %>
@@ -31,21 +44,20 @@ TheaterAuditorium ta = (TheaterAuditorium)request.getAttribute("ta");
                             	상영관수 <br>
                             	전화번호 <br>
                             	좌석수 <br>
+                            	영화관 로고<br>
                         	</div>
+                            	
                         	<div id="input_tag">
                             	<%= ta.getTheaterName() %><br>
                             	<%= ta.getAddress() %><br>
                             	<%= ta.getAuditoriumNum() %><br>
                             	<%= ta.getPhone() %><br>
                             	<%= ta.getSeatNum() %><br>
+                            	<%= ta.getTheaterImg() %><br>
+                            	(1: CGV / 2: 롯데시네마 / 3: 메가박스)
                         	</div>
                     	</div>
                     	<br clear="both">
-                    	<div id="movietheater_file">
-                        	<p>영화관 관련 이미지</p>
-                        	<input type="file"  name="theaterImg">
-                        	<p>클릭하면 열림</p>
-                    	</div>
                 	</div>
                 	<div>
                     <table class=table>
@@ -60,7 +72,7 @@ TheaterAuditorium ta = (TheaterAuditorium)request.getAttribute("ta");
 							
                             <tr>
                                 <td><%= ta.getAuditoriumName() %>관</td>
-                                <td><%= ta.getSeatNum() %>석</td>
+                                <td><%= ta.getAuditoriumSeatNum() %>석</td>
                             </tr>
                             
                         </tbody>
@@ -79,7 +91,10 @@ TheaterAuditorium ta = (TheaterAuditorium)request.getAttribute("ta");
             </div>
             <div id="content_4">
                 <div>
-                    <button><a href="">수정하기</a></button>
+                	<form action="<%= contextPath%>/atUpdateForm.th">
+                		<input type="hidden" name="tno" value=<%= ta.getTheaterNo() %>>
+	                    <button type="submit">수정하기</button>
+                	</form>
                     <button>삭제하기</button>
                 </div>
             </div>

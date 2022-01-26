@@ -46,6 +46,28 @@
 		VALUES(SEQ_AU_NO.NEXTVAL, ?, ?, SEQ_THE_NO.CURRVAL)
 	</entry>
 	
+	<entry key="updateTheater">
+		UPDATE THEATER
+		SET THEATER_NAME = ? ,
+			AUDITORIUM_NUM = ? ,
+			SEAT_NUM = ? ,
+			ADDRESS = ? ,
+			PHONE = ? ,
+			TRAFFIC = ? ,
+			LOCATION = ? ,
+			THEATER_IMG = ? ,
+			UPLOAD_DATE = SYSDATE
+		WHERE THEATER_NO = ?
+	</entry>
+	
+	<entry key="updateAuditorium">
+		UPDATE AUDITORIUM
+		SET AUDITORIUM_NAME = ?,
+			SEAT_NUM = ?
+		WHERE THEATER_NO = ?
+	
+	</entry>
+	
 	
 	
 	

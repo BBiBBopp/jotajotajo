@@ -31,7 +31,6 @@ public class TheaterDao {
 		}
 		
 	}
-	
 
 	public int selectListCount(Connection conn) {
 
@@ -59,6 +58,7 @@ public class TheaterDao {
 		
 		return listCount;
 	}
+	
 
 	public ArrayList<Theater> selectList(Connection conn, PageInfo pi) {
 		
@@ -151,8 +151,6 @@ public class TheaterDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		System.out.println(theaterNo);
-		
 		String sql = prop.getProperty("aSelectTheater");
 		
 		try {
@@ -185,8 +183,6 @@ public class TheaterDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(ta);
-		
 		return ta;
 	}
 
@@ -239,6 +235,66 @@ public class TheaterDao {
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int updateTheater(Connection conn, TheaterAuditorium ta) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateTheater");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, ta.getTheaterName());
+			pstmt.setInt(2, ta.getAuditoriumNum());
+			pstmt.setInt(3, ta.getSeatNum());
+			pstmt.setString(4, ta.getAddress());
+			pstmt.setString(5, ta.getPhone());
+			pstmt.setString(6, ta.getTraffic());
+			pstmt.setString(7, ta.getLocation());
+			pstmt.setInt(8, ta.getTheaterImg());
+			pstmt.setInt(9, ta.getTheaterNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+
+	public int updateAuditorium(Connection conn, TheaterAuditorium ta) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateAuditorium");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, ta.getAuditoriumName());
+			pstmt.setInt(2, ta.getAuditoriumSeatNum());
+			pstmt.setInt(3, ta.getTheaterNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);

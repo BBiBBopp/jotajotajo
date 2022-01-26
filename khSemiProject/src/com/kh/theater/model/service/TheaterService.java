@@ -76,4 +76,22 @@ public class TheaterService {
 		return (result * result2);
 	}
 
+	public int updateTheater(TheaterAuditorium ta) {
+
+		Connection conn = getConnection();
+		
+		int result = new TheaterDao().updateTheater(conn, ta);
+		int result2 = new TheaterDao().updateAuditorium(conn, ta);
+		
+		if(result * result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
 }
