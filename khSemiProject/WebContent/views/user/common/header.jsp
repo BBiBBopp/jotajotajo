@@ -92,13 +92,13 @@ body{
 <div id="header">
 	<div class="logo_area">
 		<div class="logo_bg">
-			<a href="<%=contextPath %>/index.jsp"><img
-				src="<%=contextPath %>/resource/css/image/cinema_logo900.jpg" alt="시네마헤븐"></a>
+			<a href="<%=contextPath %>/index.do"><img
+				src="<%=contextPath %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐"></a>
 		</div>
 		<div class="service_area">
 			<!-- <a href="" class="link search">검색</a>  -->
 			<!-- 검색 지우고 돋보기 이미지 넣기 -->
-			<a href="" class="link login">로그인</a> <a href="" class="link signIn">회원가입</a> <br><br><br><br>
+			<a href = "<%=contextPath%>/loginForm.log" class="link login">로그인</a> <a href="" class="link signIn">회원가입</a> <br><br><br><br>
 			    <div class="search-box">
       				<input type="text" id="search" name="search" class="search-txt">
       				<a class="search-btn">
@@ -111,8 +111,8 @@ body{
 		<div class="group_nav">
 			<ul class="list_navi">
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">영화</a></li>
-				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">영화관</a></li>
-				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">예매</a></li>
+				<li class="nav_item"><a href="<%=contextPath%>/tList.th?currentPage=1" class="link nav">영화관</a></li>
+				<li class="nav_item"><a href="<%=contextPath%>/MoView.ti" class="link nav">예매</a></li>
 				<li class="nav_item"><a href="<%=contextPath %>/list.vot" class="link nav">투표하기</a>
 					<ul>
 						<li><a href="<%=contextPath %>/vote.re" class="link nav">투표결과</a></li>

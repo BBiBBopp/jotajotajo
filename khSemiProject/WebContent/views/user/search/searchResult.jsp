@@ -35,15 +35,7 @@
             
         }
 
-        #search1 {
-            height: 30%
-        }
-        #search2 {
-            height: 30%
-        }
-        #search3 {
-            height: 30%
-        }
+
 
 	.movie_img{
 		width:150px;
@@ -88,7 +80,6 @@
 					                <tr>    
 					                    <td> | <%= sb.getDirector() %></td>
 				                   	</tr>
-					               
 					                <tr>
 					                    <td> | <%= sb.getActor() %></td>
 					                </tr> 
@@ -103,6 +94,7 @@
 		                <br><br>
 	            	</table>    
                 </div>
+                <br><br><br>
                 
                 <div >
 	                <h3>영화관</h3>
@@ -124,9 +116,10 @@
 	                	 <% } %>
 	                	 
 	                <p align="right">더보기 ></p>
-	                <br><br>
+	                
 	                </table>
                 </div>
+                <br><br><br>
                
                 <div>
                 <h3>영화 리뷰</h3>
@@ -143,7 +136,7 @@
 	                		<tr>
 			                    <td><%= r.getReviewNo() %></td>
 			                    <td> | <%= r.getReviewContent() %></td>
-			                    <td> | <%= r.getMno() %></td>
+			                    <td> | <%= r.getMovieNo() %></td>
 			                </tr>
 	                		<% } %>
 	                	 <% } %>
@@ -153,7 +146,7 @@
                 </div>
             </div>
         </div>
-
+		<br><br><br>
 
 
 

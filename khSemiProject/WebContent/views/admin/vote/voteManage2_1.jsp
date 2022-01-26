@@ -17,7 +17,7 @@
 	    <div class="content">
         <h2>투표관리</h2> <br>
         <div style="width:1200px">
-        <p align="right"><button class="btn btn-sm btn-primary">수정</button>
+        <p align="right"><a href="<%=contextPath %>/manage.vot1_2_2" class="btn btn-sm btn-primary">수정</a>
         &nbsp;&nbsp;<button class="btn btn-sm btn-danger">삭제</button></p>
         <table class="table table-bordered">
             <thead>

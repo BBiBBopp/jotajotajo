@@ -62,7 +62,7 @@
 
     .service_area3 {
         position: relative;
-        margin-top: 250px;
+        margin-top: 100px;
         margin-left: 40px;
         font-size: 25px;
     }
@@ -85,12 +85,12 @@
 	<div id="container">
             <div id="container_4">
                 <div class="service_area3">2월 투표</div>
-                <br><br>
+                <br><br><br>
                 
                 <main class="main-container">
                     <ul class="thumbnail-list">
                         <li class="thumbnail-item">
-                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표1" class="thumbnail-image"
+                            <img src="<%=contextPath %>/resource/image/abbca385468091a7ba232e09.jpg" alt="투표1" class="thumbnail-image"
                             class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 
                             <div class="modal" id="myModal">
@@ -125,7 +125,7 @@
                     </ul>
                     <ul class="thumbnail-list">
                         <li class="thumbnail-item">
-                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표2" class="thumbnail-image"
+                            <img src="<%=contextPath %>/resource/image/abbca385468091a7ba232e09.jpg" alt="투표2" class="thumbnail-image"
                             class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 
                             <div class="modal" id="myModal">
@@ -161,7 +161,7 @@
                     </ul>
                     <ul class="thumbnail-list">
                         <li class="thumbnail-item">
-                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표3" class="thumbnail-image"
+                            <img src="<%=contextPath %>/resource/image/abbca385468091a7ba232e09.jpg" alt="투표3" class="thumbnail-image"
                             class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 
                             <div class="modal" id="myModal">
@@ -197,7 +197,7 @@
                     </ul>
                     <ul class="thumbnail-list">
                         <li class="thumbnail-item">
-                            <img src="<%=contextPath %>/resource/css/image/abbca385468091a7ba232e09.jpg" alt="투표4" class="thumbnail-image"
+                            <img src="<%=contextPath %>/resource/image/abbca385468091a7ba232e09.jpg" alt="투표4" class="thumbnail-image"
                             class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 
                             <div class="modal" id="myModal">

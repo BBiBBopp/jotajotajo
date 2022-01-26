@@ -27,34 +27,13 @@
                 </div>
                 <div class="FAQ-class">
                     <ul>
-                        <li>
-                            <img src="" alt="예매">
-                            예매
-                        </li>
-                        <li>
-                            <img src="" alt="영화관">
-                            영화관
-                        </li>
-                        <li>
-                            <img src="" alt="회원">
-                            회원
-                        </li>
-                        <li>
-                            <img src="" alt="홈페이지">
-                            홈페이지
-                        </li>
-                        <li>
-                            <img src="" alt="멤버십">
-                            멤버십
-                        </li>
-                        <li>
-                            <img src="" alt="투표">
-                            투표
-                        </li>
-                        <li>
-                            <img src="" alt="기타">
-                            기타
-                        </li>
+                        <li>예매</li>
+                        <li>영화관</li>
+                        <li>회원</li>
+                        <li>홈페이지</li>
+                        <li>멤버십</li>
+                        <li>투표</li>
+                        <li>기타</li>
                     </ul>
                 </div>
                 <div class="FAQ-body">
@@ -82,13 +61,13 @@
                     </table>
                 </div>
                 <!-- Pagination -->
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
 
 
             </div>

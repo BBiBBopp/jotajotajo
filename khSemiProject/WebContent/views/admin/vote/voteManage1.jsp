@@ -34,7 +34,8 @@
                 <tr>
                     <td>4</td>
                     <td>2월 투표</td>
-                    <td align="center"><button class="btn btn-sm btn-primary">진행중</button></td>
+                    <td align="center">
+                    	<a href="<%=contextPath %>/manage.vot1_2_1" class="btn btn-sm btn-primary">진행중</a></td>
                 </tr>
                 <tr>
                     <td>3</td>
