@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/common/subNav.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/user/common/subNav.css">
 </head>
 <body>
 	 <div class="sub-nav-area">
@@ -13,10 +13,10 @@
             <h2>마이페이지</h2>
         </div>
         <div class="sub-nav-list membership">
-           <a href="">멤버십</a> 
+           <a href="<%=request.getContextPath()%>/myPage.me">멤버십</a> 
         </div>
         <div class="sub-nav-list member-info">
-            <a href="">회원정보</a> 
+            <a href="<%=request.getContextPath()%>/detail.me">회원정보</a> 
         </div>
         <div class="sub-nav-list Qlist">
            <a href="<%=request.getContextPath()%>/list.qu">문의내역 확인</a> 

@@ -50,11 +50,11 @@
     	width: 130px;
     	height: 40px;
     }
-    .member_btn, #enroll_btn{
+    .member_btn, #enroll_btn, #update_btn{
     	background: rgb(13, 71, 161);
     	color : white;
     }
-    .id_check_btn{
+    .id_check_btn, #update_btn{
     	width: 120px;
     	height: 40px;
     }

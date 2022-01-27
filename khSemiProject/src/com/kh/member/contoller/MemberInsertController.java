@@ -34,7 +34,6 @@ public class MemberInsertController extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("실행?? insert.me ");
 		// 인코딩 설정
 		request.setCharacterEncoding("UTF-8");
 

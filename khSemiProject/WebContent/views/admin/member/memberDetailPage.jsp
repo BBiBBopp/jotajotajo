@@ -25,6 +25,8 @@
         color: white;
     }
 </style>
+
+
 </head>
 <body>
     <div class="outer">
@@ -35,14 +37,16 @@
             <div class="container">
                 <br>
                 <h2>회원 수정</h2>
-                <form action="<%=contextPath %>/adminUpdate.me" >
                     <table class="table table-hover">
                         <tbody>
                             <tr>
                                 <th>아이디</th>
                             </tr>
                             <tr>
-                                <td><%=m.getMemberId() %></td>
+                                <td>
+                                	<%=m.getMemberId() %>
+                                	<input type="hidden" id="memberId" name="memberId" value="<%=m.getMemberId()%>">
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -54,7 +58,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="memberId" id="memberId" value="<%=m.getMemberName()%>">
+                                    <input type="text" name="memberName" id="memberName" value="<%=m.getMemberName()%>" required>
                                 </td>
                             </tr>
                             <tr>
@@ -62,7 +66,8 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="email" id="email" value="<%=m.getEmail()%>">
+                                    <input type="text" name="email" id="email" value="<%=m.getEmail()%>" required>
+                                    <input type="hidden" name="before_email" id="before_email" value="<%=m.getEmail() %>">
                                 </td>
                             </tr>
                             <tr>
@@ -70,24 +75,86 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="phone" id="phone" value="<%=m.getPhone()%>">
+                                    <input type="text" name="phone" id="phone" value="<%=m.getPhone()%>" required>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="btn-area">
-                        <input type="button" value="취소">
-                        <input type="submit" value="수정">
+                        <input type="button" id="cancle" value="취소">
+                        <input type="button" id="update_btn" value="수정">
                     </div>
-                </form>             
             </div>
         </div>
     </div>
-    
+<script type="text/javascript">
+	
+	$(function(){
+		function getContextPath() {
+			var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+			return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+		};
+		
+		
+		$('#temporaryEmailBtn').on('click', function(){
+			
+			$.ajax({
+				url : getContextPath()+"/tempMail.me",
+				data : { 
+					email : $('#email').val(),
+					memberId : $('#memberId').val()
+					},
+				type : "post",
+				success : function(result){
+					if(result != 1){
+						alert('사용 할 수 없는 이메일 입니다.');
+					}else{
+						alert('이메일 인증번호가 해당 이메일로 전송 되었습니다.');
+					}
+				},
+				error : function(){
+					console.log('비밀번호 발송 실패');
+				}
+			})
+			
+			
+		})
+		
+		$('#update_btn').on('click', function(){
+			$.ajax({
+				url : getContextPath()+"/adminUpdate.me",
+				data : { 
+					email : $('#email').val(),
+					memberId : $('#memberId').val(),
+					memberName : $('#memberName').val(),
+					phone : $('#phone').val(),
+					beforeEmail : $('#before_email').val()
+				},
+				type : "post",
+				success : function(result){
+					if(result == 1){
+						alert('회원 수정 완료.');
+					}else if(result == 2){
+						alert('이메일이 중복 입니다.');
+					}else{
+						alert('수정 실패');
+					}
+				},
+				error : function(){
+					console.log('비밀번호 발송 실패');
+				}
+			})
+			
+			
+		})
+		
+		
+		
+	})
+	
+	
 
-<div class="cd1">
-  
 
-</div>
+</script>
 </body>
 </html>

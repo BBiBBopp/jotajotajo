@@ -20,8 +20,27 @@ public class Member {
 	public Member () {
 		
 	}
+	
+	
+	
+	public Member(String memberId, Date createDate) {
+		super();
+		this.memberId = memberId;
+		this.createDate = createDate;
+	}
+
+	
+
+	public Member(String memberId, String email) {
+		super();
+		this.memberId = memberId;
+		this.email = email;
+	}
+
+
+
 	//MEMBER_NO, MEMBER_ID, MEMBER_NAME, BIRTH, GENDER, EMAIL, PHONE
-	public Member(int memberNo, String memberId, String memberName, String birth, String gender, String email, String phone) {
+	public Member(int memberNo, String memberId, String memberName, String birth, String gender, String email, String phone, String memberStatus) {
 		super();
 		this.memberNo = memberNo;
 		this.memberId = memberId;
@@ -30,6 +49,7 @@ public class Member {
 		this.email = email;
 		this.phone = phone;
 		this.birth = birth;
+		this.memberStatus = memberStatus;
 	}
 	
 	

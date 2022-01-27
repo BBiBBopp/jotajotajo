@@ -10,6 +10,10 @@
 	int startPage = (int)pi.getStartPage();
 	int endPage = (int)pi.getEndPage();
 	int maxPage = (int)pi.getMaxPage();
+	
+	
+	String msg = (String)request.getAttribute("msg");
+	
 %>
 
 <!DOCTYPE html>
@@ -35,9 +39,14 @@
     	background: rgb(13, 71, 161);
     	color : white;
     }
-    .deleteBtn{
+    .deleteBtn, .removeBtn{
     	background: red;
     	color : white;
+    	width: 
+    }
+    .page_btn, .page_btn_disabled{
+    	width: 40px;
+    	height: 40px;
     }
 </style>
 
@@ -46,7 +55,7 @@
 <body>
     <div class="outer">
         <div class="menubar">
-            <%@ include file="../common/menubar.jsp" %>
+            <%@ include file="../../admin/common/menubar.jsp" %>
         </div>
         <div class="content">
             <div class="container">
@@ -66,6 +75,7 @@
                             <th>성별</th>
                             <th>이메일</th>
                             <th>전화번호</th>
+                            <th>상태</th>
                             <th>수정 / 삭제</th>
                         </tr>
                     </thead>
@@ -87,8 +97,18 @@
 						<td><%=m.getEmail() %></td>
 						<td><%=m.getPhone() %></td>
 						<td>
+							<%if(m.getMemberStatus().equals("Y")){ %>
+							회원
+							<%}else{ %>
+							탈퇴
+							<%} %>
+						<td>
+							<%if(m.getMemberStatus().equals("Y")){ %>
 							<button class="updateBtn" value="<%=m.getMemberNo()%>">수정</button>
 							<button class="deleteBtn" value="<%=m.getMemberNo()%>">삭제</button>
+							<%}else{ %>
+							<button class="removeBtn" value="<%=m.getMemberNo() %>">복구</button>
+							<%} %>
                         </td>
 					</tr>
 					<%	}
@@ -129,10 +149,22 @@
 		
 		$(".updateBtn").on('click', function(){
 			var memberNo = $(this).val();
-			console.log(memberNo);
 			location.href= "<%=contextPath%>/adminDetail.me?memberNo=" + memberNo;
 		})
+		$('.deleteBtn').on('click', function(){
+			var memberNo = $(this).val();
+			location.href= "<%=contextPath%>/delete.me?memberNo=" + memberNo;
+		})
+		$('.removeBtn').on('click', function(){
+			var memberNo = $(this).val();
+			location.href= "<%=contextPath%>/remove.me?memberNo=" + memberNo;
+		})
 		
+		var msg = '<%=msg%>';
+		
+		if(msg != 'null'){
+			alert(msg);
+		}
 	})
 </script>
 </html>
