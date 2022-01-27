@@ -20,10 +20,10 @@ public interface QuestionMethod {
 		return QtypeTxt;
 	}
 	
-	static char changeQType(String comment) {
-		char OX = 'X';
+	static String changeQType(String comment) {
+		String OX = "답변 대기";
 		if(comment != null){
-			OX = 'O';
+			OX = "답변 완료";
 		}
 		
 		return OX;

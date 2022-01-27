@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.kh.movie.model.vo.Movie;
 import com.kh.theater.model.vo.Theater;
+import com.kh.ticket.model.vo.Ticket;
 
 import static com.kh.common.JDBCTemplate.*;
 
@@ -143,6 +144,36 @@ public class TicketDao {
 		}
 		
 		return list;
+	}
+
+	public ArrayList<Ticket> selectTicketList(Connection conn, int memberNo) {
+		ArrayList<Ticket> rlist = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectTicketList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Ticket t = new Ticket(rset.getInt("PAY_NO"),
+									  rset.getString("RATE"),
+									  rset.getString("MNAME"),
+									  rset.getString("RESERVE_DATE"),
+									  rset.getString("AUDITORIUM_NAME"),
+									  rset.getString("THEATER_NAME"),
+									  rset.getString("SEAT_NO"),
+									  rset.getString("PAY_DATE"),
+									  )
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return rlist;
 	}
 
 }

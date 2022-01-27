@@ -21,26 +21,26 @@
 			<form action="">
 				<div class="ticket-head">구분</div>
 				<div class="ticket-area">
-					<input type="radio" name="ticket" id="now"> 예매 내역 <input
-						type="radio" name="ticket" id="past"> 지난 내역
+					<input type="radio" name="ticket" id="now"> 예매 내역 
+                    <input type="radio" name="ticket" id="past"> 지난 내역
 				</div>
 				<div class="ticket-check">
-					<input type="date" name="" id=""> <input type="submit"
-						name="select" id="" value="조회하기">
+					<input type="date" name="" id=""> 
+                    <input type="submit" name="select" id="" value="조회하기">
 				</div>
 			</form>
 		</div>
 		<table class="ticket-list-area">
-			<tr>
-				<td rowspan="5"><img src="" alt="포스터"></td>
-				<th colspan="4">
-					<div class="movie-list">
-						<div class="movie-list-age">15</div>
-						<div class="movie-list-title">라라랜드</div>
-					</div>
-				</th>
-			</tr>
-			<tr>
+                <tr>
+                    <td rowspan="5"><img src="" alt="포스터"></td>
+                    <th colspan="4">
+                        <div class="movie-list">
+                            <div class="movie-list-age">15</div>
+                            <div class="movie-list-title">라라랜드</div>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
 				<th>관람 일시</th>
 				<td>2022년 1월 2일 18시 00분</td>
 				<th>상영관</th>

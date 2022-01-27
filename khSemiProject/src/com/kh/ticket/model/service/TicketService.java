@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import com.kh.movie.model.vo.Movie;
 import com.kh.theater.model.vo.Theater;
 import com.kh.ticket.model.dao.TicketDao;
+import com.kh.ticket.model.vo.Ticket;
 
 public class TicketService {
 
@@ -48,6 +49,15 @@ public class TicketService {
 		
 		close(conn);
 		return list;
+	}
+
+	public ArrayList<Ticket> selectTicketList(int memberNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Ticket> rlist = new TicketDao().selectTicketList(conn, memberNo);
+		
+		close(conn);
+		return rlist;
 	}
 
 }

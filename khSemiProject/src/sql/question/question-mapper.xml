@@ -79,5 +79,50 @@ SELECT
 				 SEQ_ASK_NO.CURRVAL
 				)
 </entry>
-
+<entry key="questionListAll">
+	SELECT 
+		* 
+	FROM 
+		(
+		 SELECT 
+		 		ROWNUM QNUM, 
+		 		A.*
+		 FROM 
+		 	(
+		 	 SELECT 
+		 	 		ASK_NO, 
+		 	 		ASK_DATE, 
+		 	 		ASK_TITLE, 
+		 	 		ASK_COMMENT, 
+		 	 		MEMBER_ID
+			 FROM 
+					ASK
+			 JOIN 
+					MEMBER 
+			 USING
+				(
+				 MEMBER_NO
+				)
+			 ORDER BY 
+				ASK_NO DESC
+			) A
+		) 
+	WHERE 
+			QNUM BETWEEN ? AND ?
+</entry>
+<entry key="selectListCount">
+	SELECT 
+			COUNT(*) COUNT
+	FROM 
+			ASK
+</entry>
+<entry key="addComment">
+	UPDATE 
+			ASK
+	SET
+			COMMENT_DATE = SYSDATE,
+			ASK_COMMENT = ?
+	WHERE
+			ASK_NO = ?
+</entry>
 </properties>

@@ -4,7 +4,7 @@
 <%
 	Question q = (Question)request.getAttribute("Qdetail");	
 	Q_Attachment at = (Q_Attachment)request.getAttribute("Qat");
-	String filePath = request.getContextPath() + at.getFilePath() + at.getChangeName();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -50,7 +50,7 @@
 				<th>첨부 파일</th>
 				<td colspan="5" style="text-align: center;">
 					<img 
-						src="<%= filePath %>" 
+						src="<%= request.getContextPath() + at.getFilePath() + at.getChangeName() %>" 
 						alt="<%= at.getOriginName() %>"
 						class="Qat"
 						style="width: 600px;">

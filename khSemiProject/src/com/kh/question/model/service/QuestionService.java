@@ -8,6 +8,7 @@ import static com.kh.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.question.model.dao.QuestionDao;
 import com.kh.question.model.vo.Q_Attachment;
 import com.kh.question.model.vo.Question;
@@ -61,6 +62,39 @@ public class QuestionService {
 		close(conn);
 		
 		return Qat;
+	}
+
+	public ArrayList<Question> questionlistAll(PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<Question> qlist = new QuestionDao().questionListAll(conn, pi);
+		
+		close(conn);
+		
+		return qlist;
+	}
+
+	public int selectListCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new QuestionDao().selectListCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+
+	public int addComment(int qno, String comment) {
+		Connection conn = getConnection();
+		
+		int result = new QuestionDao().addComment(conn, qno, comment);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result;
 	}
 
 }

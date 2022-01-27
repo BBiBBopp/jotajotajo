@@ -10,7 +10,8 @@ public class Question {
 	private String commentDate; //COMMENT_DATE	DATE
 	private String comment; //COMMENT	VARCHAR2(1000 BYTE)
 	private int memberNo; //MEMBER_NO --askWriter	NUMBER
-	private char status; // 답변 상태
+	private String status; // 답변 상태
+	private String memberId; // 작성잔
 
 	public Question() {
 		super();
@@ -47,6 +48,26 @@ public class Question {
 		this.askTypeNo = askTypeNo;
 		this.askTitle = askTitle;
 		this.commentDate = commentDate;
+		this.memberNo = memberNo;
+	}
+	public Question(int askNo, String askDate, String askTitle, String comment, String memberId) {
+		super();
+		this.askNo = askNo;
+		this.askDate = askDate;
+		this.askTitle = askTitle;
+		this.comment = comment;
+		this.memberId = memberId;
+	}
+	public Question(int askNo, String askDate, int askTypeNo, String askTitle, String askContent, String commentDate,
+			String comment, int memberNo) {
+		super();
+		this.askNo = askNo;
+		this.askDate = askDate;
+		this.askTypeNo = askTypeNo;
+		this.askTitle = askTitle;
+		this.askContent = askContent;
+		this.commentDate = commentDate;
+		this.comment = comment;
 		this.memberNo = memberNo;
 	}
 	public int getAskNo() {
@@ -103,17 +124,24 @@ public class Question {
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-	public char getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(char status) {
+	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	@Override
 	public String toString() {
 		return "Question [askNo=" + askNo + ", askDate=" + askDate + ", askTypeNo=" + askTypeNo + ", askTypeTxt="
 				+ askTypeTxt + ", askTitle=" + askTitle + ", askContent=" + askContent + ", commentDate=" + commentDate
-				+ ", comment=" + comment + ", memberNo=" + memberNo + "]";
+				+ ", comment=" + comment + ", memberNo=" + memberNo + ", status=" + status + ", memberId=" + memberId
+				+ "]";
 	}
 	
 }

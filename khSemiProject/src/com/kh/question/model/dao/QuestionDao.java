@@ -1,6 +1,6 @@
 package com.kh.question.model.dao;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.question.model.vo.Q_Attachment;
 import com.kh.question.model.vo.Question;
 
@@ -77,7 +78,8 @@ public class QuestionDao {
 			
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				q = new Question(rset.getString("ASK_DATE"),
+				q = new Question(questionNo,
+								 rset.getString("ASK_DATE"),
 						  		 rset.getInt("ASK_TYPE"),
 						  		 rset.getString("ASK_TITLE"),
 						  		 rset.getString("ASK_CONTENT"),
@@ -165,5 +167,84 @@ public class QuestionDao {
 		}
 		
 		return Qat;
+	}
+
+	public ArrayList<Question> questionListAll(Connection conn, PageInfo pi) {
+		ArrayList<Question> qlist = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("questionListAll");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() -1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Question q = new Question(rset.getInt("ASK_NO"),
+										  rset.getString("ASK_DATE"),
+										  rset.getString("ASK_TITLE"),
+										  rset.getString("ASK_COMMENT"),
+										  rset.getString("MEMBER_ID"));
+				qlist.add(q);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return qlist;
+	}
+
+	public int selectListCount(Connection conn) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+
+	public int addComment(Connection conn, int qno, String comment) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("addComment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, comment);
+			pstmt.setInt(2, qno);
+			System.out.println(qno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }

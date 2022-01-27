@@ -89,4 +89,52 @@
 		ADDRESS 
 				LIKE ?
 </entry>
+<!-- 회원이 예매한 영화 리스트 -->
+<entry key="selectTicketList">
+	SELECT 
+			PAY_NO, 
+			RATE, 
+			MNAME,
+			TO_CHAR(RUN_SCH, 'YYYY-MM-DD HH:MI:SS') "RESERVE_DATE", 
+			AUDITORIUM_NAME, 
+			THEATER_NAME, 
+			SEAT_NO, 
+			PAY_DATE, 
+			TICKET_NO
+	FROM 
+			SEAT
+	JOIN 
+		(
+		 SELECT 
+		 		PAY_NO, 
+		 		RATE, 
+		 		MNAME, 
+		 		RUN_SCH, 
+		 		AUDITORIUM_NAME, 
+		 		THEATER_NAME, 
+		 		SEAT_PK, 
+		 		PAY_DATE, 
+		 		TICKET_NO
+		 FROM 
+		 		PAYMENT
+		 JOIN 
+				TICKET 
+		 USING
+			  (
+			   PAY_NO
+			  )
+		 JOIN 
+				V_MOVIE 
+		 USING
+		 	  (
+		  	   RUN_NO
+		 	   )
+		 WHERE 
+			   	MEMBER_NO = ?
+		) 
+	USING 
+		 (
+		  SEAT_PK
+		 )
+</entry>
 </properties>

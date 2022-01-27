@@ -161,6 +161,8 @@
 						<div class="seat-wrapper">
 							<div class="screen-view-wrapper">
 								<div class="screen-view">SCREEN</div>
+								
+								<%@ include file="seat160.jsp" %>
 							</div>
 						</div>
 					</div>
