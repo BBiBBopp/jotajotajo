@@ -70,7 +70,7 @@ public class LoginController extends HttpServlet {
 			
 			session.setAttribute("alertMsg", "로그인하셨습니다.");
 			
-			response.sendRedirect("/cinemaHeaven");
+			response.sendRedirect("/cinemaHeaven/index.do");
 			// 로그인정보, 경고메세지들고 메인페이지로 이동
 			
 		}else {
