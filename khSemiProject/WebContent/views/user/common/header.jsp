@@ -143,7 +143,7 @@ body{
 	<div id="navi_area">
 		<div class="group_nav">
 			<ul class="list_navi">
-				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">영화</a></li>
+				<li class="nav_item"><a href="<%=contextPath%>/list.mo" class="link nav">영화</a></li>
 				<li class="nav_item"><a href="<%=contextPath%>/tList.th?currentPage=1" class="link nav">영화관</a></li>
 				<li class="nav_item"><a href="<%=contextPath%>/MoView.ti" class="link nav">예매</a></li>
 
@@ -153,7 +153,7 @@ body{
 						<li><a href="<%=contextPath %>/vote.pa" class="link nav">이전 투표목록</a></li>
 					</ul>
 				</li>
-				<li class="nav_item"><a href="../notice/FAQView.jsp" class="link nav">고객센터</a></li>
+				<li class="nav_item"><a href="<%=contextPath%>/faq.no" class="link nav">고객센터</a></li>
 			</ul>
 		</div>
 	</div>

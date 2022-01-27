@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import com.kh.movie.model.vo.Movie;
 import com.kh.movie.model.vo.Picture;
+import com.kh.movie.model.vo.Report;
 import com.kh.movie.model.vo.Review;
 
 import static com.kh.common.JDBCTemplate.*;
@@ -198,7 +199,6 @@ public class MovieDao {
 			close(pstmt);
 		}
 		
-		System.out.println(list);
 		return list;
 	}
 	
@@ -291,7 +291,6 @@ public class MovieDao {
 		
 		return result;
 	}
-
 
 	public int deleteReviewLike(Connection conn, int memberNo, int reviewNo) {
 		int result = 0;
@@ -419,6 +418,229 @@ public class MovieDao {
 		return result;
 	}
 
+	public int countReport(Connection conn) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("countReport");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				count = rset.getInt("COUNT");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+	}
 
+	public ArrayList<Report> selectReportList(Connection conn, int startRow, int endRow) {
+		ArrayList<Report> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReportList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Report rp = new Report();
+				rp.setReportNo(rset.getInt("REPORT_NO"));
+				rp.setReviewNo(rset.getInt("REVIEW_NO"));
+				rp.setReviewContent(rset.getString("REVIEW_CONTENT"));
+				rp.setReportDate(rset.getDate("REPORT_DATE"));
+				rp.setReason(rset.getString("CATEGORY_CONTENT"));
+				rp.setStatus(rset.getString("STATUS"));
+				
+				list.add(rp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+	}
+
+	public int deleteReviewByReport(Connection conn, String[] deleteList) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReviewByReport");
+		
+		try {
+			for(String str : deleteList) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(str));
+				pstmt.executeUpdate();
+				result++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int processReport(Connection conn, String[] deleteList) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("processReport");
+		
+		try {
+			for(String str : deleteList) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(str));
+				pstmt.executeUpdate();
+				result++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int holdReviewByReport(Connection conn, String[] holdList) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("holdReviewByReport");
+		
+		try {
+			for(String str : holdList) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(str));
+				pstmt.executeUpdate();
+				result++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int countAllMovie(Connection conn) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("countAllMovie");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				count = rset.getInt("COUNT");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+	}
+
+	public ArrayList<Movie> selectMovieAdminList(Connection conn, int startRow, int endRow) {
+		ArrayList<Movie> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMovieAdminList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Movie mv = new Movie();
+				mv.setMovieNo(rset.getInt("MNO"));
+				mv.setMovieName(rset.getString("MNAME"));
+				mv.setGenre(rset.getString("GENRE"));
+				mv.setRate(rset.getString("RATE"));
+				mv.setRuntime(rset.getInt("RTIME"));
+				mv.setStatus(rset.getString("STATUS"));
+				mv.setReleaseDate(rset.getDate("RELEASE_DATE"));
+				
+				list.add(mv);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public int deleteMovie(Connection conn, String[] deleteList) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMovie");
+		
+		try {
+			for(String str : deleteList) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(str));
+				pstmt.executeUpdate();
+				result++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertMovie(Connection conn, Movie mv) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertMovie");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, mv.getMovieName());
+			pstmt.setString(2, mv.getGenre());
+			pstmt.setString(3, mv.getDirector());
+			pstmt.setString(4, mv.getActor());
+			pstmt.setInt(5, mv.getRuntime());
+			pstmt.setString(6, mv.getRate());
+			pstmt.setDate(7, mv.getReleaseDate());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 }

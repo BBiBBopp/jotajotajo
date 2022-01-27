@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.notice.model.service.NoticeService;
 import com.kh.notice.model.vo.Notice;
-import com.kh.notice.model.vo.PageInfo;
 
 /**
  * Servlet implementation class NoticeFAQController
@@ -32,37 +32,21 @@ public class NoticeFAQController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int category = Integer.parseInt(request.getParameter("category"));
+		int currentPage = 1;
+		if(request.getParameter("currentPage") != null)
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
-		int listCount;
-		int currentPage;
-		int pageLimit;
-		int boardLimit;
-		int maxPage;
-		int startPage;
-		int endPage;
+		int category = 100;
+		if(request.getParameter("category") != null)
+			category = Integer.parseInt(request.getParameter("category"));
 		
-		listCount = new NoticeService().countNotice(category, category);
-
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-
-		pageLimit = 10;
-
-		boardLimit = 5;
-
-		maxPage = (int) Math.ceil((double) listCount / boardLimit);
-		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
-
-		endPage = startPage + pageLimit - 1;
-		if (endPage > maxPage)
-			endPage = maxPage;
-
-		int startRow = (currentPage - 1) * boardLimit + 1;
-		int endRow = startRow + boardLimit - 1;
+		int listCount = new NoticeService().countCategory(category);
+		int pageLimit = 10;
+		int boardLimit = 5;
 		
-		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+		PageInfo pi = new PageInfo().calcPageInfo(listCount, currentPage, pageLimit, boardLimit);
 		
-		ArrayList<Notice> list = new NoticeService().selectFAQList(category, startRow, endRow);
+		ArrayList<Notice> list = new NoticeService().selectFAQList(category, pi.getStartRow(), pi.getEndRow());
 		
 		request.setAttribute("category", category);
 		request.setAttribute("pi", pi);

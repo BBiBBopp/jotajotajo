@@ -33,15 +33,16 @@ public class ReviewReportController extends HttpServlet {
 		int reportReason = Integer.parseInt(request.getParameter("reportReason"));
 		
 		int result = new MovieService().reportReview(reviewNo, reportReason);
-		String text="";
-		response.setContentType("text/html; charset=UTF-8");
 		
+		String text="";
 		if(result>0)
 			text="완료";
 		else
 			text="실패";
 
-			String printResult="<script>alert('신고 "+text+".');window.close();</script>";
+		response.setContentType("text/html; charset=UTF-8");
+
+		String printResult="<script>alert('신고 "+text+".');window.close();</script>";
 		
 		response.getWriter().print(printResult);	
 	}

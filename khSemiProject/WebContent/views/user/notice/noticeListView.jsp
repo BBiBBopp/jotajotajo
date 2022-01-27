@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.ArrayList, com.kh.notice.model.vo.*" %>
+<%@ page import="java.util.ArrayList, com.kh.notice.model.vo.*, com.kh.common.model.vo.PageInfo" %>
 <% 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
@@ -67,7 +67,6 @@
                         </thead>
                         <tbody>
                         <% if(list.isEmpty()){ %>
-                        
                         	<tr><td>공지사항이 존재하지 않습니다.</td></tr>
                         <% }else{ %>
                             <% for(Notice n : list){ %>

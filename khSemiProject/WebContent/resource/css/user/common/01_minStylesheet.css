@@ -14,13 +14,13 @@
 	margin: auto;
 	display: inline-block;
 }
-.poster-button{
+/*.poster-button{
 	display:none;
-}
-.movie-poster:hover+div{
+}*/
+/*.movie-poster:hover+div{
 	display:block;
 	float:none;
-}
+}*/
 .movie-poster {
 	width: 150px;
 	height: 200px;

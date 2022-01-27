@@ -34,7 +34,6 @@ public class AjaxReviewLikeController extends HttpServlet {
 
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
 
-
 		int memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
 		String isLike = request.getParameter("isLike");//해당 리뷰를 내가 '좋아요' 눌렀을 경우 1, 아닐 경우 0을 반환
 		

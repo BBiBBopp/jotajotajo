@@ -16,7 +16,9 @@
 		<%@ include file="../common/header.jsp" %>
 			<div id="container">
 				<!-- 고객센터 메뉴바 넣을 자리-->
-				<div></div>
+				<div id="menuBar">
+                	 <%@ include file="../common/customerNavigation.jsp" %>
+            </div>
 
 				<!-- 게시글 1개 조회 -->
 				<div class="notice-search">
@@ -59,7 +61,7 @@
 				</div>
 
 				<!-- 목록으로 이동 -->
-				<a href="" class="btn btn-secondary">목록 이동</a>
+				<a href="<%= contextPath %>/list.no?currentPage=1" class="btn btn-secondary">목록 이동</a>
 				<br>
 			</div>
 			<!--footer-->
