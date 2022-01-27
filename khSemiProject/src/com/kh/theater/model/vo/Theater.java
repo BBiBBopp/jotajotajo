@@ -36,6 +36,13 @@ public class Theater {
 		this.uploadDate = uploadDate;
 	}
 
+	public Theater(int theaterNo, String theaterName, String address) {
+		super();
+		this.theaterNo = theaterNo;
+		this.theaterName = theaterName;
+		this.address = address;
+	}
+
 	public int getTheaterNo() {
 		return theaterNo;
 	}

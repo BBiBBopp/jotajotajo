@@ -4,7 +4,7 @@
 				   com.kh.theater.model.vo.Theater, com.kh.movie.model.vo.Review" %>
 <%
 	ArrayList<SearchMovie> movieList = (ArrayList<SearchMovie>)request.getAttribute("movieList");
-	ArrayList<Theater> theaterList = (ArrayList<Theater>)request.getAttribute("theaterList");
+	ArrayList<Theater> searchTheaterList = (ArrayList<Theater>)request.getAttribute("theaterList");
 	ArrayList<Review> reviewList = (ArrayList<Review>)request.getAttribute("reviewList");
 	
 
@@ -98,12 +98,12 @@
 	                <hr size="4"  color="lightgray">
 	                <table>
 	                	<tr>
-	                		<td><% if(theaterList.isEmpty()){ %>
+	                		<td><% if(searchTheaterList.isEmpty()){ %>
 	            				<p>검색된 영화관이 없습니다.</p>
 	            			</td>
 	            		</tr>
             			 <% } else {%>
-	                		<% for(Theater th : theaterList) {%>
+	                		<% for(Theater th : searchTheaterList) {%>
 				                <tr>
 				                    <td><%= th.getTheaterName() %>&nbsp;&nbsp;&nbsp;</td>
 				                
