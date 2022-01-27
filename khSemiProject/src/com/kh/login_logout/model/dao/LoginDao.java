@@ -29,13 +29,6 @@ public class LoginDao {
 		
 	}
 
-	public Member selectMember(Connection conn, String memberId, String memberPwd) {
-
-		Member m = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		
 	
 	public Member selectMember(Connection conn, String memberId, String memberPwd) {
 
