@@ -80,7 +80,7 @@
 		                        </ul>
 		                    </div>
 		                <% } %>   
-                    
+                   </div> 
                     
                     
                     <!--  
@@ -122,7 +122,7 @@
 	                
 	                  </main>
 	                  -->
-                </div>
+                
                 <br><br><br><br>
                 
                 <div id="container_3">
