@@ -15,7 +15,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/main/main.css"/>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/user/main/main.css"/>
 <script src="../resources/js/jquery-3.3.1.js"></script>
 
 

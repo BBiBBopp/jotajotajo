@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>투표결과</title>
 <link rel="stylesheet" href="../../../resource/css/user/common/00_stylesheet.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/vote/voteResult.css"/>	
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/user/vote/voteResult.css"/>	
 	
 
 </head>

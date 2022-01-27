@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>이전 투표 목록</title>
 <link rel="stylesheet" href="../../../resource/css/00_stylesheet.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/vote/pastVote.css"/>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/user/vote/pastVote.css"/>
 	<style>
 
 
