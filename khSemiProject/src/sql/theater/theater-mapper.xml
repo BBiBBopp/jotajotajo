@@ -65,10 +65,12 @@
 		SET AUDITORIUM_NAME = ?,
 			SEAT_NUM = ?
 		WHERE THEATER_NO = ?
-	
 	</entry>
 	
-	
+	<entry key="deleteTheater">
+		DELETE FROM THEATER
+		WHERE THEATER_NO = ?
+	</entry>
 	
 	
 	

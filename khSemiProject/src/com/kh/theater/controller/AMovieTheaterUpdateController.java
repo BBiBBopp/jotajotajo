@@ -66,12 +66,10 @@ public class AMovieTheaterUpdateController extends HttpServlet {
 		if(result > 0) {
 			
 			request.setAttribute("ta", ta);
+			request.getSession().setAttribute("alertMsg", "수정되었습니다.");
 			
 			request.getRequestDispatcher("views/admin/theater/aMovieTheaterDetail.jsp").forward(request, response);
 			
-		}else {
-			request.getSession().setAttribute("alertMsg", "수정되지않았습니다.");
-			request.getRequestDispatcher("views/admin/theater/aMovieTheaterList.jsp").forward(request, response);
 		}
 		
 		

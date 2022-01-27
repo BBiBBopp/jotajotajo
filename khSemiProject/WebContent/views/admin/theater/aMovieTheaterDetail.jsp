@@ -95,7 +95,10 @@
                 		<input type="hidden" name="tno" value=<%= ta.getTheaterNo() %>>
 	                    <button type="submit">수정하기</button>
                 	</form>
-                    <button>삭제하기</button>
+                	<form action="<%= contextPath%>/atDelete.th">
+                		<input type="hidden" name="tno" value=<%= ta.getTheaterNo() %>>
+	                    <button type="submit">삭제하기</button>
+                	</form>
                 </div>
             </div>
         </div>

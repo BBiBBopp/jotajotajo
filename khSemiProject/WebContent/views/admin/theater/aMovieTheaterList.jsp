@@ -43,8 +43,9 @@
                     <h2>등록된 영화관</h2>
                 </div>
                     <div id="add_delete_btn_div">
-                        <button><a href="<%= contextPath%>/atEnrollForm.th">영화관 추가</a></button>
-                        <button>영화관 삭제</button>
+                        <button><a href="<%= contextPath%>/atEnrollForm.th">영화관 등록</a></button>
+                        <form action="<%= contextPath%>/atDelete.th">
+                        <button type="submit">영화관 삭제</button>
                     </div>
             </div>
             <div id="content_2">
@@ -67,7 +68,7 @@
                     <% } else { %>
 						<% for(Theater t : theaterList) { %>
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <th><input type="checkbox" name="checked"><input type="hidden" name="tno" value="<%= t.getTheaterNo() %>"></th>
                             <td><%= t.getTheaterNo() %></td>
                             <td><%= t.getTheaterName() %></td>
                             <td><%= t.getAddress() %></td>
@@ -78,14 +79,16 @@
                     <% } %>
                     </tbody>
                 </table>
+            </form>
             </div>
             <br>
             
             <script>
             	$(function(){
-					$(".table>tbody>tr").click(function(){
+					$(".table>tbody>tr>td").click(function(){
+						var tno = $(this).parent().children().eq(1).text();
 						
-						location.href="<%= contextPath%>/atDetail.th?tno=" + $(this).children().eq(1).text();
+						location.href="<%= contextPath%>/atDetail.th?tno=" + tno;
 					})
             	})
             </script>
