@@ -22,7 +22,6 @@
 					
 						<div class="movie-toggle">
 							<a href="<%= contextPath %>/detail.mo?mno=<%= mv.getMovieNo() %>" class="movie-menu-half movie-active-menu">영화 정보</a><a
-
 							href="<%= contextPath %>/review.mo?mno=<%= mv.getMovieNo() %>" class="movie-menu-half">평점 및 리뷰 </a>
 						</div>
 						

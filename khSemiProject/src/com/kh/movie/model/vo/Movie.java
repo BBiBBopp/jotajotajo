@@ -19,7 +19,7 @@ public class Movie {
 	private int movieLike;
 	private double advanceRate;//예매율
 	private String myLike;
-	
+	private String runDate;
 	
 	public Movie() {
 		super();
@@ -152,6 +152,15 @@ public class Movie {
 
 	public void setMyLike(String myLike) {
 		this.myLike = myLike;
+	}
+
+	
+	public String getRunDate() {
+		return runDate;
+	}
+
+	public void setRunDate(String runDate) {
+		this.runDate = runDate;
 	}
 
 	@Override

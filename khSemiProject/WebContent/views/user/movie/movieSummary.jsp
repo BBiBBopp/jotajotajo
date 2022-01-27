@@ -2,9 +2,7 @@
 <%@ page import="java.util.ArrayList, com.kh.movie.model.vo.*" %>
 <%
 	Movie mv = (Movie)request.getAttribute("mv");
-
 	ArrayList<Picture> picList = (ArrayList<Picture>)request.getAttribute("picList");
-	String contextPath = request.getContextPath();
 %>
 
 	<!-- 해결해야하는 문제점
@@ -49,14 +47,13 @@
 
 				<!-- The slideshow -->
 				<div class="carousel-inner">
-
 				<div class="carousel-item active">
-					<img src="<%=contextPath %><%= picList.get(1).getFilePath()+picList.get(1).getChangeName() %>" alt="">
+					<img src="<%= contextPath %><%= picList.get(1).getFilePath()+picList.get(1).getChangeName() %>" alt="">
 				</div>
 				<% if (picList.size()>0){ %>
 					<% for(int i = 2; i<picList.size(); i++){ %>
 						<div class="carousel-item">
-							<img src="<%=contextPath %><%= picList.get(i).getFilePath()+picList.get(i).getChangeName() %>" alt="">
+							<img src="<%= contextPath %><%= picList.get(i).getFilePath()+picList.get(i).getChangeName() %>" alt="">
 						</div>
 					<% } %>
 				<% } %>
@@ -110,7 +107,6 @@
 					<!-- 버튼 영역 -->
 					<!-- <div class="d-flex justify-content-end"> -->
 					<div>
-
 						<a class="btn btn-danger" onclick="movieLike();" id="movieLike">
 							<span>
 							

@@ -31,7 +31,6 @@
 	영화 관람등급을 NOT NULL로 둘지 고민
 	 -->
 
-
 	 <entry key="selectMovieDetail">
 		SELECT MNO, MNAME, GENRE, DIRECTOR, RTIME, RATE, RELEASE_DATE, NVL(RE_AVG,0) RE_AVG, NVL(MO_LIKE, 0) MO_LIKE, NVL(MY_LIKE, 'N') MY_LIKE, SYNOPSIS, ACTOR
 		FROM MOVIE M
