@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.ArrayList, com.kh.movie.model.vo.*, com.kh.notice.model.vo.Notice" %>    
-    
+  
 <%
 	
 	Notice mainList = (Notice)request.getAttribute("mainList");
@@ -15,88 +15,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<style>
-	div {
-        /* border: 1px solid black; */
-        box-sizing: border-box;
-    }
-
-
-    .wrap>div { width: 100%; }
-
-    #header { height: 10%; }
-    /* #navi_area {height: 10%;} */
-    #footer { height: 10%; }
-    #container { height: 70%; }
-
-    /* #header > div, #content > div {
-        height: 100%;
-        float: left;
-    } */
-
-
-    #container_1 { height: 40%; }
-    #container_2 { height: 40%; }
-    #container_3 { height: 20%; }
-
-
-
-    .thumbnail-image0 {
-        width: 750px;
-        height: 400px;
-        margin-top: 30px;
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-    } 
-
-    .main-container {
-        margin-top: 30px;
-        display: flex;
-        margin-left: auto;
-        
-    }
-
-    .thumbnail-image {
-    	
-        width: 150px;
-        height: 200px;
-    }
-
-    .thumbnail-list {
-        list-style: none;
-        /* margin-left: auto; */
-        /* padding: 0 30px; */
-       
-        
-    }
-
-    .thumbnail-title {
-        display: block;
-        text-align: center;
-        /* padding: 5px 10px; */
-        font-size: 15px;
-        height: 25px;
-    }
-
- 
-
-/*
-	.list_navi li {
-		
-        width: 14%;
-        text-align: center;
-        height: 100%;
-	}
-*/
-#container_1{
-	text-align: center;
-}
-
-
-
-</style>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/main/main.css"/>
+<script src="../resources/js/jquery-3.3.1.js"></script>
 
 
 </head>
@@ -141,7 +61,7 @@
                     
                     <div class="movie-list">
                 
-		                <% for(int i = 0; i < currentList.size();i++){ %>
+		                <% for(int i = 0; i < currentList.size(); i++){ %>
 		                    <div class="movie-one">
 		                        <img src="<%=contextPath %><%= picList.get(i).getFilePath()+picList.get(i).getChangeName() %>" alt="" class="movie-poster">
 		                        <!-- 바로 전 요소에 마우스 오버하면 나오는 영역 -->

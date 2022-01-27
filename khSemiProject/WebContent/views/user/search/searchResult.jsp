@@ -16,7 +16,7 @@
 <head>
 <meta charset="UTF-8">
 <title>검색 결과</title>
-<link rel="stylesheet" href="../../../resource/css/00_stylesheet.css">
+<link rel="stylesheet" href="../../../resource/css/user/common/00_stylesheet.css">
 
     <style>
         div {
@@ -34,9 +34,6 @@
             height: 100%;  
             
         }
-
-
-
 	.movie_img{
 		width:150px;
 		height:200px;
