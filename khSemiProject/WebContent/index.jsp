@@ -28,7 +28,7 @@
   
 		<script language="javascript">
 		
-        window.open("08_2_popup.html", "a", "width=430, height=420, left=100, top=50");
+        window.open("08_2_popup.html", "a", "width=430, height=350, left=100, top=50");
          function moveClose() {
         	 opener.location.href="<%=contextPath %>/list.vot";
         	  self.close(); 
