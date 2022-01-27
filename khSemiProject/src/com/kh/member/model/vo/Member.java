@@ -32,28 +32,28 @@ public class Member {
 		this.birth = birth;
 	}
 	
-	
-<<<<<<< HEAD
-	public Member(String memberId, Date createDate) { // 아이디찾기 결과 뿌려줄때 사용
-=======
-<<<<<<< HEAD
+	public Member(String memberId, Date createDate) {
+		super();
+		this.memberId = memberId;
+		this.createDate = createDate;
+	}
+
 	public Member(int memberNo, String memberId, String memberPwd, String memberName) {
->>>>>>> branch 'master' of https://github.com/BBiBBopp/jotajotajo.git
+
 		super();
 		this.memberNo = memberNo;
 		this.memberId = memberId;
 		this.memberPwd = memberPwd;
 		this.memberName = memberName;
 	}
-<<<<<<< HEAD
+
 	
 	public Member(String memberId, String email) { // 비밀번호찾기 할 때 사용
 		super();
 		this.memberId = memberId;
 		this.email = email;
 	}
-=======
->>>>>>> branch 'master' of https://github.com/BBiBBopp/jotajotajo.git
+
 
 	public Member(int memberNo, String memberId, String memberPwd, String memberName, String birth, String gender,
 			String email, String phone, String interest, int point, Date createDate, String memberStatus) {
