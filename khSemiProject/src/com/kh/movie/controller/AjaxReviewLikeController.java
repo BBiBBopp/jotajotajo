@@ -33,7 +33,8 @@ public class AjaxReviewLikeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		int movieNo = Integer.parseInt(request.getParameter("mno"));
+
+
 		int memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
 		String isLike = request.getParameter("isLike");//해당 리뷰를 내가 '좋아요' 눌렀을 경우 1, 아닐 경우 0을 반환
 		
@@ -42,9 +43,9 @@ public class AjaxReviewLikeController extends HttpServlet {
 		if(isLike.equals("Y")) {//reviewlike존재함
 			result = new MovieService().deleteReviewLike(memberNo, reviewNo);
 		}else {
-			result = new MovieService().insertReviewLike(movieNo, memberNo, reviewNo);
+			result = new MovieService().insertReviewLike(memberNo, reviewNo);
 		}
-		
+		System.out.println(reviewNo +":"+memberNo+":"+isLike);
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().print(result);
 		

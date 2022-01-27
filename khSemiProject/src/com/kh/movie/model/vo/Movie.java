@@ -11,37 +11,20 @@ public class Movie {
 	private String director;
 	private String actor;
 	private int runtime;
-	private String rate; //영화 등급
+	private String rate;
 	private String synopsis;
 	private String status;
+	private Date releaseDate;
 	private double reviewAvg;
 	private int movieLike;
 	private double advanceRate;//예매율
-	private Date releaseDate; // 재개봉일
-	private Timestamp runSch; // 상영일&상영시간
 	private String myLike;
-
+	
+	
 	public Movie() {
 		super();
 	}
 	
-	public Movie(int movieNo, String movieName, String genre, String director, String actor, int runtime, String rate,
-			String synopsis, String status, double advanceRate, Date releaseDate, Timestamp runSch) {
-		super();
-		this.movieNo = movieNo;
-		this.movieName = movieName;
-		this.genre = genre;
-		this.director = director;
-		this.actor = actor;
-		this.runtime = runtime;
-		this.rate = rate;
-		this.synopsis = synopsis;
-		this.status = status;
-		this.advanceRate = advanceRate;
-		this.releaseDate = releaseDate;
-		this.runSch = runSch;
-	}
-
 	public Movie(int movieNo, String movieName, String genre, String director, String actor, int runtime, String rate,
 			String synopsis, String status) {
 		super();
@@ -71,31 +54,7 @@ public class Movie {
 		this.advanceRate = advanceRate;
 	}
 
-	public Movie(int movieNo, String movieName, String genre, int runtime, String rate, String status,
-			Date releaseDate) {
-		super();
-		this.movieNo = movieNo;
-		this.movieName = movieName;
-		this.genre = genre;
-		this.runtime = runtime;
-		this.rate = rate;
-		this.status = status;
-		this.releaseDate = releaseDate;
-	}
-	
-	
 
-	public Movie(int movieNo, String movieName, String genre, int runtime, String rate, String status,
-			Timestamp runSch) {
-		super();
-		this.movieNo = movieNo;
-		this.movieName = movieName;
-		this.genre = genre;
-		this.runtime = runtime;
-		this.rate = rate;
-		this.status = status;
-		this.runSch = runSch;
-	}
 	public Date getReleaseDate() {
 		return releaseDate;
 	}
@@ -199,7 +158,11 @@ public class Movie {
 	public String toString() {
 		return "Movie [movieNo=" + movieNo + ", movieName=" + movieName + ", genre=" + genre + ", director=" + director
 				+ ", actor=" + actor + ", runtime=" + runtime + ", rate=" + rate + ", synopsis=" + synopsis
-				+ ", status=" + status + ", reviewAvg=" + reviewAvg + ", movieLike=" + movieLike + ", advanceRate="
-				+ advanceRate + ", releaseDate=" + releaseDate + ", runSch=" + runSch + ", myLike=" + myLike + "]";
+				+ ", status=" + status + ", releaseDate=" + releaseDate + ", reviewAvg=" + reviewAvg + ", movieLike="
+				+ movieLike + ", advanceRate=" + advanceRate + ", myLike=" + myLike + "]";
 	}
+
+	
+	
+	
 }

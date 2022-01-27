@@ -54,7 +54,8 @@ public class MovieService {
 		Movie mv = new MovieDao().selectMovieSummary(conn, movieNo, memberNo);
 		
 		close(conn);
-		
+
+		System.out.println(mv);
 		return mv;
 	}
 	
@@ -136,10 +137,10 @@ public class MovieService {
 		return result;
 	}
 
-	public int insertReviewLike(int movieNo, int memberNo, int reviewNo) {
+	public int insertReviewLike(int memberNo, int reviewNo) {
 		Connection conn = getConnection();
 		
-		int result = new MovieDao().insertReviewLike(conn, movieNo, memberNo, reviewNo);
+		int result = new MovieDao().insertReviewLike(conn,  memberNo, reviewNo);
 		
 		if(result>0)
 			commit(conn);
@@ -185,6 +186,21 @@ public class MovieService {
 		Connection conn = getConnection();
 		
 		int result = new MovieDao().deleteReview(conn, reviewNo);
+		
+		if(result>0)
+			commit(conn);
+		else
+			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int reportReview(int reviewNo, int reportReason) {
+		Connection conn = getConnection();
+		
+		int result = new MovieDao().reportReview(conn, reviewNo, reportReason);
 		
 		if(result>0)
 			commit(conn);

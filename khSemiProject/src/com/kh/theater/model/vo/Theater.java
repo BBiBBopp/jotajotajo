@@ -11,6 +11,7 @@ public class Theater {
 	private String traffic;
 	private String location;
 	private String parking;
+
 	private int theaterNum; // 특정 지역의 영화관 수
 	private int theaterImg;
 	private String uploadDate;
@@ -122,3 +123,4 @@ public class Theater {
 	
 }
 	
+

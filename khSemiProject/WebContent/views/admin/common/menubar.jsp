@@ -45,6 +45,7 @@
 					<li><a href="<%=contextPath %>/manage.vot1"> 투표</a></li>
 					<li><a href="<%=contextPath %>/manage.vot2"> 투표결과</a></li>
 					<li><a href="<%=contextPath %>/manage.vot3"> 이전투표목록</a></li>
+
 				</ul>
 			</li>
 		</ul>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,11 +19,10 @@
 			</ul>
 		</div>
 		<div class="disc_area">
-			<!-- 
-			 <div class="foot_logo">
-				<img src="../resource/image/cinema_logo900.jpg" alt="시네마헤븐">
+
+			<div class="foot_logo">
+				<img src="<%=request.getContextPath() %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐">
 			</div>
-			 -->
 			<div class="crop_info">
 				<p>
 					서울특별시 중구 남대문로 120 대일빌딩 2F, 3F <br> 대표자명 *** 개인정보보호책임자 ***

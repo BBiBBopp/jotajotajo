@@ -292,7 +292,8 @@ public class MovieDao {
 		return result;
 	}
 
-	public int deleteReviewLike(Connection conn, int reviewNo, int memberNo) {
+
+	public int deleteReviewLike(Connection conn, int memberNo, int reviewNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("deleteReviewLike");
@@ -300,8 +301,8 @@ public class MovieDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, reviewNo);
-			pstmt.setInt(2, memberNo);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, reviewNo);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -314,7 +315,7 @@ public class MovieDao {
 	}
 
 
-	public int insertReviewLike(Connection conn, int movieNo, int memberNo, int reviewNo) {
+	public int insertReviewLike(Connection conn, int memberNo, int reviewNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertReviewLike");
@@ -322,9 +323,8 @@ public class MovieDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, movieNo);
-			pstmt.setInt(2, memberNo);
-			pstmt.setInt(3, reviewNo);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, reviewNo);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -387,6 +387,27 @@ public class MovieDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, reviewNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int reportReview(Connection conn, int reviewNo, int reportReason) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("reportReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, reviewNo);
+			pstmt.setInt(2, reportReason);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
