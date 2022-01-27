@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.service.MemberService;
+import com.kh.member.model.service.MemberService;
 
 /**
  * Servlet implementation class AjaxIdCheckController

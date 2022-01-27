@@ -20,7 +20,31 @@ public class Member {
 	public Member () {
 		
 	}
-	
+	//MEMBER_NO, MEMBER_ID, MEMBER_NAME, BIRTH, GENDER, EMAIL, PHONE
+	public Member(int memberNo, String memberId, String memberName, String birth, String gender, String email, String phone) {
+		super();
+		this.memberNo = memberNo;
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.birth = birth;
+	}
+	public Member(String memberId, Date createDate) {
+		super();
+		this.memberId = memberId;
+		this.createDate = createDate;
+	}
+
+	public Member(int memberNo, String memberId, String memberPwd, String memberName) {
+
+		super();
+		this.memberNo = memberNo;
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+	}
 	public Member(String memberId, String email) { // 비밀번호찾기 할 때 사용
 		super();
 		this.memberId = memberId;
@@ -44,13 +68,6 @@ public class Member {
 		this.createDate = createDate;
 		this.memberStatus = memberStatus;
 	}
-
-	public Member(String memberId, Date createDate) {
-		super();
-		this.memberId = memberId;
-		this.createDate = createDate;
-	}
-
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -156,3 +173,5 @@ public class Member {
 	}
 	
 }
+
+	

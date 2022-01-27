@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.member.model.vo.Member" %>
+<%
+	Member searchMem = (Member)request.getAttribute("searchMem");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +49,7 @@
                             임시비밀번호를 받으실 이메일을 입력하세요.
                         </div>
                         <div id="info_input">
+                        	<input type="hidden" name="memberId" value="<%= searchMem.getMemberId()%>">
                             <input type="email" name="email" placeholder="이메일 주소 전체를 입력해 주세요."> <br>
                         </div>
                     </div>

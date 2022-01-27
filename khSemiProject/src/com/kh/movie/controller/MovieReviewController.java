@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
 import com.kh.movie.model.service.MovieService;
+import com.kh.movie.model.vo.Movie;
+import com.kh.movie.model.vo.Picture;
 import com.kh.movie.model.vo.Review;
 
 /**
@@ -33,9 +36,28 @@ public class MovieReviewController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int movieNo = Integer.parseInt(request.getParameter("mno"));
 		
-		ArrayList<Review> rList = new MovieService().selectReviewList(movieNo);
+		int memberNo = 0;
+		Member mem = (Member)request.getSession().getAttribute("loginUser");
+		if(mem != null)
+			memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
+		
+		int sCount = 1;
+		int eCount = 10;
 		
 		
+		
+		Movie mvSummary= new MovieService().selectMovieSummary(movieNo, memberNo);
+		
+		ArrayList<Picture> picList = new MovieService().selectPicture(movieNo);
+		
+//		ArrayList<Review> reviewList = new MovieService().selectReviewList(movieNo, memberNo, sCount, eCount);
+
+//		System.out.println(mvSummary);
+		request.setAttribute("mv", mvSummary);
+		request.setAttribute("picList", picList);
+//		request.setAttribute("reviewList", reviewList);
+		
+		request.getRequestDispatcher("views/user/movie/movieReviewView.jsp").forward(request, response);
 	
 	
 	}

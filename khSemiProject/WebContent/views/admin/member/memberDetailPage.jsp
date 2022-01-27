@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.member.model.vo.Member" %>
+
+<% 
+	Member m = (Member)request.getAttribute("m");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,15 +36,14 @@
             <div class="container">
                 <br>
                 <h2>회원 수정</h2>
-                
-                <form>
+                <form action="<%=contextPath %>/adminUpdate.me" >
                     <table class="table table-hover">
                         <tbody>
                             <tr>
                                 <th>아이디</th>
                             </tr>
                             <tr>
-                                <td>user01</td>
+                                <td><%=m.getMemberId() %></td>
                             </tr>
                             <tr>
                                 <td>
@@ -50,7 +55,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="memberId" id="memberId" value="홍길동">
+                                    <input type="text" name="memberId" id="memberId" value="<%=m.getMemberName()%>">
                                 </td>
                             </tr>
                             <tr>
@@ -58,7 +63,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="email" id="email" value="user01@naver.com">
+                                    <input type="text" name="email" id="email" value="<%=m.getEmail()%>">
                                 </td>
                             </tr>
                             <tr>
@@ -66,13 +71,13 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="phone" id="phone" value="010-1111-2222">
+                                    <input type="text" name="phone" id="phone" value="<%=m.getPhone()%>">
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="btn-area">
-                        <input type="reset" value="취소">
+                        <input type="button" value="취소">
                         <input type="submit" value="수정">
                     </div>
                 </form>             

@@ -17,10 +17,7 @@ import javax.mail.internet.MimeMessage;
 
 public class MailSend {
    
-   
    public void welcomeMailSend(String email, Object temporary, int num) {
-      
-      
       
       Properties prop1 = System.getProperties();
 
@@ -83,10 +80,8 @@ public class MailSend {
             msg.setText("임시 비밀  번호는 : " + temporary + " 입니다.", "UTF-8");
             
          }
-               
 
          Transport.send(msg);
-
       } catch (AddressException ae) {
          System.out.println("AddressException : " + ae.getMessage());
       } catch (MessagingException me) {

@@ -35,7 +35,7 @@ public class MovieCurrentController extends HttpServlet {
 //		get방식 사용
 //		보여질 기본 영화 수 hidden으로 받아오기
 		int sCount = 1;
-		int eCount = 3;//나중에 10
+		int eCount = 10;
 //		int sCount = Integer.parseInt(request.getParameter("startCount"));
 //		int eCount = Integer.parseInt(request.getParameter("endCount"));
 
@@ -53,12 +53,12 @@ public class MovieCurrentController extends HttpServlet {
 		request.setAttribute("currentList", currentList);
 		request.setAttribute("picList", picList);
 		
-		if(currentList.size() == (eCount-sCount+1)) {//성공->어느 페이지로?
+//		if(currentList.size() == (eCount-sCount+1)) {//성공->어느 페이지로?
 			request.getRequestDispatcher("views/user/movie/movieListCurrent.jsp").forward(request, response);
-		}else {//실패
-			request.setAttribute("errorMsg", "영화 메인 페이지 조회에 실패했습니다.");
-			request.getRequestDispatcher("views/user/common/errorPage.jsp").forward(request, response);
-		}
+//		}else {//실패
+//			request.setAttribute("errorMsg", "영화 메인 페이지 조회에 실패했습니다.");
+//			request.getRequestDispatcher("views/user/common/errorPage.jsp").forward(request, response);
+//		}
 		
 	
 	}

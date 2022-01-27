@@ -1,4 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.kh.member.model.vo.Member, com.kh.common.model.vo.PageInfo" %>
+
+<% 
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list"); 
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+
+	int currentPage = (int)pi.getCurrentPage();
+	
+	int startPage = (int)pi.getStartPage();
+	int endPage = (int)pi.getEndPage();
+	int maxPage = (int)pi.getMaxPage();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,20 +30,31 @@
         background: rgb(13, 71, 161);
         color: white;
     }
+    
+    .updateBtn{
+    	background: rgb(13, 71, 161);
+    	color : white;
+    }
+    .deleteBtn{
+    	background: red;
+    	color : white;
+    }
 </style>
+
+
 </head>
 <body>
     <div class="outer">
         <div class="menubar">
-            <%@ include file="../common/menubar.jsp" %>
+            <%@ include file="../common/user/menubar.jsp" %>
         </div>
         <div class="content">
             <div class="container">
                 <br>
                 <h2>회원 관리</h2>
                 <div class="search-area">
-                    <input type="text" name="search">
-                    <input id="searchBtn" type="submit" value="검색">
+                    <input type="text" name="keyword" id="keyword">
+                    <input id="searchBtn" type="button" value="검색">
                 </div>         
                 <table class="table table-hover">
                     <thead>
@@ -45,69 +69,70 @@
                             <th>수정 / 삭제</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>user01</td>
-                            <td>홍길동</td>
-                            <td>1999-01-01</td>
-                            <td>남</td>
-                            <td>user01@naver.com</td>
-                            <td>010-1111-2222</td>
-                            <td>
-                                <button id="updateBtn">수정</button>
-                                <button id="deleteBtn">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>user01</td>
-                            <td>홍길동</td>
-                            <td>1999-01-01</td>
-                            <td>남</td>
-                            <td>user01@naver.com</td>
-                            <td>010-1111-2222</td>
-                            <td>
-                                <button id="updateBtn">수정</button>
-                                <button id="deleteBtn">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>user01</td>
-                            <td>홍길동</td>
-                            <td>1999-01-01</td>
-                            <td>남</td>
-                            <td>user01@naver.com</td>
-                            <td>010-1111-2222</td>
-                            <td>
-                                <button id="updateBtn">수정</button>
-                                <button id="deleteBtn">삭제</button>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <%if(list.isEmpty()) {%>
+					<tr>
+						<td colspan="8">조회된 게시글이 없습니다.</td>
+						</tr>
+					<%} else {
+						for(Member m : list){
+					%>
+					<tr>
+						<td><input type="hidden" name="memberNo" value="<%=m.getMemberNo() %>" >
+							<%=m.getMemberNo() %>
+						</td>
+						<td><%=m.getMemberId()%></td>
+						<td><%=m.getMemberName() %></td>
+						<td><%=m.getBirth() %></td>
+						<td><%=m.getGender() %></td>
+						<td><%=m.getEmail() %></td>
+						<td><%=m.getPhone() %></td>
+						<td>
+							<button class="updateBtn" value="<%=m.getMemberNo()%>">수정</button>
+							<button class="deleteBtn" value="<%=m.getMemberNo()%>">삭제</button>
+                        </td>
+					</tr>
+					<%	}
+					}%>
                 </table>
-                <div class="page-area">
-
-                    <a href="">&lt;</a>
-                    <a href="">1</a>
-                    <a href="">2</a>
-                    <a href="">3</a>
-                    <a href="">4</a>
-                    <a href="">5</a>
-                    <a href="">6</a>
-                    <a href="">7</a>
-                    <a href="">8</a>
-                    <a href="">9</a>
-                    <a href="">10</a>
-                    <a href="">&gt;</a>
-
-
-                </div>
-            </div>
-            
+                <div class="page-area" align="center">
+					
+					<%if (currentPage != 1){ %>
+						<button class="page_btn" onclick="location.href='<%=contextPath%>/memberList.me?currentPage=<%= currentPage - 1 %>'">&lt;</button>
+					<%} %>
+					<% for(int i = startPage; i <= endPage; i++) {%>
+						<%if(i != currentPage) {%>
+							<button class="page_btn" onclick="location.href='<%=contextPath%>/memberList.me?currentPage=<%= i %>'"><%= i %></button>
+                     
+						<%}else{%>
+							<button class="page_btn_disabled" disabled><%= i %></button>
+						<%} %>
+					<%} %>
+					<% if(currentPage != maxPage) { %>
+						<button class="page_btn" onclick="location.href='<%=contextPath%>/memberList.me?currentPage=<%= currentPage + 1 %>'">&gt;</button>
+					<%} %>
+					
+				</div>
+			</div>
         </div>
     </div>
-    
 </body>
+<script type="text/javascript">
+	$(function(){
+		function getContextPath() {
+			var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+			return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+		};
+		
+		$('#searchBtn').on('click', function(){
+			location.href=getContextPath()+"/memberList.me?currentPage=1&keyword="+$('#keyword').val();
+		})
+		
+		$(".updateBtn").on('click', function(){
+			var memberNo = $(this).val();
+			console.log(memberNo);
+			location.href= "<%=contextPath%>/adminDetail.me?memberNo=" + memberNo;
+		})
+		
+	})
+</script>
 </html>
