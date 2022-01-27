@@ -32,8 +32,9 @@ public class MemberListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String keyword = request.getParameter("keyword");
 		
-		int listCount = new MemberService().memberListCount();; //현재 일반게시판의 게시글 총 갯수  - > COUNT(*)
+		int listCount = new MemberService().memberListCount(keyword);; //현재 일반게시판의 게시글 총 갯수  - > COUNT(*)
 		int currentPage = Integer.parseInt(request.getParameter("currentPage")); // 현재페이지(사용자가 요청한 페이지)
 		int pageLimit = 10; // 페이지 하단에 보여질 페이징바의 최대 갯수
 		int boradLimit = 10; //한페이지에 보여질 최대 갯수
@@ -45,14 +46,12 @@ public class MemberListController extends HttpServlet {
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
-		
-		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boradLimit, maxPage, startPage, endPage);
-		
-		String keyword = request.getParameter("keyword");
-		System.out.println(keyword);
 		if(keyword == null || keyword == "") {
 			keyword = "";
 		}
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boradLimit, maxPage, startPage, endPage);
+		
+		
 		
 		ArrayList<Member> list = new MemberService().memberList(keyword, pi);
 		request.setAttribute("pi", pi);

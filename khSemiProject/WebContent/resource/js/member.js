@@ -12,6 +12,8 @@ $(function(){
 		// 이메일 인증번호
 		var emailCertification;
 		
+		var updateEmailCheck = 1;
+		
 		//아이디 포거스 이벤트 
 		$('#memberId').focusout(function(){
 			if(idResult == 0){
@@ -161,6 +163,46 @@ $(function(){
 			}
 		})
 		
+		
+		//이메일 수정시 인증 이벤트
+		$('#emailReCheck').on('click', function(){
+			updateEmailCheck = 0;
+			if($('#email').val() == $('#beforeEmail').val()){
+				alert('같은 이메일 입니다.');
+				emailCertification = 1;
+			}else{
+				emailCertification = 0;
+				if($('#email').val() == null || $('#email').val() == ""){
+					$('.email_text').text('이메일을 입력해 주세요.');
+					$('.email_text').css('color', 'red');
+				}else{
+					// 중복확인 AJAX 및 인증번호 발급 후 이메일 전송
+					$.ajax({
+						url : getContextPath()+"/emailAuth.me",
+						data : { email : $('#email').val()},
+						type : "post",
+						success : function(result){
+							if(result.check == 1){
+								$('.email_text').text('사용 할 수 없는 이메일 입니다.');
+								$('.email_text').css('color', 'red');
+							}else{
+								alert('이메일 인증번호가 해당 이메일로 전송 되었습니다.')
+								$('.email_certification_text').text('인증번호를 입력해주세요.');
+								$('.email_certification_text').css('color', 'rgb(13, 71, 161)');
+								emailCertification = result.authNumber;
+								console.log(emailCertification);
+							}
+						},
+						error : function(){
+							console.log('인증 번호 발송 실패');
+						}
+					})
+				}
+			}
+			
+			
+		})
+		
 		// 이메일에 발송 된 인증 번호 일치 확인 이벤트
 		$('#CheckBtn').on('click', function(){
 			if(emailCertification == $('#email_check').val()){
@@ -172,6 +214,54 @@ $(function(){
 				$('.email_certification_text').text('인증번호가 일치 하지 않습니다.');
 				$('.email_certification_text').css('color', 'red');
 			}
+		})
+		
+		$('#emailChange').on('click', function(){
+			$('.button_hidden').css('display', 'block');
+			$('.remove').empty();
+			emailCertification = 0;
+		})
+		
+		
+		$('.update_btn').on('click', function(){
+			if(updateEmailCheck == 0){
+				// 이메일 인증 확인
+				if(emailResult != 1){
+					alert('이메일 인증 해주세요.');
+					return false;
+				}
+			}
+
+			
+			if($('#mm').val() == 0){
+				alert('월을 선택 해주세요.');
+				return false;
+			}
+			if($('#gender').val() == 0){
+				alert('성별을 선택 해주세요.')
+				return false;
+			}
+			if($('#memberPwd2').val() != null){
+				//비밀번호 포커스 이벤트
+				$('#memberPwd2').focusout(function(){
+					// 영문 대문자와 소문자, 숫자, 특수문자를 하나 이상 포함하여 8~16
+					var memberPwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);
+					
+					if(!(memberPwdCheck.test($('#memberPwd2').val()))){
+						$('#memberPwd2').val('');
+						return false;
+					}
+				})
+				
+				//비밀번호 확인 포거스 이벤트 
+				$('#pwdCheck1').focusout(function(){
+					if(!($('#pwdCheck2').val() == $("#memberPwd2").val())){
+						$('#pwdCheck2').val('');
+						return false;
+					}
+				})
+			}
+				
 		})
 		
 		
@@ -199,4 +289,6 @@ $(function(){
 			}
 			return true;
 		})
+		
+		
 })
