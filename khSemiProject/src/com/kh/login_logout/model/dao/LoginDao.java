@@ -199,4 +199,3 @@ public class LoginDao {
 	
 
 }
->>>>>>> refs/remotes/origin/MoonKristal

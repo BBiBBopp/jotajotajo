@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>회원 쿼리</comment>
+	<entry key="idCheck">
+		SELECT COUNT(*) COUNT FROM MEMBER
+		WHERE MEMBER_ID = ?
+	</entry>
+	<entry key="emailCheck">
+		SELECT COUNT(*) COUNT FROM MEMBER
+		WHERE EMAIL = ?
+	</entry>
+	<entry key="memberSelect">
+	
+	</entry>
+	<entry key="memberList">
+		SELECT * 
+			FROM ( SELECT ROWNUM RNUM, A.*
+				FROM (SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, BIRTH, GENDER, EMAIL, PHONE 
+					FROM MEMBER
+					ORDER BY MEMBER_NAME DESC ) A)
+	WHERE RNUM BETWEEN ? AND ?
+    AND MEMBER_NAME LIKE '%' || ? || '%'
+	</entry>
+	<entry key="memberInsert">
+		INSERT INTO MEMBER(MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NAME, BIRTH, GENDER, EMAIL, PHONE, INTEREST)
+		VALUES(SEQ_MEM_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)
+	</entry>
+	<entry key="memberUpdate">
+	
+	</entry>
+	<entry key="memberDelete">
+	
+	</entry>
+	<entry key="adminDetail">
+		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, EMAIL, PHONE
+		FROM MEMBER
+		WHERE MEMBER_NO = ?
+	</entry>
+	<entry key="memberListCount">
+		SELECT COUNT(*) COUNT 
+		FROM MEMBER
+		WHERE MEMBER_STATUS = 'Y'
+	</entry>
+
+</properties>

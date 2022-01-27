@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.kh.member.model.vo.Member" %>
+<%@ page import="com.kh.member.model.vo.Member, java.util.ArrayList, com.kh.theater.model.vo.Theater" %>
 <% 
 	String contextPath = request.getContextPath();	
 
@@ -8,7 +8,15 @@
 	
 	String alertMsg = (String)session.getAttribute("alertMsg");
 	
+	ArrayList<Theater> theaterList = (ArrayList<Theater>)session.getAttribute("theaterList");
 %>
+<%
+	// 로그아웃 후 뒤로가기 했을 때 로그인이 되어 있지 않게 캐시 삭제
+	response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+	response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
+	response.setHeader("Cache-Control", "no-store"); //HTTP 1.1
+	response.setDateHeader("Expires", 0L); // Do not cache in proxy server
+%> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +63,7 @@
 		<div class="group_nav">
 			<ul class="list_navi">
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">영화</a></li>
-				<li class="nav_item"><a href="<%=contextPath%>/mtList.th?currentPage=1" class="link nav">영화관</a></li>
+				<li class="nav_item"><a href="<%=contextPath%>/tList.th?currentPage=1" class="link nav">영화관</a></li>
 				<li class="nav_item"><a href="<%=contextPath%>/selectMovie.ti" class="link nav">예매</a></li>
 				<li class="nav_item"><a href="../movie/moviListMain.jsp" class="link nav">투표하기</a></li>
 				<li class="nav_item"><a href="../notice/FAQView.jsp" class="link nav">고객센터</a></li>

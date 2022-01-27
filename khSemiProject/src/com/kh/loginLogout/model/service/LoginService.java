@@ -1,19 +1,22 @@
-package com.kh.login_logout.model.service;
+package com.kh.loginLogout.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 
-import com.kh.login_logout.model.dao.LoginDao;
+import com.kh.loginLogout.model.dao.LoginDao;
 import com.kh.member.model.vo.Member;
 
-public class LoginServcie {
+public class LoginService {
 
-	public Member selectMember(String memberId, String memberPwd) {
+	public Member selectMember(String memberId, String changedPwd) {
 		
 		Connection conn = getConnection();
 		
-		Member m = new LoginDao().selectMember(conn, memberId, memberPwd);
+		Member m = new LoginDao().selectMember(conn, memberId, changedPwd);
 		
 		close(conn);
 		
@@ -51,6 +54,24 @@ public class LoginServcie {
 		close(conn);
 		
 		return searchMem;
+	}
+
+	public int updateImsyPwd(String memberId, String changedPwd) { 
+		
+		Connection conn = getConnection();
+		
+		int result = new LoginDao().updateImsyPwd(conn, memberId, changedPwd);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
 	}
 	
 	

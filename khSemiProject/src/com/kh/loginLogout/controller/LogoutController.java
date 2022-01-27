@@ -1,4 +1,4 @@
-package com.kh.login_logout.controller;
+package com.kh.loginLogout.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class LoginFormController
+ * Servlet implementation class LogoutController
  */
-@WebServlet("/loginForm.log")
-public class LoginFormController extends HttpServlet {
+@WebServlet("/logout.log")
+public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginFormController() {
+    public LogoutController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,12 @@ public class LoginFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		request.getSession().invalidate();
 		
-		request.getRequestDispatcher("views/user/loginLogout/loginForm.jsp").forward(request, response);
+		request.getSession().setAttribute("alertMsg", "로그아웃하셨습니다.");
+		
+		response.sendRedirect(request.getContextPath());
 		
 	}
 

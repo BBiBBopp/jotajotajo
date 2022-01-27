@@ -20,6 +20,18 @@ public class Member {
 	public Member () {
 		
 	}
+	//MEMBER_NO, MEMBER_ID, MEMBER_NAME, BIRTH, GENDER, EMAIL, PHONE
+	public Member(int memberNo, String memberId, String memberName, String birth, String gender, String email, String phone) {
+		super();
+		this.memberNo = memberNo;
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.birth = birth;
+	}
+	
 	
 <<<<<<< HEAD
 	public Member(String memberId, Date createDate) { // 아이디찾기 결과 뿌려줄때 사용
@@ -60,6 +72,7 @@ public class Member {
 		this.memberStatus = memberStatus;
 	}
 
+	
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -165,3 +178,5 @@ public class Member {
 	}
 	
 }
+
+	

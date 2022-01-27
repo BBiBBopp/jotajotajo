@@ -1,4 +1,4 @@
-package com.kh.login_logout.controller;
+package com.kh.loginLogout.controller;
 
 import java.io.IOException;
 
@@ -8,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.login_logout.model.service.LoginServcie;
+import com.kh.loginLogout.model.service.LoginService;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class SearchPwdCertifyController
+ * Servlet implementation class SearchPwdController
  */
-@WebServlet("/spwdcerti.sch")
-public class SearchPwdCertifyController extends HttpServlet {
+@WebServlet("/spwd.sch")
+public class SearchPwdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchPwdCertifyController() {
+    public SearchPwdController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,25 +30,25 @@ public class SearchPwdCertifyController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("UTF-8");
 		
 		String memberId = request.getParameter("memberId");
-		String email = request.getParameter("email");
 		
-		Member searchMem = new LoginServcie().pwdCertify(memberId, email);
+		Member searchMem = new LoginService().searchPwd(memberId);
 		
 		if(searchMem != null) {
 			
-			request.getRequestDispatcher("views/user/loginLogout/searchPwd_imsyPwd.jsp").forward(request, response);
-			// 임시비밀번호 발급 페이지로 잘 이동
+			request.setAttribute("searchMem", searchMem);
+			
+			request.getRequestDispatcher("views/user/loginLogout/searchPwd_tryCertify.jsp").forward(request, response);
+			// 성공하면 성공페이지로 잘 감
+			
 		} else {
 			
-			request.getRequestDispatcher("views/user/loginLogout/searchPwd_failCertifyForm.jsp").forward(request, response);
-			// 인증실패 페이지로 잘 이동
-			
+			request.getRequestDispatcher("views/user/loginLogout/searchPwd_notFoundIdForm.jsp").forward(request, response);
+			// 실패하면 실패페이지로 잘 감
 		}
-		
 		
 		
 	}

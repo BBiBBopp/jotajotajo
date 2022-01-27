@@ -34,7 +34,7 @@
                     </p>
                 </div>
                 <div class="btn_div">
-                    <button id="again" onclick="history.back();">다시입력</button>
+                    <button id="again"><a href="<%= contextPath%>/spwdcertiForm.sch">다시입력</a></button>
                     <button id="enrollment"><a href="" id="enrollment_1">회원가입</a></button>
                 </div>
 

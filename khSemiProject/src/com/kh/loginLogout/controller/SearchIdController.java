@@ -1,4 +1,4 @@
-package com.kh.login_logout.controller;
+package com.kh.loginLogout.controller;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.login_logout.model.service.LoginServcie;
+import com.kh.loginLogout.model.service.LoginService;
 import com.kh.member.model.vo.Member;
 
 /**
@@ -45,7 +45,7 @@ public class SearchIdController extends HttpServlet {
 		m.setPhone(phone);
 		m.setEmail(email);
 		
-		Member searchMem = new LoginServcie().searchId(m);
+		Member searchMem = new LoginService().searchId(m);
 		
 		if(searchMem != null) {
 			

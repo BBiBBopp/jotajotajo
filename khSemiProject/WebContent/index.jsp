@@ -6,17 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>시네마헤븐</title>
-
 </head>
 <body>
 	<%@ include file="views/user/common/header.jsp" %>
-	
-	<script>
-		$(function(){
-			console.log("ready!");
-			console.log(<%=loginUser%>);
-		})
-	</script>
+
 	
 	<%@ include file="views/user/common/footer.jsp" %>
 </body>

@@ -1,4 +1,4 @@
-package com.kh.login_logout.controller;
+package com.kh.theater.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.theater.model.service.TheaterService;
+import com.kh.theater.model.vo.TheaterAuditorium;
+
 /**
- * Servlet implementation class SearchIdFormController
+ * Servlet implementation class AMovieTheaterUpdateFormController
  */
-@WebServlet("/sidForm.sch")
-public class SearchIdFormController extends HttpServlet {
+@WebServlet("/atUpdateForm.th")
+public class AMovieTheaterUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchIdFormController() {
+    public AMovieTheaterUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,8 +30,23 @@ public class SearchIdFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("views/user/loginLogout/searchId.jsp").forward(request, response);
 		
+		int theaterNo = Integer.parseInt(request.getParameter("tno"));
+		
+		TheaterAuditorium ta = new TheaterService().aSelectTheater(theaterNo);
+		
+		if(ta != null) {
+			
+			request.setAttribute("ta", ta);
+			
+			request.getRequestDispatcher("views/admin/theater/aMovieTheaterUpdate.jsp").forward(request, response);
+			
+		}
+		
+		
+		
+		
+	
 	}
 
 	/**

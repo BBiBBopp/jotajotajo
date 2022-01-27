@@ -34,7 +34,7 @@
                     </p>
                 </div>
                 <div class="btn_div">
-                    <button id="login_btn"><a href="">로그인</a></button>    
+                    <button id="login_btn"><a href="<%= contextPath %>/loginForm.log">로그인</a></button>    
                 </div>
             </div>
         </div>

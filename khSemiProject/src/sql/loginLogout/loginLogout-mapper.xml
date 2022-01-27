@@ -21,9 +21,26 @@
 		   AND MEMBER_STATUS = 'Y'
 	</entry>
 
+	<entry key="searchPwd">
+		SELECT MEMBER_ID, EMAIL
+		  FROM MEMBER
+		 WHERE MEMBER_ID = ?
+		   AND MEMBER_STATUS = 'Y'
+	</entry>
 
-
-
+	<entry key="pwdCertify">
+		SELECT MEMBER_ID, EMAIL
+		  FROM MEMBER
+		 WHERE MEMBER_ID = ?
+		   AND EMAIL = ?
+		   AND MEMBER_STATUS = 'Y'
+	</entry>
+	
+	<entry key="updateImsyPwd">
+		UPDATE MEMBER
+		   SET MEMBER_PWD = ?
+		 WHERE MEMBER_ID = ?
+	</entry>
 
 
 

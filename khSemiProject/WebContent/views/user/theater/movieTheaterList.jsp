@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.kh.theater.model.vo.Theater, com.kh.common.model.vo.PageInfo" %>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	// 페이징 바 만들 때 필요한 변수 미리 세팅
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,71 +35,61 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <!-- 게시글 출력 -->
+                    <% if(theaterList.isEmpty()) { %>
+                    	<tr>
+                    		<td colspan="3">조회된 게시글이 없습니다.</td>
+                    	</tr>
+                    <% } else { %>
+                    	<!-- 반복 : list에 있는 값을 순차적으로 접근해서 뽑아오기 -->
+                    	<% for(Theater t : theaterList){ %>
                         <tr>
-                            <td>CGV압구정</td>
-                            <td>서울 강남구 신사동 602</td>
-                            <td>1544-1122</td>
+                        	<td hidden><%= t.getTheaterNo() %></td>
+                            <td><%= t.getTheaterName()%></td>
+                            <td><%= t.getAddress()%></td>
+                            <td><%= t.getPhone()%></td>
                         </tr>
-                        <tr>
-                            <td>CGV압구정</td>
-                            <td>서울 강남구 신사동 602</td>
-                            <td>1544-1122</td>
-                        </tr>
-                        <tr>
-                            <td>CGV압구정</td>
-                            <td>서울 강남구 신사동 602</td>
-                            <td>1544-1122</td>
-                        </tr>
-                        <tr>
-                            <td>CGV압구정</td>
-                            <td>서울 강남구 신사동 602</td>
-                            <td>1544-1122</td>
-                        </tr>
-                        <tr>
-                            <td>CGV압구정</td>
-                            <td>서울 강남구 신사동 602</td>
-                            <td>1544-1122</td>
-                        </tr>
-                        <tr>
-                            <td>CGV압구정</td>
-                            <td>서울 강남구 신사동 602</td>
-                            <td>1544-1122</td>
-                        </tr>
-                        <tr>
-                            <td>CGV압구정</td>
-                            <td>서울 강남구 신사동 602</td>
-                            <td>1544-1122</td>
-                        </tr>
-                        <tr>
-                            <td>CGV압구정</td>
-                            <td>서울 강남구 신사동 602</td>
-                            <td>1544-1122</td>
-                        </tr>
-                        <tr>
-                            <td>CGV압구정</td>
-                            <td>서울 강남구 신사동 602</td>
-                            <td>1544-1122</td>
-                        </tr>
-                        <tr>
-                            <td>CGV압구정</td>
-                            <td>서울 강남구 신사동 602</td>
-                            <td>1544-1122</td>
-                        </tr>
+                        <% } %>
+                    <% } %>
                     </tbody>
                 </table>
             </div>
-            <div id="content_3">
-                <div id="paging_btn">
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
-                    <button>6</button>
-                    <button>7</button>
-                    <button>8</button>
-                </div>
-            </div>
+            
+            <br>
+            
+            <script>
+            	$(function(){
+					$(".table>tbody>tr").click(function(){
+						
+						location.href="<%= contextPath%>/tDetail.th?tno=" + $(this).children().eq(0).text();
+					})
+            	})
+            </script>
+            
+            
+            <div id="content_3" >
+                <div id="paging_btn" class="paging-area">
+                    <!-- 페이징 버튼 -->
+			<% if(currentPage != 1) { %>
+            	<button onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= currentPage - 1 %>'">&lt;</button>
+			<% } %>
+	
+
+			<%for(int i = startPage; i <= endPage; i++) { %>
+				<% if( i != currentPage){ %>
+            		<button onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= i %>'"><%= i %></button>
+				<% }else{ %>
+	            	<button disabled><%= i %></button>
+            	<% } %>
+            <% } %>
+            
+            <!-- 페이징바에서 > 를 담당 : 다음페이지 이동 -->
+            <% if(currentPage != maxPage) { %>
+            	<button onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= currentPage + 1 %>'">&gt;</button>
+			<% } %>
+        	</div>
+          </div>
+        </div>
             
         </div>
 	
