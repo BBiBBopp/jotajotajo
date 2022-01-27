@@ -21,7 +21,10 @@ public class Notice {
 	public Notice() {
 		super();
 	}
-
+	public Notice(int noticeNo, String noticeTitle) {
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+	}
 	public Notice(int noticeNo, String noticeCategory, String noticeTitle, String noticeContent, int noticeViews,
 			Date noticeDate, String status, int nextNoticeNo, String nextNoticeTitle, int prevNoticeNo,
 			String prevNoticeTitle) {

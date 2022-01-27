@@ -13,13 +13,13 @@
             <h2>고객센터</h2>
         </div>
         <div class="sub-nav-list">
-           <a href="">FAQ</a> 
+           <a href="<%=request.getContextPath()%>/faq.no">FAQ</a> 
         </div>
         <div class="sub-nav-list qeustion-form">
             <a href="<%=request.getContextPath()%>/enroll-form.qu">1:1문의</a> 
         </div>
         <div class="sub-nav-list">
-           <a href="">공지사항</a> 
+           <a href="<%=request.getContextPath()%>/list.no">공지사항</a> 
         </div>
         <div class="sub-nav-bottom" style="border: none;">
             <span>시네마 헤븐 고객센터</span>

@@ -10,7 +10,7 @@
 		<style>
 			.star{
 				border:none;
-				width:10px;
+				width:10px;	
 				height:10px;
 			}
 			#stars>.on{
@@ -148,6 +148,7 @@
 						
 						
 						function selectReviewList(s, e){
+							console.log('1');
 							$.ajax({
 								url: 'list.re',
 								data: {	

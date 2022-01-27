@@ -440,7 +440,35 @@ public class NoticeDao {
 		
 		return result;
 	}
-
+	
+	/**
+	 * Main Page에 들어가는 한줄 선택 구문
+	 * @param noticeMain
+	 * @return
+	 */
+	public Notice MainNotice(Connection conn, String noticeMain) {
+		Notice mainList = new Notice();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("MainNotice");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				mainList = new Notice(rset.getInt("NOTICE_NO"),
+									  rset.getString("NOTICE_TITLE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return mainList;
+	}
 
 
 }

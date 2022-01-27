@@ -174,4 +174,21 @@ public class NoticeService {
 		return result;
 	}
 
+	/**
+	 * Main Page에 들어가는 한줄 선택 구문
+	 * @param noticeMain
+	 * @return
+	 */
+	public Notice MainNotice(String noticeMain) {
+		
+		Connection conn = getConnection();
+		
+		Notice mainList = new NoticeDao().MainNotice(conn, noticeMain);
+		
+		close(conn);
+		
+		return mainList;
+		
+	}
+
 }

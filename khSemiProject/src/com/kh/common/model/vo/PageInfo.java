@@ -18,7 +18,20 @@ public class PageInfo {
 	//필드 : 페이징할 시작 행~ 끝 행 추가 
 	private int startRow;
 	private int endRow;
-	
+	public PageInfo(int listCount, int currentPage, int pageLimit, int boardLimit, int maxPage, int startPage,
+			int endPage, int startRow, int endRow) {
+		super();
+		this.listCount = listCount;
+		this.currentPage = currentPage;
+		this.pageLimit = pageLimit;
+		this.boardLimit = boardLimit;
+		this.maxPage = maxPage;
+		this.startPage = startPage;
+		this.endPage = endPage;
+		this.startRow = startRow;
+		this.endRow = endRow;
+	}
+
 	//메소드 : 자동으로 PageInfo 만드는 메소드 추가
 	public PageInfo calcPageInfo(int listCount, int currentPage, int pageLimit, int boardLimit){
 		maxPage = (int) Math.ceil((double) listCount / boardLimit);

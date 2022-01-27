@@ -33,18 +33,28 @@
             	<input type="hidden" name="reviewNo" value="<%= re.getReviewNo()%>">
                 <ul>
                     <li>
-                        <input type="radio" name="reportReason" id="r1" value="1"><label for="r1">주제와 연관없는 부적절한
-                            내용</label>
+                        <input type="radio" name="reportReason" id="r1" value="1">
+                        <label for="r1">
+                        	주제와 연관없는 부적절한 내용
+                        </label>
                     </li>
                     <li>
-                        <input type="radio" name="reportReason" id="r2" value="2"><label for="r2">청소년에게 부적합한
-                            내용</label>
+                        <input type="radio" name="reportReason" id="r2" value="2">
+                        <label for="r2">
+                        	청소년에게 부적합한 내용
+                        </label>
                     </li>
                     <li>
-                        <input type="radio" name="reportReason" id="r3" value="3"><label for="r3">명예훼손</label>
+                        <input type="radio" name="reportReason" id="r3" value="3">
+                        <label for="r3">
+                        	명예훼손
+                        </label>
                     </li>
                     <li>
-                        <input type="radio" name="reportReason" id="r4" value="4"><label for="r4">기타</label>
+                        <input type="radio" name="reportReason" id="r4" value="4">
+                        <label for="r4">
+                        	기타
+                        </label>
                     </li>
                 </ul>
                 <hr>

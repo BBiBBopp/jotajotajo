@@ -37,8 +37,8 @@ public class MovieReviewController extends HttpServlet {
 		int movieNo = Integer.parseInt(request.getParameter("mno"));
 		
 		int memberNo = 0;
-		Member mem = (Member)request.getSession().getAttribute("loginUser");
-		if(mem != null)
+		Member mem = null;
+		if((Member)request.getSession().getAttribute("loginUser") != null)
 			memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
 		
 		int sCount = 1;
