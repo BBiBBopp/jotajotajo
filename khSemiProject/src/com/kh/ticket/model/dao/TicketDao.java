@@ -1,5 +1,7 @@
 package com.kh.ticket.model.dao;
 
+import static com.kh.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,11 +13,10 @@ import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.movie.model.vo.Movie;
 import com.kh.theater.model.vo.Theater;
 import com.kh.ticket.model.vo.Ticket;
-
-import static com.kh.common.JDBCTemplate.*;
 
 public class TicketDao {
 	
@@ -35,6 +36,30 @@ public class TicketDao {
 		}
 	}
 
+	public int selectListCount(Connection conn, int memberNo) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+	
 	public ArrayList<Movie> selectMovieName(Connection conn) {
 		ArrayList<Movie> mList = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -146,7 +171,7 @@ public class TicketDao {
 		return list;
 	}
 
-	public ArrayList<Ticket> selectTicketList(Connection conn, int memberNo) {
+	public ArrayList<Ticket> selectTicketList(Connection conn, PageInfo pi, int memberNo) {
 		ArrayList<Ticket> rlist = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -154,26 +179,115 @@ public class TicketDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			// 페이징
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
 			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				Ticket t = new Ticket(rset.getInt("PAY_NO"),
-									  rset.getString("RATE"),
-									  rset.getString("MNAME"),
-									  rset.getString("RESERVE_DATE"),
+									  rset.getString("PAY_DATE"),
+									  rset.getInt("TICKET_NO"),
+									  rset.getString("TICKET_TYPE"),
+									  rset.getInt("SEAT_PK"),
+									  rset.getString("SEAT_NO"),
 									  rset.getString("AUDITORIUM_NAME"),
 									  rset.getString("THEATER_NAME"),
-									  rset.getString("SEAT_NO"),
-									  rset.getString("PAY_DATE"),
-									  )
+									  rset.getString("RESERVE_DATE"),
+									  rset.getString("MNAME"),
+									  rset.getString("RATE"),
+									  rset.getInt("RTIME")
+									  );
+				rlist.add(t);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
-		
 		
 		return rlist;
 	}
+
+	public ArrayList<Ticket> selectCancleList(Connection conn, int memberNo) {
+		ArrayList<Ticket> clist = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCancleList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Ticket t = new Ticket(rset.getString("PAYMENT"),		
+									  rset.getString("THEATER_NAME"),
+									  rset.getString("RUN_SCH"),
+									  rset.getString("MNAME"),
+									  rset.getString("PAY_DATE"));
+				clist.add(t);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return clist;
+	}
+
+	public int countTicket(Connection conn, int payNo) {
+		int tCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("countTicket");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, payNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				tCount = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return tCount;
+	}
+
+	public int cancelTicket(Connection conn, int memberNo, int payNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("cancelTicket");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, payNo);
+			pstmt.setInt(2, memberNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
 
 }

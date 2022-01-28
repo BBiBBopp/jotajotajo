@@ -1,86 +1,74 @@
 package com.kh.ticket.model.vo;
 
 public class Ticket {
-	private int ticketNo; //TICKET_NO	NUMBER
-	private int payNo; //PAY_NO	NUMBER
-	private String ticketType; //TICKET_TYPE	VARCHAR2(20 BYTE)
-	private int seatPk; //SEAT_PK	NUMBER
-	private int runNo; //RUN_NO	NUMBER
-	private String payStatus; //PAY_STATUS	VARCHAR2(10 BYTE)
-	private String payDate; //PAY_DATE	DATE
-	private String payment; //PAYMENT	VARCHAR2(20 BYTE)
-	private int memberNo; //MEMBER_NO	NUMBER
-	private int ticketNum; //TICKET_NUM	NUMBER
-	private int mNo; //MNO	NUMBER --영화 번호
-	private String mName; //MNAME	VARCHAR2(255)
-	private String rTime; //RTIME	NUMBER
-	private String rate; // RATE	VARCHAR2(255)
-	private int auditoriumNo; //AUDITORIUM_NO	NUMBER
-	private String auditoriumName; //AUDITORIUM_NAME	VARCHAR2(20)
-	private String seatAll; // A_SEAT	NUMBER -- 해당 영화관의 총 좌석 수
-	private int theaterNo; //THEATER_NO	NUMBER
-	private int address; //ADDRESS	VARCHAR2(1000)
-	private String theaterName; //THEATER_NAME	VARCHAR2(500)
-	private String runSchedule; //RUN_SCH	DATE
+	private int payNo; // PAYMENT
+	private String payStatus; // PAYMENT
+	private String payDate; //PAYMENT
+	private String payment; //PAYMENT
+	private int memberNo; //PAYMENT
+	
+	private int ticketNo; // TICKET
+	private String ticketType; //TICKET
+	
+	private int seatPk; // SEAT
+	private String seatNo; // SEAT
+	
+	private int auditoriumNo; // AUDITORIUM
+	private String auditoriumName; // AUDITORIUM
+	private int seatNum; // AUDITORIUM
+	
+	private int theaterNo; // THEATER
+	private String theaterName; //THEATER
+	
+	private int runNo; //SCHEDULE
+	private String runSch; //SCHEDULE
+	
+	private int mNo; //MOVIE
+	private String mName; // MOVIE
+	private String genre; // MOVIE
+	private int rTime; // MOVIE
+	private String rate; // MOVIE
+	
+	private String cancleDate; // 예매 취소 가능일
+	private String runDay; // 상영일
+	private String runTime; // 상영 시간
+	private String endTime; // 끝나는 시간 구하기
+	private String Dday; // 디데이
+
 	public Ticket() {
 		super();
 	}
-	public Ticket(int ticketNo, int payNo, String ticketType, int seatPk, int runNo, String payStatus, String payDate,
-			String payment, int memberNo, int ticketNum, int mNo, String mName, String rTime, String rate,
-			int auditoriumNo, String auditoriumName, String seatAll, int theaterNo, int address, String theaterName,
-			String runSchedule) {
+
+	public Ticket(int payNo, String payDate, int ticketNo, String ticketType, int seatPk, String seatNo, String auditoriumName,
+			String theaterName, String runSch, String mName, String rate,int rTime) {
 		super();
-		this.ticketNo = ticketNo;
 		this.payNo = payNo;
+		this.payDate = payDate;
+		this.ticketNo = ticketNo;
 		this.ticketType = ticketType;
 		this.seatPk = seatPk;
-		this.runNo = runNo;
-		this.payStatus = payStatus;
-		this.payDate = payDate;
-		this.payment = payment;
-		this.memberNo = memberNo;
-		this.ticketNum = ticketNum;
-		this.mNo = mNo;
-		this.mName = mName;
-		this.rTime = rTime;
-		this.rate = rate;
-		this.auditoriumNo = auditoriumNo;
+		this.seatNo = seatNo;
 		this.auditoriumName = auditoriumName;
-		this.seatAll = seatAll;
-		this.theaterNo = theaterNo;
-		this.address = address;
 		this.theaterName = theaterName;
-		this.runSchedule = runSchedule;
+		this.runSch = runSch;
+		this.mName = mName;
+		this.rate = rate;
+		this.rTime = rTime;
 	}
-	public int getTicketNo() {
-		return ticketNo;
-	}
-	public void setTicketNo(int ticketNo) {
-		this.ticketNo = ticketNo;
+
+	public Ticket(String payment, String theaterName, String runSch, String mName, String cancleDate) {
+		super();
+		this.payment = payment;
+		this.theaterName = theaterName;
+		this.runSch = runSch;
+		this.mName = mName;
+		this.cancleDate = cancleDate;
 	}
 	public int getPayNo() {
 		return payNo;
 	}
 	public void setPayNo(int payNo) {
 		this.payNo = payNo;
-	}
-	public String getTicketType() {
-		return ticketType;
-	}
-	public void setTicketType(String ticketType) {
-		this.ticketType = ticketType;
-	}
-	public int getSeatPk() {
-		return seatPk;
-	}
-	public void setSeatPk(int seatPk) {
-		this.seatPk = seatPk;
-	}
-	public int getRunNo() {
-		return runNo;
-	}
-	public void setRunNo(int runNo) {
-		this.runNo = runNo;
 	}
 	public String getPayStatus() {
 		return payStatus;
@@ -106,35 +94,29 @@ public class Ticket {
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-	public int getTicketNum() {
-		return ticketNum;
+	public int getTicketNo() {
+		return ticketNo;
 	}
-	public void setTicketNum(int ticketNum) {
-		this.ticketNum = ticketNum;
+	public void setTicketNo(int ticketNo) {
+		this.ticketNo = ticketNo;
 	}
-	public int getmNo() {
-		return mNo;
+	public String getTicketType() {
+		return ticketType;
 	}
-	public void setmNo(int mNo) {
-		this.mNo = mNo;
+	public void setTicketType(String ticketType) {
+		this.ticketType = ticketType;
 	}
-	public String getmName() {
-		return mName;
+	public int getSeatPk() {
+		return seatPk;
 	}
-	public void setmName(String mName) {
-		this.mName = mName;
+	public void setSeatPk(int seatPk) {
+		this.seatPk = seatPk;
 	}
-	public String getrTime() {
-		return rTime;
+	public String getSeatNo() {
+		return seatNo;
 	}
-	public void setrTime(String rTime) {
-		this.rTime = rTime;
-	}
-	public String getRate() {
-		return rate;
-	}
-	public void setRate(String rate) {
-		this.rate = rate;
+	public void setSeatNo(String seatNo) {
+		this.seatNo = seatNo;
 	}
 	public int getAuditoriumNo() {
 		return auditoriumNo;
@@ -148,11 +130,11 @@ public class Ticket {
 	public void setAuditoriumName(String auditoriumName) {
 		this.auditoriumName = auditoriumName;
 	}
-	public String getSeatAll() {
-		return seatAll;
+	public int getSeatNum() {
+		return seatNum;
 	}
-	public void setSeatAll(String seatAll) {
-		this.seatAll = seatAll;
+	public void setSeatNum(int seatNum) {
+		this.seatNum = seatNum;
 	}
 	public int getTheaterNo() {
 		return theaterNo;
@@ -160,32 +142,93 @@ public class Ticket {
 	public void setTheaterNo(int theaterNo) {
 		this.theaterNo = theaterNo;
 	}
-	public int getAddress() {
-		return address;
-	}
-	public void setAddress(int address) {
-		this.address = address;
-	}
 	public String getTheaterName() {
 		return theaterName;
 	}
 	public void setTheaterName(String theaterName) {
 		this.theaterName = theaterName;
 	}
-	public String getRunSchedule() {
-		return runSchedule;
+	public int getRunNo() {
+		return runNo;
 	}
-	public void setRunSchedule(String runSchedule) {
-		this.runSchedule = runSchedule;
+	public void setRunNo(int runNo) {
+		this.runNo = runNo;
 	}
+	public String getRunSch() {
+		return runSch;
+	}
+	public void setRunSch(String runSch) {
+		this.runSch = runSch;
+	}
+	public int getmNo() {
+		return mNo;
+	}
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
+	public String getmName() {
+		return mName;
+	}
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public int getrTime() {
+		return rTime;
+	}
+	public void setrTime(int rTime) {
+		this.rTime = rTime;
+	}
+	public String getRate() {
+		return rate;
+	}
+	public void setRate(String rate) {
+		this.rate = rate;
+	}
+	public String getCancleDate() {
+		return cancleDate;
+	}
+	public void setCancleDate(String cancleDate) {
+		this.cancleDate = cancleDate;
+	}
+	public String getRunDay() {
+		return runDay;
+	}
+	public void setRunDay(String runDate) {
+		this.runDay = runDate;
+	}
+	public String getRunTime() {
+		return runTime;
+	}
+	public void setRunTime(String runTime) {
+		this.runTime = runTime;
+	}
+	public String getDday() {
+		return Dday;
+	}
+	public void setDday(String dday) {
+		Dday = dday;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
 	@Override
 	public String toString() {
-		return "Ticket [ticketNo=" + ticketNo + ", payNo=" + payNo + ", ticketType=" + ticketType + ", seatPk=" + seatPk
-				+ ", runNo=" + runNo + ", payStatus=" + payStatus + ", payDate=" + payDate + ", payment=" + payment
-				+ ", memberNo=" + memberNo + ", ticketNum=" + ticketNum + ", mNo=" + mNo + ", mName=" + mName
-				+ ", rTime=" + rTime + ", rate=" + rate + ", auditoriumNo=" + auditoriumNo + ", auditoriumName="
-				+ auditoriumName + ", seatAll=" + seatAll + ", theaterNo=" + theaterNo + ", address=" + address
-				+ ", theaterName=" + theaterName + ", runSchedule=" + runSchedule + "]";
+		return "Ticket [payNo=" + payNo + ", payStatus=" + payStatus + ", payDate=" + payDate + ", payment=" + payment
+				+ ", memberNo=" + memberNo + ", ticketNo=" + ticketNo + ", ticketType=" + ticketType + ", seatPk="
+				+ seatPk + ", seatNo=" + seatNo + ", auditoriumNo=" + auditoriumNo + ", auditoriumName="
+				+ auditoriumName + ", seatNum=" + seatNum + ", theaterNo=" + theaterNo + ", theaterName=" + theaterName
+				+ ", runNo=" + runNo + ", runSch=" + runSch + ", mNo=" + mNo + ", mName=" + mName + ", genre=" + genre
+				+ ", rTime=" + rTime + ", rate=" + rate + "]";
 	}
-	
 }
