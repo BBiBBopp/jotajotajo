@@ -31,11 +31,19 @@ public class MemberAdminDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int MemberNo = Integer.parseInt(request.getParameter("memberNo"));
+		Member loginUser =(Member)request.getSession().getAttribute("loginUser");
+		String memberId = loginUser.getMemberId();
+		if(memberId.equals("admin") && loginUser != null) {
+			int MemberNo = Integer.parseInt(request.getParameter("memberNo"));
+			
+			Member m = new MemberService().adminDetail(MemberNo);
+			request.setAttribute("m", m);
+			request.getRequestDispatcher("views/admin/member/memberDetailPage.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("index.do").forward(request, response);
+		}
 		
-		Member m = new MemberService().adminDetail(MemberNo);
-		request.setAttribute("m", m);
-		request.getRequestDispatcher("views/admin/member/memberDetailPage.jsp").forward(request, response);
+		
 	}
 
 	/**

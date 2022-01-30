@@ -96,6 +96,9 @@
 			return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
 		};
 		
+		$('#cancle').on('click',function(){
+			history.back();
+		})
 		
 		$('#temporaryEmailBtn').on('click', function(){
 			

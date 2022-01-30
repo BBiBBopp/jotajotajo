@@ -16,7 +16,7 @@
 
 	<div class="header">
 		<div class="logo_bg">
-			<img src="<%=contextPath %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐">
+			<img src="<%=contextPath %>/resource/image/user/member/cinema_logo900.jpg" alt="시네마헤븐">
 		</div>
 	</div>
 	<div class="outer">

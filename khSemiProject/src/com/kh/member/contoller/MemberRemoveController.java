@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberRemoveController
@@ -29,16 +30,24 @@ public class MemberRemoveController extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		Member loginUser =(Member)request.getSession().getAttribute("loginUser");
+		String memberId = loginUser.getMemberId();
+		if(memberId.equals("admin") && loginUser != null) {
+			int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 
-		int result = new MemberService().MemberRemove(memberNo);
-		if (result > 0) {
-			request.setAttribute("msg", "복구 성공");
-			request.getRequestDispatcher("/memberList.me?currentPage=1").forward(request, response);
-		} else {
-			request.setAttribute("msg", "복구 실패 다시 시도");
-			request.getRequestDispatcher("/memberList.me?currentPage=1").forward(request, response);
+			int result = new MemberService().MemberRemove(memberNo);
+			if (result > 0) {
+				request.setAttribute("msg", "복구 성공");
+				request.getRequestDispatcher("/memberList.me?currentPage=1").forward(request, response);
+			} else {
+				request.setAttribute("msg", "복구 실패 다시 시도");
+				request.getRequestDispatcher("/memberList.me?currentPage=1").forward(request, response);
+			}
+		}else {
+			request.getRequestDispatcher("index.do").forward(request, response);
 		}
+		
+		
 	}
 
 	/**

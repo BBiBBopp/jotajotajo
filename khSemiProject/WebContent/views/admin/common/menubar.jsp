@@ -14,7 +14,7 @@
 <body>
 	<div class="menubar">
 		<ul id="manage">
-			<li><a class="home" href="#"><img src="<%=contextPath %>/resource/image/cinema_logo_wthie.png" alt="시네마헤븐"></a></li>
+			<li><a class="home" href="#"><img src="<%=contextPath %>/resource/image/user/member/cinema_logo_wthie.png" alt="시네마헤븐"></a></li>
 			<li><a href="<%=contextPath %>/memberList.me?currentPage=1">회원관리</a></li>
 			<li>
 				<a href="#">영화 목록 관리</a>
@@ -40,14 +40,12 @@
 				</ul>
 			</li> 
 			<li>
-				<a href="#">투표관리</a>
+				<a href="manage.vot1">투표관리</a>
 				<ul>
 					<li><a href="<%=contextPath %>/manage.vot1"> 투표</a></li>
-					<li><a href="<%=contextPath %>/manage.vot2"> 투표결과</a></li>
-					<li><a href="<%=contextPath %>/manage.vot3"> 이전투표목록</a></li>
-
 				</ul>
 			</li>
+			<li><a href="<%=contextPath %>/logout.log">로그아웃</a></li>
 		</ul>
 	</div>
 </body>
