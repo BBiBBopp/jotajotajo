@@ -32,6 +32,14 @@ public class Review {
 		this.reviewLike = reviewLike;
 	}
 
+	
+	public Review(int reviewNo, String reviewContent, int movieNo) {
+		super();
+		this.reviewNo = reviewNo;
+		this.reviewContent = reviewContent;
+		this.movieNo = movieNo;
+	}
+
 	public int getReviewNo() {
 		return reviewNo;
 	}
