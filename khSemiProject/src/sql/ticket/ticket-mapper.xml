@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="selectMovieName">
+	SELECT  DISTINCT
+			MNO, 
+			MNAME, 
+			RATE  
+		FROM 
+			MOVIE
+        JOIN 
+        	SCHEDULE S 
+        	USING
+        		(MNO)
+		WHERE 
+			RUN_SCH > SYSDATE
+</entry>
+<entry key="selectMovie">
+	SELECT 
+			MNO, 
+			MNAME, 
+			GENRE, 
+			RTIME, 
+			RATE, 
+			STATUS, 
+			TO_CHAR(RUN_SCH,'YYYY-MM-DD HH24:MI:SS') AS 상영시간
+		FROM 
+			MOVIE
+        JOIN 
+        	SCHEDULE S 
+        	USING
+        		(MNO)
+		WHERE 
+			RUN_SCH > SYSDATE
+</entry>
+<!-- 특정 도에 위치한 영화관의 갯수 출력 -->
+<entry key="selectTheaterAll">
+	SELECT 
+			LOCATION, 
+			COUNT(LOCATION) AS COUNT
+		FROM 
+			(
+		 	 SELECT 
+		 			SUBSTR(ADDRESS, 1, INSTR(ADDRESS, ' ')) AS LOCATION
+				FROM 
+					THEATER
+			)
+	GROUP BY 
+			LOCATION
+</entry>
+<!-- 선택한 영화를 상영하는 지역 -->
+<entry key="selectLocation">
+	SELECT 
+			LOCATION, 
+			COUNT(LOCATION) AS COUNT
+	FROM 
+		(
+         SELECT 
+         		SUBSTR
+         			  (
+         			   ADDRESS, 
+         			   1, 
+         			   INSTR(ADDRESS, ' ')
+         			  ) 
+         		AS 
+         			LOCATION
+         FROM 
+         	 (
+         	  SELECT 
+         	  		DISTINCT ADDRESS
+              FROM 
+              		V_MOVIE
+              WHERE 
+              		MNAME = ? 
+             )
+      	)
+	GROUP BY 
+			LOCATION
+</entry>
+<entry key="selectTheater">
+	SELECT 
+		DISTINCT 
+			THEATER_NAME
+	FROM 
+			V_MOVIE
+	WHERE 
+			MNAME = ? 
+	AND 
+		ADDRESS 
+				LIKE ?
+</entry>
+<!-- 회원이 예매한 영화 리스트 -->
+<entry key="selectTicketList">
+	SELECT 
+			PAY_NO, 
+			RATE, 
+			MNAME,
+			TO_CHAR(RUN_SCH, 'YYYY-MM-DD HH:MI:SS') "RESERVE_DATE", 
+			AUDITORIUM_NAME, 
+			THEATER_NAME, 
+			SEAT_NO, 
+			PAY_DATE, 
+			TICKET_NO
+	FROM 
+			SEAT
+	JOIN 
+		(
+		 SELECT 
+		 		PAY_NO, 
+		 		RATE, 
+		 		MNAME, 
+		 		RUN_SCH, 
+		 		AUDITORIUM_NAME, 
+		 		THEATER_NAME, 
+		 		SEAT_PK, 
+		 		PAY_DATE, 
+		 		TICKET_NO
+		 FROM 
+		 		PAYMENT
+		 JOIN 
+				TICKET 
+		 USING
+			  (
+			   PAY_NO
+			  )
+		 JOIN 
+				V_MOVIE 
+		 USING
+		 	  (
+		  	   RUN_NO
+		 	   )
+		 WHERE 
+			   	MEMBER_NO = ?
+		) 
+	USING 
+		 (
+		  SEAT_PK
+		 )
+</entry>
+</properties>

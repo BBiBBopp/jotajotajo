@@ -24,9 +24,9 @@
 				</ul>
 			</li>
 			<li>
-				<a href="#">영화관 관리</a>
+				<a href="<%= contextPath%>/atList.th?currentPage=1">영화관 관리</a>
 				<ul>
-					<li><a href="#"> 영화관</a></li>
+					<li><a href="<%= contextPath%>/atList.th?currentPage=1"> 등록된 영화관</a></li>
 					<li><a href="#"> 영화관 등록</a></li>
 					<li><a href="#"> 영화관 수정</a></li>
 				</ul>
@@ -45,6 +45,7 @@
 					<li><a href="<%=contextPath %>/manage.vot1"> 투표</a></li>
 					<li><a href="<%=contextPath %>/manage.vot2"> 투표결과</a></li>
 					<li><a href="<%=contextPath %>/manage.vot3"> 이전투표목록</a></li>
+
 				</ul>
 			</li>
 		</ul>

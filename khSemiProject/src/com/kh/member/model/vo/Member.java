@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Member {
 	
 	private int memberNo; // MEMBER_NO	NUMBER -> 번호
-	private String memberId; //MEMBER_ID VARCHAR2(20 BYTE) -> 아이디(UNIQUE)
+	private String memberId; //NENBER_ID VARCHAR2(20 BYTE) -> 아이디(UNIQUE)
 	private String memberPwd; // MEMBER_PWD	VARCHAR2(1000 BYTE) - > 패스워드
 	private String memberName; // MEMBER_NAME	VARCHAR2(30 BYTE) - > 이름
 	private String birth; // BIRTH	VARCHAR2(20 BYTE) - > 생년월일
@@ -51,8 +51,27 @@ public class Member {
 		this.birth = birth;
 		this.memberStatus = memberStatus;
 	}
-	
-	
+	public Member(String memberId, Date createDate) {
+		super();
+		this.memberId = memberId;
+		this.createDate = createDate;
+	}
+
+	public Member(int memberNo, String memberId, String memberPwd, String memberName) {
+
+		super();
+		this.memberNo = memberNo;
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+	}
+	public Member(String memberId, String email) { // 비밀번호찾기 할 때 사용
+		super();
+		this.memberId = memberId;
+		this.email = email;
+	}
+
+
 	public Member(int memberNo, String memberId, String memberPwd, String memberName, String birth, String gender,
 			String email, String phone, String interest, int point, Date createDate, String memberStatus) {
 		super();
@@ -69,8 +88,6 @@ public class Member {
 		this.createDate = createDate;
 		this.memberStatus = memberStatus;
 	}
-
-	
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -176,3 +193,5 @@ public class Member {
 	}
 	
 }
+
+	

@@ -55,7 +55,9 @@
 <body>
     <div class="outer">
         <div class="menubar">
+
             <%@ include file="../../admin/common/menubar.jsp" %>
+
         </div>
         <div class="content">
             <div class="container">

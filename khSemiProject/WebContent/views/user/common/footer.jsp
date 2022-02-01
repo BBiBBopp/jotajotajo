@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+	
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>footer</title>
+
 </head>
 <div id="footer">
 	<div class="footer_inner">
@@ -16,8 +19,9 @@
 			</ul>
 		</div>
 		<div class="disc_area">
+
 			<div class="foot_logo">
-				<img src="../resource/image/cinema_logo900.jpg" alt="시네마헤븐">
+				<img src="<%=request.getContextPath() %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐">
 			</div>
 			<div class="crop_info">
 				<p>
