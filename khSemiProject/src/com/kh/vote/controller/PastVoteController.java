@@ -67,7 +67,6 @@ public class PastVoteController extends HttpServlet {
 				maxPage, startPage, endPage);
 		
 		ArrayList<VoteList> list = new VoteService().selectList(pi);
-		System.out.println(list);
 		// 5) 응답 뷰 지정 => list, pi를 넘기자
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);

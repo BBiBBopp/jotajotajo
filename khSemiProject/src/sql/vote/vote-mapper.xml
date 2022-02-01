@@ -29,7 +29,7 @@
 		<
 		]]>
 		(SELECT TRUNC(SYSDATE, 'MM') FROM   DUAL)
-        ORDER BY V.VOTE_NO DESC) A) 
+        ORDER BY V.S_DATE DESC) A) 
 		WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	<entry key="selectListCount">
@@ -47,7 +47,7 @@
 			<		 
         ]]>
 		(SELECT TRUNC(SYSDATE, 'MM') FROM   DUAL)
-		ORDER BY V.VOTE_NO DESC) A) 
+		ORDER BY V.S_DATE DESC) A) 
 		
 	</entry>
 	<entry key="voting">
@@ -109,7 +109,7 @@
 	
 	<entry key="pastVoteAll">
 	SELECT VOTE_NO, VOTE_TITLE, S_DATE, E_DATE FROM VOTE
-		ORDER BY VOTE_NO DESC
+		ORDER BY S_DATE DESC
 	</entry>
 	<entry key="voteUpdate">
 	UPDATE VOTE 

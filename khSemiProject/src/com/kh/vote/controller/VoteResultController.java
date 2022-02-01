@@ -36,7 +36,6 @@ public class VoteResultController extends HttpServlet {
 		
 		ArrayList<VoteList> list = new VoteService().selectVoting();
 		request.setAttribute("list", list);
-		System.out.println(list);
 		request.getRequestDispatcher("views/user/vote/voteResult.jsp").forward(request, response);
 	}
 

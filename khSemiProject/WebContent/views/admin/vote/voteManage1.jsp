@@ -81,8 +81,7 @@
 
 	                	}
 	                	int compare2 = day1.compareTo(day2);
-	                    
-	                    if(compare1 > 0 && compare2 > 0){
+	                    if(compare1 > -1 && compare2 > -1 ){
 	                    %>
 	                    <button class="" value="<%=list.get(i).getVoteNo()%>">완료</button>
 	                    <%} else{%>
@@ -108,3 +107,4 @@
 </script>
 </body>
 </html>
+	            
