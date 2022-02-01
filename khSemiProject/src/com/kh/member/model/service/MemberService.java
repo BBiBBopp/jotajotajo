@@ -149,24 +149,5 @@ public class MemberService {
 		return result;
 		
 	}
-	
-	public int deleteMember(int memberNo, String pwdSHA) {
-		Connection conn = getConnection();
-		int result = new MemberDao().deleteMember(conn, memberNo, pwdSHA);
-		if (result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-		
-	}
-	
-	
-	
-	
-	
-	
 
 }
