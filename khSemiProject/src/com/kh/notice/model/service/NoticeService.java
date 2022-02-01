@@ -44,10 +44,10 @@ public class NoticeService {
 		return list;
 	}
 
-	public int countKeywordNotice(String pageType, String keyword) {
+	public int countKeywordNotice(String type, String keyword) {
 		Connection conn = getConnection();
 
-		int count = new NoticeDao().countKeywordNotice(conn, pageType, keyword);
+		int count = new NoticeDao().countKeywordNotice(conn, type, keyword);
 
 		close(conn);
 
@@ -79,10 +79,10 @@ public class NoticeService {
 		return views;
 	}
 
-	public Notice selectNotice(int noticeNo) {
+	public Notice selectNotice(int noticeNo, String tableType) {
 		Connection conn = getConnection();
 
-		Notice n = new NoticeDao().selectNotice(conn, noticeNo);
+		Notice n = new NoticeDao().selectNotice(conn, noticeNo, tableType);
 
 		close(conn);
 
@@ -190,5 +190,4 @@ public class NoticeService {
 		return mainList;
 		
 	}
-
 }

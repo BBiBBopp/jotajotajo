@@ -1,12 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.kh.vote.model.vo.*" %>
-
-<%
-	ArrayList<VoteList> list = (ArrayList<VoteList>)request.getAttribute("list");
-	int vreNo = (int)request.getAttribute("vreNo");
-
-%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,75 +23,159 @@
             <div id="container_4">
                 <div class="service_area3">2월 투표</div>
                 <br><br><br>
+                
                 <main class="main-container">
-                	<%if(list.isEmpty()){ %>
-                		현재 투표 없습니다.
-                	<%}else{ %>
-                	<input type="hidden" name="voteNo" id="voteNo" value="<%=list.get(1).getVoteNo()%>">
-                	<%for(VoteList vl : list) {%>
                     <ul class="thumbnail-list">
                         <li class="thumbnail-item">
-                            <img src="<%=contextPath %><%=vl.getVreFilePath() %>" alt="투표1" class="thumbnail-image" class="btn btn-primary" data-toggle="modal" data-target="#mo<%=vl.getVreNo()%>">
-                            <div class="modal" id="mo<%=vl.getVreNo()%>">
+                            <img src="<%=contextPath %>/resource/image/abbca385468091a7ba232e09.jpg" alt="투표1" class="thumbnail-image"
+                            class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+
+                            <div class="modal" id="myModal">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
+                                  
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-	                                    <h4 class="modal-title"><%=vl.getVreTitle() %></h4>
+                                    	
+	                                    <h4 class="modal-title">영화1</h4>
 	                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
+                                    
                                     <!-- Modal body -->
                                     <div class="modal-body">
-										제목 :<%=vl.getVreTitle() %>	<br>
-										장르 :<%=vl.getVreGenre() %><br>
-										시놉시스 :<%=vl.getVreSynopsis() %>
+										제목 :	<br>
+										장르 :	<br>
+										연도 :
                                     </div>
+                                    
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
                                       	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                     </div>
+                                    
                                   </div>
                                 </div>
                               </div>
-                            <span class="thumbnail-title"><%=vl.getVreTitle() %> <br><br>
-                            <div class="checkbox">
-                            	<%if(vreNo == vl.getVreNo()){ %>
-                            	<input type="radio" name="vreNo" id="vreNo" checked value="<%=vl.getVreNo() %>" class="checkbox">
-                            	<%}else{ %>
-                            	<input type="radio" name="vreNo" id="vreNo" value="<%=vl.getVreNo() %>" class="checkbox">
-                            	<%} %>
-                           </div>
-                           </span>
-                           </li>
+                            <span class="thumbnail-title">영화1 <br><br>
+                            <div class="checkbox"><input type="radio" name="radio1" id="radio1" value="1" class="checkbox1">
+                            </div></span></li>
                     </ul>
-                    	<%} %>
-                    <%} %>
-                    
+                    <ul class="thumbnail-list">
+                        <li class="thumbnail-item">
+                            <img src="<%=contextPath %>/resource/image/abbca385468091a7ba232e09.jpg" alt="투표2" class="thumbnail-image"
+                            class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+
+                            <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                  
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                    	
+	                                    <h4 class="modal-title">영화2</h4>
+	                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+										제목 :	<br>
+										장르 :	<br>
+										연도 :
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                      	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            <span class="thumbnail-title">영화2 <br><br>
+                            <div class="checkbox"><input type="radio" name="radio1" id="radio1" value="1" class="checkbox1">
+                            </div></span></li>
+                        </ul>
+                    </ul>
+                    <ul class="thumbnail-list">
+                        <li class="thumbnail-item">
+                            <img src="<%=contextPath %>/resource/image/abbca385468091a7ba232e09.jpg" alt="투표3" class="thumbnail-image"
+                            class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+
+                            <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                  
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                    	
+	                                    <h4 class="modal-title">영화3</h4>
+	                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+										제목 :	<br>
+										장르 :	<br>
+										연도 :
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                      	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            <span class="thumbnail-title">영화3 <br><br>
+                            <div class="checkbox"><input type="radio" name="radio1" id="radio1" value="1" class="checkbox1">
+                            </div></span></li>
+                        </ul>
+                    </ul>
+                    <ul class="thumbnail-list">
+                        <li class="thumbnail-item">
+                            <img src="<%=contextPath %>/resource/image/abbca385468091a7ba232e09.jpg" alt="투표4" class="thumbnail-image"
+                            class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+
+                            <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                  
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                    	
+	                                    <h4 class="modal-title">영화4</h4>
+	                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+										제목 :	<br>
+										장르 :	<br>
+										연도 :
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                      	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            <span class="thumbnail-title">영화4 <br><br>
+                            <div class="checkbox"><input type="radio" name="radio1" id="radio1" value="1" class="checkbox1">
+                            </div></span></li>
+                        </ul>
+                    </ul>
                 </main>
             </div>
             <br><br><br><br><br>    
 
-            <div align="center"><button id="voting_btn" class="btn btn-sm btn-primary">투표하기</button></div>
+            <div align="center"><button class="btn btn-sm btn-primary">투표하기</button></div>
         </div>
         <br><br><br><br><br><br>    
-		<script type="text/javascript">
-		$(function(){
-			$("#voting_btn").click(function(){
-				if(<%=vreNo%> == 0){
-					if($('input:radio[name=vreNo]').is(':checked')){
-						var voteNo = $('#voteNo').val();
-						location.href= "<%=contextPath%>/voteCount.vot?voteNo="+voteNo;
-					}else{
-						alert('선택 하시고 투표 하세요.');
-					}
-				}else{
-					alert("이미 투표 하셨습니다.");
-				}
-			})
-		})
-			
-		
-		</script>
+	
 	
 	<%@ include file="../common/footer.jsp" %>
 </body>

@@ -109,12 +109,12 @@ public class NoticeDao {
 		return list;
 	}
 
-	public int countKeywordNotice(Connection conn, String pageType, String keyword) {
+	public int countKeywordNotice(Connection conn, String type, String keyword) {
 		int count = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = "";
-		if(pageType.equals("title"))
+		if(type.equals("title"))
 			sql = prop.getProperty("countTitleKeyword");
 		else
 			sql = prop.getProperty("countContentKeyword");
@@ -190,11 +190,15 @@ public class NoticeDao {
 		return result;
 	}
 
-	public Notice selectNotice(Connection conn, int noticeNo) {
+	public Notice selectNotice(Connection conn, int noticeNo, String tableType) {
 		Notice n = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectNotice");
+		String sql = "";
+		if(tableType.equals("notice"))
+			sql = prop.getProperty("selectNotice");
+		else
+			sql = prop.getProperty("selectFAQ");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

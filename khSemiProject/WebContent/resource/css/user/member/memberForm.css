@@ -79,17 +79,5 @@
     .terms{
     	font-size: 9px;
     }
-    .pwssword_input{
-    	width: 450px;
-    }
-    .delete_btn {
-    	width: 400px;
-    	background-color: red;
-    	color : white;
-    }
-    .delete{
-    	width: 100%;
-    	background-color: red;
-    	color : white;
-    }
+    
     

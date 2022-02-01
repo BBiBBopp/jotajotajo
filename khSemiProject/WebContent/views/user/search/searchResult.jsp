@@ -87,7 +87,7 @@
 		                	 <% } %>
 		                				 
 		                	 
-		                <p align="right"></p> 
+		                <p align="right">더보기 ></p> 
 		                <br><br>
 	            	</table>    
                 </div>
@@ -112,7 +112,7 @@
 	                		<% } %>
 	                	 <% } %>
 	                	 
-	                <p align="right"></p>
+	                <p align="right">더보기 ></p>
 	                
 	                </table>
                 </div>
@@ -139,7 +139,7 @@
 	                		<% } %>
 	                	 <% } %>
 	                	 
-	                	<p align="right"></p>
+	                	<p align="right">더보기 ></p>
 	               </table>  
                 </div>
             </div>

@@ -116,7 +116,6 @@
 					<%	}
 					}%>
                 </table>
-                <%if(!list.isEmpty()) {%>
                 <div class="page-area" align="center">
 					
 					<%if (currentPage != 1){ %>
@@ -135,7 +134,6 @@
 					<%} %>
 					
 				</div>
-				<%} %>
 			</div>
         </div>
     </div>

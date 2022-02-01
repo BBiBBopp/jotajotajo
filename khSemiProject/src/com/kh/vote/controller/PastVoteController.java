@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.common.model.vo.PageInfo;
 import com.kh.vote.model.service.VoteService;
-import com.kh.vote.model.vo.VoteList;
+import com.kh.vote.model.vo.Vote;
+import com.kh.vote.common.model.vo.PageInfo;
+import com.kh.vote.model.service.VoteService;
+import com.kh.vote.model.service.VoteService;
 
 /**
  * Servlet implementation class PastVoteController
@@ -32,7 +34,7 @@ public class PastVoteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+/*
 		int listCount; 
 		int currentPage; 
 		int pageLimit; 
@@ -66,10 +68,13 @@ public class PastVoteController extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit,
 				maxPage, startPage, endPage);
 		
-		ArrayList<VoteList> list = new VoteService().selectList(pi);
+		ArrayList<Vote> list = new VoteService().selectList(pi);
+		
 		// 5) 응답 뷰 지정 => list, pi를 넘기자
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
+		
+*/		
 		
 		request.getRequestDispatcher("views/user/vote/pastVote.jsp").forward(request, response);
 	

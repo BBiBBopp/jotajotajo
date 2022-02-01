@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.kh.member.model.vo.Member;
 import com.kh.movie.model.service.MovieService;
 import com.kh.movie.model.vo.Review;
 
@@ -34,15 +33,12 @@ public class AjaxReviewListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int movieNo = Integer.parseInt(request.getParameter("mno"));
-		int memberNo = 0;
-		if(request.getParameter("loginUser")!= null)
-			memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
+		int memberNo = Integer.parseInt(request.getParameter("uno"));
 		int sCount = Integer.parseInt(request.getParameter("sCount"));
 		int eCount = Integer.parseInt(request.getParameter("eCount"));
 		
 		ArrayList<Review> list = new MovieService().selectReviewList(movieNo, memberNo, sCount, eCount);
 		
-		System.out.println(list);
 		response.setContentType("application/json; charset=UTF-8");
 		
 		new Gson().toJson(list, response.getWriter());

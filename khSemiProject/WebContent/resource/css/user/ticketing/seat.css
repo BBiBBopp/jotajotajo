@@ -106,7 +106,6 @@
   font-size: 20px;
   margin-bottom: 5px;
   font-weight: bold;
-  text-align: left;
 }
 
 .select-seat-information-wrapper {
@@ -156,7 +155,6 @@
 
 .selected-seats-wrapper {
   margin-top: 5px;
-  text-align: left;
 }
 
 .selected-seats {
@@ -211,14 +209,14 @@
   margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
-  /*justify-content: center;*/
+  justify-content: center;
 }
 .seat-state {
   height: 30px;
   width: 500px;
-  margin-left: 20px;
   z-index: 2000;
   position: absolute;
+  left: 110px;
 }
 .state {
   float: left;
@@ -261,7 +259,6 @@
 .seat-wrapper {
   width: 900px;
   height: 600px;
-  margin: auto;
 }
 
 .seat {
