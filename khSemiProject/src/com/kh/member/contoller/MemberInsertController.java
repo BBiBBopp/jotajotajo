@@ -85,7 +85,7 @@ public class MemberInsertController extends HttpServlet {
 		
 		if(result > 0 ) {
 			// 메인페이지로 보내기
-			response.sendRedirect(request.getContextPath());
+			response.sendRedirect(request.getContextPath()+"/index.do");
 		}else {
 			System.out.println("실패 ?? 와이 ?? ");
 		}

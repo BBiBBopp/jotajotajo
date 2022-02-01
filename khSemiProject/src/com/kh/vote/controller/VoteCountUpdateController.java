@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
+import com.kh.vote.model.service.VoteService;
+
 /**
- * Servlet implementation class VoteManagerController2_1
+ * Servlet implementation class VoteCountUpdateController
  */
-@WebServlet("/manage.vot1_2_1")
-public class VoteManagerController2_1 extends HttpServlet {
+@WebServlet("/voteCount.vot")
+public class VoteCountUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VoteManagerController2_1() {
+    public VoteCountUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +29,22 @@ public class VoteManagerController2_1 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.getRequestDispatcher("views/admin/vote/voteManage2_1.jsp").forward(request, response);
-	
+		
+		int vreNo = Integer.parseInt(request.getParameter("vreNo"));
+		Member loginUser = ((Member)request.getSession().getAttribute("loginUser"));
+		if(loginUser == null) {
+			request.getSession().setAttribute("alertMsg", "로그인 후 이용해주세요.");
+			request.getRequestDispatcher("index.do").forward(request, response);
+		}else {
+			int memberNo = loginUser.getMemberNo();
+			int result = new VoteService().countUpdate(vreNo, memberNo);
+			
+			if(result > 0) {
+				request.getRequestDispatcher("/vote.re?vreNo="+vreNo).forward(request, response);
+			}
+			
+		}
+		
 	}
 
 	/**

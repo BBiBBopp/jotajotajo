@@ -25,15 +25,23 @@
 	<%@ include file="views/user/common/header.jsp" %>
 
 
-
+  
 		<script language="javascript">
 		
-        window.open("08_2_popup.html", "a", "width=400, height=300, left=100, top=50");
+        window.open("08_2_popup.html", "a", "width=430, height=350, left=100, top=50");
          function moveClose() {
         	 opener.location.href="<%=contextPath %>/list.vot";
         	  self.close(); 
         	}   
         </script>
+
+<!--  
+		<script type="text/javascript">
+			function popUp(){
+				window.open("08_2_popup.html","","width=500, height=400, left=100, top=50");
+			}
+		</script>
+-->	
 
             <div id="container">
                 <div id="container_1">

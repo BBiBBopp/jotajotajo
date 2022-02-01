@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.theater.model.vo.Theater;
 import com.kh.theater.model.vo.TheaterAuditorium;
+import com.kh.vote.model.vo.Vote;
 
 public class TheaterDao {
 	
@@ -326,6 +327,7 @@ public class TheaterDao {
 		
 		return result;
 	}
+
 
 	
 	

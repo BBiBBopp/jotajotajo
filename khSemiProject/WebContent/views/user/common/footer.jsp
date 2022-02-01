@@ -22,7 +22,7 @@
 		<div class="disc_area">
 
 			<div class="foot_logo">
-				<img src="<%=request.getContextPath() %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐">
+				<img src="<%=request.getContextPath() %>/resource/image/user/member/cinema_logo900.jpg" alt="시네마헤븐">
 			</div>
 			<div class="crop_info">
 				<p>

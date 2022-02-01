@@ -67,5 +67,10 @@
 		SET MEMBER_STATUS = 'Y'
 		WHERE MEMBER_NO = ?
 	</entry>
-
+	<entry key="deleteMember">
+		UPDATE MEMBER
+		SET MEMBER_STATUS = 'N'
+		WHERE MEMBER_NO = ?
+		AND MEMBER_PWD = ?
+	</entry>
 </properties>
