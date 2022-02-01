@@ -17,10 +17,10 @@
 			<li><a class="home" href="#"><img src="<%=contextPath %>/resource/image/user/member/cinema_logo_wthie.png" alt="시네마헤븐"></a></li>
 			<li><a href="<%=contextPath %>/memberList.me?currentPage=1">회원관리</a></li>
 			<li>
-				<a href="#">영화 목록 관리</a>
+				<a href="<%= contextPath %>/adminList.mo">영화 목록 관리</a>
 				<ul>
-					<li><a href="#"> 영화 관리</a></li>
-					<li><a href="#"> 리뷰 관리</a></li>
+					<li><a href="<%= contextPath %>/adminList.mo"> 영화 관리</a></li>
+					<li><a href="<%= contextPath %>/reportList.re"> 리뷰 관리</a></li>
 				</ul>
 			</li>
 			<li>
@@ -33,8 +33,8 @@
 			<li>
 				<a href="#">고객센터</a>
 				<ul>
-					<li><a href="#"> FAQ 관리</a></li>
-					<li><a href="#"> 공지사항 관리</a></li>
+					<li><a href="<%= contextPath %>/adminList.no?tableType=faq"> FAQ 관리</a></li>
+					<li><a href="<%= contextPath %>/adminList.no"> 공지사항 관리</a></li>
 					<li><a href="<%= contextPath %>/adminList.qu?currentPage=1"> 1:1 문의 관리</a></li>
 				</ul>
 			</li> 

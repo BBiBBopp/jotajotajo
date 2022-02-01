@@ -112,7 +112,7 @@
 		                        				result += '<div class="movie-one">'
 		                							+'<img src="<%=contextPath %>'+picList[i].filePath+picList[i].changeName+'" alt="'+picList[i].originName+'" class="movie-poster">'
 		                							+'<div class="poster-button"><br>'
-		                							+'<a href="#" class="btn btn-light">예매하기</a><br><br>'
+		                							+'<a href="<%=contextPath %>/selectTh.ti?mName='+recommendList[i].movieName+'" class="btn btn-light">예매하기</a><br><br>'
 		                							+'<a href="<%=contextPath %>/detail.mo?mno='+recommendNo[i]+'" class="btn btn-light">상세정보</a>'
 		                							+'</div><ul><li><span>'+recommendList[i]['movieName']+'</span></li><li>'
 		                							+'<span>예매율</span><em>'+recommendList[i].advanceRate+'</em></li></ul></div>';

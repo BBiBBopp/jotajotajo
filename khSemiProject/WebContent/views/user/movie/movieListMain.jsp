@@ -36,7 +36,7 @@
 								<!-- 바로 전 요소에 마우스 오버하면 나오는 영역 -->
 								<div class="poster-button">
 									<br>
-									<a href="#" class="btn btn-light">예매하기</a><br><br>
+									<a href="<%=contextPath %>/selectTh.ti?mName=<%= currentList.get(i).getMovieName() %>" class="btn btn-light">예매하기</a><br><br>
 									<a href="<%=contextPath %>/detail.mo?mno=<%= currentList.get(i).getMovieNo() %>" class="btn btn-light">상세정보</a>
 								</div>
 								<ul>
@@ -97,7 +97,7 @@
 			                        <img src="<%=contextPath %><%= recommendPicList.get(i).getFilePath()+recommendPicList.get(i).getChangeName() %>" alt="" class="movie-poster">
 			                        <!-- 바로 전 요소에 마우스 오버하면 나오는 영역 -->
 			                        <div class="poster-button"><br>
-			                            <a href="#" class="btn btn-light">예매하기</a><br><br>
+			                            <a href="<%=contextPath %>/selectTh.ti?mName=<%= recommendList.get(i).getMovieName() %>" class="btn btn-light">예매하기</a><br><br>
 			                            <a href="<%=contextPath %>/detail.mo?mno=<%= recommendList.get(i).getMovieNo() %>" class="btn btn-light">상세정보</a>
 			                        </div>
 			                        <ul>
