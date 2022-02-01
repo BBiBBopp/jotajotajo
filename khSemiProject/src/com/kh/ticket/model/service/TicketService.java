@@ -141,10 +141,6 @@ public class TicketService {
 	public int insertTicket() {
 		
 		return 0;
-	}
-
-	
-
-	
+	}	
 
 }
