@@ -17,6 +17,7 @@
 				<!--영화 정보 상단 -->
 				<%@ include file="movieSummary.jsp" %>
 				<% String[] actorList = (String[])request.getAttribute("actorList"); %>
+					<br clear="all">
 					<!-- 영화정보/평점 및 리뷰 버튼 영역 -->
 					<div class="movie-body">
 					

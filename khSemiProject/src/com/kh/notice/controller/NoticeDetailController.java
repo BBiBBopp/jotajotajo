@@ -31,6 +31,7 @@ public class NoticeDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("nno"));
+		String type = "notice";
 		
 		//조회수 올리기
 		int views = new NoticeService().increaseNoticeViews(noticeNo);
@@ -38,7 +39,7 @@ public class NoticeDetailController extends HttpServlet {
 		//조회수가 올라가면 해당 글 들어가기
 		Notice n = null;
 		if(views>0) {
-			n = new NoticeService().selectNotice(noticeNo);
+			n = new NoticeService().selectNotice(noticeNo, type);
 		}
 		
 		request.setAttribute("n", n);

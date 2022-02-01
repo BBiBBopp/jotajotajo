@@ -29,7 +29,6 @@ public class AjaxReviewDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
 		
 		int result = new MovieService().deleteReview(reviewNo);

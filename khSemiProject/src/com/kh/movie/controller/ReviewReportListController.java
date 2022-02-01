@@ -49,9 +49,6 @@ public class ReviewReportListController extends HttpServlet {
 		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("views/admin/movie/reportListView.jsp").forward(request, response);
-	
-	
-	
 	}
 
 	/**

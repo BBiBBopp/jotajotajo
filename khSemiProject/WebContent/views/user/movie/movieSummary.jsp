@@ -16,36 +16,24 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>영화 요약</title>
-		<style>
-			#movie-summary-poster>img{
-				width:200px;
-	height:250px;
-	border:1px solid gray;
-	padding:0;
-	margin:0;
-			}
-			.carousel-item img{
-				width:500px;
-				height:300px;
-			}
+		<link rel="stylesheet" href="resource/css/user/movie/movieList.css">
+		<link rel="stylesheet" href="resource/css/user/movie/movieSummary.css">
 		</style>
 	</head>
 
 	<body>
 		<!-- movie-summary 전체 감싸는 영역-->
-		<div class="movie-summary">
+				<div id="demo" class="carousel slide height600" data-ride="carousel">
 
-			<!-- 영화 스틸컷 슬라이드 영역 -->
-			<div id="demo" class="carousel slide height600" data-ride="carousel">
-
-				<!-- Indicators -->
+				<!-- 슬라이드 좌우 버튼 -->
 				<ul class="carousel-indicators">
 					<li data-target="#demo" data-slide-to="0" class="active"></li>
-					<li data-target="#demo" data-slide-to="1"></li>
-					<li data-target="#demo" data-slide-to="2"></li>
+					<% for(int i = 1; i<picList.size()-1; i++){ %>
+						<li data-target="#demo" data-slide-to="<%= i %>"></li>
+					<% } %>
 				</ul>
 
-				<!-- The slideshow -->
+				<!-- 슬라이드 영역 -->
 				<div class="carousel-inner">
 				<div class="carousel-item active">
 					<img src="<%= contextPath %><%= picList.get(1).getFilePath()+picList.get(1).getChangeName() %>" alt="">
@@ -77,37 +65,37 @@
 				</div>
 				<div id="movie-summary-text">
 					<br>
-					<h3><%=mv.getMovieName() %></h3>
+					<h3>(<%= mv.getRate()%>) <%=mv.getMovieName() %></h3>
 					<ul>
 						<li>
-							<span>관람객 평점</span>
+							<b>평&nbsp;&nbsp;&nbsp;&nbsp;점</b>
 							<span><%= mv.getReviewAvg() %></span>
 						</li>
 						<li>
-							<span>예매율</span>
-							<span>30.5% !!!예매테이블 정리되면 수정하기!!!</span>
+							<b>예매율</b>
+							<span><%= mv.getAdvanceRate() %></span>
 						</li>
 					</ul>
 					<hr>
 					<ul>
 						<li>
-							<span>감독</span>
+							<b>감&nbsp;&nbsp;&nbsp;&nbsp;독</b>
 							<span><%= mv.getDirector() %></span>
 						</li>
 						<li>
-							<span>재개봉일</span>
+							<b>재개봉</b>
 							<span><%= mv.getReleaseDate() %></span>
 						</li>
 						<li>
-							<span>장르</span>
+							<b>장&nbsp;&nbsp;&nbsp;&nbsp;르</b>
 							<span><%= mv.getGenre() %></span>
 						</li>
 					</ul>
 
 					<!-- 버튼 영역 -->
 					<!-- <div class="d-flex justify-content-end"> -->
-					<div>
-						<a class="btn btn-danger" onclick="movieLike();" id="movieLike">
+					<div id="summary-btn">
+						<a onclick="movieLike();" id="movieLike">
 							<span>
 							
 								<% if(mv.getMyLike().equals("Y")){ %>
@@ -118,7 +106,9 @@
 							</span>
 							<b><%= mv.getMovieLike() %></b>
 						</a>
-						<a href="#예매로이동" class="btn btn-danger">예매하기</a>
+						<% if(mv.getStatus().equals("Y")){ %>
+							<a href="#예매로이동" class="btn btn-danger">예매하기</a>
+						<% } %>
 					</div>
 					<script>
 						function movieLike(){
@@ -158,6 +148,7 @@
 				</div>
 			</div>
 		</div>
+		<br clear="all">
 	</body>
 
 	</html>

@@ -34,19 +34,22 @@ public class NoticeSearchController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String pageType = request.getParameter("pageType");
+		String type = request.getParameter("type");
+		
 		String keyword = request.getParameter("keyword");
 
-		int listCount = new NoticeService().countKeywordNotice(pageType, "%" + keyword + "%");
+		int listCount = new NoticeService().countKeywordNotice(type, "%" + keyword + "%");
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 
 		int pageLimit = 10;
 		int boardLimit = 10;
 
 		PageInfo pi = new PageInfo().calcPageInfo(listCount, currentPage, pageLimit, boardLimit);
-		ArrayList<Notice> list = new NoticeService().searchNoticeList(pageType, "%" + keyword + "%", pi.getStartRow(), pi.getEndRow());
+		ArrayList<Notice> list = new NoticeService().searchNoticeList(type, "%" + keyword + "%", pi.getStartRow(), pi.getEndRow());
 
-		request.setAttribute("pageType", pageType);
+		request.setAttribute("type", type);
+		request.setAttribute("pageType", "search");
+		request.setAttribute("tableType", "notice");
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);

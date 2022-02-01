@@ -31,7 +31,9 @@ public class NoticeInsertFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String tableType = request.getParameter("tableType");
+		String tableType = "notice";
+		if(request.getParameter("tableType") != null)
+			tableType = request.getParameter("tableType");
 		
 		ArrayList<Category> category = new NoticeService().selectCategory(tableType);
 		
