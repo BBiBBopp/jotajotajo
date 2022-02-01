@@ -17,6 +17,7 @@
 
 <title>시네마헤븐</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/user/main/main.css"/>
+<link rel="stylesheet" href="resource/css/user/movie/movieList.css">
 <script src="../resources/js/jquery-3.3.1.js"></script>
 
 
@@ -70,68 +71,33 @@
                     
                     
                     <div class="movie-list">
-                
-		                <% for(int i = 0; i < currentList.size(); i++){ %>
-		                    <div class="movie-one">
-		                        <img src="<%=contextPath %><%= picList.get(i).getFilePath()+picList.get(i).getChangeName() %>" alt="" class="movie-poster">
-		                        <!-- 바로 전 요소에 마우스 오버하면 나오는 영역 -->
-		                        <div class="poster-button">
-		                            <a href="#" class="btn">예매하기</a><br><br>
-		                            <a href="<%=contextPath %>/detail.mo?mno=<%= currentList.get(i).getMovieNo() %>" class="btn">상세정보</a>
-		                        </div>
-		                        <ul>
-		                            <li>
-		                                <span><%= currentList.get(i).getMovieName() %></span>
-		                            </li>
-		                            <li>
-		                                <span>예매율</span>
-		                                <em>30%</em>
-		                            </li>
-		                        </ul>
-		                    </div>
-		                <% } %>   
+                <% if(currentList == null){ %>
+                    	영화가 존재하지 않습니다.
+                <% }else{ %>
+	                <% for(int i = 0; i < currentList.size();i++){ %>
+	                    <div class="movie-one">
+	                        <img src="<%=contextPath %><%= picList.get(i).getFilePath()+picList.get(i).getChangeName() %>" alt="" class="movie-poster">
+	                        <!-- 바로 전 요소에 마우스 오버하면 나오는 영역 -->
+	                        <div class="poster-button">
+								<br>
+	                            <a href="#" class="btn btn-light">예매하기</a><br><br>
+	                            <a href="<%=contextPath %>/detail.mo?mno=<%= currentList.get(i).getMovieNo() %>" class="btn btn-light">상세정보</a>
+	                        </div>
+	                        <ul>
+	                            <li>
+	                                <span><%= currentList.get(i).getMovieName() %></span>
+	                            </li>
+	                            <li>
+	                                <span>예매율</span>
+	                                <em><%= currentList.get(i).getAdvanceRate() %></em>
+	                            </li>
+	                        </ul>
+	                    </div>
+	                <% } %> 
+	               <%} %>   
                    </div> 
                     
                     
-                    <!--  
-	                    <main class="main-container">
-	                        <ul class="thumbnail-list">
-	                            <li class="thumbnail-item">
-	                            	<div class="box">
-	                              
-	                                	<img src="resource/image/movie_upfiles/1.jpg" alt="영화1" class="thumbnail-image">
-	                                
-	                                 	
-									</div>
-	                                
-	                                
-	                                	<span class="thumbnail-title">영화 <br> 예매율</span></li>
-	                               
-	                                
-	                        </ul>
-	                        <ul class="thumbnail-list">
-	                            <li class="thumbnail-item">
-	                                <img src="resource/image/movie_upfiles/2.jpg" alt="영화2" class="thumbnail-image">
-	                                <span class="thumbnail-title">영화 <br> 예매율</span></li>
-	                        </ul>
-	                        <ul class="thumbnail-list">
-	                            <li class="thumbnail-item">
-	                                <img src="resource/image/abbca385468091a7ba232e09.jpg" alt="영화3" class="thumbnail-image">
-	                                <span class="thumbnail-title">영화 <br> 예매율</span></li>
-	                        </ul>
-	                        <ul class="thumbnail-list">
-	                            <li class="thumbnail-item">
-	                                <img src="resource/image/abbca385468091a7ba232e09.jpg" alt="영화4" class="thumbnail-image">
-	                                <span class="thumbnail-title">영화 <br> 예매율</span></li>
-	                        </ul>
-	                        <ul class="thumbnail-list">
-	                            <li class="thumbnail-item">
-	                                <img src="resource/image/abbca385468091a7ba232e09.jpg" alt="영화5" class="thumbnail-image">
-	                                <span class="thumbnail-title">영화 <br> 예매율</span></li>
-	                        </ul>
-	                
-	                  </main>
-	                  -->
                 
                 <br><br><br><br>
                 
@@ -144,12 +110,12 @@
 						                <%=mainList.getNoticeTitle() %>
 					                
 				                <% } %></a>
-                    	<input type="button" class="btn btn-sm btn-primary" value="더보기" style="float:right;">
+                    	<input type="button" onclick="location.href='<%=contextPath%>/list.no'" class="btn btn-sm btn-primary" value="더보기" style="float:right;">
                     </p>
                     <hr size="1" noshade>
-                    <p>고객센터 &nbsp;&nbsp;&nbsp;&nbsp;<button onclick="location.href='../notice/FAQView.jsp'" class="btn btn-sm btn-primary">FAQ</button>
+                    <p>고객센터 &nbsp;&nbsp;&nbsp;&nbsp;<button onclick="location.href='<%=contextPath%>/faq.no'" class="btn btn-sm btn-primary">FAQ</button>
                           	 &nbsp;&nbsp;&nbsp;&nbsp;<button onclick="location.href='<%=contextPath%>/enroll-form.qu'" class="btn btn-sm btn-primary">1:1문의</button>
-                          	 <span style="float:right;">1544-0000</span></p>
+                          	 <span style="float:right;">1544-0000</span></p> 
                     <hr size="1" noshade>
 
                 </div>
