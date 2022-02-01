@@ -22,7 +22,7 @@
            <a href="<%=request.getContextPath()%>/list.qu">문의내역 확인</a> 
         </div>
         <div class="sub-nav-list ticket-list">
-           <a href="<%=request.getContextPath()%>/list.ti">예매 내역 확인</a> 
+           <a href="<%=request.getContextPath()%>/list.ti?currentPage=1">예매 내역 확인</a> 
         </div>
         <div class="sub-nav-bottom" style="border: none;">
             <span>시네마 헤븐 고객센터</span>

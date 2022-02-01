@@ -15,6 +15,7 @@ import com.kh.common.model.vo.PageInfo;
 import com.kh.theater.model.vo.Auditorium;
 import com.kh.theater.model.vo.Theater;
 import com.kh.theater.model.vo.TheaterAuditorium;
+import com.kh.vote.model.vo.Vote;
 
 public class TheaterDao {
 	
@@ -381,122 +382,5 @@ public class TheaterDao {
 		return result;
 	}
 
-	public ArrayList<Auditorium> aSelectAuditorium(Connection conn, PageInfo pi) {
-
-		ArrayList<Auditorium> list =  new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("aSelectAuditorium");
-		
-		try {
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() + 1;
-			int endRow = startRow + pi.getBoardLimit() - 1;
-			
-			pstmt.setInt(1, 1);
-			pstmt.setInt(2, 1);
-			
-			rset = pstmt.executeQuery();
-			
-			
-			while(rset.next()) {
-				list.add(new Auditorium(rset.getInt("AUDITORIUM_NO"),
-								   rset.getString("AUDITORIUM_NAME"),
-								   rset.getString("SEAT_NUM"),
-								   rset.getInt("THEATER_NO")));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
-	}
-
-	public int deleteAuditorium(Connection conn, int theaterNo) {
-
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("deleteAuditorium");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, theaterNo);
-			
-			result = pstmt.executeUpdate();
-			
-			System.out.println("dao : " + result);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-
-	public ArrayList<Auditorium> selectAuditorium(Connection conn, int theaterNo) {
-
-		ArrayList<Auditorium> auList = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectAuditorium");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, theaterNo);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				
-				auList.add(new Auditorium(rset.getInt("AUDITORIUM_NO"),
-										  rset.getString("AUDITORIUM_NAME"),
-										  rset.getString("SEAT_NUM"),
-										  rset.getInt("THEATER_NO")));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return auList;
-	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

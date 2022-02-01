@@ -37,7 +37,6 @@ public class MovieReviewController extends HttpServlet {
 		int movieNo = Integer.parseInt(request.getParameter("mno"));
 		
 		int memberNo = 0;
-		Member mem = null;
 		if((Member)request.getSession().getAttribute("loginUser") != null)
 			memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
 		
@@ -52,7 +51,7 @@ public class MovieReviewController extends HttpServlet {
 		
 //		ArrayList<Review> reviewList = new MovieService().selectReviewList(movieNo, memberNo, sCount, eCount);
 
-//		System.out.println(mvSummary);
+//		System.out.println(reviewList);
 		request.setAttribute("mv", mvSummary);
 		request.setAttribute("picList", picList);
 //		request.setAttribute("reviewList", reviewList);

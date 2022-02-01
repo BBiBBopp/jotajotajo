@@ -1,23 +1,26 @@
-package com.kh.vote.controller;
+package com.kh.ticket.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.ticket.model.service.TicketService;
+
 /**
- * Servlet implementation class VoteManagerController2_1
+ * Servlet implementation class AjaxCountTicketController
  */
-@WebServlet("/manage.vot1_2_1")
-public class VoteManagerController2_1 extends HttpServlet {
+@WebServlet("/countTicket.ti")
+public class AjaxCountTicketController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VoteManagerController2_1() {
+    public AjaxCountTicketController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +29,14 @@ public class VoteManagerController2_1 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.getRequestDispatcher("views/admin/vote/voteManage2_1.jsp").forward(request, response);
-	
+		request.setCharacterEncoding("UTF-8");
+		
+		int payNo = Integer.parseInt(request.getParameter("payNo"));
+		
+		int tCount = new TicketService().countTicket(payNo);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().print(tCount);
 	}
 
 	/**

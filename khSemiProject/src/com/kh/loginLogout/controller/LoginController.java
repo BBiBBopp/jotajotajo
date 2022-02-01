@@ -60,8 +60,10 @@ public class LoginController extends HttpServlet {
 		Member loginUser = new LoginService().selectMember(memberId, changedPwd);
 		
 		if(loginUser != null && loginUser.getMemberId().equals("admin")) {
-			
-			response.sendRedirect("");
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", loginUser);
+			request.getRequestDispatcher("memberList.me?currentPage=1").forward(request, response);
+			// 관리자 아이디로 로그인 시 관리자페이지 첫메뉴바인 회원관리페이지로 보내기
 			
 		}else if(loginUser != null){
 			

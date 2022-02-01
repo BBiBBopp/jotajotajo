@@ -26,7 +26,7 @@
 </head>
 <body>
 	<div id="admin-menu">
-		<%@ include file="../common/header.jsp" %>
+		<%@ include file="../common/menubar.jsp" %>
 	</div>
 	<div id="container">
 		<br>

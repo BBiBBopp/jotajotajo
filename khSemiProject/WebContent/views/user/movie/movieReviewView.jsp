@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-
 	<!DOCTYPE html>
 	<html>
 
@@ -90,10 +88,17 @@
 						var moreStart;
 						var moreEnd;
 						
+						var memNo = 0;
+						<% if(loginUser != null){ %>
+							memNo = <%= loginUser.getMemberNo() %>;
+						<% } %>
+						
 						function selectReview(list){
 							console.log('외안나와');
 							var result = '';
 							$('#reviewCount').text('총 '+list.length+'건');
+							console.log('123123');
+							console.log(list.length);
 							
 							if(list.length == 0){
 								result='<li>리뷰가 존재하지 않습니다. 첫번째 리뷰의 주인공이 되어주세요!</li>';
@@ -102,20 +107,23 @@
 									var reviewEmoji;
 									var content;
 									var myLike;
-									
+									console.log(list[i]);
 									if(list[i].reviewGrade>4){
 										emoji= 'far fa-smile';
 									}else{
 										emoji= 'far fa-frown';
 									}
-
-									if(list[i].reviewWriter != '<%=loginUser.getMemberId()%>'){
-										mapping = 'reportForm();';
-										content = '신고';
-									}else{
-										mapping = 'deleteReview();';
-										content = '삭제';
-									}
+									
+									
+									var mapping = 'reportForm();';
+									var content = '신고';
+									
+									<% if(loginUser != null){ %>
+										if(list[i].reviewWriter == '<%=loginUser.getMemberId()%>'){
+											mapping = 'deleteReview();';
+											content = '삭제';
+										}
+									<% } %>
 
 									if(list[i].myLike == 'Y'){
 										myLike = 'fas fa-thumbs-up';
@@ -144,20 +152,22 @@
 								}
 								//if()펼쳐보기가 끝나면 버튼 사라지게 하기
 							}
+							return result;
 						}
 						
+
 						
 						function selectReviewList(s, e){
-							console.log('1');
 							$.ajax({
 								url: 'list.re',
 								data: {	
 									'mno': <%= mv.getMovieNo() %>,
-									'uno': <%= loginUser.getMemberNo() %>,
+									'uno': memNo,
 									'sCount': s,
 									'eCount': e
 									},
 								success: function(list){//리스트 뿌리기
+									console.log(list);
 									$('#reviewListView').html(selectReview(list));
 								},
 								error: function(){
@@ -172,7 +182,7 @@
 								url: 'list.re',
 								data: {	
 									'mno': <%= mv.getMovieNo() %>,
-									'uno': <%= loginUser.getMemberNo() %>,
+									'uno': memNo,
 									'sCount': s,
 									'eCount': e
 									},
@@ -195,7 +205,7 @@
 								url: 'list.re',
 								data: {	
 									'mno': <%= mv.getMovieNo() %>,
-									'uno': <%= loginUser.getMemberNo() %>,
+									'uno': memNo,
 									'sCount': moreStart,
 									'eCount': moreEnd
 									},
@@ -214,32 +224,35 @@
 							
 						//리뷰 등록 AJAX
 						function insertReview(){
-							$.ajax({
-								url: 'insert.re',
-								data: {
-									mno: <%= mv.getMovieNo() %>,
-									reviewContent: $('#reviewContent').val(),
-									starCount: $('#starCount').val()
-								},
-								type: 'post',
-								success: function(){
-									alert('리뷰 등록 성공!');
-									selectReviewList(sCount, eCount);
-								},
-								error: function(){
-									alert('리뷰 등록 실패! 오류가 계속된다면 문의 바랍니다.');
-								}
-							})
+							<% if(loginUser != null){ %>
+								$.ajax({
+									url: 'insert.re',
+									data: {
+										mno: <%= mv.getMovieNo() %>,
+										reviewContent: $('#reviewContent').val(),
+										starCount: $('#starCount').val()
+									},
+									type: 'post',
+									success: function(){
+										alert('리뷰 등록 성공!');
+										selectReviewList(sCount, eCount);
+									},
+									error: function(){
+										alert('리뷰 등록 실패! 오류가 계속된다면 문의 바랍니다.');
+									}
+								})
+							<% } %>
 						}
 						
 						//리뷰 좋아요
 						function reviewLike(){
 							
 							var $reviewLike = $(window.event.target).parent();
-							
-							if(<%= loginUser == null %>){
+							console.log(<%= loginUser %>);
+							<% if(loginUser == null){ %>
 								alert('로그인이 필요한 기능입니다.');
-							}else{
+							<%}else{%>
+								console.log('일로와?');
 								var reviewNo = $reviewLike.siblings('input').val();
 								console.log(reviewNo);
 								//현재 선택한 리뷰의 좋아요 여부
@@ -254,7 +267,6 @@
 								console.log($reviewLike.children('i').hasClass('fas'));
 								console.log(reIsLike);
 								console.log(reviewNo+reIsLike);
-								console.log("<%= loginUser %>");
 								
 								$.ajax({
 									url: 'like.re',
@@ -285,8 +297,9 @@
 										alert('서버 통신 실패! 지속된다면 고객센터에 문의해주세요.');
 									}
 								})
+								<% } %>
 							}
-						}
+						
 						
 						//리뷰 삭제
 						function deleteReview(){
@@ -330,17 +343,19 @@
 						
 						//DOM이 로드되면 실행할 함수들
 						$(function(){
+							selectReviewList(1, 10);
+							
 							//미로그인 사용자는 비활성화
-							if(<%= loginUser == null %>){
+							<% if(loginUser == null){ %>
 								console.dir($('#reviewInsert'));
 								$('#review').attr('placeholder','로그인된 사용자만 작성할 수 있습니다.').css('background', 'rgb(233,233,233)');
 								$('#movie-myReview>form').submit(function(e){
 									e.preventDefault();
 								});
 								//지은씨 modal 가져와서 활성화하기
-							};
+							<% } %>
 							//리스트 조회하는 함수
-							selectReviewList(sCount, eCount);
+							
 								
 							//별에 불 들어오기
 							$('.star').on('mouseenter', function(){

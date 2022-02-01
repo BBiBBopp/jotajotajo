@@ -16,21 +16,23 @@
 		tier = "일반";
 		tierCss = "green";
 		nextPoint = basic - point;
-		progress = point / basic * 100;
+		progress = (double)point / (double)basic * (double)100;
 	}else if(point < silver){
 		tier = "실버";
 		tierCss = "silver";
 		nextPoint = silver - point;
-		progress = 15000.0 / 20000.0 * 100.0;
+		progress = (double)point / (double)silver * (double)100;
 		System.out.print(progress);
 	}else if(point < gold){
 		tier = "골드";
 		tierCss = "gold";
 		nextPoint = gold - point;
+		progress = (double)point / (double)gold * (double)100;
 	}else if(point < vip){
 		tier = "vip";
 		tierCss = "rgb(13, 71, 161)";
 		nextPoint = vip - point;
+		progress = (double)point / (double)vip * (double)100;
 	}else{
 		tier = "vvip";
 		tierCss = "black";
@@ -160,7 +162,7 @@
 							<p class = "person"><%=m.getMemberName() %>님 안녕하세요<br>고객님의 회원등급은 <span style="color : <%=tierCss%>;"><%=tier %></span>입니다.</p>
 							<br>
 							<div class="progress">
-								<div class="progress-bar" style="width:70%"><%=progress %></div>
+								<div class="progress-bar" style="width:<%=(int)progress%>%"><%=(int)progress %></div>
 							</div>
 						</td>
                     </tr>
@@ -169,14 +171,14 @@
 					<table>
 						<tr>
 							<th class = "point">포인트 점수</th>
-							<td class = "point_num"><%=m.getPoint() %>p</td>
+							<td class = "point_num"><%=point %>P</td>
 						</tr>
 						<tr>
 							<th class = "next_point">다음 등급 남은 점수</th>
 							<%if(tier.equals("vvip")){ %>
 								<td class = "next_point_num">최고등급</td>
 							<%}else{ %>
-								<td class = "next_point_num"><%=nextPoint %>p</td>
+								<td class = "next_point_num"><%=nextPoint %>P</td>
 							<%} %>
 						</tr>
 					</table>
@@ -200,18 +202,86 @@
 								</td>
 							</tr>
 							<tr>
-								<td>40000p 이상 </td>							
+								<td><br>40000P ~<br> </td>							
 							</tr>
 							<tr>
-								<td>10% 할인</td>
+								<td><br>10% 할인</td>
 							</tr>
 						</table>
 					</div>
 				</li>
-				<li><div class="membershipTier"></div></li>
-				<li><div class="membershipTier"></div></li>
-				<li><div class="membershipTier"></div></li>
-				<li><div class="membershipTier"></div></li>
+				<li>
+					<div class="membershipTier">
+						<br>
+						<table align="center">
+							<tr>
+								<td>
+									<img src="">VIP
+								</td>
+							</tr>
+							<tr>
+								<td><br>20000P ~<br>30000P </td>							
+							</tr>
+							<tr>
+								<td><br>6% 할인</td>
+							</tr>
+						</table>
+					</div>
+				</li>
+				<li>
+					<div class="membershipTier">
+						<br>
+						<table align="center">
+							<tr>
+								<td>
+									<img src="">GOLD
+								</td>
+							</tr>
+							<tr>
+								<td><br>20000P ~<br>30000P </td>							
+							</tr>
+							<tr>
+								<td><br>4% 할인</td>
+							</tr>
+						</table>
+					</div>
+				</li>
+				<li>
+					<div class="membershipTier">
+						<br>
+						<table align="center">
+							<tr>
+								<td>
+									<img src="">SILVER
+								</td>
+							</tr>
+							<tr>
+								<td><br>10000P ~<br>20000P </td>							
+							</tr>
+							<tr>
+								<td><br>2% 할인</td>
+							</tr>
+						</table>
+					</div>
+				</li>
+				<li>
+					<div class="membershipTier">
+						<br>
+						<table align="center">
+							<tr>
+								<td>
+									<img src="">일반
+								</td>
+							</tr>
+							<tr>
+								<td><br>0P ~<br>10000P </td>							
+							</tr>
+							<tr>
+								<td><br>할인 없음</td>
+							</tr>
+						</table>
+					</div>
+				</li>
 			</ul>
       	</div>
    </div>

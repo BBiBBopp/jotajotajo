@@ -9,6 +9,7 @@
 					SELECT MNO, MNAME, GENRE, RATE
 					FROM MOVIE 
 					WHERE STATUS = 'Y'
+					ORDER BY MNO
 					) A)
 		WHERE RNUM BETWEEN ? AND ?
 		

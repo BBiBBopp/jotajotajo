@@ -38,8 +38,6 @@ public class AjaxSelectTheaterController extends HttpServlet {
 		String mName = request.getParameter("mName");
 		// service에서 DB에 있는 데이터 받아오기
 		ArrayList<Theater> list = new TicketService().selectLocation(mName);
-		
-		// System.out.println(list);
 				
 		// Gson으로 응답
 		response.setContentType("application/json; charset=UTF-8");

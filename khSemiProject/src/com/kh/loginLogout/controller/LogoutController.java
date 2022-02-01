@@ -34,15 +34,6 @@ public class LogoutController extends HttpServlet {
 		request.getSession().setAttribute("alertMsg", "로그아웃하셨습니다.");
 		
 		response.sendRedirect(request.getContextPath()+"/index.do");
-		
-//		response.setContentType("text/html; charset=UTF-8");
-//		PrintWriter out = response.getWriter();
-//		out.print("<body onload='move();' onunload='history.back()'>");
-//		out.print("<script>");
-//		out.print("function move(){location.replace('http://localhost:8222/cinemaHeaven/loginForm.log');}");
-//		out.print("window.onload = function(){location.replace('http://localhost:8222/cinemaHeaven/loginForm.log');}");
-//		out.print("</script>");
-//		out.close();
 
 		
 	}
