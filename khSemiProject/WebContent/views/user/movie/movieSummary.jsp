@@ -107,7 +107,7 @@
 							<b><%= mv.getMovieLike() %></b>
 						</a>
 						<% if(mv.getStatus().equals("Y")){ %>
-							<a href="<%=contextPath %>/selectTh.ti?mName=<%= mv.getMovieName() %>" class="btn btn-danger">예매하기</a>
+							<a href="<%=contextPath %>/MoView.ti?mName=<%= mv.getMovieName() %>" class="btn btn-danger">예매하기</a>
 						<% } %>
 					</div>
 					<script>
