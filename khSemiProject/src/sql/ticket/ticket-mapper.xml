@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+<entry key="selectListCountAll">
+	SELECT 
+			COUNT(TICKET_NO) COUNT
+	FROM 
+			TICKET
+</entry>
 <entry key="selectListCount">
 	SELECT 
 			COUNT(TICKET_NO) COUNT
@@ -28,9 +34,10 @@
         	SCHEDULE S 
         	USING
         		(MNO)
-		WHERE 
-			RUN_SCH > SYSDATE
 </entry>
+<!-- selectMovieName에 추가할 것,,
+WHERE RUN_SCH > SYSDATE 
+-->
 <entry key="selectMovie">
 	SELECT 
 			MNO, 
@@ -192,5 +199,67 @@ FROM
 			PAY_NO = ?
 	AND 
 			MEMBER_NO = ?
+</entry>
+<entry key="ticketListAll">
+	SELECT *
+			FROM (
+			        SELECT ROWNUM RNUM, A.*
+			          FROM (
+							SELECT 
+									PAY_NO, 
+									PAY_STATUS, 
+									PAY_DATE, 
+									PAYMENT, 
+									MEMBER_ID, 
+									RUN_NO, 
+									MNAME, 
+									TICKET_TYPE, 
+									COUNT(PAY_NO) COUNT
+						      FROM 
+						      		PAYMENT 
+						      JOIN 
+						      		TICKET USING(PAY_NO)
+						      JOIN 
+						      		V_MOVIE USING(RUN_NO)
+						      JOIN 
+						      		MEMBER USING(MEMBER_NO)
+						      GROUP BY 
+						      		PAY_NO, 
+						      		PAY_STATUS, 
+						      		PAY_DATE, 
+						      		PAYMENT, 
+						      		MEMBER_ID, 
+						      		RUN_NO, 
+						      		MNAME, 
+						      		TICKET_TYPE
+						      ORDER BY 
+						      		PAY_NO) A)
+	WHERE RNUM BETWEEN ? AND ? 				  
+</entry>
+<entry key="selectTime">
+	SELECT 
+			RUN_NO, 
+			TO_CHAR(RUN_SCH,'YYYY-MM-DD HH24:MI:SS') RUN_SCH, 
+			A_SEAT,
+			(A_SEAT-SOLD) REMAIN, 
+			AUDITORIUM_NAME, 
+			MNAME
+	FROM 
+			V_MOVIE
+	JOIN (
+        	SELECT 
+        			RUN_NO, 
+        			COUNT(RUN_NO) SOLD
+        	FROM 
+        			TICKET
+        	GROUP BY 
+        			RUN_NO
+		 ) USING (RUN_NO)
+	WHERE 
+			MNAME = ?
+	AND 
+			THEATER_NAME = ?
+	AND 
+			RUN_SCH LIKE ?
 </entry>
 </properties>

@@ -9,6 +9,7 @@
 <title>footer</title>
 
 </head>
+<body>
 <div id="footer">
 	<div class="footer_inner">
 		<div class="corp_area">

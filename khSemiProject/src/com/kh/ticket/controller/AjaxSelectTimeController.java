@@ -1,6 +1,7 @@
 package com.kh.ticket.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,19 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.kh.ticket.model.service.TicketService;
 import com.kh.ticket.model.vo.Ticket;
 
 /**
- * Servlet implementation class SelectSeatController
+ * Servlet implementation class AjaxSelectTimeController
  */
-@WebServlet("/selectSeat.ti")
-public class SelectSeatController extends HttpServlet {
+@WebServlet("/selectTime.ti")
+public class AjaxSelectTimeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectSeatController() {
+    public AjaxSelectTimeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,19 +32,24 @@ public class SelectSeatController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String MemberId = "user01";
 		String mName = request.getParameter("mName");
-		String rate = request.getParameter("movieAge");
-		String selectedTheater = request.getParameter("selectedTheater");
-		String auditoriumSeat = request.getParameter("AuditoriumSeat");
-		String remainSeatString = request.getParameter("remainSeat"); // XX석
-		int remainSeat = Integer.parseInt(remainSeatString.substring(0,remainSeatString.length()-1));
-		String runSch = request.getParameter("runningTime");
-
-		Ticket selected = new Ticket(MemberId, auditoriumSeat, selectedTheater, runSch, mName, rate, remainSeat);
+		String theater = request.getParameter("theater");
+		// String date = request.getParameter("date");
 		
-		request.setAttribute("selected", selected);
-		request.getRequestDispatcher("/views/user/ticketing/selectSeat.jsp").forward(request, response);
+		String date = "2/01";
+		
+		ArrayList<Ticket> list = new TicketService().selectTime(mName, theater, date);
+		
+		// 상영시간 자르기
+		for(Ticket t : list) {
+			String runSch = t.getRunSch();
+			t.setRunSch(runSch.substring(11,16));
+		}
+		
+		// Gson으로 응답
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(list, response.getWriter());
+		
 	}
 
 	/**

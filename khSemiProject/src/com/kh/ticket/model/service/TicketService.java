@@ -13,6 +13,16 @@ import com.kh.ticket.model.vo.Ticket;
 
 public class TicketService {
 	
+	public int selectListCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new TicketDao().selectListCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
 	public int selectListCount(int memberNo) {
 		Connection conn = getConnection();
 		
@@ -107,6 +117,33 @@ public class TicketService {
 		
 		return result;
 	}
+
+	public ArrayList<Ticket> selectTicketList(PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<Ticket> tlist = new TicketDao().ticketListAll(conn, pi);
+		
+		close(conn);
+		
+		return tlist;
+	}
+
+	public ArrayList<Ticket> selectTime(String mName, String auditorium, String date) {
+		Connection conn = getConnection();
+		
+		ArrayList<Ticket> tlist = new TicketDao().selectTime(conn, mName, auditorium, date);
+		
+		close(conn);
+		
+		return tlist;
+	}
+
+	public int insertTicket() {
+		
+		return 0;
+	}
+
+	
 
 	
 

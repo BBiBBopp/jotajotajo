@@ -36,7 +36,7 @@
 				<ul>
 					<li><a href="#"> FAQ 관리</a></li>
 					<li><a href="#"> 공지사항 관리</a></li>
-					<li><a href="#"> 1:1 문의 관리</a></li>
+					<li><a href="<%= contextPath %>/adminList.qu?currentPage=1"> 1:1 문의 관리</a></li>
 				</ul>
 			</li> 
 			<li>
@@ -47,6 +47,9 @@
 					<li><a href="<%=contextPath %>/manage.vot3"> 이전투표목록</a></li>
 
 				</ul>
+			</li>
+			<li>
+				<a href="<%=contextPath%>/adminManage.ti?currentPage=1">결제 관리</a>
 			</li>
 		</ul>
 	</div>

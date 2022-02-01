@@ -36,6 +36,25 @@ public class TicketDao {
 		}
 	}
 
+	public int selectListCount(Connection conn) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListCountAll");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listCount;
+	}
+	
 	public int selectListCount(Connection conn, int memberNo) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
@@ -288,6 +307,77 @@ public class TicketDao {
 		return result;
 	}
 
-	
+	public ArrayList<Ticket> ticketListAll(Connection conn, PageInfo pi) {
+		ArrayList<Ticket> tlist = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("ticketListAll");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() -1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Ticket t = new Ticket(
+									  rset.getInt("PAY_NO"),
+									  rset.getString("PAY_STATUS"),
+									  rset.getString("PAY_DATE"),
+									  rset.getString("PAYMENT"),
+									  rset.getString("MEMBER_ID"),
+									  rset.getString("TICKET_TYPE"),
+									  rset.getInt("RUN_NO"),
+									  rset.getString("MNAME"),
+									  rset.getInt("COUNT")
+						);
+				tlist.add(t);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return tlist;
+	}
+
+	public ArrayList<Ticket> selectTime(Connection conn, String mName, String theater, String date) {
+		ArrayList<Ticket> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectTime");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mName);
+			pstmt.setString(2, theater);
+			pstmt.setString(3, "%" + date);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+					Ticket t = new Ticket();
+					t.setRunNo(rset.getInt("RUN_NO"));
+					t.setRunSch(rset.getString("RUN_SCH"));
+					t.setSeatNum(rset.getInt("A_SEAT"));
+					t.setRemain(rset.getInt("REMAIN"));
+					t.setAuditoriumName(rset.getString("AUDITORIUM_NAME"));
+					list.add(t);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 
 }

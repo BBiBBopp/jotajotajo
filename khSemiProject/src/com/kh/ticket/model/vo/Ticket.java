@@ -1,11 +1,15 @@
 package com.kh.ticket.model.vo;
 
 public class Ticket {
+	private int rNum; // ROWNUM
+	
 	private int payNo; // PAYMENT
 	private String payStatus; // PAYMENT
 	private String payDate; //PAYMENT
 	private String payment; //PAYMENT
 	private int memberNo; //PAYMENT
+	
+	private String memberId; // MEMBER
 	
 	private int ticketNo; // TICKET
 	private String ticketType; //TICKET
@@ -34,6 +38,9 @@ public class Ticket {
 	private String runTime; // 상영 시간
 	private String endTime; // 끝나는 시간 구하기
 	private String Dday; // 디데이
+	private int ticketCount; // 티켓 장수
+	private String typeCount; // 타입  X 수
+	private int remain; // 남은 좌석
 
 	public Ticket() {
 		super();
@@ -64,6 +71,41 @@ public class Ticket {
 		this.mName = mName;
 		this.cancleDate = cancleDate;
 	}
+	
+	public Ticket(int payNo, String payStatus, String payDate, String payment, String memberId, String ticketType,
+			int runNo, String mName, int ticketCount) {
+		super();
+		this.payNo = payNo;
+		this.payStatus = payStatus;
+		this.payDate = payDate;
+		this.payment = payment;
+		this.memberId = memberId;
+		this.ticketType = ticketType;
+		this.runNo = runNo;
+		this.mName = mName;
+		this.ticketCount = ticketCount;
+	}
+	
+	public Ticket(String memberId, String auditoriumName, String theaterName, String runSch, String mName, String rate,
+			int remain) {
+		super();
+		this.memberId = memberId;
+		this.auditoriumName = auditoriumName;
+		this.theaterName = theaterName;
+		this.runSch = runSch;
+		this.mName = mName;
+		this.rate = rate;
+		this.remain = remain;
+	}
+
+	public int getrNum() {
+		return rNum;
+	}
+
+	public void setrNum(int rNum) {
+		this.rNum = rNum;
+	}
+
 	public int getPayNo() {
 		return payNo;
 	}
@@ -94,6 +136,14 @@ public class Ticket {
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
 	public int getTicketNo() {
 		return ticketNo;
 	}
@@ -220,6 +270,30 @@ public class Ticket {
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+
+	public int getTicketCount() {
+		return ticketCount;
+	}
+
+	public void setTicketCount(int ticketCount) {
+		this.ticketCount = ticketCount;
+	}
+
+	public String getTypeCount() {
+		return typeCount;
+	}
+
+	public void setTypeCount(String typeCount) {
+		this.typeCount = typeCount;
+	}
+
+	public int getRemain() {
+		return remain;
+	}
+
+	public void setRemain(int remain) {
+		this.remain = remain;
 	}
 
 	@Override
