@@ -34,7 +34,9 @@ public class AjaxReviewListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int movieNo = Integer.parseInt(request.getParameter("mno"));
-		int memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
+		int memberNo = 0;
+		if(request.getParameter("loginUser")!= null)
+			memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
 		int sCount = Integer.parseInt(request.getParameter("sCount"));
 		int eCount = Integer.parseInt(request.getParameter("eCount"));
 		

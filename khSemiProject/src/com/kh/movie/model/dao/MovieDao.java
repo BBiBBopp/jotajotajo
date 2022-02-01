@@ -239,23 +239,27 @@ public class MovieDao {
 		ArrayList<Picture> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+		System.out.println("dao의 movieNoList"+movieNoList);
+		System.out.println("dao의 movieNoList"+movieNoList.size());
 		String sql = prop.getProperty("selectPosterList");
 		
 		try {
 			for(int i : movieNoList) {
+				System.out.println(i);
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, i);
 				rset = pstmt.executeQuery();
 				
 				if(rset.next()) 
-					list.add(new Picture(rset.getInt(1)
-							,rset.getInt(2)
-							,rset.getInt(3)
-							,rset.getString(4)
-							,rset.getString(5)
-							,rset.getString(6)
-							,rset.getDate(7)
-							,rset.getString(8)));
+					list.add(new Picture(rset.getInt("FILE_NO")
+							,rset.getInt("MNO")
+							,rset.getInt("FILE_LEVEL")
+							,rset.getString("ORIGIN_NAME")
+							,rset.getString("CHANGE_NAME")
+							,rset.getString("FILE_PATH")
+							,rset.getDate("UPLOAD_DATE")
+							,rset.getString("STATUS")));
+				System.out.println("dao의 movieNoList"+list);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -263,7 +267,9 @@ public class MovieDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println("dao의 movieNoList"+movieNoList);
+		System.out.println("dao의 movieNoList"+movieNoList.size());
+		System.out.println("dao의 movieNoList"+list);
 		return list;
 	}
 

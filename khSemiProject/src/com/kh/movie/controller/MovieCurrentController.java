@@ -35,6 +35,8 @@ public class MovieCurrentController extends HttpServlet {
 		System.out.println(1);
 //		get방식 사용
 //		보여질 기본 영화 수 hidden으로 받아오기
+		//전체 영화 수 받아오기
+		//전체 영화 중에서 
 		int sCount = 1;
 		int eCount = 10;
 //		int sCount = Integer.parseInt(request.getParameter("startCount"));
@@ -48,6 +50,7 @@ public class MovieCurrentController extends HttpServlet {
 			movieNoList.add(mv.getMovieNo());
 		System.out.println(4);
 		//추출된 번호로 포스터 조회해오기
+		System.out.println(movieNoList);
 		ArrayList<Picture> picList = new MovieService().selectPosterList(movieNoList);
 		System.out.println(5);
 		System.out.println(currentList);
