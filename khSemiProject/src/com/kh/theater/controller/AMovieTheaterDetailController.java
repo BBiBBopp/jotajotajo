@@ -1,6 +1,7 @@
 package com.kh.theater.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,11 +34,11 @@ public class AMovieTheaterDetailController extends HttpServlet {
 
 		int theaterNo = Integer.parseInt(request.getParameter("tno"));
 		
-		TheaterAuditorium ta = new TheaterService().aSelectTheater(theaterNo);
+		ArrayList<TheaterAuditorium> taList = new TheaterService().aSelectTheater(theaterNo);
 		
-		if(ta != null) {
+		if(taList != null) {
 			
-			request.setAttribute("ta", ta);
+			request.setAttribute("taList", taList);
 			
 			request.getRequestDispatcher("views/admin/theater/aMovieTheaterDetail.jsp").forward(request, response);
 			

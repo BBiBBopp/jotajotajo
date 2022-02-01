@@ -48,7 +48,6 @@ public class LoginDao {
 			if(rset.next()) {
 				m = new Member(rset.getInt("MEMBER_NO")
 									  , rset.getString("MEMBER_ID")
-									  , rset.getString("MEMBER_PWD")
 									  , rset.getString("MEMBER_NAME")
 									  , rset.getString("BIRTH")
 									  , rset.getString("GENDER")

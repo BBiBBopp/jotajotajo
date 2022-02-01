@@ -16,7 +16,7 @@
 						SELECT *
 						 FROM THEATER
 						ORDER 
-		 				   BY THEATER_NO DESC) A)
+		 				   BY THEATER_NO ASC) A)
 				WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
@@ -26,6 +26,17 @@
 		 WHERE THEATER_NO = ?
 	</entry>
 	
+	<entry key="aSelectList">
+		SELECT *
+			FROM (
+				SELECT ROWNUM RNUM, A.*
+				FROM (
+						SELECT *
+						 FROM THEATER
+						ORDER 
+		 				   BY THEATER_NO DESC) A)
+				WHERE RNUM BETWEEN ? AND ?
+	</entry>
 	<entry key="aSelectTheater">
 		SELECT T.THEATER_NO, THEATER_NAME, AUDITORIUM_NUM, T.SEAT_NUM,
 				ADDRESS, PHONE, TRAFFIC, LOCATION, PARKING, THEATER_IMG,
@@ -64,7 +75,7 @@
 		UPDATE AUDITORIUM
 		SET AUDITORIUM_NAME = ?,
 			SEAT_NUM = ?
-		WHERE THEATER_NO = ?
+		WHERE AUDITORIUM_NO = ?
 	</entry>
 	
 	<entry key="deleteTheater">
@@ -72,9 +83,29 @@
 		WHERE THEATER_NO = ?
 	</entry>
 	
+	<entry key="aSelectAuditorium">
+		SELECT *
+			FROM (
+				SELECT ROWNUM RNUM, A.*
+				FROM (
+						SELECT *
+						 FROM AUDITORIUM
+						ORDER 
+		 				   BY AUDITORIUM_NO DESC) A)
+				WHERE RNUM BETWEEN ? AND ?
+	</entry>
 	
+	<entry key="deleteAuditorium">
+		DELETE FROM AUDITORIUM
+		WHERE THEATER_NO = ?
+	</entry>
 	
-	
+	<entry key="selectAuditorium">
+		SELECT *
+		FROM AUDITORIUM
+		WHERE THEATER_NO = ?
+		ORDER BY THEATER_NO DESC
+	</entry>
 	
 	
 	

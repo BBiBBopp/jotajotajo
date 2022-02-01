@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디찾기_성공</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/msj_css/02_z02search_id_success.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/user/loginLogout/02_z02search_id_success.css">
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>

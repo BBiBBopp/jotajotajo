@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호찾기_이메일인증실패</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/msj_css/03_z03_search_pwd_fail_certify.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/user/loginLogout/03_z03_search_pwd_fail_certify.css">
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>

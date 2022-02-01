@@ -6,9 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>시네마 헤븐(로그인폼)</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/msj_css/01_loginform.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/user/loginLogout/01_loginform.css">
 </head>
-<body>
 	
 	<%@ include file="../common/header.jsp" %>
 

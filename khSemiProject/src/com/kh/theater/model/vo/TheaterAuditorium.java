@@ -18,17 +18,17 @@ public class TheaterAuditorium {
 	// 상영관
 	private int auditoriumNo;
 	private String auditoriumName;
-	private int auditoriumSeatNum; // 상영관의 좌석수
+	private String auditoriumSeatNum; // 상영관의 좌석수
 	
 	
 	public TheaterAuditorium() {
 		super();
 	}
-	
-	
+
+
 	public TheaterAuditorium(int theaterNo, String theaterName, int auditoriumNum, int seatNum, String address,
 			String phone, String traffic, String location, String parking, int theaterImg, String uploadDate,
-			int auditoriumNo, String auditoriumName, int auditoriumSeatNum) {
+			int auditoriumNo, String auditoriumName, String auditoriumSeatNum) {
 		super();
 		this.theaterNo = theaterNo;
 		this.theaterName = theaterName;
@@ -45,90 +45,148 @@ public class TheaterAuditorium {
 		this.auditoriumName = auditoriumName;
 		this.auditoriumSeatNum = auditoriumSeatNum;
 	}
+
+
 	public int getTheaterNo() {
 		return theaterNo;
 	}
+
+
 	public void setTheaterNo(int theaterNo) {
 		this.theaterNo = theaterNo;
 	}
+
+
 	public String getTheaterName() {
 		return theaterName;
 	}
+
+
 	public void setTheaterName(String theaterName) {
 		this.theaterName = theaterName;
 	}
+
+
 	public int getAuditoriumNum() {
 		return auditoriumNum;
 	}
+
+
 	public void setAuditoriumNum(int auditoriumNum) {
 		this.auditoriumNum = auditoriumNum;
 	}
+
+
 	public int getSeatNum() {
 		return seatNum;
 	}
+
+
 	public void setSeatNum(int seatNum) {
 		this.seatNum = seatNum;
 	}
+
+
 	public String getAddress() {
 		return address;
 	}
+
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+
 	public String getPhone() {
 		return phone;
 	}
+
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+
 	public String getTraffic() {
 		return traffic;
 	}
+
+
 	public void setTraffic(String traffic) {
 		this.traffic = traffic;
 	}
+
+
 	public String getLocation() {
 		return location;
 	}
+
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
+
 	public String getParking() {
 		return parking;
 	}
+
+
 	public void setParking(String parking) {
 		this.parking = parking;
 	}
+
+
 	public int getTheaterImg() {
 		return theaterImg;
 	}
+
+
 	public void setTheaterImg(int theaterImg) {
 		this.theaterImg = theaterImg;
 	}
+
+
 	public String getUploadDate() {
 		return uploadDate;
 	}
+
+
 	public void setUploadDate(String uploadDate) {
 		this.uploadDate = uploadDate;
 	}
+
+
 	public int getAuditoriumNo() {
 		return auditoriumNo;
 	}
+
+
 	public void setAuditoriumNo(int auditoriumNo) {
 		this.auditoriumNo = auditoriumNo;
 	}
+
+
 	public String getAuditoriumName() {
 		return auditoriumName;
 	}
+
+
 	public void setAuditoriumName(String auditoriumName) {
 		this.auditoriumName = auditoriumName;
 	}
-	public int getAuditoriumSeatNum() {
+
+
+	public String getAuditoriumSeatNum() {
 		return auditoriumSeatNum;
 	}
-	public void setAuditoriumSeatNum(int auditoriumSeatNum) {
+
+
+	public void setAuditoriumSeatNum(String auditoriumSeatNum) {
 		this.auditoriumSeatNum = auditoriumSeatNum;
 	}
+
+
 	@Override
 	public String toString() {
 		return "TheaterAuditorium [theaterNo=" + theaterNo + ", theaterName=" + theaterName + ", auditoriumNum="
@@ -137,5 +195,11 @@ public class TheaterAuditorium {
 				+ ", uploadDate=" + uploadDate + ", auditoriumNo=" + auditoriumNo + ", auditoriumName=" + auditoriumName
 				+ ", auditoriumSeatNum=" + auditoriumSeatNum + "]";
 	}
+	
+	
+	
+	
+	
+	
 	
 }

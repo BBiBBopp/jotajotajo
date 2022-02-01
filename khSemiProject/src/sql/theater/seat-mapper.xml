@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>좌석 관련 쿼리문</comment>
+	<entry key="insertSeat">
+		INSERT INTO SEAT (SEAT_PK, SEAT_NO, AUDITORIUM_NO) VALUES (SEQ_SEAT_NO.NEXTVAL, ?, SEQ_AU_NO.CURRVAL)
+	</entry>
+	
+	<entry key="deleteSeat">
+		DELETE FROM SEAT
+		WHERE AUDITORIUM_NO = ?
+	</entry>
+	
+	<entry key="updateSeat">
+		UPDATE SEAT
+		SET SEAT_NO = ?
+		WHERE AUDITORIUM_NO = ?
+	</entry>
+	
+	
+	
+</properties>

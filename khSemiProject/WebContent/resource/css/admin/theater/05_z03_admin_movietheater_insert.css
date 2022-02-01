@@ -85,7 +85,14 @@ div {
     height: 100%;
     margin-left: 600px;
 }
-
+#content_4 .btn-outline-primary{
+    color: rgb(13, 71, 161);
+    border: 1px solid rgb(13, 71, 161);
+}
+#content_4 .btn-outline-primary:hover{
+     background-color: rgb(13, 71, 161);
+     color: white;
+}
 
 
 

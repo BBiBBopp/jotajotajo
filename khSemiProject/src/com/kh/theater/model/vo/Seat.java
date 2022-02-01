@@ -5,7 +5,7 @@ public class Seat {
 	private int runNo;
 	private int auditoriumNo;
 	private String seatStatus;
-	private int seatNo;
+	private String seatNo;
 	
 	
 	public Seat() {
@@ -13,7 +13,7 @@ public class Seat {
 	}
 
 
-	public Seat(int runNo, int auditoriumNo, String seatStatus, int seatNo) {
+	public Seat(int runNo, int auditoriumNo, String seatStatus, String seatNo) {
 		super();
 		this.runNo = runNo;
 		this.auditoriumNo = auditoriumNo;
@@ -52,12 +52,12 @@ public class Seat {
 	}
 
 
-	public int getSeatNo() {
+	public String getSeatNo() {
 		return seatNo;
 	}
 
 
-	public void setSeatNo(int seatNo) {
+	public void setSeatNo(String seatNo) {
 		this.seatNo = seatNo;
 	}
 
@@ -67,5 +67,7 @@ public class Seat {
 		return "Seat [runNo=" + runNo + ", auditoriumNo=" + auditoriumNo + ", seatStatus=" + seatStatus + ", seatNo="
 				+ seatNo + "]";
 	}
+
+	
 	
 }

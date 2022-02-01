@@ -1,5 +1,5 @@
     div {
-        /* border: 1px solid black; */
+        /*border: 1px solid black;*/
         display: block;
     } 
     /* ------------------------------------------------ */
@@ -24,7 +24,7 @@
 
     #content_2{
         width: 100%;
-        height: 20%;
+        height: 18%;
     }
     .choose{
         width: 50%;
@@ -48,70 +48,61 @@
     #search_pwd_text{
         font-weight: bolder;
     }
-    .ment{
-        width: 50%;
-        height: 50%;
-        margin: auto;
-    }
-    #ment_1{
-        font-size: 16px;
-        line-height: 25px;
-    }
+
     #content_3{
         /* border: 1px solid red; */
         width: 100%;
-        height: 60%; /*360px*/
+        height: 60%;
     }
-    .imsy_pwd{
+    .ment{
         width: 50%;
-        height: 12%; /*43.2px*/
-        font-size: 18px;
+        height: 40%;
         margin: auto;
     }
-    .imsy_pwd>p{
-        line-height: 8px;
-    }
-    .check_info{
-        width: 100%;
-        height: 162px; /*50%*/
-        margin: auto;
-        font-size: 16px;
-    }
-    #info_keyword{
-        width: 50%;
-        margin: auto;
-        padding-left: 45px;
-        line-height: 56px;
+    .ment_1{
+        text-align: justify;
+        margin-left: 60px;
+        margin-top: 0px;
         font-size: 17px;
+        line-height: 35px;
     }
-    #info_input{
-        width: 50%;
-        margin: auto;
-    }
-    #info_input>input{
-        height: 35px;
-        margin-left: 50px;
-        width: 300px;
-    }
-
     .btn_div{
-        width: 130px;
-        height: 12%;
-        margin-left: 660px;
+        height: 50px;
+        width: 25%;
+        margin-left: 570px;
+        margin-top: 10px;
     }
     .btn_div>button{
-        width: 90px;
         height: 40px;
-        background-color: rgb(13, 71, 161);
-        border-radius: 15px;
+        width: 100px;
+        margin-left: 5px;
         border: none;
-        font-size: 14px;
+        border-radius: 15px;
     }
     .btn_div a{
         text-decoration: none;
-        color: white;
-        font-weight: bolder;
+        font-size: 15px;
     }
+    #again{
+        background-color: lightgray
+    }
+    #enrollment{
+        background-color: rgb(13, 71, 161);
+    }
+    #again_1{
+        color: black;
+        font-weight: bold;
+    }
+   	#enrollment>a{
+   		text-decoration: none;
+   		color: white;
+   	}
+	#again>a{
+   		text-decoration: none;
+   		color: white;
+    }
+
+
 
 
 

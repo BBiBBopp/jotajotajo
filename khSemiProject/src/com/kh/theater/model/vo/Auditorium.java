@@ -4,14 +4,14 @@ public class Auditorium {
 
 	private int auditoriumNo;
 	private String auditoriumName;
-	private int seatNum;
+	private String seatNum;
 	private int theaterNo;
 	
 	public Auditorium() {
 		super();
 	}
 
-	public Auditorium(int auditoriumNo, String auditoriumName, int seatNum, int theaterNo) {
+	public Auditorium(int auditoriumNo, String auditoriumName, String seatNum, int theaterNo) {
 		super();
 		this.auditoriumNo = auditoriumNo;
 		this.auditoriumName = auditoriumName;
@@ -35,11 +35,11 @@ public class Auditorium {
 		this.auditoriumName = auditoriumName;
 	}
 
-	public int getSeatNum() {
+	public String getSeatNum() {
 		return seatNum;
 	}
 
-	public void setSeatNum(int seatNum) {
+	public void setSeatNum(String seatNum) {
 		this.seatNum = seatNum;
 	}
 
@@ -56,5 +56,7 @@ public class Auditorium {
 		return "Auditorium [auditoriumNo=" + auditoriumNo + ", auditoriumName=" + auditoriumName + ", seatNum="
 				+ seatNum + ", theaterNo=" + theaterNo + "]";
 	}
+
+	
 	
 }

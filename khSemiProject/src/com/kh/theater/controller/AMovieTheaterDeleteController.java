@@ -35,7 +35,13 @@ public class AMovieTheaterDeleteController extends HttpServlet {
 		
 		int theaterNo = Integer.parseInt(request.getParameter("tno"));
 		
-		int result = new TheaterService().deleteTheater(theaterNo);
+		System.out.println("ano : " + request.getParameter("ano"));
+		
+		int auditoriumNo = Integer.parseInt(request.getParameter("ano"));
+		System.out.println("tno"+theaterNo);
+		System.out.println("ano"+auditoriumNo);
+		
+		int result = new TheaterService().deleteTheater(theaterNo, auditoriumNo);
 		
 		if(result > 0) {
 			

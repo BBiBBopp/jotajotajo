@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.kh.theater.model.vo.TheaterAuditorium" %>
+<%@ page import="com.kh.theater.model.vo.TheaterAuditorium, java.util.ArrayList" %>
 <%
-	TheaterAuditorium ta = (TheaterAuditorium)request.getAttribute("ta");
+	ArrayList<TheaterAuditorium> taList = (ArrayList<TheaterAuditorium>)request.getAttribute("taList");
+
 	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
@@ -48,12 +49,12 @@
                         	</div>
                             	
                         	<div id="input_tag">
-                            	<%= ta.getTheaterName() %><br>
-                            	<%= ta.getAddress() %><br>
-                            	<%= ta.getAuditoriumNum() %><br>
-                            	<%= ta.getPhone() %><br>
-                            	<%= ta.getSeatNum() %><br>
-                            	<%= ta.getTheaterImg() %><br>
+                            	<%= taList.get(0).getTheaterName() %><br>
+                            	<%= taList.get(0).getAddress() %><br>
+                            	<%= taList.get(0).getAuditoriumNum() %><br>
+                            	<%= taList.get(0).getPhone() %><br>
+                            	<%= taList.get(0).getSeatNum() %><br>
+                            	<%= taList.get(0).getTheaterImg() %><br>
                             	(1: CGV / 2: 롯데시네마 / 3: 메가박스)
                         	</div>
                     	</div>
@@ -63,18 +64,17 @@
                     <table class=table>
                         <thead>
                             <tr>
-
                                 <th>상영관명</th>
                                 <th>좌석수</th>
                             </tr>
                         </thead>
                         <tbody>
-							
+                        <% for(TheaterAuditorium ta : taList) { %>
                             <tr>
-                                <td><%= ta.getAuditoriumName() %>관</td>
+                                <td><%= ta.getAuditoriumName() %></td>
                                 <td><%= ta.getAuditoriumSeatNum() %>석</td>
                             </tr>
-                            
+                            <% } %>
                         </tbody>
                     </table>
                 </div>
@@ -84,20 +84,21 @@
             <div id="content_3">
                 <hr>
                 <div id="ex_info">
-                    위치안내 &emsp;<%= ta.getLocation() %><br><br>
-                    교통안내 &emsp;<pre><%= ta.getTraffic()%></pre>
-                    주차안내 &emsp;<pre><%= ta.getParking()%></pre>
+                    위치안내 &emsp;<%= taList.get(0).getLocation() %><br><br>
+                    교통안내 &emsp;<pre><%= taList.get(0).getTraffic()%></pre>
+                    주차안내 &emsp;<pre><%= taList.get(0).getParking()%></pre>
                 </div>
             </div>
             <div id="content_4">
                 <div>
                 	<form action="<%= contextPath%>/atUpdateForm.th">
-                		<input type="hidden" name="tno" value=<%= ta.getTheaterNo() %>>
-	                    <button type="submit">수정하기</button>
+                		<input type="hidden" name="tno" value=<%= taList.get(0).getTheaterNo() %>>
+	                    <button class="btn btn-outline-primary" type="submit">수정하기</button>
                 	</form>
                 	<form action="<%= contextPath%>/atDelete.th">
-                		<input type="hidden" name="tno" value=<%= ta.getTheaterNo() %>>
-	                    <button type="submit">삭제하기</button>
+                		<input type="hidden" name="tno" value=<%= taList.get(0).getTheaterNo() %>>
+                		<input type="hidden" name="ano" value=<%= taList.get(0).getAuditoriumNo() %>>
+	                    <button class="btn btn-outline-primary" type="submit">삭제하기</button>
                 	</form>
                 </div>
             </div>

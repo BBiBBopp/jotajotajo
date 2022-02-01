@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호찾기_성공</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/msj_css/03_z05_search_pwd_success.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/user/loginLogout/03_z05_search_pwd_success.css">
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>

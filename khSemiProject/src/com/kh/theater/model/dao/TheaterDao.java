@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.common.model.vo.PageInfo;
+import com.kh.theater.model.vo.Auditorium;
 import com.kh.theater.model.vo.Theater;
 import com.kh.theater.model.vo.TheaterAuditorium;
 
@@ -143,11 +144,55 @@ public class TheaterDao {
 		
 		return t;
 	}
+	
+	public ArrayList<Theater> aSelectList(Connection conn, PageInfo pi) {
+		
+		ArrayList<Theater> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("aSelectList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				list.add(new Theater(rset.getInt("THEATER_NO"),
+								   rset.getString("THEATER_NAME"),
+								   rset.getInt("AUDITORIUM_NUM"),
+								   rset.getInt("SEAT_NUM"),
+								   rset.getString("ADDRESS"),
+								   rset.getString("PHONE"),
+								   rset.getString("TRAFFIC"),
+								   rset.getString("LOCATION"),
+								   rset.getString("PARKING"),
+								   rset.getInt("THEATER_IMG"),
+								   rset.getString("UPLOAD_DATE")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
 
+	public ArrayList<TheaterAuditorium> aSelectTheater(Connection conn, int theaterNo) {
 
-	public TheaterAuditorium aSelectTheater(Connection conn, int theaterNo) {
-
-		TheaterAuditorium ta = null;
+		ArrayList<TheaterAuditorium> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -160,8 +205,8 @@ public class TheaterDao {
 			
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) {
-				ta = new TheaterAuditorium(rset.getInt("THEATER_NO"),
+			while(rset.next()) {
+				list.add(new TheaterAuditorium(rset.getInt("THEATER_NO"),
 						   				   rset.getString("THEATER_NAME"),
 						   				   rset.getInt("AUDITORIUM_NUM"),
 						   				   rset.getInt("SEAT_NUM"),
@@ -174,7 +219,7 @@ public class TheaterDao {
 						   				   rset.getString("UPLOAD_DATE"),
 						   				   rset.getInt("AUDITORIUM_NO"),
 						   				   rset.getString("AUDITORIUM_NAME"),
-						   				   rset.getInt("AUDITORIUMSEATNUM"));
+						   				   rset.getString("AUDITORIUMSEATNUM")));
 			}
 			
 		} catch (SQLException e) {
@@ -183,7 +228,7 @@ public class TheaterDao {
 			close(rset);
 			close(pstmt);
 		}
-		return ta;
+		return list;
 	}
 
 
@@ -219,7 +264,7 @@ public class TheaterDao {
 	}
 
 
-	public int insertAuditorium(Connection conn, TheaterAuditorium ta) {
+	public int insertAuditorium(Connection conn, String auditoriumName, String auditoriumSeatNum) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -227,12 +272,12 @@ public class TheaterDao {
 		String sql = prop.getProperty("insertAuditorium");
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, ta.getAuditoriumName());
-			pstmt.setInt(2, ta.getAuditoriumSeatNum());
-			
-			result = pstmt.executeUpdate();
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, auditoriumName);
+				pstmt.setString(2, auditoriumSeatNum);
+				
+				result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -277,7 +322,7 @@ public class TheaterDao {
 	}
 
 
-	public int updateAuditorium(Connection conn, TheaterAuditorium ta) {
+	public int updateAuditorium(Connection conn, TheaterAuditorium ta, String auditoriumName, String auditoriumSeatNum) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -285,16 +330,25 @@ public class TheaterDao {
 		String sql = prop.getProperty("updateAuditorium");
 		
 		try {
+			// 3관이면 +2, 2관이면+1, 1관이면 엘스
+			String[] auditoriumNameArr = ta.getAuditoriumName().split(",");
+
 			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, auditoriumName);
+			pstmt.setString(2, auditoriumSeatNum);
 			
-			pstmt.setString(1, ta.getAuditoriumName());
-			pstmt.setInt(2, ta.getAuditoriumSeatNum());
-			pstmt.setInt(3, ta.getTheaterNo());
+			if(auditoriumName.equals("3관")) {
+				pstmt.setInt(3, ta.getAuditoriumNo()+2);
+			} else if(auditoriumName.equals("2관")) {
+				pstmt.setInt(3, ta.getAuditoriumNo()+1);
+			} else {
+				pstmt.setInt(3, ta.getAuditoriumNo());
+			}
 			
-			result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
@@ -325,6 +379,102 @@ public class TheaterDao {
 		}
 		
 		return result;
+	}
+
+	public ArrayList<Auditorium> aSelectAuditorium(Connection conn, PageInfo pi) {
+
+		ArrayList<Auditorium> list =  new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("aSelectAuditorium");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, 1);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			while(rset.next()) {
+				list.add(new Auditorium(rset.getInt("AUDITORIUM_NO"),
+								   rset.getString("AUDITORIUM_NAME"),
+								   rset.getString("SEAT_NUM"),
+								   rset.getInt("THEATER_NO")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public int deleteAuditorium(Connection conn, int theaterNo) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteAuditorium");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, theaterNo);
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println("dao : " + result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<Auditorium> selectAuditorium(Connection conn, int theaterNo) {
+
+		ArrayList<Auditorium> auList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAuditorium");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, theaterNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				auList.add(new Auditorium(rset.getInt("AUDITORIUM_NO"),
+										  rset.getString("AUDITORIUM_NAME"),
+										  rset.getString("SEAT_NUM"),
+										  rset.getInt("THEATER_NO")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return auList;
 	}
 
 	

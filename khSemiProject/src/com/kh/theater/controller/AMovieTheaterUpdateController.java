@@ -34,21 +34,34 @@ public class AMovieTheaterUpdateController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		int theaterNo = Integer.parseInt(request.getParameter("theaterNo"));
+		int auditoriumNo = Integer.parseInt(request.getParameter("auditoriumNo"));
 		String theaterName = request.getParameter("theaterName");
 		String address = request.getParameter("address");
 		int auditoriumNum = Integer.parseInt(request.getParameter("auditoriumNum"));
 		String phone = request.getParameter("phone");
 		int seatNum = Integer.parseInt(request.getParameter("seatNum"));
 		int theaterImg = Integer.parseInt(request.getParameter("theaterImg"));
-		String auditoriumName = request.getParameter("auditoriumName");
-		int auditoriumSeatNum = Integer.parseInt(request.getParameter("auditoriumSeatNum"));
+		String[] auditoriumNameArr = request.getParameterValues(("auditoriumName"));
+		String[] auditoriumSeatNumArr = request.getParameterValues("auditoriumSeatNum");
 		String location = request.getParameter("location");
 		String traffic = request.getParameter("traffic");
 		String parking = request.getParameter("parking");
 		
+		String auditoriumName = "";
+		String auditoriumSeatNum = "";
+		
+		if(auditoriumNameArr != null) {
+			auditoriumName = String.join(",", auditoriumNameArr);
+		}
+		
+		if(auditoriumSeatNumArr != null) {
+			auditoriumSeatNum = String.join(",", auditoriumSeatNumArr);
+		}
+
 		TheaterAuditorium ta = new TheaterAuditorium();
 		
 		ta.setTheaterNo(theaterNo);
+		ta.setAuditoriumNo(auditoriumNo);
 		ta.setTheaterName(theaterName);
 		ta.setAddress(address);
 		ta.setAuditoriumNum(auditoriumNum);
@@ -61,17 +74,26 @@ public class AMovieTheaterUpdateController extends HttpServlet {
 		ta.setTraffic(traffic);
 		ta.setParking(parking);
 		
-		int result = new TheaterService().updateTheater(ta);
+		System.out.println("auditoriumName :" + auditoriumName);
+		int result = 0;
+		
+		if(auditoriumNameArr != null) { // 상영관정보에 데이터가 있을 경우 -> 유지 또는 변경
+			result = new TheaterService().updateTheater(ta);
+		} else { // 상영관 정보에 데이터가 없을 경우 -> 제거
+			result = new TheaterService().deleteAuditorium(theaterNo);
+			System.out.println("theaterNo : " + theaterNo);
+		}
+		
+		System.out.println("controller : " + result);
 		
 		if(result > 0) {
-			
+			System.out.println(ta);
 			request.setAttribute("ta", ta);
 			request.getSession().setAttribute("alertMsg", "수정되었습니다.");
 			
 			request.getRequestDispatcher("views/admin/theater/aMovieTheaterDetail.jsp").forward(request, response);
 			
 		}
-		
 		
 	}
 

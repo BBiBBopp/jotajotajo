@@ -33,7 +33,7 @@ public class Member {
 		this.birth = birth;
 		this.memberStatus = memberStatus;
 	}
-	public Member(String memberId, Date createDate) {
+	public Member(String memberId, Date createDate) { // 아이디찾기 할 때 사용
 		super();
 		this.memberId = memberId;
 		this.createDate = createDate;
@@ -53,6 +53,23 @@ public class Member {
 		this.email = email;
 	}
 
+	
+	// 비밀번호 제외한 모든 정보
+	public Member(int memberNo, String memberId, String memberName, String birth, String gender, String email,
+			String phone, String interest, int point, Date createDate, String memberStatus) {
+		super();
+		this.memberNo = memberNo;
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.birth = birth;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.interest = interest;
+		this.point = point;
+		this.createDate = createDate;
+		this.memberStatus = memberStatus;
+	}
 
 	public Member(int memberNo, String memberId, String memberPwd, String memberName, String birth, String gender,
 			String email, String phone, String interest, int point, Date createDate, String memberStatus) {

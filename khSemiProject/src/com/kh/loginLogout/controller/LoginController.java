@@ -1,6 +1,7 @@
 package com.kh.loginLogout.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
@@ -60,7 +61,7 @@ public class LoginController extends HttpServlet {
 		
 		if(loginUser != null && loginUser.getMemberId().equals("admin")) {
 			
-			// 관리자 아이디로 로그인 시 관리자페이지 첫메뉴바인 회원관리페이지로 보내기
+			response.sendRedirect("");
 			
 		}else if(loginUser != null){
 			
@@ -72,6 +73,12 @@ public class LoginController extends HttpServlet {
 			
 			response.sendRedirect("/cinemaHeaven/index.do");
 			// 로그인정보, 경고메세지들고 메인페이지로 이동
+			
+//			PrintWriter out = response.getWriter();
+//			out.print("<script>");
+//			out.print("location.href='<%= contextPath%>/index.do'");
+//			out.print("history.go(-3)");
+//			out.print("</script>");
 			
 		}else {
 			

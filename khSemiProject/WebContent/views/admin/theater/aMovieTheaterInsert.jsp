@@ -54,8 +54,22 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="text" name="auditoriumName">관</td>
-                                <td><input type="text" name="auditoriumSeatNum">석</td>
+                                <td><input type="checkbox" value="1관" name="auditoriumName">1관</td>
+                                <td><input type="checkbox" value="100" name="auditoriumSeatNum">100석</td>
+                                <td><input type="checkbox" value="120" name="auditoriumSeatNum">120석</td>
+                                <td><input type="checkbox" value="160" name="auditoriumSeatNum">160석</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="2관" name="auditoriumName">2관</td>
+                                <td><input type="checkbox" value="100" name="auditoriumSeatNum">100석</td>
+                                <td><input type="checkbox" value="120" name="auditoriumSeatNum">120석</td>
+                                <td><input type="checkbox" value="160" name="auditoriumSeatNum">160석</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="3관" name="auditoriumName">3관</td>
+                                <td><input type="checkbox" value="100" name="auditoriumSeatNum">100석</td>
+                                <td><input type="checkbox" value="120" name="auditoriumSeatNum">120석</td>
+                                <td><input type="checkbox" value="160" name="auditoriumSeatNum">160석</td>
                             </tr>
                         </tbody>
                     </table>
@@ -73,8 +87,8 @@
             </div>
             <div id="content_4">
                 <div>
-                    <button>취소하기</button>
-                    <button type="submit">등록하기</button>
+                    <button class="btn btn-outline-primary" type="reset">취소하기</button>
+                    <button class="btn btn-outline-primary" type="submit">등록하기</button>
                 </div>
             </div>
             </form>

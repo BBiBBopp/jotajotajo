@@ -16,7 +16,7 @@
 <head>
 <meta charset="UTF-8">
 <title>영화관목록</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/msj_css/04_z01_movietheater_list.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/user/theater/04_z01_movietheater_list.css">
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
@@ -71,21 +71,21 @@
                 <div id="paging_btn" class="paging-area">
                     <!-- 페이징 버튼 -->
 			<% if(currentPage != 1) { %>
-            	<button onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= currentPage - 1 %>'">&lt;</button>
+            	<button class="btn btn-outline-primary" onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= currentPage - 1 %>'">&lt;</button>
 			<% } %>
 	
 
 			<%for(int i = startPage; i <= endPage; i++) { %>
 				<% if( i != currentPage){ %>
-            		<button onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= i %>'"><%= i %></button>
+            		<button class="btn btn-outline-primary" onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= i %>'"><%= i %></button>
 				<% }else{ %>
-	            	<button disabled><%= i %></button>
+	            	<button class="btn btn-outline-primary" disabled><%= i %></button>
             	<% } %>
             <% } %>
             
             <!-- 페이징바에서 > 를 담당 : 다음페이지 이동 -->
             <% if(currentPage != maxPage) { %>
-            	<button onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= currentPage + 1 %>'">&gt;</button>
+            	<button class="btn btn-outline-primary" onclick="location.href='<%= contextPath%>/tList.th?currentPage=<%= currentPage + 1 %>'">&gt;</button>
 			<% } %>
         	</div>
           </div>

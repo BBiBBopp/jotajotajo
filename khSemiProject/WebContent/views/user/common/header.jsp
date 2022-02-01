@@ -10,13 +10,7 @@
 	
 	ArrayList<Theater> theaterList = (ArrayList<Theater>)session.getAttribute("theaterList");
 %>
-<%
-	// 로그아웃 후 뒤로가기 했을 때 로그인이 되어 있지 않게 캐시 삭제
-	response.setHeader("Pragma", "no-cache"); //HTTP 1.0
-	response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
-	response.setHeader("Cache-Control", "no-store"); //HTTP 1.1
-	response.setDateHeader("Expires", 0L); // Do not cache in proxy server
-%> 
+
 
 <!DOCTYPE html>
 <html lang="en">

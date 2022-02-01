@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.model.vo.PageInfo;
 import com.kh.theater.model.service.TheaterService;
+import com.kh.theater.model.vo.Auditorium;
 import com.kh.theater.model.vo.Theater;
 
 /**
@@ -69,11 +70,15 @@ public class AMovieTheaterListController extends HttpServlet {
 				PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit,
 						maxPage, startPage, endPage);
 				
-				ArrayList<Theater> theaterList = new TheaterService().selectList(pi);
+				ArrayList<Theater> theaterList = new TheaterService().aSelectList(pi);
+				
+				ArrayList<Auditorium> auditoriumList = new TheaterService().aSelectAuditorium(pi);
 				
 				request.getSession().setAttribute("theaterList", theaterList);
 
 				request.setAttribute("pi", pi);
+				
+				request.getSession().setAttribute("auditoriumList", auditoriumList);
 		
 				request.getRequestDispatcher("views/admin/theater/aMovieTheaterList.jsp").forward(request, response);
 	

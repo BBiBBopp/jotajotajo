@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>영화관 상세정보</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/msj_css/04_z02_movietheater_detail.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/user/theater/04_z02_movietheater_detail.css">
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
@@ -33,9 +33,15 @@
                 </div>
                 <div id="content_2">
                     <div id="theater_back">
-                        <div id="theater_pic"><img src="/resources/image/cinema_logo900.jpg"></div>
+                    <% if(t.getTheaterImg() == 1 ) { %>
+                        <div id="theater_pic"><img src="<%= contextPath %>/resource/image/theater_upfiles/cgvlogo.jpg"></div>
+                    <% } else if(t.getTheaterImg() == 2) { %>
+                        <div id="theater_pic"><img src="<%= contextPath %>/resource/image/theater_upfiles/LotteCinemalogo.jpg"></div>
+                    <% } else { %>
+                        <div id="theater_pic"><img src="<%= contextPath %>/resource/image/theater_upfiles/MegaBoxlogo.jpg"></div>
+					<% } %>              
                         <div id="theater_info">
-                            <h3><%= t.getTheaterName() %></h3>
+                            <h4><%= t.getTheaterName() %></h4>
                                 <p>
                                     	주소 : <%= t.getAddress() %><br>
                                    	 상영관수 : <%= t.getAuditoriumNum() %><br>
@@ -47,22 +53,11 @@
                     </div>
                 </div>
                 <br clear="both">
-                <div id="content_3">
-                    <div>
-                        교통안내
-                        <hr>
-                    </div>
-                    <div>
-                        <ul>
-                        	<% for(int i = 0; i < traffic.length; i++) { %>
-                            	<li><%= traffic[i] %></li>
-                            <% } %>
-                        </ul>
-                    </div>
-                </div>
+                <br>
                 <div id="content_4">
-                    <div>위치안내<hr> </div>
-                    <div id="map" style="width:1000px; height:400px;">
+                    <div><img src="<%= contextPath %>/resource/image/theater_upfiles/pin.png">
+                    	위치안내<hr> </div>
+                    <div id="map">
                        	
                     </div>
                 </div>
@@ -86,10 +81,27 @@
                 </script>
                 
                 
+                <div id="content_3">
+                    <div><img src="<%= contextPath %>/resource/image/theater_upfiles/subway.png">
+                          	교통안내
+                        <hr>
+                    </div>
+                    <div class="info">
+                        <ul>
+                        	<% for(int i = 0; i < traffic.length; i++) { %>
+                            	<li><%= traffic[i] %></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+                
+                
+                
                 <br>
                 <div id="content_5">
-                    <div>주차안내<hr></div>
-                    <div>
+                    <div><img src="<%= contextPath %>/resource/image/theater_upfiles/parking2.png">
+                    	주차안내<hr></div>
+                    <div class="info">
                         <ul>
                         	<% for(int i = 0; i < parking.length; i++) { %>
                             	<li><%= parking[i]%></li>

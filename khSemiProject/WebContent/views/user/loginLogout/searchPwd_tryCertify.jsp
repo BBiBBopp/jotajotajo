@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호찾기_본인인증</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/msj_css/03_z02_search_pwd_try_certify.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/user/loginLogout/03_z02_search_pwd_try_certify.css">
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>

@@ -27,8 +27,7 @@
 				<a href="<%= contextPath%>/atList.th?currentPage=1">영화관 관리</a>
 				<ul>
 					<li><a href="<%= contextPath%>/atList.th?currentPage=1"> 등록된 영화관</a></li>
-					<li><a href="#"> 영화관 등록</a></li>
-					<li><a href="#"> 영화관 수정</a></li>
+					<li><a href="<%= contextPath%>/atEnrollForm.th"> 영화관 등록</a></li>
 				</ul>
 			</li>
 			<li>

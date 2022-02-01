@@ -39,11 +39,24 @@ public class AMovieTheaterInsertContorller extends HttpServlet {
 		String phone = request.getParameter("phone");
 		int seatNum = Integer.parseInt(request.getParameter("seatNum"));
 		int theaterImg = Integer.parseInt(request.getParameter("theaterImg"));
-		String auditoriumName = request.getParameter("auditoriumName");
-		int auditoriumSeatNum = Integer.parseInt(request.getParameter("auditoriumSeatNum"));
+		String[] auditoriumNameArr = request.getParameterValues(("auditoriumName"));
+		String[] auditoriumSeatNumArr = request.getParameterValues("auditoriumSeatNum");
 		String location = request.getParameter("location");
 		String traffic = request.getParameter("traffic");
 		String parking = request.getParameter("parking");
+		
+		String auditoriumName = "";
+		String auditoriumSeatNum = "";
+		
+		if(auditoriumNameArr != null) {
+			auditoriumName = String.join(",", auditoriumNameArr);
+		}
+//		System.out.println(auditoriumName); // 1관, 2관
+		
+		if(auditoriumSeatNumArr != null) {
+			auditoriumSeatNum = String.join(",", auditoriumSeatNumArr);
+		}
+//		System.out.println(auditoriumSeatNum); // 100, 120
 		
 		TheaterAuditorium ta = new TheaterAuditorium();
 		

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디찾기</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/msj_css/02_search_id.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/user/loginLogout/02_search_id.css">
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
