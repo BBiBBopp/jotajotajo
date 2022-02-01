@@ -5,16 +5,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>영화 리뷰</title>
-		<style>
-			.star{
-				border:none;
-				width:10px;	
-				height:10px;
-			}
-			#stars>.on{
-				background:yellow;
-			}
-		</style>
 	</head>
 
 	<body>
@@ -40,42 +30,40 @@
 							<strong><%= mv.getReviewAvg() %> / 10</strong>
 						</div>
 						<!-- 내 평가 -->
+						<br clear="both">
 						<div id="movie-myReview">
 							
 								<!-- 점수 주는 영역 : mouseenter로 class에 on을 넣었다뺐다하기 특정 위치에 마우스를 올리면 그 전은 다 들어오고 그 뒤는 다 안들어오게 자바스크립트 구상-->
-								<input type="text" name="starCount" id="starCount" value="10" size="2" required>
-								<em>점</em>
-								<div id="stars">
-									<button class="star on"></button>
-									<button class="star on"></button>
-									<button class="star on"></button>
-									<button class="star on"></button>
-									<button class="star on"></button>
-									<button class="star on"></button>
-									<button class="star on"></button>
-									<button class="star on"></button>
-									<button class="star on"></button>
-									<button class="star on"></button>
+								<div id="star-area">
+									<input type="text" name="starCount" id="starCount" value="10" size="2" required>
+									<em>점</em>
+									<br>
+									<div id="stars">
+										<button class="star on"></button>
+										<button class="star on"></button>
+										<button class="star on"></button>
+										<button class="star on"></button>
+										<button class="star on"></button>
+										<button class="star on"></button>
+										<button class="star on"></button>
+										<button class="star on"></button>
+										<button class="star on"></button>
+										<button class="star on"></button>
+									</div>
 								</div>
-								
-								
-								<textarea name="reviewContent" id="reviewContent" cols="80" rows="2" maxlength="150"
+								<button type="button" class="btn btn-secondary" id="reviewInsert" onclick="insertReview();">등록</button>
+								<div id="my-area">
+									<textarea name="reviewContent" id="reviewContent" cols="70" rows="3" maxlength="150"
 									placeholder="영화 관람평을 작성해주세요. 주제와 무관한 리뷰는 삭제될 수 있습니다."
 									style="resize: none;" required></textarea>
 									
-									<label id="review-count">0/150</label><!-- 151자까지 됨 -->
-								<button type="button" class="btn btn-secondary" id="reviewInsert" onclick="insertReview();">등록</button>
-							
+									<label id="review-count">0/150</label>
+								</div>
 						</div>
-
+						<br clear="both">
 						<!-- 리뷰 목록 -->
 						<div>
-							<div id="reviewCount"></div>
-
-							<div id="review-sort">
-								<a>최신순</a>
-								<a>공감순</a>
-							</div>
+							<div id="reviewCount">총 0건</div>
 						</div>
 						<hr>
 							<ul id="reviewListView"></ul>
@@ -94,20 +82,17 @@
 						<% } %>
 						
 						function selectReview(list){
-							console.log('외안나와');
 							var result = '';
-							$('#reviewCount').text('총 '+list.length+'건');
-							console.log('123123');
-							console.log(list.length);
+							//$('#reviewCount').text('총 '+list.length+'건');
 							
 							if(list.length == 0){
-								result='<li>리뷰가 존재하지 않습니다. 첫번째 리뷰의 주인공이 되어주세요!</li>';
+								result='<li>리뷰가 존재하지 않습니다.</li>';
+								$('.btn-unfold').remove();
 							}else{
 								for(var i in list){
 									var reviewEmoji;
 									var content;
 									var myLike;
-									console.log(list[i]);
 									if(list[i].reviewGrade>4){
 										emoji= 'far fa-smile';
 									}else{
@@ -124,7 +109,6 @@
 											content = '삭제';
 										}
 									<% } %>
-
 									if(list[i].myLike == 'Y'){
 										myLike = 'fas fa-thumbs-up';
 									}else{
@@ -133,7 +117,7 @@
 									
 									result += '<li>'
 										+'<input type="hidden" value="'+list[i].reviewNo+'">'
-										+'<div class="review-emoji"><i class="'+emoji+'" style="font-size:36px"></i></div>'
+										+'<div class="review-emoji"><br><i class="'+emoji+'" style="font-size:36px"></i></div>'
 										+'<div class="review-text">'
 											+'<span class="reviewWriter">'+list[i].reviewWriter+'</span>'
 											+'☆'
@@ -145,12 +129,11 @@
 											+'<a onclick="'+mapping+'">'+content+'</a>'
 										+'</div>'
 										+'<div class="reviewLike" onclick="reviewLike();">'
-											+'<i class="'+myLike+'" style="font-size:24px"></i>'
+											+'<br><i class="'+myLike+'" style="font-size:24px"></i>'
 											+'<b>'+list[i].reviewLike+'</b>'
 										+'</div>'
-										+'</li><hr>';
+										+'</li><br clear="both"><hr>';
 								}
-								//if()펼쳐보기가 끝나면 버튼 사라지게 하기
 							}
 							return result;
 						}
@@ -167,13 +150,27 @@
 									'eCount': e
 									},
 								success: function(list){//리스트 뿌리기
-									console.log(list);
 									$('#reviewListView').html(selectReview(list));
+									countReview();
 								},
 								error: function(){
 									alert('AJAX 통신 실패');
 								}
 									
+							})
+							
+							
+						}
+						
+						//전체 리뷰와 평점 받아오기 == 받아와야하는 값  : 영화의 전체 건수, 총 평점도 받아와야함
+						function countReview(){
+							$.ajax({
+								url:'count.re',
+								data:{'mno': <%= mv.getMovieNo() %>},
+								success: function(list){//double로 받아와서 소수점 떼기
+									$('#reviewCount').text('총 '+list[0]+'건');
+									$('#movie-reTotal').children('strong').text(list[1].toFixed(1)+'/10');
+								}
 							})
 						}
 						
@@ -188,6 +185,7 @@
 									},
 								success: function(list){//리스트 뿌리기
 									$('#reviewListView').append(selectReview(list));
+									countReview();
 								},
 								error: function(){
 									alert('AJAX 통신 실패');
@@ -224,7 +222,9 @@
 							
 						//리뷰 등록 AJAX
 						function insertReview(){
-							<% if(loginUser != null){ %>
+							<% if(loginUser == null){ %>
+								alert('로그인이 필요한 기능입니다.');
+							<% }else{ %>
 								$.ajax({
 									url: 'insert.re',
 									data: {
@@ -248,13 +248,10 @@
 						function reviewLike(){
 							
 							var $reviewLike = $(window.event.target).parent();
-							console.log(<%= loginUser %>);
 							<% if(loginUser == null){ %>
 								alert('로그인이 필요한 기능입니다.');
 							<%}else{%>
-								console.log('일로와?');
 								var reviewNo = $reviewLike.siblings('input').val();
-								console.log(reviewNo);
 								//현재 선택한 리뷰의 좋아요 여부
 								var reIsLike;
 								
@@ -263,10 +260,6 @@
 								}else{
 									reIsLike = "N";
 								}
-								
-								console.log($reviewLike.children('i').hasClass('fas'));
-								console.log(reIsLike);
-								console.log(reviewNo+reIsLike);
 								
 								$.ajax({
 									url: 'like.re',
@@ -288,10 +281,7 @@
 												$reviewLike.children('b').text(Number($reviewLike.children('b').text())+1);
 												$reviewLike.children('i').removeClass('far').addClass('fas');
 											}					
-										}else{
-											console.log('결과이상'+result);
 										}
-										
 									},
 									error:function(){
 										alert('서버 통신 실패! 지속된다면 고객센터에 문의해주세요.');
@@ -304,13 +294,11 @@
 						//리뷰 삭제
 						function deleteReview(){
 							var $reviewLi = $(window.event.target).parent();
-							var reviewNo = '?reviewNo='+$reviewLi.siblings('input').val();
-							
 							if(confirm('삭제하시겠습니까?')){
 								$.ajax({
 									url: 'delete.re',
 									data: {
-										'reviewNo': reviewNo
+										'reviewNo': $reviewLi.siblings('input').val()
 									},
 									success: function(result){
 										if(result>0){
@@ -319,7 +307,6 @@
 											alert('삭제 실패');
 										}
 										selectReviewList(sCount, eCount);
-										
 									},
 									error: function(){
 										alert('통신 실패');
@@ -330,7 +317,6 @@
 						
 						//리뷰 신고
 						function reportForm(){
-							console.log('신고클릭');
 							var $target = $(window.event.target);
 							
 							var url = '<%= contextPath %>/reportForm.re';
@@ -347,7 +333,6 @@
 							
 							//미로그인 사용자는 비활성화
 							<% if(loginUser == null){ %>
-								console.dir($('#reviewInsert'));
 								$('#review').attr('placeholder','로그인된 사용자만 작성할 수 있습니다.').css('background', 'rgb(233,233,233)');
 								$('#movie-myReview>form').submit(function(e){
 									e.preventDefault();
@@ -367,7 +352,7 @@
 							});
 								
 							//리뷰입력 keyup
-							$('#review').keyup(function(){
+							$('#reviewContent').keyup(function(){
 								$('#review-count').text($(this).val().length+'/150');
 							});
 						})

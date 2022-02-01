@@ -30,17 +30,13 @@ public class MemberMyPageContoller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Member loginUser =(Member)request.getSession().getAttribute("loginUser");
-		if(loginUser != null) {
-			int memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
-			Member m = new MemberService().memberDetail(memberNo);
-			request.setAttribute("m", m);
-			request.getRequestDispatcher("views/user/mypage/myPage.jsp").forward(request, response);
-		}else {
-			request.getRequestDispatcher("index.do").forward(request, response);
-		}
-		
-		
+		// 로그인 유저 아이디 
+		int memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
+		//TEST아이디
+		//int memberNo = 21;
+		Member m = new MemberService().memberDetail(memberNo);
+		request.setAttribute("m", m);
+		request.getRequestDispatcher("views/user/mypage/myPage.jsp").forward(request, response);
 		
 	}
 

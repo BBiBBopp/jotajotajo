@@ -1,0 +1,106 @@
+@charset "UTF-8";
+#wrap{
+    width:1200px;
+    height:800px;
+}
+#menuBar, #notice-body{
+    display:inline-block;
+}
+#notice-body{
+    width: 800px;
+    margin:20px;
+    margin-top: 30px;
+    float:right;
+}
+#menuBar{
+    width: 300px;
+}
+.important{
+    font-weight: 800;
+    color: red;
+}
+.currentPage{
+    color:gray;
+    cursor:pointer;
+}
+#wrap h3{
+    font-weight: 600;
+    margin-left: 20px;
+}
+#notice-body{
+    position:relative;
+}
+.pagination, #goToList{
+    position: absolute;
+    margin:auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#notice-body li{
+    list-style: none;
+    display: inline-block;
+}
+#notice-body>table li{
+    width: 200px;
+}
+#notice-body tbody>tr:hover{/*작동 오류*/
+	cursor:pointer;
+}
+.FAQ-one p{
+    margin:0px;
+    padding:0px 10px;
+    height:0;
+    overflow: hidden;
+    transition: height 0.5s ease-in;
+    background: lightgray;
+}
+.FAQ-one:target p{
+    height:100px;
+    overflow:auto;
+}
+hr{
+    margin:0;
+    padding:0;
+    border: none;
+    border-top: 1px dashed grey;
+}
+.FAQ-class ul{
+    padding:0;
+    padding-left: 18px;
+}
+.FAQ-class li{
+    width: 100px;
+    height: 80px;
+    margin:auto;
+    padding:10px;
+    text-align: center;
+}
+.toolbar{
+    background: lightgray;
+    padding:20px;
+}
+.FAQ-class{
+    border:1px solid lightgray;
+    padding:20px;
+}
+.notice-search{
+    background: lightgray;
+    height: 70px;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    line-height: 70px;
+}
+.notice-search *{
+    display:inline-block;
+    height:30px;
+    border: none;
+}
+input[name='keyword']{
+    width: 400px;
+}
+.nothing{
+    text-align: center;
+    font-weight: 800;
+    font-size: 20px;
+}

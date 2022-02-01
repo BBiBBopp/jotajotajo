@@ -39,7 +39,7 @@ public class ReviewReportController extends HttpServlet {
 			text="완료";
 		else
 			text="실패";
-
+		
 		response.setContentType("text/html; charset=UTF-8");
 
 		String printResult="<script>alert('신고 "+text+".');window.close();</script>";

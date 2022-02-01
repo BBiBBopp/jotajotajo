@@ -32,7 +32,9 @@
 
 <link rel="stylesheet" href="resource/css/user/common/00_stylesheet.css">
 
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+<link rel="stylesheet" href="style.css">
 
 
 
@@ -103,7 +105,7 @@ body{
 </script>
 
 </head>
-<body>	
+	
 	<script>
 			var msg = "<%= alertMsg%>"
 			if(msg != "null"){ // 성공, 경고 메세지 문구가 담겨있을 경우
@@ -120,15 +122,15 @@ body{
 		<div class="logo_bg">
 
 			<a href="<%=contextPath %>/index.do"><img
-				src="<%=contextPath %>/resource/image/user/member/cinema_logo900.jpg" alt="시네마헤븐"></a>
+				src="<%=contextPath %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐"></a>
 		</div>
 		<div class="service_area">
 			<!-- <a href="" class="link search">검색</a>  -->
 			<!-- 검색 지우고 돋보기 이미지 넣기 -->
 			<% if(loginUser == null) { %>
-			<a href = "<%=contextPath%>/loginForm.log" class="link login">로그인</a> <a href="<%=contextPath %>/terme.me" class="link signIn">회원가입</a> <br><br><br><br>
+			<a href = "<%=contextPath%>/loginForm.log" class="link login">로그인</a> <a href="" class="link signIn">회원가입</a> <br><br><br><br>
 			<% } else { %>
-			<a href = "<%= contextPath %>/logout.log" class="link login">로그아웃</a> <a href="<%=contextPath %>/myPage.me" class="link signIn">마이페이지</a> <br><br><br><br>
+			<a href = "<%= contextPath %>/logout.log" class="link login">로그아웃</a> <a href="" class="link signIn">마이페이지</a> <br><br><br><br>
 			<% } %>
 			    <div class="search-box">
       				<input type="text" id="search" name="search" class="search-txt">
@@ -148,7 +150,7 @@ body{
 				<li class="nav_item"><a href="<%=contextPath %>/list.vot" class="link nav">투표하기</a>
 					<ul>
 						<li><a href="<%=contextPath %>/vote.re" class="link nav">투표결과</a></li>
-						<li><a href="<%=contextPath %>/vote.pa?currentPage=1" class="link nav">이전 투표목록</a></li>
+						<li><a href="<%=contextPath %>/vote.pa" class="link nav">이전 투표목록</a></li>
 					</ul>
 				</li>
 				<li class="nav_item"><a href="<%=contextPath%>/faq.no" class="link nav">고객센터</a></li>

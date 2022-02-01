@@ -31,7 +31,7 @@ public class ReportDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String list = request.getParameter("list");
 		String[] deleteList = list.split(",");
-		
+		System.out.println(deleteList);
 		int result = new MovieService().deleteReviewByReport(deleteList);
 	
 		if(result>0) {//삭제 성공

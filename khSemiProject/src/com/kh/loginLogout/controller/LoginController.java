@@ -45,11 +45,11 @@ public class LoginController extends HttpServlet {
 		try {
 			changedPwd = sha256.encrypt(memberPwd);
 			
-//			System.out.println(memberPwd); // 입력된 비밀번호 확인
+			System.out.println(memberPwd); // 입력된 비밀번호 확인
 			
-//			System.out.println(changedPwd.equals(sha256.encrypt(memberPwd))); // 암호화된 비밀번호화 일치하는지 확인
+			System.out.println(changedPwd.equals(sha256.encrypt(memberPwd))); // 암호화된 비밀번호화 일치하는지 확인
 			
-//			System.out.println(changedPwd);
+			System.out.println(changedPwd);
 			
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
@@ -59,9 +59,7 @@ public class LoginController extends HttpServlet {
 		Member loginUser = new LoginService().selectMember(memberId, changedPwd);
 		
 		if(loginUser != null && loginUser.getMemberId().equals("admin")) {
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", loginUser);
-			request.getRequestDispatcher("memberList.me?currentPage=1").forward(request, response);
+			
 			// 관리자 아이디로 로그인 시 관리자페이지 첫메뉴바인 회원관리페이지로 보내기
 			
 		}else if(loginUser != null){
@@ -72,7 +70,7 @@ public class LoginController extends HttpServlet {
 			
 			session.setAttribute("alertMsg", "로그인하셨습니다.");
 			
-			response.sendRedirect("/cinemaHeaven/index.do");
+			response.sendRedirect("/cinemaHeaven");
 			// 로그인정보, 경고메세지들고 메인페이지로 이동
 			
 		}else {

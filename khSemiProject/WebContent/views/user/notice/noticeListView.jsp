@@ -21,40 +21,31 @@
     <head>
         <meta charset="UTF-8">
         <title>고객센터-공지사항-목록조회</title>
-    <style>
-    	#menuBar{
-    		disply:inline-block;
-    		width:300px;
-    		padding:0;
-    		margin:0;
-    	}
-    	#container{
-    		disply:inline-block;
-    		width:600px;
-    		padding:0;
-    		margin:0;
-    	}
-    	.important{
-    		font-weight: 800;
-    		color: red;
-    	}
-    	.currentPage{
-    		color:gray;
-    		cursor:pointer;
-    	}
-    </style>
+		<link rel="stylesheet" href="resource/css/user/notice/notice.css">
     </head>
 
     <body>
         <!--header-->
         <%@ include file="../common/header.jsp" %>
                 <!-- 고객센터 메뉴바 넣을 자리-->
-            <div id="menuBar">
-                	 <%@ include file="../common/customerNavigation.jsp" %>
-            </div>
-            <div id="container">
-
+			<div id="wrap">
+				<div id="menuBar">
+					<%@ include file="../common/customerNavigation.jsp" %>
+				</div>
                 <div id="notice-body">
+					<h3>공지사항</h3>
+					<div class="notice-search">
+						<form action="search.no" method="get">
+							<input type="hidden" name="currentPage" value="1">
+							<select name="type">
+								<option value="title">제목</option>
+								<option value="content">내용</option>
+							</select>
+							<input type="search" name="keyword">
+							<input type="submit" class="btn btn-sm btn-secondary"value="검색">
+						</form>
+					</div>
+					<br>
                     <table class="table">
                         <thead>
                             <tr>
@@ -105,19 +96,10 @@
 	                        <li class="page-item"><a class="page-link" href="<%= contextPath %>/<%= mapping %>?currentPage=<%= pi.getStartPage()+pi.getPageLimit() %><%= query %>">&gt;</a></li>
 	                    <% } %>
                     </ul>
+					<br clear="both"><br>
+					
                 </div>
-
-                <div class="notice-search">
-                    <form action="search.no" method="get">
-                    	<input type="hidden" name="currentPage" value="1">
-                        <select name="type">
-                            <option value="title">제목</option>
-                            <option value="content">내용</option>
-                        </select>
-                        <input type="search" name="keyword">
-                        <input type="submit" value="검색">
-                    </form>
-                </div>
+				
                 <script>
                 	$(function(){
                 		//상세조회 tr 누를 시 상세조회 들어가기!!
@@ -128,6 +110,7 @@
                 	})
                 </script>
             </div>
+			<br clear="both">
             <!--footer-->
             <%@ include file="../common/footer.jsp" %>
     </body>

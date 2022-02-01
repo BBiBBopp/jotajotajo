@@ -18,8 +18,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.kh.ticket.model.service.TicketService;
-
 /**
  * Servlet implementation class KakaopayController
  */
@@ -45,9 +43,6 @@ public class KakaopayController extends HttpServlet {
 		
 		// 값 뽑기
 		
-		// service로 넘기기
-		int result = new TicketService().insertTicket();
-		
 		String successUrl = "";
 			URL address = new URL("https://kapi.kakao.com/v1/payment/ready");
 			HttpURLConnection connection = (HttpURLConnection)address.openConnection(); // 서버 연결
@@ -67,7 +62,7 @@ public class KakaopayController extends HttpServlet {
 			params.put("total_amount", String.valueOf("200")); // 총 금액
 			params.put("vat_amount", String.valueOf("0")); // 부가세
 			params.put("tax_free_amount", "0");
-			params.put("approval_url", "http://localhost:8222/cinemaHeaven/list.ti?currentPage=1"); // 결제 성공 시
+			params.put("approval_url", "http://localhost:8222/cinemaHeaven/"); // 결제 성공 시
 			params.put("fail_url", "http://localhost:8222/cinemaHeaven/MoView.ti/"); //결제 실패 시 
 			params.put("cancel_url", "http://localhost:8222/cinemaHeaven/MoView.ti/"); // 결제 취소 시
 	

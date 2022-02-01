@@ -51,11 +51,7 @@ public class Member {
 		this.birth = birth;
 		this.memberStatus = memberStatus;
 	}
-	public Member(String memberId, Date createDate) {
-		super();
-		this.memberId = memberId;
-		this.createDate = createDate;
-	}
+	
 
 	public Member(int memberNo, String memberId, String memberPwd, String memberName) {
 
@@ -65,11 +61,18 @@ public class Member {
 		this.memberPwd = memberPwd;
 		this.memberName = memberName;
 	}
-	public Member(String memberId, String email) { // 비밀번호찾기 할 때 사용
+	
+
+
+	public Member(int memberNo, String memberId, String memberPwd, String memberName, String interest) {
 		super();
+		this.memberNo = memberNo;
 		this.memberId = memberId;
-		this.email = email;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.interest = interest;
 	}
+
 
 
 	public Member(int memberNo, String memberId, String memberPwd, String memberName, String birth, String gender,

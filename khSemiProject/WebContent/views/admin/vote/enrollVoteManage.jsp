@@ -14,10 +14,10 @@
 	<br><br>
 		<h2>투표관리</h2>
 		<br><br>
-			<form action="<%=contextPath %>/insert.vot" method="post" enctype="multipart/form-data">
-				 <label>투표 명칭 : <input type="text" name="voteTitle"></label> <br><br>
-				 <label>투표 시작일  : <input type="date" name="sDate"></label> <br><br>
-				 <label>투표 마감일  : <input type="date" name="eDate"></label> <br><br>
+			<form action="" method="post">
+				 <label>투표 명칭 : <input type="text"></label> <br><br>
+				 <label>투표 시작일  : <input type="date"></label> <br><br>
+				 <label>투표 마감일  : <input type="date"></label> <br><br>
 	
 			   <br><br>
 			   
@@ -36,31 +36,31 @@
 		            <tbody>
 		                <tr>
 		                    <td>1</td>
-		                    <td><input type="text" name="vreTitle1"></td>
-		                    <td><input type="text" name="vreGenre1"></td>
-		                    <td><input type="file" name="file1"></td>
-		                    <td><textarea rows="4" cols=45; name="synopsis1"></textarea></td>
+		                    <td><input type="text" ></td>
+		                    <td><input type="text" ></td>
+		                    <td><input type="file" ></td>
+		                    <td><textarea rows="4" cols=45;></textarea></td>
 		                </tr>
 		                <tr>
 		                    <td>2</td>
-		                    <td><input type="text" name="vreTitle2"></td>
-		                    <td><input type="text" name="vreGenre2"></td>
-		                    <td><input type="file" name="file2"></td>
-		                    <td><textarea rows="4" cols=45; name="synopsis2"></textarea></td>
+		                    <td><input type="text" ></td>
+		                    <td><input type="text" ></td>
+		                    <td><input type="file" ></td>
+		                    <td><textarea rows="4" cols=45;></textarea></td>
 		                </tr>
 		                <tr>
 		                    <td>3</td>
-		                    <td><input type="text" name="vreTitle3"></td>
-		                    <td><input type="text" name="vreGenre3"></td>
-		                    <td><input type="file" name="file3"></td>
-		                    <td><textarea rows="4" cols=45; name="synopsis3"></textarea></td>
+		                    <td><input type="text" ></td>
+		                    <td><input type="text" ></td>
+		                    <td><input type="file" ></td>
+		                    <td><textarea rows="4" cols=45;></textarea></td>
 		                </tr>
 		                <tr>
 		                    <td>4</td>
-		                    <td><input type="text" name="vreTitle4"></td>
-		                    <td><input type="text" name="vreGenre4"></td>
-		                    <td><input type="file" name="file4"></td>
-		                    <td><textarea rows="4" cols=45; name="synopsis4"></textarea></td>
+		                    <td><input type="text" ></td>
+		                    <td><input type="text" ></td>
+		                    <td><input type="file" ></td>
+		                    <td><textarea rows="4" cols=45;></textarea></td>
 		                </tr>
 		            </tbody>
 		        </table>

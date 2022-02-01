@@ -14,13 +14,13 @@
 <body>
 	<div class="menubar">
 		<ul id="manage">
-			<li><a class="home" href="#"><img src="<%=contextPath %>/resource/image/user/member/cinema_logo_wthie.png" alt="시네마헤븐"></a></li>
+			<li><a class="home" href="#"><img src="<%=contextPath %>/resource/image/cinema_logo_wthie.png" alt="시네마헤븐"></a></li>
 			<li><a href="<%=contextPath %>/memberList.me?currentPage=1">회원관리</a></li>
 			<li>
-				<a href="#">영화 목록 관리</a>
+				<a href="<%= contextPath %>/adminList.mo">영화 목록 관리</a>
 				<ul>
-					<li><a href="#"> 영화 관리</a></li>
-					<li><a href="#"> 리뷰 관리</a></li>
+					<li><a href="<%= contextPath %>/adminList.mo">영화 관리</a></li>
+					<li><a href="<%= contextPath %>/reportList.re"> 리뷰 관리</a></li>
 				</ul>
 			</li>
 			<li>
@@ -34,21 +34,20 @@
 			<li>
 				<a href="#">고객센터</a>
 				<ul>
-					<li><a href="#"> FAQ 관리</a></li>
-					<li><a href="#"> 공지사항 관리</a></li>
-					<li><a href="<%= contextPath %>/adminList.qu?currentPage=1"> 1:1 문의 관리</a></li>
+					<li><a href="<%= contextPath %>/adminList.no?tableType=faq"> FAQ 관리</a></li>
+					<li><a href="<%= contextPath %>/adminList.no"> 공지사항 관리</a></li>
+					<li><a href="#"> 1:1 문의 관리</a></li>
 				</ul>
 			</li> 
 			<li>
-				<a href="manage.vot1">투표관리</a>
+				<a href="#">투표관리</a>
 				<ul>
 					<li><a href="<%=contextPath %>/manage.vot1"> 투표</a></li>
+					<li><a href="<%=contextPath %>/manage.vot2"> 투표결과</a></li>
+					<li><a href="<%=contextPath %>/manage.vot3"> 이전투표목록</a></li>
+
 				</ul>
 			</li>
-			<li>
-				<a href="<%=contextPath%>/adminManage.ti?currentPage=1">결제 관리</a>
-			</li>
-			<li><a href="<%=contextPath %>/logout.log">로그아웃</a></li>
 		</ul>
 	</div>
 </body>

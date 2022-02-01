@@ -29,7 +29,7 @@
 
 	<div class="header">
 		<div class="logo_bg">
-			<img src="<%=contextPath %>/resource/image/user/member/cinema_logo900.jpg" alt="시네마헤븐">
+			<img src="<%=contextPath %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐">
 		</div>
 	</div>
 	<div class="outer">
@@ -222,36 +222,6 @@
                     <input class="member_input member_btn update_btn" type="submit" value="수정">
                 </div>
             </form>
-            	<br>
-            	<div class="container">
-					<button type="button" class="delete_btn" data-toggle="modal" data-target="#myModal">삭제	</button>
-					<!-- The Modal -->
-					<div class="modal" id="myModal">
-						<div class="modal-dialog">
-							<div class="modal-content">
-			      
-								<!-- Modal Header -->
-								<div class="modal-header">
-									<h4 class="modal-title">비밀번호 입력</h4>
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-								</div>
-			        
-								<!-- Modal body -->
-								<form action="<%=contextPath%>/memberDelete.me" method="post">
-								<div class="modal-body">
-									<input class="pwssword_input" type="password" id="deletePwd" name="deletePwd">
-								</div>
-			        
-								<!-- Modal footer -->
-								<div class="modal-footer" align="center">
-									<input type="hidden" value="<%=m.getMemberNo() %>" name="deleteNo">
-									<input type="submit" class="delete"  value="삭제">
-								</div>
-			        			</form>
-							</div>
-						</div>
-					</div>
-				</div>
             </fieldset>
 		</div>
 	</div>
@@ -269,6 +239,7 @@
 				var search = $('#search').val();
 				loaction.href("<%=contextPath%>/search.all?search="+search);
 			})
+			
 		})
 	</script>
 </body>

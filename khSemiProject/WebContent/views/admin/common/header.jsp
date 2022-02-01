@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<% String contextPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +20,7 @@
 	<div class="logo_area">
 		<div class="logo_bg">
 			<a href="index.html"><img
-				src="../../../resource/css/admin/member/cinema_logo900.jpg" alt="시네마헤븐"></a>
+				src="../../../resource/css/cinema_logo900.jpg" alt="시네마헤븐"></a>
 		</div>
 		<div class="service_area">
 			<a href="" class="link search">검색</a>

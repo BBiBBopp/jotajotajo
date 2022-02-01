@@ -29,18 +29,13 @@ public class MemberUpdateFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Member loginUser =(Member)request.getSession().getAttribute("loginUser");
-		if(loginUser != null) {
-			int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-			
-			Member m = new MemberService().memberDetail(memberNo);
-			request.setAttribute("m", m);
-			
-			request.getRequestDispatcher("views/user/member/memberUpdateForm.jsp").forward(request, response);
-		}else {
-			request.getRequestDispatcher("index.do").forward(request, response);
-		}
 		
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		
+		Member m = new MemberService().memberDetail(memberNo);
+		request.setAttribute("m", m);
+		
+		request.getRequestDispatcher("views/user/member/memberUpdateForm.jsp").forward(request, response);
 		
 	}
 

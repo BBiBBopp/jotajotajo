@@ -31,7 +31,7 @@ public class LogoutController extends HttpServlet {
 		
 		request.getSession().setAttribute("alertMsg", "로그아웃하셨습니다.");
 		
-		response.sendRedirect(request.getContextPath()+"/index.do");
+		response.sendRedirect(request.getContextPath());
 		
 	}
 

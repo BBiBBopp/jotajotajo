@@ -1,18 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.kh.ticket.model.vo.Ticket" %>
-<%
-	Ticket t = (Ticket)request.getAttribute("selected");
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
  <title>좌석 선택</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/user/ticketing/seat.css">
-    <script src="resource/js/ticket/seat.js"></script>
-    
 </head>
 <body>
 	<div id="wrap">
@@ -80,22 +73,24 @@
 							</div>
 						</div>
 						<div class="select-seat-information">
-							<div class="selected-movie"><%= t.getmName() %></div>
+							<div class="selected-movie">라라랜드</div>
 							<div class="select-seat-information-wrapper">
-								<div class="select-theater-place selected-theater-place-info"><%= t.getTheaterName() %></div>
-								<div class="select-theater-place selected-theater-place-info"><%= t.getAuditoriumName() %></div>
+								<div class="select-theater-place selected-theater-place-info">강남점</div>
+								<div class="select-theater-place selected-theater-place-info">3관
+									8층</div>
 								<div class="select-theater-place">
-									<span>남은좌석</span><span class="remain-seats"><%= t.getRemain() %></span>
+									<span>남은좌석</span><span class="remain-seats">152</span>/<span
+										class="all-seats">172</span>
 								</div>
 
 							</div>
 							<div class="select-theater-date">
-								<div class="theater-date">2022.02.01(화)</div>
-								<div class="theater-time"><%= t.getRunSch() %></div>
+								<div class="theater-date">2022.01.01(월)</div>
+								<div class="theater-time">18:20</div>
 							</div>
 							<div class="selected-seats-wrapper">
-								<span class="selected-seats-title">좌석번호</span> 
-                                <span class="selected-seats">선택한 좌석이 없습니다.</span>
+								<span class="selected-seats-title">좌석번호</span> <span
+									class="selected-seats">선택한 좌석이 없습니다.</span>
 							</div>
 							<div class="ticket-price-wrapper">
 								<div class="ticket-price-title">가격</div>
@@ -112,6 +107,9 @@
 								<input type="hidden" class="selectedSeat" name="selectedSeat" value="2">
 								<!-- 결제 정보 -->
 								<input type="hidden" class="payMoney" name="payMoney" value="30000">
+								<div class="poster">
+									<img src="" alt="영화포스터">
+								</div>
 								<button type="submit" class="reserve-button">결제하기</button>
 							</form>
 						</div>
@@ -164,17 +162,7 @@
 							<div class="screen-view-wrapper">
 								<div class="screen-view">SCREEN</div>
 								
-								<% 
-									String seat = t.getAuditoriumName();
-									seat = seat.substring(5, seat.length()-2);
-								%>
-								<% if(Integer.parseInt(seat) == 160) { %>
-									<%@ include file="seat160.jsp" %>
-								<% } else if(Integer.parseInt(seat) == 120) { %>
-									<%@ include file="seat120.jsp" %>
-								<% } else { %>
-									<%@ include file="seat100.jsp" %>
-								<% } %>
+								<%@ include file="seat160.jsp" %>
 							</div>
 						</div>
 					</div>
