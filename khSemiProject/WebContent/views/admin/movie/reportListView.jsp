@@ -41,17 +41,6 @@
 					삭제
 				</button>
 				
-				<div class="notice-search">
-					<form action="adminSearch.re" method="get">
-						<input type="hidden" name="currentPage" value="1">
-						<select name="pageType">
-							<option value="content">내용</option>
-						</select>
-						<input type="search" name="keyword">
-						<input type="submit" value="검색">
-					</form>
-				</div>
-				
 				<!-- Modal : 보류 Form -->
 				<div class="modal hold-form" id="holdForm">
 				<div class="modal-dialog">
