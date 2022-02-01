@@ -127,29 +127,32 @@
 							}else{
 								isLike = "N";
 							}
-							$.ajax({
-								url: 'like.mo',
-								data: {
-									'mno': <%= mv.getMovieNo() %>,
-									'isLike': isLike
-								},
-								success: function(result){
-									if(result>0){
-										if(isLike=='Y'){
-											$('#movieLike>span').text('♡');
-											$('#movieLike>b').text(Number($('#movieLike>b').text())-1);
+							
+							<% if(loginUser != null){ %>
+								$.ajax({
+									url: 'like.mo',
+									data: {
+										'mno': <%= mv.getMovieNo() %>,
+										'isLike': isLike
+									},
+									success: function(result){
+										if(result>0){
+											if(isLike=='Y'){
+												$('#movieLike>span').text('♡');
+												$('#movieLike>b').text(Number($('#movieLike>b').text())-1);
+											}else{
+												$('#movieLike>span').text('♥');
+												$('#movieLike>b').text(Number($('#movieLike>b').text())+1);
+											}
 										}else{
-											$('#movieLike>span').text('♥');
-											$('#movieLike>b').text(Number($('#movieLike>b').text())+1);
+											alert('등록 실패');
 										}
-									}else{
-										alert('등록 실패');
+									},
+									error: function(){
+										alert('AJAX 실패');
 									}
-								},
-								error: function(){
-									alert('AJAX 실패');
-								}
-							})
+								})
+							<% } %>
 						}
 					</script>
 				</div>

@@ -38,8 +38,8 @@ public class MovieRecommendController extends HttpServlet {
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");//로그인 유저 조회
 		
 
-		String genres = new MovieService().selectMemberGenre(loginUser.getUserId());
-//		String[] genre = genres.split(",");
+		String genres = new MovieService().selectMemberGenre(loginUser.getMemberId());
+		String[] genre = genres.split(",");
 		ArrayList<Movie> recommendList = new MovieService().selectRecommendList(count, genre);
 
 //		request.setAttribute("recommendList", recommendList);
