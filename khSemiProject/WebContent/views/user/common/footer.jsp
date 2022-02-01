@@ -9,6 +9,7 @@
 <title>footer</title>
 
 </head>
+<body>
 <div id="footer">
 	<div class="footer_inner">
 		<div class="corp_area">
@@ -21,7 +22,7 @@
 		<div class="disc_area">
 
 			<div class="foot_logo">
-				<img src="<%=request.getContextPath() %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐">
+				<img src="<%=request.getContextPath() %>/resource/image/user/member/cinema_logo900.jpg" alt="시네마헤븐">
 			</div>
 			<div class="crop_info">
 				<p>

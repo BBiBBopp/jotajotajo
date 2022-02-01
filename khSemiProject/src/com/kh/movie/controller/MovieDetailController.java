@@ -53,7 +53,7 @@ public class MovieDetailController extends HttpServlet {
 		request.setAttribute("mv", mv);
 		request.setAttribute("picList", picList);
 		request.setAttribute("actorList", actorList);
-		
+		System.out.println(mv.getMyLike());
 		if(mv!= null && picList.size() > 0) {//성공. 포스터는 필수이므로 size는 항상 0보다 크다
 			request.getRequestDispatcher("views/user/movie/movieDetailView.jsp").forward(request, response);
 		}else {//실패

@@ -5,7 +5,6 @@ public class Schedule {
 	private String runSch;
 	private int auditoriumNo;
 	private int mno;
-	private String theaterName;
 	public Schedule() {
 		super();
 	}
@@ -40,19 +39,11 @@ public class Schedule {
 	public void setMno(int mno) {
 		this.mno = mno;
 	}
-	public String getTheaterName() {
-		return theaterName;
-	}
-	public void setTheaterName(String theaterName) {
-		this.theaterName = theaterName;
+	@Override
+	public String toString() {
+		return "Schedule [runNo=" + runNo + ", runSch=" + runSch + ", auditoriumNo=" + auditoriumNo + ", mno=" + mno
+				+ "]";
 	}
 	
-	@Override
-	/**
-	 * Movie에서 schedule 추가/삭제할 때 쓰므로 변경 불가
-	 */
-	public String toString() {
-		return theaterName + "/" + auditoriumNo + "/" + runSch;
-	}
 	
 }

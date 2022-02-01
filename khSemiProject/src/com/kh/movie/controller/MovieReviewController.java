@@ -13,6 +13,7 @@ import com.kh.member.model.vo.Member;
 import com.kh.movie.model.service.MovieService;
 import com.kh.movie.model.vo.Movie;
 import com.kh.movie.model.vo.Picture;
+import com.kh.movie.model.vo.Review;
 
 /**
  * Servlet implementation class MovieReviewController
@@ -33,21 +34,31 @@ public class MovieReviewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//리뷰페이지에서 리뷰를 제외한 나머지파트 조회하는 Servlet
 		int movieNo = Integer.parseInt(request.getParameter("mno"));
 		
 		int memberNo = 0;
 		if((Member)request.getSession().getAttribute("loginUser") != null)
 			memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
 		
+		int sCount = 1;
+		int eCount = 10;
+		
+		
+		
 		Movie mvSummary= new MovieService().selectMovieSummary(movieNo, memberNo);
 		
 		ArrayList<Picture> picList = new MovieService().selectPicture(movieNo);
 		
+//		ArrayList<Review> reviewList = new MovieService().selectReviewList(movieNo, memberNo, sCount, eCount);
+
+//		System.out.println(reviewList);
 		request.setAttribute("mv", mvSummary);
 		request.setAttribute("picList", picList);
+//		request.setAttribute("reviewList", reviewList);
 		
 		request.getRequestDispatcher("views/user/movie/movieReviewView.jsp").forward(request, response);
+	
+	
 	}
 
 	/**

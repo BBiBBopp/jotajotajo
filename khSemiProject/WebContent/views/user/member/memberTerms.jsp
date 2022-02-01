@@ -42,7 +42,7 @@
 <body>
 	<div class="header">
 		<div class="logo_bg">
-			<a href=""><img src="<%=request.getContextPath() %>/resource/image/cinema_logo900.jpg" alt="시네마헤븐"></a>
+			<img src="<%=contextPath %>/resource/image/user/member/cinema_logo900.jpg" alt="시네마헤븐">
 		</div>
 	</div>
 	<div class="outer" >

@@ -39,6 +39,7 @@ public class ReviewReportFormController extends HttpServlet {
 		re.setReviewWriter(reviewWriter);
 		re.setReviewContent(reviewContent);
 		
+		System.out.println(re);
 		request.setAttribute("re", re);
 		
 		request.getRequestDispatcher("views/user/movie/movieReviewReport.jsp").forward(request, response);

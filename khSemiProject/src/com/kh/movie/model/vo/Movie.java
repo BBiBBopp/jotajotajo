@@ -1,7 +1,8 @@
 package com.kh.movie.model.vo;
 
 import java.sql.Date;
-import java.sql.Timestamp;//둘다 안쓰는것같은데 확인하고 지우기
+
+import java.sql.Timestamp;
 
 public class Movie {
 	private int movieNo;
@@ -13,7 +14,7 @@ public class Movie {
 	private String rate;
 	private String synopsis;
 	private String status;
-	private String releaseDate;//재개봉일
+	private Date releaseDate;
 	private double reviewAvg;
 	private int movieLike;
 	private double advanceRate;//예매율
@@ -54,11 +55,11 @@ public class Movie {
 	}
 
 
-	public String getReleaseDate() {
+	public Date getReleaseDate() {
 		return releaseDate;
 	}
 
-	public void setReleaseDate(String releaseDate) {
+	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 

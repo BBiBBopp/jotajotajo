@@ -23,163 +23,160 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 신고</title>
-<link rel="stylesheet" href="resource/css/admin/movie/movie.css">
 </head>
 <body>
-	<div id="wrap">
-		<div id="menuBar">
-			<%@ include file="../common/menubar.jsp" %>
-		</div>
-		<div id="body-area">
-			<br>
-			<h3>리뷰 신고 목록</h3>
-		<div id="notice-menu">
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#holdForm">
-					보류(신고불량)
-				</button>
-				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteForm">
-					삭제
-				</button>
-				
-				<div class="notice-search">
-					<form action="adminSearch.re" method="get">
-						<input type="hidden" name="currentPage" value="1">
-						<select name="pageType">
-							<option value="content">내용</option>
-						</select>
-						<input type="search" name="keyword">
-						<input type="submit" value="검색">
-					</form>
-				</div>
-				
-				<!-- Modal : 보류 Form -->
-				<div class="modal hold-form" id="holdForm">
-				<div class="modal-dialog">
-					<div class="modal-content">
-				
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">보류 - 신고불량</h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-				
-					<!-- Modal body -->
-					<div class="modal-body">
-						<ul id="holdList"></ul>
-							보류하시겠습니까? 
-					</div>
-				
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-						<button id="holdSubmit" type="submit" class="btn btn-danger" data-dismiss="modal">보류</button>
-					</div>
-					</div>
-				</div>
-				</div>  
-				
-				
-				<!-- Modal : DeleteForm -->
-				<div class="modal delete-form" id="deleteForm">
-				<div class="modal-dialog">
-					<div class="modal-content">
-				
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">삭제 - 불량 리뷰</h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-				
-					<!-- Modal body -->
-					<div class="modal-body">
-						<ul id="deleteList"></ul>
-								삭제하시겠습니까? 
-					</div>
-				
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-						<button id="deleteSubmit" type="submit" class="btn btn-danger" data-dismiss="modal">삭제</button>
-					</div>
-					</div>
-				</div>
-				</div>
-				
-				
+	<div id="admin-menu">
+		<%@ include file="../common/menubar.jsp" %>
+	</div>
+	<div id="container">
+		<br>
+		<h3>리뷰 신고 목록</h3>
+	<div id="notice-menu">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#holdForm">
+				보류(신고불량)
+			</button>
+			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteForm">
+			 	삭제
+			</button>
+			
+			<div class="notice-search">
+                   <form action="adminSearch.re" method="get">
+                   	<input type="hidden" name="currentPage" value="1">
+                       <select name="pageType">
+                           <option value="content">내용</option>
+                       </select>
+                       <input type="search" name="keyword">
+                       <input type="submit" value="검색">
+                   </form>
+               </div>
+               
+            <!-- Modal : 보류 Form -->
+			<div class="modal hold-form" id="holdForm">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			
+			      <!-- Modal Header -->
+			      <div class="modal-header">
+			        <h4 class="modal-title">보류 - 신고불량</h4>
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			      </div>
+			
+			      <!-- Modal body -->
+			      <div class="modal-body">
+			      	<ul id="holdList"></ul>
+			        	보류하시겠습니까? 
+			      </div>
+			
+			      <!-- Modal footer -->
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+			        <button id="holdSubmit" type="submit" class="btn btn-danger" data-dismiss="modal">보류</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>  
+			
+			 
+			<!-- Modal : DeleteForm -->
+			<div class="modal delete-form" id="deleteForm">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			
+			      <!-- Modal Header -->
+			      <div class="modal-header">
+			        <h4 class="modal-title">삭제 - 불량 리뷰</h4>
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			      </div>
+			
+			      <!-- Modal body -->
+			      <div class="modal-body">
+			      	<ul id="deleteList"></ul>
+			                  삭제하시겠습니까? 
+			      </div>
+			
+			      <!-- Modal footer -->
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+			        <button id="deleteSubmit" type="submit" class="btn btn-danger" data-dismiss="modal">삭제</button>
+			      </div>
+			    </div>
+			  </div>
 			</div>
+			
+			
+		</div>
 
-			<!-- 목록 테이블 영역 -->
-			<div id="notice-body">
-				<table class="table">
-					<thead>
-						<tr>
-							<th><input type="checkbox" id="checkAll"></th>
-							<th>No.</th>
-							<th>리뷰내용</th>
-							<th>신고일</th>
-							<th>신고사유</th>
-							<th>처리여부</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% if(list == null || list.isEmpty()){ %>
-							<tr><td>
-								리뷰 신고가 존재하지 않습니다.
-							</td></tr>
-						<% }else{ %>
-							<% for(Report rp : list){ %>
-								<% if(rp.getStatus().equals("Y")){ %>
-									<tr style="background:lightgray; color:gray;">
-										<td>
-											<input type="checkbox" disabled class="rows" value="<%= rp.getReportNo() %>">
-								<% }else{ %>
-									<tr>
-										<td>
-											<input type="checkbox" class="rows" value="<%= rp.getReportNo() %>">
-										<% } %>
-									
-									</td>
-									<td><%= rp.getReportNo() %></td>
-									<td><%= rp.getReviewContent() %></td>
-									<td><%= rp.getReportDate() %></td>
-									<td><%= rp.getReason() %></td>
-									<td><%= rp.getStatus() %></td>
-								</tr>
-							<% } %>
+		<!-- 목록 테이블 영역 -->
+		<div id="notice-body">
+			<table>
+				<thead>
+					<tr>
+						<th><input type="checkbox" id="checkAll"></th>
+						<th>No.</th>
+						<th>리뷰내용</th>
+						<th>신고일</th>
+						<th>신고사유</th>
+						<th>처리여부</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% if(list == null || list.isEmpty()){ %>
+                       	<tr><td>
+                       		리뷰 신고가 존재하지 않습니다.
+                       	</td></tr>
+                    <% }else{ %>
+						<% for(Report rp : list){ %>
+							<% if(rp.getStatus().equals("Y")){ %>
+								<tr style="background:lightgray; color:gray;">
+									<td>
+										<input type="checkbox" disabled class="row" value="<%= rp.getReportNo() %>">
+							<% }else{ %>
+								<tr>
+									<td>
+										<input type="checkbox" class="row" value="<%= rp.getReportNo() %>">
+									<% } %>
+								
+								</td>
+								<td><%= rp.getReportNo() %></td>
+								<td><%= rp.getReviewContent() %></td>
+								<td><%= rp.getReportDate() %></td>
+								<td><%= rp.getReason() %></td>
+								<td><%= rp.getStatus() %></td>
+							</tr>
 						<% } %>
-					</tbody>
-				</table>
-			</div>
-			<!-- 페이징 처리 -->
-			<ul class="pagination">
-			<% if(pi != null){ %>
-				<% if( pi.getStartPage() != 1 ){ %>
-					<li class="page-item"><a class="page-link" href="<%= contextPath %>/<%= mapping %>?currentPage=<%= pi.getEndPage()-pi.getPageLimit()+1 %><%= query %>">&lt;</a></li>
-				<% } %>
-				
-				<% for(int i = pi.getStartPage(); i<=pi.getEndPage();i++){ %>
-					<% if(i == pi.getCurrentPage()){ %>
-						<li class="page-item active"><a class="page-link"><%= i %></a></li>
-					<% }else{ %>
-						<li class="page-item"><a class="page-link" href="<%= contextPath %>/<%= mapping %>?currentPage=<%= i %><%= query %>"><%= i %></a></li>
 					<% } %>
-				<% } %>
-				
-				<% if(pi.getEndPage()!= pi.getMaxPage()){ %>
-					<li class="page-item"><a class="page-link" href="<%= contextPath %>/<%= mapping %>?currentPage=<%= pi.getStartPage()+pi.getPageLimit() %><%= query %>">&gt;</a></li>
-				<% } %>
-			<% } %>
-			</ul>
+				</tbody>
+			</table>
 		</div>
+		<!-- 페이징 처리 -->
+           <ul class="pagination">
+           <% if(pi != null){ %>
+            <% if( pi.getStartPage() != 1 ){ %>
+                <li class="page-item"><a class="page-link" href="<%= contextPath %>/<%= mapping %>?currentPage=<%= pi.getEndPage()-pi.getPageLimit()+1 %><%= query %>">&lt;</a></li>
+            <% } %>
+            
+            <% for(int i = pi.getStartPage(); i<=pi.getEndPage();i++){ %>
+            	<% if(i == pi.getCurrentPage()){ %>
+                	<li class="page-item active"><a class="page-link"><%= i %></a></li>
+                <% }else{ %>
+                	<li class="page-item"><a class="page-link" href="<%= contextPath %>/<%= mapping %>?currentPage=<%= i %><%= query %>"><%= i %></a></li>
+            	<% } %>
+            <% } %>
+            
+            <% if(pi.getEndPage()!= pi.getMaxPage()){ %>
+                <li class="page-item"><a class="page-link" href="<%= contextPath %>/<%= mapping %>?currentPage=<%= pi.getStartPage()+pi.getPageLimit() %><%= query %>">&gt;</a></li>
+            <% } %>
+           <% } %>
+           </ul>
 	</div>
 	<script>
 		$(function(){
 			//'전체' 체크하면 전체 불 들어오고 끄면 다 꺼지기. 하나씩 다 눌러서 다 채울때 불 들어오거나 하나라도 체크해제하면 불 꺼지는거 구현 안함
 			$('#checkAll').on('change', function () {
                 if ($(this).prop('checked'))
-                    $('.rows').prop('checked', true);
+                    $('.row').prop('checked', true);
                 else
-                    $('.rows').prop('checked', false);
+                    $('.row').prop('checked', false);
             })
             
        		//행에 마우스 가져다 대면 해당 리뷰의 전문이 나옴
@@ -187,7 +184,7 @@
        		})
        		
        		//체크가 될 경우 modal에 보류 목록에 들어감. 해제될 경우 사라짐
-       		$('.rows').change('checked', function(){
+       		$('.row').change('checked', function(){
        			var holdTitle = $(this).parent().siblings().eq(0).text();
        			if ($(this).prop('checked'))
        				$('#holdList').append('<li class='+holdTitle+'>'+holdTitle+'</li>');
@@ -196,7 +193,7 @@
        		})
        		
        		//체크가 될 경우 modal에 삭제 목록에 들어감. 해제될 경우 사라짐
-       		$('.rows').change('checked', function(){
+       		$('.row').change('checked', function(){
        			var deleteTitle = $(this).parent().siblings().eq(0).text();
        			if ($(this).prop('checked'))
        				$('#deleteList').append('<li class='+deleteTitle+'>'+deleteTitle+'</li>');

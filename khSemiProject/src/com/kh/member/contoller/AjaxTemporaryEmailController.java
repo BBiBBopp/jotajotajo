@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.MailSend;
 import com.kh.common.SHA256;
-import com.kh.login_logout.model.service.LoginService;
+import com.kh.loginLogout.model.service.LoginService;
 
 /**
  * Servlet implementation class AjaxTemporaryEmailController

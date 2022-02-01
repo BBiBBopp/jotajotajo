@@ -44,7 +44,7 @@ public class AjaxReviewLikeController extends HttpServlet {
 		}else {
 			result = new MovieService().insertReviewLike(memberNo, reviewNo);
 		}
-		
+		System.out.println(reviewNo +":"+memberNo+":"+isLike);
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().print(result);
 		

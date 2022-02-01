@@ -34,14 +34,11 @@ public class NoticeUpdateFormController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("nno"));
 		
-		String tableType = "notice";
-		if(request.getParameter("tableType") != null) {
-			tableType=request.getParameter("tableType");
-		}
+		String tableType = request.getParameter("tableType");
 		
 		ArrayList<Category> category = new NoticeService().selectCategory(tableType);
 		
-		Notice n = new NoticeService().selectNotice(noticeNo, tableType);
+		Notice n = new NoticeService().selectNotice(noticeNo);
 		
 		request.setAttribute("tableType", tableType);
 		request.setAttribute("category", category);

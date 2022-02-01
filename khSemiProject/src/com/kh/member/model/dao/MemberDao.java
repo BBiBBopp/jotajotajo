@@ -137,7 +137,7 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage() - 1) * pi.getPageLimit() + 1;
-			int endRow = startRow + pi.getBoradLimit() - 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			pstmt.setString(3, keyword);
@@ -328,18 +328,6 @@ public class MemberDao {
 	public int memberUpdate(Connection conn, Member m) {
 		
 		int result = 0;
-		/*
-		 * UPDATE MEMBER
-		SET MEMBER_NAME = ?
-			,MEMBER_PWD = ?
-			,BIRTH = ?
-			,GENDER = ?
-			,EMAIL = ?
-			,PHONE = ?
-			,INTEREST = ?
-		WHERE MEMBER_NO = ?
-		 * 
-		 * */
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("memberUpdate");
 
@@ -365,6 +353,29 @@ public class MemberDao {
 
 		return result;
 		
+	}
+
+	public int deleteMember(Connection conn, int memberNo, String pwdSHA) {
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMember");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			pstmt.setString(2, pwdSHA);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
 
 
