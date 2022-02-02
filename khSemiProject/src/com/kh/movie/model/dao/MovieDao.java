@@ -45,7 +45,7 @@ public class MovieDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectCurrentList");
-		System.out.println(sql);
+//		System.out.println(sql);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -249,7 +249,7 @@ public class MovieDao {
 		ResultSet rset = null;
 
 		String sql = prop.getProperty("selectPosterList");
-		System.out.println(sql);
+//		System.out.println(sql);
 		try {
 			for(int i : movieNoList) {
 				pstmt = conn.prepareStatement(sql);
