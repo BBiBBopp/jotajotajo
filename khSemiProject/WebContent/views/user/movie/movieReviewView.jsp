@@ -271,7 +271,6 @@
 										},
 									type: 'get',
 									success: function(result){
-										alert('리뷰 좋아요 테스트');
 										if(result>0){
 											if(reIsLike=="Y"){
 												//하나 오르고 좋아요 마크 채워짐
