@@ -47,7 +47,7 @@ public class Ticket {
 	}
 
 	public Ticket(int payNo, String payDate, int ticketNo, String ticketType, int seatPk, String seatNo, String auditoriumName,
-			String theaterName, String runSch, String mName, String rate,int rTime) {
+			String theaterName, String runSch, int mNo, String mName, String rate,int rTime) {
 		super();
 		this.payNo = payNo;
 		this.payDate = payDate;
@@ -58,6 +58,7 @@ public class Ticket {
 		this.auditoriumName = auditoriumName;
 		this.theaterName = theaterName;
 		this.runSch = runSch;
+		this.mNo = mNo;
 		this.mName = mName;
 		this.rate = rate;
 		this.rTime = rTime;

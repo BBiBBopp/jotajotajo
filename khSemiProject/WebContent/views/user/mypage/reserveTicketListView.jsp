@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.kh.ticket.model.vo.Ticket, com.kh.common.model.vo.PageInfo" %>
+<%@ page import="java.util.ArrayList,com.kh.movie.model.vo.Picture, com.kh.ticket.model.vo.Ticket, com.kh.common.model.vo.PageInfo" %>
 <%
 	ArrayList<Ticket> rlist = (ArrayList<Ticket>)request.getAttribute("rList");
 	ArrayList<Ticket> clist = (ArrayList<Ticket>)request.getAttribute("cList");
+	ArrayList<Picture> PicList = (ArrayList<Picture>)request.getAttribute("currentPicList");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	
 	int currentPage = pi.getCurrentPage();
@@ -55,40 +56,40 @@
                 	})
                 </script>
             <% } else { %>
-            <% for(Ticket t : rlist) { %>
+            <% for(int i=0; i < rlist.size(); i++) { %>
             <tr>
             	<td>
             		<table class="ticket-list-value">
 		               <tr>
-		                    <td rowspan="5"><img src="" alt="포스터"></td>
+		                    <td rowspan="5" style="text-align: center;"><img src="<%=contextPath %><%= PicList.get(i).getFilePath()+PicList.get(i).getChangeName() %>" alt="포스터" style=" height: 150px"></td>
 		                    <th colspan="4">
 		                        <div class="movie-list">
-		                            <div class="movie-list-age"><%= t.getRate() %></div>
-		                            <div class="movie-list-title"><%= t.getmName() %></div>
+		                            <div class="movie-list-age"><%= rlist.get(i).getRate() %></div>
+		                            <div class="movie-list-title"><%= rlist.get(i).getmName() %></div>
 		                        </div>
 		                    </th>
 		                </tr>
 		                <tr>
 							<th>관람 일시</th>
-							<td><%= t.getRunSch() %></td>
+							<td><%= rlist.get(i).getRunSch() %></td>
 							<th>상영관</th>
-							<td><%= t.getAuditoriumName() %></td>
+							<td><%= rlist.get(i).getAuditoriumName() %></td>
 						</tr>
 						<tr>
 							<th>관람 극장</th>
-							<td><%= t.getTheaterName() %></td>
+							<td><%= rlist.get(i).getTheaterName() %></td>
 							<th>관람 좌석</th>
-							<td><%= t.getSeatNo() %></td>
+							<td><%= rlist.get(i).getSeatNo() %></td>
 						</tr>
 						<tr style="border-top: 1px solid lightgray;">
 							<th>결제 날짜</th>
-							<td><%= t.getPayDate() %></td>
+							<td><%= rlist.get(i).getPayDate() %></td>
 							<th>예매 번호</th>
-							<td><%= t.getTicketNo() %></td>
+							<td><%= rlist.get(i).getTicketNo() %></td>
 						</tr>
 						<tr style="padding-bottom: 5px;">
 							<th>취소 가능일</th>
-							<td><%= t.getCancleDate() %></td>
+							<td><%= rlist.get(i).getCancleDate() %></td>
 							<th></th>
 							<td></td>
 						</tr>
@@ -102,7 +103,7 @@
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content" style="border-radius: 3%">
 						<div class="modal-header">
-							<h5 class="modal-title" id="staticBackdropLabel">예매 번호 <%= t.getPayNo() %></h5>
+							<h5 class="modal-title" id="staticBackdropLabel">예매 번호 <%= rlist.get(i).getPayNo() %></h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -111,14 +112,14 @@
 						<div class="modal-body">
 							<div class="reserve-detail-title">
 		                        <div class="title-area">
-		                            <div class="movie-rate"><%= t.getRate() %></div>
-		                            <div class="movie-title"><h2><%= t.getmName() %></h2></div>
+		                            <div class="movie-rate"><%= rlist.get(i).getRate() %></div>
+		                            <div class="movie-title"><h2><%= rlist.get(i).getmName() %></h2></div>
 		                        </div>
 		                        <div class="location-area">
-		                            <span><%= t.getTheaterName() %> <%=t.getAuditoriumName() %></span>
+		                            <span><%= rlist.get(i).getTheaterName() %> <%=rlist.get(i).getAuditoriumName() %></span>
 		                        </div>
-		                        <div class="poster-area">
-		                            <img src="" alt="포스터">
+		                        <div class="poster-area" style="text-align: center;">
+		                            <img src="<%=contextPath %><%= PicList.get(i).getFilePath()+PicList.get(i).getChangeName() %>" alt="포스터" style="height: 100%">
 		                        </div>
 		                    </div>
 							<hr>
@@ -127,26 +128,26 @@
 							%>
 		                    <div class="reserve-datail-body">
 		                        <div class="reserve-date">
-		                            <%= t.getRunDay() %>
+		                            <%= rlist.get(i).getRunDay() %>
 		                        </div>
 		                        <div class="d-day">
-		                            <%= t.getDday() %>
+		                            <%= rlist.get(i).getDday() %>
 		                        </div>
 		                        <div class="reserve-time">
-		                            <%= t.getRunTime() %> ~ <%= t.getEndTime() %>
+		                            <%= rlist.get(i).getRunTime() %> ~ <%= rlist.get(i).getEndTime() %>
 		                        </div>
 		                        <div class="seat-area">
-		                            	<%= t.getTicketType() %>
+		                            	<%= rlist.get(i).getTicketType() %>
 		                        </div>
 		                        <div class="ticket-no-area">
-		                            	티켓번호 <%= t.getTicketNo() %>
+		                            	티켓번호 <%= rlist.get(i).getTicketNo() %>
 		                        </div>
 		                    </div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-danger" onclick="cancelConfirm(<%=t.getPayNo()%>)">예매 취소하기</button>
+							<button type="button" class="btn btn-danger" onclick="cancelConfirm(<%=rlist.get(i).getPayNo()%>)">예매 취소하기</button>
 						</div>
 					</div>
 				</div>

@@ -218,6 +218,7 @@ public class TicketDao {
 									  rset.getString("AUDITORIUM_NAME"),
 									  rset.getString("THEATER_NAME"),
 									  rset.getString("RESERVE_DATE"),
+									  rset.getInt("MNO"),
 									  rset.getString("MNAME"),
 									  rset.getString("RATE"),
 									  rset.getInt("RTIME")

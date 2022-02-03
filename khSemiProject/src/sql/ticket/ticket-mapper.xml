@@ -127,6 +127,7 @@ FROM
 		  		SELECT <!-- 결제정보와 영화정보 JOIN -->
 		 				PAY_NO, 
 		 				RATE, 
+		 				MNO,
 		 				MNAME, 
 		 				TO_CHAR(RUN_SCH, 'YYYY/MM/DD HH:MI:SS') "RESERVE_DATE", 
 		 				AUDITORIUM_NAME, 

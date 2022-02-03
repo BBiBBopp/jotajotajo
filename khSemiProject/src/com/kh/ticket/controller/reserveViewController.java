@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.model.vo.PageInfo;
+import com.kh.movie.model.service.MovieService;
+import com.kh.movie.model.vo.Movie;
+import com.kh.movie.model.vo.Picture;
 import com.kh.ticket.model.service.TicketService;
 import com.kh.ticket.model.vo.Ticket;
 
@@ -67,6 +70,13 @@ public class reserveViewController extends HttpServlet {
 
 		ArrayList<Ticket> rList = new TicketService().selectTicketList(pi, memberNo);
 		ArrayList<Ticket> cList = new TicketService().selectCancleList(memberNo);
+		
+		// 해당 영화 번호 추출
+		ArrayList<Integer> currentNoList = new ArrayList<>();
+		for(Ticket t : rList)
+			currentNoList.add(t.getmNo());
+		//추출된 번호로 포스터 조회해오기
+		ArrayList<Picture> currentPicList = new MovieService().selectPosterList(currentNoList);
 		
 		// date 포맷 변경
 		SimpleDateFormat inputFormat1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -143,6 +153,7 @@ public class reserveViewController extends HttpServlet {
 		request.setAttribute("rList", rList);
 		request.setAttribute("cList", cList);
 		request.setAttribute("pi", pi);
+		request.setAttribute("currentPicList", currentPicList);
 		request.getRequestDispatcher("/views/user/mypage/reserveTicketListView.jsp").forward(request, response);
 		
 	}
