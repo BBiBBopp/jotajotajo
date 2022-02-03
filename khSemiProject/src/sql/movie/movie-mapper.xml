@@ -8,21 +8,20 @@
 		      FROM (
 		            SELECT MNO, MNAME, GENRE, RATE, NVL(ADVANCE_RATE, 0) ADVANCE_RATE
 		            FROM MOVIE 
-		            LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/ALL_SEAT*100,1) ADVANCE_RATE
+		            LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/(
+                                                        SELECT COUNT(*) COUNT
+                                                            FROM PAYMENT
+                                                                JOIN TICKET USING(PAY_NO)
+                                                            WHERE PAY_STATUS='Y'
+                                                    )*100,1) ADVANCE_RATE
 		                        FROM(
 		                            SELECT MNO, COUNT(MNO) ALL_TICKET
 		                            FROM PAYMENT
-		                            JOIN TICKET USING(PAY_NO)
-		                            JOIN SCHEDULE USING(RUN_NO)
+		                            	JOIN TICKET USING(PAY_NO)
+		                            	JOIN SCHEDULE USING(RUN_NO)
 		                            WHERE PAY_STATUS='Y'
-		                            GROUP BY MNO)
-		                        JOIN (
-		                            SELECT MNO, SUM(SEAT_NUM) ALL_SEAT
-		                            FROM SCHEDULE
-		                            JOIN AUDITORIUM USING(AUDITORIUM_NO)
 		                            GROUP BY MNO
-		                        ) 
-		                    USING(MNO)
+		                            )
 		                ) USING(MNO)
 		            WHERE STATUS = 'Y'
 		        ORDER BY ADVANCE_RATE DESC, MNO
@@ -48,23 +47,22 @@
 		            END MY_LIKE
 		            FROM MOVIE_LIKE) ML USING(MNO)
         LEFT JOIN (
-                    SELECT MNO, ROUND(ALL_TICKET/ALL_SEAT*100,1) ADVANCE_RATE
+                    SELECT MNO, ROUND(ALL_TICKET/(
+                                                SELECT COUNT(*) COUNT
+                                                FROM PAYMENT
+                                                    JOIN TICKET USING(PAY_NO)
+                                                WHERE PAY_STATUS='Y')
+                                                *100,1) 
+                                                ADVANCE_RATE
                     FROM(
                         SELECT MNO, COUNT(MNO) ALL_TICKET
                         FROM PAYMENT
-                        JOIN TICKET USING(PAY_NO)
-                        JOIN SCHEDULE USING(RUN_NO)
+                            JOIN TICKET USING(PAY_NO)
+                            JOIN SCHEDULE USING(RUN_NO)
                         WHERE PAY_STATUS='Y'
                         GROUP BY MNO)
-                    JOIN (
-                        SELECT MNO, SUM(SEAT_NUM) ALL_SEAT
-                        FROM SCHEDULE
-                        JOIN AUDITORIUM USING(AUDITORIUM_NO)
-                        GROUP BY MNO
-                    ) 
-                USING(MNO)
             ) USING(MNO)
-		WHERE MNO = ?
+        WHERE MNO=?
 	 </entry>
 	 
 	 <entry key="selectMovieSummary">
@@ -85,7 +83,12 @@
 		            END MY_LIKE
 		            FROM MOVIE_LIKE) ML USING(MNO)
 	    LEFT JOIN (
-                   SELECT MNO, ROUND(ALL_TICKET/ALL_SEAT*100,1) ADVANCE_RATE
+                   SELECT MNO, ROUND(ALL_TICKET/
+                   								(SELECT COUNT(*) COUNT
+                                                FROM PAYMENT
+                                                    JOIN TICKET USING(PAY_NO)
+                                                WHERE PAY_STATUS='Y')
+                   	*100,1) ADVANCE_RATE
                     FROM(
                         SELECT MNO, COUNT(MNO) ALL_TICKET
                         FROM PAYMENT
@@ -93,13 +96,6 @@
                         JOIN SCHEDULE USING(RUN_NO)
                         WHERE PAY_STATUS='Y'
                         GROUP BY MNO)
-                    JOIN (
-                        SELECT MNO, SUM(SEAT_NUM) ALL_SEAT
-                        FROM SCHEDULE
-                        JOIN AUDITORIUM USING(AUDITORIUM_NO)
-                        GROUP BY MNO
-                    ) 
-                USING(MNO)
             ) USING(MNO)
 		WHERE MNO = ?
 	 </entry>
@@ -250,7 +246,11 @@
       		  FROM (
 					SELECT MNO, MNAME, GENRE, RATE, NVL(ADVANCE_RATE, 0) ADVANCE_RATE
 					FROM MOVIE 
-					LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/ALL_SEAT*100,1) ADVANCE_RATE
+					LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/(
+													SELECT COUNT(*) COUNT
+                                                	FROM PAYMENT
+                                                    	JOIN TICKET USING(PAY_NO)
+                                                	WHERE PAY_STATUS='Y')*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
@@ -258,13 +258,6 @@
 		                        JOIN SCHEDULE USING(RUN_NO)
 		                        WHERE PAY_STATUS='Y'
 		                        GROUP BY MNO)
-		                    JOIN (
-		                        SELECT MNO, SUM(SEAT_NUM) ALL_SEAT
-		                        FROM SCHEDULE
-		                        JOIN AUDITORIUM USING(AUDITORIUM_NO)
-		                        GROUP BY MNO
-		                    ) 
-		                USING(MNO)
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
 						AND GENRE LIKE ?
@@ -278,7 +271,11 @@
       		  FROM (
 					SELECT MNO, MNAME, GENRE, RATE, NVL(ADVANCE_RATE, 0) ADVANCE_RATE
 					FROM MOVIE 
-					LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/ALL_SEAT*100,1) ADVANCE_RATE
+					LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/(
+													SELECT COUNT(*) COUNT
+                                                	FROM PAYMENT
+                                                    	JOIN TICKET USING(PAY_NO)
+                                                	WHERE PAY_STATUS='Y')*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
@@ -286,13 +283,6 @@
 		                        JOIN SCHEDULE USING(RUN_NO)
 		                        WHERE PAY_STATUS='Y'
 		                        GROUP BY MNO)
-		                    JOIN (
-		                        SELECT MNO, SUM(SEAT_NUM) ALL_SEAT
-		                        FROM SCHEDULE
-		                        JOIN AUDITORIUM USING(AUDITORIUM_NO)
-		                        GROUP BY MNO
-		                    ) 
-		                USING(MNO)
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
 						AND (GENRE LIKE ? OR GENRE LIKE ?)
@@ -306,7 +296,11 @@
       		  FROM (
 					SELECT MNO, MNAME, GENRE, RATE, NVL(ADVANCE_RATE, 0) ADVANCE_RATE
 					FROM MOVIE 
-					LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/ALL_SEAT*100,1) ADVANCE_RATE
+					LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/(
+													SELECT COUNT(*) COUNT
+                                                	FROM PAYMENT
+                                                    	JOIN TICKET USING(PAY_NO)
+                                                	WHERE PAY_STATUS='Y')*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
@@ -314,13 +308,6 @@
 		                        JOIN SCHEDULE USING(RUN_NO)
 		                        WHERE PAY_STATUS='Y'
 		                        GROUP BY MNO)
-		                    JOIN (
-		                        SELECT MNO, SUM(SEAT_NUM) ALL_SEAT
-		                        FROM SCHEDULE
-		                        JOIN AUDITORIUM USING(AUDITORIUM_NO)
-		                        GROUP BY MNO
-		                    ) 
-		                USING(MNO)
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
 						AND (GENRE LIKE ? OR GENRE LIKE ? OR GENRE LIKE ?)
@@ -420,7 +407,11 @@
       		  FROM (
 					SELECT MNO, MNAME, GENRE, RATE, NVL(ADVANCE_RATE, 0) ADVANCE_RATE
 					FROM MOVIE 
-					LEFT JOIN (SELECT MNO, ALL_TICKET/ALL_SEAT ADVANCE_RATE
+					LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/(
+													SELECT COUNT(*) COUNT
+                                                	FROM PAYMENT
+                                                    	JOIN TICKET USING(PAY_NO)
+                                                	WHERE PAY_STATUS='Y')*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
@@ -428,13 +419,6 @@
 		                        JOIN SCHEDULE USING(RUN_NO)
 		                        WHERE PAY_STATUS='Y'
 		                        GROUP BY MNO)
-		                    JOIN (
-		                        SELECT MNO, SUM(SEAT_NUM) ALL_SEAT
-		                        FROM SCHEDULE
-		                        JOIN AUDITORIUM USING(AUDITORIUM_NO)
-		                        GROUP BY MNO
-		                    ) 
-		                USING(MNO)
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
 						AND GENRE LIKE ?
@@ -447,7 +431,11 @@
       		  FROM (
 					SELECT MNO, MNAME, GENRE, RATE, NVL(ADVANCE_RATE, 0) ADVANCE_RATE
 					FROM MOVIE 
-					LEFT JOIN (SELECT MNO, ALL_TICKET/ALL_SEAT ADVANCE_RATE
+					LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/(
+													SELECT COUNT(*) COUNT
+                                                	FROM PAYMENT
+                                                    	JOIN TICKET USING(PAY_NO)
+                                                	WHERE PAY_STATUS='Y')*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
@@ -455,13 +443,6 @@
 		                        JOIN SCHEDULE USING(RUN_NO)
 		                        WHERE PAY_STATUS='Y'
 		                        GROUP BY MNO)
-		                    JOIN (
-		                        SELECT MNO, SUM(SEAT_NUM) ALL_SEAT
-		                        FROM SCHEDULE
-		                        JOIN AUDITORIUM USING(AUDITORIUM_NO)
-		                        GROUP BY MNO
-		                    ) 
-		                USING(MNO)
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
 						AND (GENRE LIKE ? OR GENRE LIKE ?)
@@ -474,7 +455,11 @@
       		  FROM (
 					SELECT MNO, MNAME, GENRE, RATE, NVL(ADVANCE_RATE, 0) ADVANCE_RATE
 					FROM MOVIE 
-					LEFT JOIN (SELECT MNO, ALL_TICKET/ALL_SEAT ADVANCE_RATE
+					LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/(
+													SELECT COUNT(*) COUNT
+                                                	FROM PAYMENT
+                                                    	JOIN TICKET USING(PAY_NO)
+                                                	WHERE PAY_STATUS='Y')*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
@@ -482,13 +467,6 @@
 		                        JOIN SCHEDULE USING(RUN_NO)
 		                        WHERE PAY_STATUS='Y'
 		                        GROUP BY MNO)
-		                    JOIN (
-		                        SELECT MNO, SUM(SEAT_NUM) ALL_SEAT
-		                        FROM SCHEDULE
-		                        JOIN AUDITORIUM USING(AUDITORIUM_NO)
-		                        GROUP BY MNO
-		                    ) 
-		                USING(MNO)
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
 						AND (GENRE LIKE ? OR GENRE LIKE ? OR GENRE LIKE ?)
