@@ -36,9 +36,7 @@ public class SearchMainController extends HttpServlet {
 		String search = request.getParameter("search");
 		
 		ArrayList<SearchMovie> movieList = new SearchService().searchMovieAll(search);
-		
 		ArrayList<Theater> theaterList = new SearchService().searchTheaterAll(search);
-		
 		ArrayList<Review> reviewList = new SearchService().searchReviewAll(search);
 		
 		request.setAttribute("movieList", movieList);
