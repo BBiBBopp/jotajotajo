@@ -29,7 +29,7 @@ public class VoteCountUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		int vreNo = Integer.parseInt(request.getParameter("vreNo"));
 		Member loginUser = ((Member)request.getSession().getAttribute("loginUser"));
 		if(loginUser == null) {
@@ -38,7 +38,6 @@ public class VoteCountUpdateController extends HttpServlet {
 		}else {
 			int memberNo = loginUser.getMemberNo();
 			int result = new VoteService().countUpdate(vreNo, memberNo);
-			
 			if(result > 0) {
 				request.getRequestDispatcher("/vote.re?vreNo="+vreNo).forward(request, response);
 			}
