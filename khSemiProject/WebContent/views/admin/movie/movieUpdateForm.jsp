@@ -414,6 +414,7 @@
 			//사진 수정 버튼 클릭 시 저장된 사진 날아감
 			function openImgForm(){
 				if(confirm('저장된 사진을 지우고 다시 등록하시겠습니까?.')){
+					$('input[name=picChange]').val('Y');
 					$('#file-form').children().prop('disabled', false);
 					$('input[name=pic0]').prop('required', true);
 					$('input[name=pic1]').prop('required', true);
