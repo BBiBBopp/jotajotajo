@@ -59,13 +59,14 @@ div {
   font-weight: 600;
   list-style: none;
   display: block;
-  
+ 
 }
 
 .nav_item {
   display: inline-block;
   width: 18%;
   text-align: center;
+  position: relative;
 }
 
 .nav:hover {

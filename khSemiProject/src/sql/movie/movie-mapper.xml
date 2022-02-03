@@ -53,8 +53,9 @@
                                                 SELECT COUNT(*) COUNT
                                                 FROM PAYMENT
                                                     JOIN TICKET USING(PAY_NO)
-                                                WHERE PAY_STATUS='Y')
-                                                *100,1) 
+                                                WHERE PAY_STATUS='Y'
+		 					AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
+		 				)*100,1) 
                                                 ADVANCE_RATE
                     FROM(
                         SELECT MNO, COUNT(MNO) ALL_TICKET
@@ -62,6 +63,7 @@
                             JOIN TICKET USING(PAY_NO)
                             JOIN SCHEDULE USING(RUN_NO)
                         WHERE PAY_STATUS='Y'
+		 		AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
                         GROUP BY MNO)
             ) USING(MNO)
         WHERE MNO=?
@@ -403,7 +405,7 @@
 	 	INSERT INTO SCHEDULE VALUES(SEQ_RUN_NO.NEXTVAL, TO_DATE(?, 'YYYYMMDDHH24MI'), ?, ?)
 	 </entry>
 	 <entry key="updatePicture">
-	 	INSERT INTO PICTURE(FILE_NO, MNO, FILE_LEVEL, ORIGIN_NAME, CHANGE_NAME, FILE_PATH) 
+	 	INSERT INTO PICTURE(FILE_NO, FILE_LEVEL, MNO, ORIGIN_NAME, CHANGE_NAME, FILE_PATH) 
 	 	VALUES(SEQ_PIC_NO.NEXTVAL, ?, ?, ?, ?, ?)
 	 </entry>
 	 <entry key="insertMovieNotRelease">
@@ -413,7 +415,7 @@
 	 <entry key="countReview">
 	 	SELECT COUNT(REVIEW_NO) RE_COUNT, AVG(REVIEW_GRADE) RE_AVG
 		FROM REVIEW
-		WHERE MNO = ?
+		WHERE MNO = ? AND STATUS='Y'
 	 </entry>
 	 <entry key="selectRecommendOneAll">
 	 	SELECT *      

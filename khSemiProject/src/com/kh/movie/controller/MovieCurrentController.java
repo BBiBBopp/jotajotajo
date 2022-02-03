@@ -51,8 +51,6 @@ public class MovieCurrentController extends HttpServlet {
 		for(Movie mv : currentList)
 			movieNoList.add(mv.getMovieNo());
 		//추출된 번호로 포스터 조회해오기
-		System.out.println(movieNoList);
-		System.out.println(currentList);
 		ArrayList<Picture> picList = new MovieService().selectPosterList(movieNoList);
 	
 		

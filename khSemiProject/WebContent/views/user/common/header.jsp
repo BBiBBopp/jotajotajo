@@ -85,6 +85,12 @@ body{
   width: 240px;
   padding: 0 6px;
 }
+.submenu {
+	
+	position: absolute;
+}
+
+
 
 </style>
 
@@ -142,8 +148,10 @@ body{
 
 				<li class="nav_item"><a href="<%=contextPath %>/list.vot" class="link nav">투표하기</a>
 					<ul>
-						<li><a href="<%=contextPath %>/vote.re" class="link nav">투표결과</a></li>
-						<li><a href="<%=contextPath %>/vote.pa?currentPage=1" class="link nav">이전 투표목록</a></li>
+						<div class="submenu">
+							<li><a href="<%=contextPath %>/vote.re" class="link nav">투표결과</a></li>
+							<li><a href="<%=contextPath %>/vote.pa?currentPage=1" class="link nav">이전 투표목록</a></li>
+						</div>
 					</ul>
 				</li>
 				<li class="nav_item"><a href="<%=contextPath%>/faq.no" class="link nav">고객센터</a></li>
