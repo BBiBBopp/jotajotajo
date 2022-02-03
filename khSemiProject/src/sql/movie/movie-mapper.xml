@@ -10,9 +10,10 @@
 		            FROM MOVIE 
 		            LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/(
                                                         SELECT COUNT(*) COUNT
-                                                            FROM PAYMENT
-                                                                JOIN TICKET USING(PAY_NO)
-                                                            WHERE PAY_STATUS='Y'
+                                                        FROM PAYMENT
+                                                            JOIN TICKET USING(PAY_NO)
+                                                        WHERE PAY_STATUS='Y'
+                                                        	AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
                                                     )*100,1) ADVANCE_RATE
 		                        FROM(
 		                            SELECT MNO, COUNT(MNO) ALL_TICKET
@@ -20,6 +21,7 @@
 		                            	JOIN TICKET USING(PAY_NO)
 		                            	JOIN SCHEDULE USING(RUN_NO)
 		                            WHERE PAY_STATUS='Y'
+		                            	AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
 		                            GROUP BY MNO
 		                            )
 		                ) USING(MNO)
@@ -87,7 +89,9 @@
                    								(SELECT COUNT(*) COUNT
                                                 FROM PAYMENT
                                                     JOIN TICKET USING(PAY_NO)
-                                                WHERE PAY_STATUS='Y')
+                                                WHERE PAY_STATUS='Y'
+                                                	AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
+                                                )
                    	*100,1) ADVANCE_RATE
                     FROM(
                         SELECT MNO, COUNT(MNO) ALL_TICKET
@@ -95,6 +99,7 @@
                         JOIN TICKET USING(PAY_NO)
                         JOIN SCHEDULE USING(RUN_NO)
                         WHERE PAY_STATUS='Y'
+                        	AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
                         GROUP BY MNO)
             ) USING(MNO)
 		WHERE MNO = ?
@@ -250,13 +255,16 @@
 													SELECT COUNT(*) COUNT
                                                 	FROM PAYMENT
                                                     	JOIN TICKET USING(PAY_NO)
-                                                	WHERE PAY_STATUS='Y')*100,1) ADVANCE_RATE
+                                                	WHERE PAY_STATUS='Y'
+                                                		AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
+                                                	)*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
-		                        JOIN TICKET USING(PAY_NO)
-		                        JOIN SCHEDULE USING(RUN_NO)
+		                        	JOIN TICKET USING(PAY_NO)
+		                        	JOIN SCHEDULE USING(RUN_NO)
 		                        WHERE PAY_STATUS='Y'
+		                        	AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
 		                        GROUP BY MNO)
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
@@ -275,13 +283,16 @@
 													SELECT COUNT(*) COUNT
                                                 	FROM PAYMENT
                                                     	JOIN TICKET USING(PAY_NO)
-                                                	WHERE PAY_STATUS='Y')*100,1) ADVANCE_RATE
+                                                	WHERE PAY_STATUS='Y'
+                                                		AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
+                                                	)*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
-		                        JOIN TICKET USING(PAY_NO)
-		                        JOIN SCHEDULE USING(RUN_NO)
+		                        	JOIN TICKET USING(PAY_NO)
+		                        	JOIN SCHEDULE USING(RUN_NO)
 		                        WHERE PAY_STATUS='Y'
+		                        	AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
 		                        GROUP BY MNO)
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
@@ -300,13 +311,16 @@
 													SELECT COUNT(*) COUNT
                                                 	FROM PAYMENT
                                                     	JOIN TICKET USING(PAY_NO)
-                                                	WHERE PAY_STATUS='Y')*100,1) ADVANCE_RATE
+                                                	WHERE PAY_STATUS='Y'
+                                                		AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
+                                                	)*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
-		                        JOIN TICKET USING(PAY_NO)
-		                        JOIN SCHEDULE USING(RUN_NO)
+		                        	JOIN TICKET USING(PAY_NO)
+		                        	JOIN SCHEDULE USING(RUN_NO)
 		                        WHERE PAY_STATUS='Y'
+		                        	AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
 		                        GROUP BY MNO)
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
@@ -411,13 +425,16 @@
 													SELECT COUNT(*) COUNT
                                                 	FROM PAYMENT
                                                     	JOIN TICKET USING(PAY_NO)
-                                                	WHERE PAY_STATUS='Y')*100,1) ADVANCE_RATE
+                                                	WHERE PAY_STATUS='Y'
+                                                		AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
+                                                	)*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
-		                        JOIN TICKET USING(PAY_NO)
-		                        JOIN SCHEDULE USING(RUN_NO)
+		                        	JOIN TICKET USING(PAY_NO)
+		                        	JOIN SCHEDULE USING(RUN_NO)
 		                        WHERE PAY_STATUS='Y'
+		                        	AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
 		                        GROUP BY MNO)
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
@@ -435,13 +452,16 @@
 													SELECT COUNT(*) COUNT
                                                 	FROM PAYMENT
                                                     	JOIN TICKET USING(PAY_NO)
-                                                	WHERE PAY_STATUS='Y')*100,1) ADVANCE_RATE
+                                                	WHERE PAY_STATUS='Y'
+                                                		AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
+                                                	)*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
-		                        JOIN TICKET USING(PAY_NO)
-		                        JOIN SCHEDULE USING(RUN_NO)
+		                        	JOIN TICKET USING(PAY_NO)
+		                        	JOIN SCHEDULE USING(RUN_NO)
 		                        WHERE PAY_STATUS='Y'
+		                        	AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
 		                        GROUP BY MNO)
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
@@ -459,13 +479,16 @@
 													SELECT COUNT(*) COUNT
                                                 	FROM PAYMENT
                                                     	JOIN TICKET USING(PAY_NO)
-                                                	WHERE PAY_STATUS='Y')*100,1) ADVANCE_RATE
+                                                	WHERE PAY_STATUS='Y'
+                                                		AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
+                                                	)*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
-		                        JOIN TICKET USING(PAY_NO)
-		                        JOIN SCHEDULE USING(RUN_NO)
+		                        	JOIN TICKET USING(PAY_NO)
+		                        	JOIN SCHEDULE USING(RUN_NO)
 		                        WHERE PAY_STATUS='Y'
+		                        	AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
 		                        GROUP BY MNO)
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
