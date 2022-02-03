@@ -230,6 +230,7 @@
 									data: {
 										mno: <%= mv.getMovieNo() %>,
 										reviewContent: $('#reviewContent').val(),
+										uno: memNo,
 										starCount: $('#starCount').val()
 									},
 									type: 'post',
