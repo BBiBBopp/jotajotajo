@@ -413,7 +413,7 @@
 	 <entry key="countReview">
 	 	SELECT COUNT(REVIEW_NO) RE_COUNT, AVG(REVIEW_GRADE) RE_AVG
 		FROM REVIEW
-		WHERE MNO = ?
+		WHERE MNO = ? AND STATUS='Y'
 	 </entry>
 	 <entry key="selectRecommendOneAll">
 	 	SELECT *      
