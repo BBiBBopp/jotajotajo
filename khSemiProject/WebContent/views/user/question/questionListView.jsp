@@ -31,13 +31,8 @@
 	<!-- 로그인 안돼있으면 못들어옴 -->
 	<% if (loginUser == null) { %>
 		<%@ include file="../common/loginCheck.jsp"%>
-	<% } 
-		
-		/*
-			<!-- 로그인한 회원 정보 넘겨주기 --> 마지막에 넣을 것
-			<input type="text" name="memberNo" value="">
-		*/
-	%>
+	<% } %>
+
 	<div class="outer">
 		<br>
 		<h1 class="title">문의 내역 확인</h1>
@@ -45,7 +40,7 @@
 		<br>
 
 		<div class="Qform-btn">
-			<a href="<%=contextPath%>/enroll-Form.no %>"
+			<a href="<%=contextPath%>/enroll-form.qu"
 				class="btn btn-sm btn-primary">1:1 문의하기</a> <br> <br>
 		</div>
 		<table class="list-area">

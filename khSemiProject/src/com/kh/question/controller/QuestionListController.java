@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
 import com.kh.question.model.service.QuestionService;
 import com.kh.question.model.vo.Question;
 import com.kh.question.model.vo.QuestionMethod;
@@ -33,8 +34,8 @@ public class QuestionListController extends HttpServlet implements QuestionMetho
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 값 뽑기
-		// int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		int memberNo = 2;
+		Member m = (Member)request.getSession().getAttribute("loginUser");
+		int memberNo = m.getMemberNo();
 		// service에 요청
 		ArrayList<Question> list = new QuestionService().selectQuestionList(memberNo);
 		

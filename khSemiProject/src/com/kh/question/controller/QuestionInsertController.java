@@ -46,7 +46,7 @@ public class QuestionInsertController extends HttpServlet {
 			int maxSize = 1024 * 1024 * 50; // 5Mbyte
 			
 			// 저장할 서버 폴더 경로 정하기
-			String savePath = request.getSession().getServletContext().getRealPath("/resource/question_upfiles/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resource/image/question_upfiles/");
 			
 			// 파일명 수정 및 서버 업로드
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyfileRenamePolicy());
@@ -74,7 +74,7 @@ public class QuestionInsertController extends HttpServlet {
 				at = new Q_Attachment();
 				at.setOriginName(multiRequest.getOriginalFileName("Qpic")); // 원본명
 				at.setChangeName(multiRequest.getFilesystemName("Qpic"));// 수정파일명
-				at.setFilePath("/resource/question_upfiles/"); // 파일경로
+				at.setFilePath("/resource/image/question_upfiles/"); // 파일경로
 			}
 			
 			// 서비스 요청

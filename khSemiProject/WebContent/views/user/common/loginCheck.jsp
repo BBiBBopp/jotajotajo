@@ -9,6 +9,7 @@
 <body>
 	<script>
 		$(function() {
+			// 화면 들어오자마자 login-check 버튼 클릭
 			$(".login-check").click();
 		})
 	</script>
@@ -39,8 +40,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal" >아니오</button>
-					<!-- onclick="history.back();" 넣기 -->
+						data-dismiss="modal" onclick="history.back();">아니오</button>
 					<button type="button" class="btn btn-primary"
 						onclick="location.href='<%=request.getContextPath()%>/loginForm.log'">로그인 페이지로 이동</button>
 				</div>

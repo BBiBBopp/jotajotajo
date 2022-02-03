@@ -86,8 +86,8 @@
 			$("#voting_btn").click(function(){
 				if(<%=vreNo%> == 0){
 					if($('input:radio[name=vreNo]').is(':checked')){
-						var voteNo = $('#voteNo').val();
-						location.href= "<%=contextPath%>/voteCount.vot?voteNo="+voteNo;
+						var vreNo = $('#vreNo').val();
+						location.href= "<%=contextPath%>/voteCount.vot?vreNo="+vreNo;
 					}else{
 						alert('선택 하시고 투표 하세요.');
 					}

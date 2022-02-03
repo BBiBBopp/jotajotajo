@@ -28,7 +28,7 @@
 									<div class="select-seat-age">일반</div>
 									<div class="select-seat-number">
 										<ul class="select-seat-ul select-seat-ul-normal">
-											<li class="select-number-normal ">0</li>
+											<li class="select-number-normal">0</li>
 											<li class="select-number-normal">1</li>
 											<li class="select-number-normal">2</li>
 											<li class="select-number-normal">3</li>

@@ -17,13 +17,7 @@
 	<!-- 로그인 안돼있으면 못들어옴 -->
 	<% if (loginUser == null) { %>
 		<%@ include file="../common/loginCheck.jsp"%>
-	<% } 
-		
-		/*
-			<!-- 로그인한 회원 정보 넘겨주기 --> 마지막에 넣을 것
-			<input type="text" name="memberNo" value="">
-		*/
-	%>
+	<% } %>
 	<div class="outer">
 		<br>
 		<h1 class="title">문의 작성하기</h1>
@@ -31,8 +25,10 @@
 
 		<form id="enroll-form" action="<%= contextPath %>/insert.qu" method="post" enctype="multipart/form-data">
 		<% if(loginUser != null) { %>
-		<input type="hidden" name="memberNo" value="<%= loginUser.getMemberNo() %>">
+			<!-- 로그인한 회원 정보 넘기기 -->
+			<input type="text" name="memberNo" value="<%= loginUser.getMemberNo() %>" hidden>
 		<% } %>
+		
 		<table class="list-area Qform">
 			<tr>
 				<th>제목</th>

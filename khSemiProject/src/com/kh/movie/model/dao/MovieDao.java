@@ -923,7 +923,7 @@ public class MovieDao {
 				Auditorium au = new Auditorium();
 				au.setAuditoriumNo(rset.getInt("AUDITORIUM_NO"));//상영관 고유번호
 				au.setAuditoriumName(rset.getString("THEATER_NAME"));//영화관이름
-				au.setTheaterNo(Integer.parseInt(rset.getString("AUDITORIUM_NAME")));//상영관이름(1관, 2관...)
+				au.setTheaterNo(Integer.parseInt(rset.getString("AUDITORIUM_NAME").substring(0,rset.getString("AUDITORIUM_NAME").length()-1)));//상영관이름(1관, 2관...)
 				list.add(au);
 			}
 		} catch (SQLException e) {
