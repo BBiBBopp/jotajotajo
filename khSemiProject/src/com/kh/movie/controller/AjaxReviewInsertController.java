@@ -32,8 +32,8 @@ public class AjaxReviewInsertController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		int movieNo = Integer.parseInt(request.getParameter("mno"));
-//		String memberNo = String.valueOf(((Member)request.getSession().getAttribute("loginUser")).getMemberNo());
-		String memberNo = "1";
+		String memberNo = request.getParameter("uno");
+		
 		String reviewContent = request.getParameter("reviewContent");
 		int starCount = 10;
 		if(request.getParameter("starCount") != null)
