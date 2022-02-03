@@ -61,7 +61,6 @@
 		            			<p>검색된 영화가 없습니다.</p>
 		            		 </td>
 		            	</tr>
-		            	
 	            			 <% } else {%>
 		                		<% for(SearchMovie sb : movieList) {%>
 		                			<tr>
@@ -69,20 +68,15 @@
 				                   		</a></td>
 				                   	 </tr>
 				                   	 <tr>
-					                   	<td> | <%= sb.getmName() %></td>
-					                  	</tr> 	
+					                   	<td> | <%= sb.getmName() %></td></tr> 	
 					                 <tr>  	
-					                    <td> | <%= sb.getGenre() %></td>
-					                 	</tr>   
+					                    <td> | <%= sb.getGenre() %></td></tr>   
 					                <tr>    
-					                    <td> | <%= sb.getDirector() %></td>
-				                   	</tr>
+					                    <td> | <%= sb.getDirector() %></td></tr>
 					                <tr>
-					                    <td> | <%= sb.getActor() %></td>
-					                </tr> 
+					                    <td> | <%= sb.getActor() %></td></tr> 
 					                 <tr>   
-					                    <td> | <%= sb.getrTime() %></td>
-					                </tr>
+					                    <td> | <%= sb.getrTime() %></td></tr>
 		                		<% } %>
 		                	 <% } %>
 		                				 
@@ -106,7 +100,6 @@
 	                		<% for(Theater th : searchTheaterList) {%>
 				                <tr>
 				                    <td><%= th.getTheaterName() %>&nbsp;&nbsp;&nbsp;</td>
-				                
 				                    <td> | &nbsp;&nbsp;<%= th.getAddress() %></td>
 				                </tr>
 	                		<% } %>
