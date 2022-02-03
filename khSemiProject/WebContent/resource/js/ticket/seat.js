@@ -35,7 +35,7 @@ $(function () {
     $(this).addClass("btn-dark");
     var selectedSeats = "";
     selectedSeats = selectedSeats + $(this).siblings().eq(-$(this).text());
-    console.log(selectedSeats);
+    console.log(selectedSeats.text());
     $(".selected-seats").text($(this).text());
   });
 });

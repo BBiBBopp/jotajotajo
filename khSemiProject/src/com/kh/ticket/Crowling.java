@@ -8,6 +8,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import com.kh.common.MailSend;
+
 public class Crowling {
 	
 	public void crowling() {

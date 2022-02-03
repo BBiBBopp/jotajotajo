@@ -106,7 +106,7 @@
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content" style="border-radius: 3%">
 						<div class="modal-header">
-							<h5 class="modal-title" id="staticBackdropLabel">예매 번호 <%= rlist.get(i).getPayNo() %></h5>
+							<h5 class="modal-title" id="staticBackdropLabel">결제 번호 <%= rlist.get(i).getPayNo() %></h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -143,7 +143,7 @@
 		                            	<%= rlist.get(i).getTicketType() %>
 		                        </div>
 		                        <div class="ticket-no-area">
-		                            	티켓번호 <%= rlist.get(i).getTicketNo() %>
+		                            	예매 번호 <%= rlist.get(i).getTicketNo() %>
 		                        </div>
 		                    </div>
 						</div>

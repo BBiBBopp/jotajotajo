@@ -1,6 +1,7 @@
 package com.kh.ticket.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.ticket.model.service.TicketService;
 import com.kh.ticket.model.vo.Ticket;
 
 /**
@@ -29,7 +31,7 @@ public class SelectSeatController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String MemberId = "user01";
+		String MemberId = request.getParameter("memberId");
 		String mName = request.getParameter("mName");
 		String rate = request.getParameter("movieAge");
 		String selectedTheater = request.getParameter("selectedTheater");
@@ -37,8 +39,11 @@ public class SelectSeatController extends HttpServlet {
 		String remainSeatString = request.getParameter("remainSeat"); // XX석
 		int remainSeat = Integer.parseInt(remainSeatString.substring(0,remainSeatString.length()-1));
 		String runSch = request.getParameter("runningTime");
-
+		int runNo = Integer.parseInt(request.getParameter("runNo"));
+		
 		Ticket selected = new Ticket(MemberId, auditoriumSeat, selectedTheater, runSch, mName, rate, remainSeat);
+		
+		ArrayList<String> selectedSeatList = new TicketService().selectedSeat(runNo);
 		
 		request.setAttribute("selected", selected);
 		request.getRequestDispatcher("/views/user/ticketing/selectSeat.jsp").forward(request, response);

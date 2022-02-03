@@ -141,6 +141,17 @@ public class TicketService {
 	public int insertTicket() {
 		
 		return 0;
+	}
+
+	public ArrayList<String> selectedSeat(int runNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<String> selectedSeatList = new TicketDao().selectedSeat(conn, runNo);
+		
+		close(conn);
+		
+		return selectedSeatList;
+		
 	}	
 
 }

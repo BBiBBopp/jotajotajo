@@ -85,6 +85,7 @@ $(function () {
               '<button class="reserve-time-button">' +
               	'<span class="reserve-time-want">' + item.runSch +'</span>' +
               	'<span class="reserve-time-remain">' + item.remain + '석</span>' +
+              	'<div class="reserve-time-no" style="display:none">' + item.runNo + '</div>' +
               '</button>' +
              '</div>'
           );
@@ -103,6 +104,7 @@ $(function () {
     $(".runningTime").val($(this).children().eq(0).text());
     $(".AuditoriumSeat").val($(this).parent().prev().text());
     $(".remainSeat").val($(this).children().eq(1).text());
+    $(".runNo").val($(this).children().eq(2).text());
     
     if (
       !!$(".mName").val() &&

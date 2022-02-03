@@ -381,4 +381,28 @@ public class TicketDao {
 		return list;
 	}
 
+	public ArrayList<String> selectedSeat(Connection conn, int runNo) {
+		ArrayList<String> selectedSeatList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectedSeat");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, runNo);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				selectedSeatList.add(rset.getString("SEAT_NO"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return selectedSeatList;
+	}
+
 }

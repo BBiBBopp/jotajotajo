@@ -263,4 +263,16 @@ FROM
 	AND 
 			RUN_SCH LIKE ?
 </entry>
+<entry key="selectedSeat">
+	SELECT  
+			SEAT_NO
+	FROM 
+			SEAT
+	JOIN 
+			TICKET 
+	USING 
+			(SEAT_PK)
+	WHERE 
+			RUN_NO = ?
+</entry>
 </properties>
