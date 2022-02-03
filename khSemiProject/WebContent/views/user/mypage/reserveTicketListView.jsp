@@ -29,6 +29,8 @@
 	<div class="outer">
 		<br>
 		<h1 class="title">예매내역 확인</h1>
+		<br>
+		<!-- 
 		<div class="ticket-type">
 			<form action="">
 				<div class="ticket-head">구분</div>
@@ -42,6 +44,7 @@
 				</div>
 			</form>
 		</div>
+		 -->
 		<table class="ticket-list-area">
 			<% if(rlist.isEmpty()) { %>
                 <tr>
