@@ -18,7 +18,7 @@
 <title>시네마헤븐</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/user/main/main.css"/>
 <link rel="stylesheet" href="resource/css/user/movie/movieList.css">
-<script src="../resources/js/jquery-3.3.1.js"></script>
+
 
 
 </head>
