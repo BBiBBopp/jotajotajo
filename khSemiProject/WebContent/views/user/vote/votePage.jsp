@@ -30,6 +30,8 @@
             <div id="container_4">
                 <div class="service_area3">2월 투표</div>
                 <br><br><br>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	포스터 클릭시 영화정보 있어요!</p>
                 <main class="main-container">
                 	<%if(list.isEmpty()){ %>
                 		현재 투표 없습니다.
@@ -86,7 +88,7 @@
 			$("#voting_btn").click(function(){
 				if(<%=vreNo%> == 0){
 					if($('input:radio[name=vreNo]').is(':checked')){
-						var vreNo = $('#vreNo').val();
+						var vreNo = $('input[name=vreNo]:checked').val();
 						location.href= "<%=contextPath%>/voteCount.vot?vreNo="+vreNo;
 					}else{
 						alert('선택 하시고 투표 하세요.');
