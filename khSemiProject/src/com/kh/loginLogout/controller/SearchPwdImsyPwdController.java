@@ -42,33 +42,31 @@ public class SearchPwdImsyPwdController extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		String email = request.getParameter("email");	
 		
-		
-		int len = 16; // 임시비밀번호 길이
+		int len = 16; // 임시비밀번호 길이 => 비밀번호 정규식의 최대 길이
 		char[] charSet = new char[] { '1', '2', '3', '4', '5', '6', '7', '8',
 									  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 									  'L', 'N', 'U', 'P', 'Q', 'R', 'S', 'T',
 									  '!', '@', '#', '$', '%', '^', '*'}; // 임시비밀번호에 들어갈 수 있는 문자들
 			
-		int idx = 0; 
-			
+		int idx = 0; // 인덱스가 들어갈 변수 선언
 		StringBuffer sb = new StringBuffer(); 
 			
-//		System.out.println("charSet.length :::: "+charSet.length); // 임시비밀번호에 들어갈 수 잇는 문자들의 길이확인
 			
 		for (int i = 0; i < len; i++) { 
 				
 			idx = (int) (charSet.length * Math.random()); // 랜덤으로 들어갈 문자의 인덱스 생성
 				
+//			System.out.println("charSet.length :::: "+charSet.length); // 임시비밀번호에 들어갈 수 잇는 문자들의 길이확인
+
 //			System.out.println("idx :::: "+idx); // 랜덤으로 생성되는 문자 확인
 				
 			sb.append(charSet[idx]); // 랜덤으로 생성된 문자를 문자열끝에 추가
 		} 
 			
-		String imsyPwd = sb.toString();
+		String imsyPwd = sb.toString(); // 문자열로 형변환하여 변수에 담기
 //		System.out.println(sb); // 완성된 임시비밀번호 확인
 		
-		// 임시비밀번호 생성 완료
-		// => 이메일에 임시비밀번호 담아서 보내기
+		// 임시비밀번호 생성 완료 => 이메일에 임시비밀번호 담아서 보내기
 		
 		int num = 2; // 인증번호는 1, 임시비밀번호는 2로 고정해서 넘기기
 		
