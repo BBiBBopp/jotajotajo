@@ -17,7 +17,7 @@
 <link rel="stylesheet"	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/resource/js/member/member.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resource/js/member.js"></script>
 <style type="text/css">
 
 .button_hidden{
@@ -152,63 +152,63 @@
                     <li> 
 						<div class="form-check-inline interest_div">
 							<label class="form-check-label">
-								<input type="checkbox" name="interest" class="form-check-input" value="action">액션
+								<input type="checkbox" name="interest" class="form-check-input" value="액션">액션
 							</label>
 						</div>
 						<div class="form-check-inline interest_div">
 							<label class="form-check-label">
-								<input type="checkbox" name="interest" class="form-check-input" value="animation">애니메이션
+								<input type="checkbox" name="interest" class="form-check-input" value="애니메이션">애니메이션
 						  </label>
 						</div>
 						<div class="form-check-inline interest_div">
 							<label class="form-check-label">
-								<input type="checkbox" name="interest" class="form-check-input" value="drama">드마라
+								<input type="checkbox" name="interest" class="form-check-input" value="드마라">드마라
 							</label>
 						</div>
                     </li>
                     <li> 
 						<div class="form-check-inline interest_div">
 							<label class="form-check-label">
-								<input type="checkbox" name="interest" class="form-check-input" value="thriller">스릴러
+								<input type="checkbox" name="interest" class="form-check-input" value="스릴러">스릴러
 							</label>
 						</div>
 						<div class="form-check-inline interest_div">
 							<label class="form-check-label">
-								<input type="checkbox" name="interest" class="form-check-input" value="romance">로맨스멜로
+								<input type="checkbox" name="interest" class="form-check-input" value="로맨스">로맨스
 						  </label>
 						</div>
 						<div class="form-check-inline interest_div">
 							<label class="form-check-label">
-								<input type="checkbox" name="interest" class="form-check-input" value="comedy">코미디
+								<input type="checkbox" name="interest" class="form-check-input" value="코미디">코미디
 							</label>
 						</div>
                     </li>
                     <li> 
 						<div class="form-check-inline interest_div">
 							<label class="form-check-label">
-								<input type="checkbox" name="interest" class="form-check-input" value="crime">범죄
+								<input type="checkbox" name="interest" class="form-check-input" value="범죄">범죄
 							</label>
 						</div>
 						<div class="form-check-inline interest_div">
 							<label class="form-check-label">
-								<input type="checkbox" name="interest" class="form-check-input" value="fear">공포
+								<input type="checkbox" name="interest" class="form-check-input" value="공포">공포
 						  </label>
 						</div>
 						<div class="form-check-inline interest_div">
 							<label class="form-check-label">
-								<input type="checkbox" name="interest" class="form-check-input" value="mystery">미스터리
+								<input type="checkbox" name="interest" class="form-check-input" value="미스터리">미스터리
 							</label>
 						</div>
                     </li>
                     <li> 
 						<div class="form-check-inline interest_div">
 							<label class="form-check-label">
-								<input type="checkbox" name="interest" class="form-check-input" value="adult">성인물
+								<input type="checkbox" name="interest" class="form-check-input" value="성인물">성인물
 							</label>
 						</div>
 						<div class="form-check-inline interest_div">
 							<label class="form-check-label">
-								<input type="checkbox" name="interest" class="form-check-input" value="history">사극
+								<input type="checkbox" name="interest" class="form-check-input" value="사극">사극
 						  </label>
 						</div>
 						<div class="form-check-inline interest_div">
