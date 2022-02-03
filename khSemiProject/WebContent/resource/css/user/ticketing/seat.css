@@ -1,7 +1,7 @@
 /* content */
 
 .select-container {
-  margin-top: 140px;
+  margin-top: 40px;
 }
 
 .select-wrapper {
@@ -189,6 +189,8 @@
 }
 
 .reserve-button {
+  border: 0;
+  outline: 0;
   margin-top: 5px;
   display: flex;
   align-items: center;
@@ -232,12 +234,15 @@
 
 .type1 {
   background-color: rgb(13, 61, 171);
+  color: white;
 }
 .type2 {
   background-color: rgb(68, 68, 68);
+  color: black;
 }
 .type3 {
   background-color: darkgray;
+  color: darkgray;
 }
 .seat-disc {
   float: left;

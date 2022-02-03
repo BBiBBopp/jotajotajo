@@ -133,7 +133,7 @@ public class reserveViewController extends HttpServlet {
 			if(Dday >= 0) {
 				t.setDday("D - " + Dday);
 			} else {
-				t.setDday("D + " + Dday);
+				t.setDday("D + " + Math.abs(Dday));
 			}
 			// 종료시간 구하기
 			String endTime = null;

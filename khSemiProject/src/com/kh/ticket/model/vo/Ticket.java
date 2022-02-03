@@ -87,12 +87,13 @@ public class Ticket {
 		this.ticketCount = ticketCount;
 	}
 	
-	public Ticket(String memberId, String auditoriumName, String theaterName, String runSch, String mName, String rate,
+	public Ticket(String memberId, String auditoriumName, String theaterName,int runNo, String runSch, String mName, String rate,
 			int remain) {
 		super();
 		this.memberId = memberId;
 		this.auditoriumName = auditoriumName;
 		this.theaterName = theaterName;
+		this.runNo = runNo;
 		this.runSch = runSch;
 		this.mName = mName;
 		this.rate = rate;

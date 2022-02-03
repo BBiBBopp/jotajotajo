@@ -102,17 +102,20 @@
 								<div class="ticket-price">0원</div>
 							</div>
 							<form action="<%=contextPath%>/pay.ti" class="seatForm" method="post">
-								<input type="hidden" class="title" name="title" value="라라랜드"> 
-								<input type="hidden" class="selectedTheater" name="selectedTheater" value="강남점">
-								<input type="hidden" class="reserveDate" name="movieDate" value="2022/01/01">
-								<input type="hidden" class="runningTime" name="runningTime" value="2:30">
-								<input type="hidden" class="movieAge" name="movieAge" value="15">
+								<input type="hidden" name="runNo" value="<%= t.getRunNo() %>">
+ 								<!-- 영화 정보 -->
+								<input type="hidden" class="title" name="title" value="<%= t.getmName() %>"> 
+								<input type="hidden" class="selectedTheater" name="selectedTheater" value="<%= t.getTheaterName() %>">
+								<input type="hidden" class="reserveDate" name="movieDate" value="2022/02/01">
+								<input type="hidden" class="runningTime" name="runningTime" value="<%= t.getRunSch() %>">
+								<input type="hidden" class="movieAge" name="movieAge" value="<%= t.getRate() %>">
 								<!-- 티켓의수(선택한 좌석) -->
-								<input type="hidden" class="ticketNumber" name="ticketNumber" value="3">
-								<input type="hidden" class="selectedSeat" name="selectedSeat" value="2">
+								<input type="hidden" class="ticketNumber" name="ticketNumber">
+								<input type="hidden" class="ticketType" name="ticketType">
+								<input type="hidden" class="selectedSeat" name="selectedSeat">
 								<!-- 결제 정보 -->
-								<input type="hidden" class="payMoney" name="payMoney" value="30000">
-								<button type="submit" class="reserve-button">결제하기</button>
+								<input type="hidden" class="payMoney" name="payMoney">
+								<button type="submit" class="reserve-button" ><img src="<%= contextPath %>/resource/image/user/pay.jpg" alt="결제하기" width="70px"></button>
 							</form>
 						</div>
 						
@@ -124,17 +127,17 @@
 									dataType : 'json',
 									contentType: 'application/json; charset=UTF-8',
 									data: {
-										moiveName : 'title', // movieName in MOVIE
-										theaterNo : 'selectedTheater', // theaterNo in THEATER
-										runSch : 'movieDate', // runSch in SCHEDULE
-										runtime : 'runningTime', // runTime in MOVIE
-										rate : 'movieAge', // rate in MOVIE
-										ticketNumber : 'ticketNumber', // 
+										title : 'title', // mName in MOVIE
+										selectedTheater : 'selectedTheater', // theaterName in THEATER
+										runNo : 'runNo', // runNo in SCHEDULE
+										movieDate : 'movieDate', // runSch in SCHEDULE
+										runningTime : 'runningTime', // runTime in MOVIE
+										movieAge : 'movieAge', // rate in MOVIE
+										ticketNumber : 'ticketNumber', // ticketNumber 
 										selectedSeat : 'selectedSeat', // seatNo in seat (,로 구분)
-										payment : 'payMoney' // payment in PAYMENT
+										payMoney : 'payMoney' // payment in PAYMENT
 									},
 									success : function(result){
-										console.log(result)
 										alert(result.tid);
 									},
 									error : function(){
@@ -148,7 +151,7 @@
 					<div class="seat-container">
 						<div class="seat-state">
 							<div class="state">
-								<div class="seat-type type1"></div>
+								<div class="seat-type btn btn-primary"></div>
 								<div class="seat-disc">선택 좌석</div>
 							</div>
 							<div class="state">
@@ -180,6 +183,7 @@
 					</div>
 				</div>
 			</div>
+			<br><br><br>
 		</div>
         <!-- <%@ include file="../common/footer.jsp" %> -->
     </div>

@@ -116,6 +116,7 @@ $(function () {
       $(".moveSeatForm").submit();
     } else {
       alert("전부 다 선택해주세요");
+      
     }
   });
 });

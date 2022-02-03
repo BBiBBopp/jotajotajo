@@ -22,9 +22,10 @@
 		<%@ include file="../common/header.jsp"%>
 		
 	<!-- 로그인 안돼있으면 못들어옴 -->
-	<% if (loginUser == null) { %>
-		<%@ include file="../common/loginCheck.jsp"%>
-	<% } %>
+	<%// if (loginUser == null) { %>
+		<% //@ include file="../common/loginCheck.jsp"%>
+	<%// } %>
+
 		<div id="container">
 			<div class="reserve-container">
 				<div class="movie-part">
@@ -74,7 +75,7 @@
 					</div>
 					<div>
 						<form class="moveSeatForm" action="selectSeat.ti" method="get">
-							<input type="hidden" name="memberId" value="<%= loginUser.getMemberId() %>">
+							<input type="hidden" name="memberId" value="test11<%//= loginUser.getMemberId() %>">
 							
 							<input type="hidden" class="mName" name="mName"> 
 							<input type="hidden" class="movieAge" name="movieAge"> 

@@ -38,13 +38,23 @@ public class SelectSeatController extends HttpServlet {
 		String auditoriumSeat = request.getParameter("AuditoriumSeat");
 		String remainSeatString = request.getParameter("remainSeat"); // XX석
 		int remainSeat = Integer.parseInt(remainSeatString.substring(0,remainSeatString.length()-1));
+		// String movieDate = 2022.02.01 (화);
 		String runSch = request.getParameter("runningTime");
 		int runNo = Integer.parseInt(request.getParameter("runNo"));
 		
-		Ticket selected = new Ticket(MemberId, auditoriumSeat, selectedTheater, runSch, mName, rate, remainSeat);
+		Ticket selected = new Ticket(MemberId, auditoriumSeat, selectedTheater, runNo, runSch, mName, rate, remainSeat);
 		
-		ArrayList<String> selectedSeatList = new TicketService().selectedSeat(runNo);
+		ArrayList<String> ssList = new TicketService().selectedSeat(runNo);
 		
+		// 좌석 행열 나누기
+		ArrayList<String[]> selectedSeatList = new ArrayList<>();
+		
+		for(String s : ssList) {
+			String[] sArr = s.split(" ");
+			selectedSeatList.add(sArr);
+		}
+
+		request.setAttribute("selectedSeatList", selectedSeatList);
 		request.setAttribute("selected", selected);
 		request.getRequestDispatcher("/views/user/ticketing/selectSeat.jsp").forward(request, response);
 	}

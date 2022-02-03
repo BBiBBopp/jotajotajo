@@ -44,9 +44,15 @@ public class KakaopayController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		// 값 뽑기
-		
-		// service로 넘기기
-		int result = new TicketService().insertTicket();
+		String mName = request.getParameter("title");
+		String theaterName = request.getParameter("selectedTheater");
+		int runNo = Integer.parseInt(request.getParameter("runNo"));
+		String runSch = request.getParameter("movieDate");
+		String runTime = request.getParameter("runningTime");
+		String rate = request.getParameter("movieAge");
+		int ticketNumber = Integer.parseInt(request.getParameter("ticketNumber"));
+		String selectedSeat = request.getParameter("selectedSeat");
+		String payment = request.getParameter("payMoney");
 		
 		String successUrl = "";
 			URL address = new URL("https://kapi.kakao.com/v1/payment/ready");
@@ -61,10 +67,10 @@ public class KakaopayController extends HttpServlet {
 			params.put("cid", String.valueOf("TC0ONETIME")); // 가맹점 코드
 			params.put("partner_order_id", String.valueOf("partner_order_id")); // 가맹점 주문번호
 			params.put("partner_user_id", String.valueOf("partner_user_id")); // 가맹점 회원 ID
-			params.put("item_name",  String.valueOf("초코파이")); // 상품명
-			params.put("item_code", String.valueOf("1")); // 상품 코드
-			params.put("quantity", String.valueOf("2200")); // 상품 수량
-			params.put("total_amount", String.valueOf("200")); // 총 금액
+			params.put("item_name",  String.valueOf(mName)); // 상품명
+			params.put("item_code", String.valueOf(runNo)); // 상품 코드
+			params.put("quantity", String.valueOf(ticketNumber)); // 상품 수량
+			params.put("total_amount", String.valueOf(payment)); // 총 금액
 			params.put("vat_amount", String.valueOf("0")); // 부가세
 			params.put("tax_free_amount", "0");
 			params.put("approval_url", "http://localhost:8222/cinemaHeaven/list.ti?currentPage=1"); // 결제 성공 시
@@ -96,6 +102,11 @@ public class KakaopayController extends HttpServlet {
 				e.printStackTrace();
 			} catch (ParseException e) {
 				e.printStackTrace();
+			}
+			
+			if(successUrl == "http://localhost:8222/cinemaHeaven/list.ti?currentPage=1") {
+				// service로 넘기기
+				int result = new TicketService().insertTicket();
 			}
 
 		// 응답

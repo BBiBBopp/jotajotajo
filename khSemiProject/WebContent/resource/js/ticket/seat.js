@@ -2,41 +2,91 @@ $(function () {
   // 인원 선택하기
   $(".select-seat-ul").on("click", "li", function () {
     seatNum = $(this).text();
+    var price;
+    var ticketType;
 
     // 선택된 좌석 hover 넣기
     $(".select-seat-ul").children().removeClass("select-seat-ul-active");
     $(this).addClass("select-seat-ul-active");
 
+    // 좌석 수 넣기
     if ($(this).attr("class").match("select-number-normal")) {
       $(".reserve-number").text("일반 X " + seatNum);
-      var price = 11000 * seatNum;
-      price = addComma(price);
-      $(".ticket-price").text(price + "원");
+      price = 11000 * seatNum;
+      ticketType = "일반";
     } else if ($(this).attr("class").match("select-number-teen")) {
       $(".reserve-number").text("청소년 X " + seatNum);
-      var price = 9000 * seatNum;
-      price = addComma(price);
-      $(".ticket-price").text(price + "원");
+      price = 9000 * seatNum;
+      ticketType = "청소년";
     } else {
       $(".reserve-number").text("우대 X " + seatNum);
-      var price = 9000 * seatNum;
-      price = addComma(price);
-      $(".ticket-price").text(price + "원");
+      price = 9000 * seatNum;
+      ticketType = "우대";
     }
+
+    // 인원, 티켓 타입, 결제금액 넘기기
+    $(".ticketNumber").val(seatNum);
+    $(".ticketType").val(ticketType);
+    $(".payMoney").val(price);
+    
+    // 가격 넣기
+    price = addComma(price);
+    $(".ticket-price").text(price + "원");
   });
 
   $(".select-seat-wrapper").on("click", "button", function () {
-    // 변수 선언 안해주면 전역변수 아닌가???????????????????
+	// 초기 input값, 선택된 좌석 값 받아오기
+	var seatNum = $(".ticketNumber").val();
+	var selectedNum = $(".btn-primary").length;
 
-    //if (seatNum == null) {
-    //  alert("인원을 먼저 선택해주세요");
-    //}
-    // alert("한 번 눌림");
-    $(this).addClass("btn-dark");
-    var selectedSeats = "";
-    selectedSeats = selectedSeats + $(this).siblings().eq(-$(this).text());
-    console.log(selectedSeats.text());
-    $(".selected-seats").text($(this).text());
+	// 선택하면 파란색
+	$(this).removeClass("btn-outline-secondary");
+    $(this).addClass("btn-primary");
+    
+    // 좌석 번호 받아오기
+    var selectedRow;
+    selectedRow =  $(this).parent('div').attr('class');
+    var selectedSeat = selectedRow + " "+ $(this).text();
+    var selectedList = $(".selected-seats").text();
+    
+    // 미리 선택한 좌석 있으면 그 뒤에 추가
+	if(selectedList !== '선택한 좌석이 없습니다.') {
+		if(selectedNum <= seatNum) {
+			$(".selected-seats").text(selectedList + ", " + selectedSeat);
+		}
+	} else { // 처음 선택하는거면 그냥 추가
+		$(".selected-seats").text(selectedSeat);
+	}
+	
+	// 선택 좌석 넘기기
+	$(".selectedSeat").val(selectedList);
+
+    // 두 번 선택하면 선택 취소 / 안됨ㅅㅂㅅㅂㅅㅂㅅㅂㅅㅂㅅㅂㅅㅂㅅㅂㅅㅂㅅㅂㅅㅂ
+    /*
+    if($(this).hasClass(".btn-primary")){
+    	$(this).removeClass('btn-primary');
+		$(this).addClass("btn-outline-secondary");
+		$(this).blur();
+    }
+    */
+    
+	// 인원 선택 전 좌석 선택 불가
+	if(seatNum.length == 0 && seatNum == 0) {
+		alert("인원을 먼저 선택해주세요");
+		$(this).removeClass('btn-primary');
+		$(this).addClass("btn-outline-secondary");
+		$(this).blur();
+		$(".selected-seats").text('선택한 좌석이 없습니다.');	
+	}
+	
+	// 인원수만큼 좌석 선택 가능
+	if(seatNum > 0 && selectedNum > seatNum) {
+		alert("좌석을 모두 선택하셨습니다.");
+		$(this).removeClass('btn-primary');
+		$(this).addClass("btn-outline-secondary");
+		$(this).blur();
+	}
+    
   });
 });
 

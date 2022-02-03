@@ -34,6 +34,7 @@
             case 10: str = "J열";
             break;
             } %>
+            <div class="<%= str %>">
             <span><%= str %>&nbsp;</span>
 		<% for(int i=1; i<11; i++) { %>
 			<button type="button" class="btn btn-outline-secondary btn-lg" style="margin-bottom: 5px; padding: 0.375rem 0.75rem;"><%= i %></button>
@@ -43,9 +44,9 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<% } %>
 		<% } %>
-        <br>
+        </div>
     <% } %>
-
     </div>
+    <br><br>
 </body>
 </html>
