@@ -8,7 +8,7 @@
 		      FROM (
 		            SELECT MNO, MNAME, GENRE, RATE, NVL(ADVANCE_RATE, 0) ADVANCE_RATE
 		            FROM MOVIE 
-		            LEFT JOIN (SELECT MNO, ALL_TICKET/ALL_SEAT ADVANCE_RATE
+		            LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/ALL_SEAT*100,1) ADVANCE_RATE
 		                        FROM(
 		                            SELECT MNO, COUNT(MNO) ALL_TICKET
 		                            FROM PAYMENT
@@ -48,7 +48,7 @@
 		            END MY_LIKE
 		            FROM MOVIE_LIKE) ML USING(MNO)
         LEFT JOIN (
-                    SELECT MNO, ALL_TICKET/ALL_SEAT ADVANCE_RATE
+                    SELECT MNO, ROUND(ALL_TICKET/ALL_SEAT*100,1) ADVANCE_RATE
                     FROM(
                         SELECT MNO, COUNT(MNO) ALL_TICKET
                         FROM PAYMENT
@@ -85,7 +85,7 @@
 		            END MY_LIKE
 		            FROM MOVIE_LIKE) ML USING(MNO)
 	    LEFT JOIN (
-                   SELECT MNO, ALL_TICKET/ALL_SEAT ADVANCE_RATE
+                   SELECT MNO, ROUND(ALL_TICKET/ALL_SEAT*100,1) ADVANCE_RATE
                     FROM(
                         SELECT MNO, COUNT(MNO) ALL_TICKET
                         FROM PAYMENT
@@ -250,7 +250,7 @@
       		  FROM (
 					SELECT MNO, MNAME, GENRE, RATE, NVL(ADVANCE_RATE, 0) ADVANCE_RATE
 					FROM MOVIE 
-					LEFT JOIN (SELECT MNO, ALL_TICKET/ALL_SEAT ADVANCE_RATE
+					LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/ALL_SEAT*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
@@ -278,7 +278,7 @@
       		  FROM (
 					SELECT MNO, MNAME, GENRE, RATE, NVL(ADVANCE_RATE, 0) ADVANCE_RATE
 					FROM MOVIE 
-					LEFT JOIN (SELECT MNO, ALL_TICKET/ALL_SEAT ADVANCE_RATE
+					LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/ALL_SEAT*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
@@ -306,7 +306,7 @@
       		  FROM (
 					SELECT MNO, MNAME, GENRE, RATE, NVL(ADVANCE_RATE, 0) ADVANCE_RATE
 					FROM MOVIE 
-					LEFT JOIN (SELECT MNO, ALL_TICKET/ALL_SEAT ADVANCE_RATE
+					LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/ALL_SEAT*100,1) ADVANCE_RATE
 		                    FROM(
 		                        SELECT MNO, COUNT(MNO) ALL_TICKET
 		                        FROM PAYMENT
