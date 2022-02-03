@@ -25,7 +25,7 @@
 		                    USING(MNO)
 		                ) USING(MNO)
 		            WHERE STATUS = 'Y'
-		        ORDER BY MNO
+		        ORDER BY ADVANCE_RATE DESC, MNO
 		        ) A)
 		WHERE RNUM BETWEEN ? AND ?
 	</entry>
@@ -268,7 +268,7 @@
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
 						AND GENRE LIKE ?
-					ORDER BY MNO
+					ORDER BY ADVANCE_RATE DESC, MNO
 					) A)
 		WHERE RNUM BETWEEN ? AND ?
 	 </entry>
@@ -296,7 +296,7 @@
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
 						AND (GENRE LIKE ? OR GENRE LIKE ?)
-					ORDER BY MNO
+					ORDER BY ADVANCE_RATE DESC, MNO
 					) A)
 		WHERE RNUM BETWEEN ? AND ?
 	 </entry>
@@ -324,7 +324,7 @@
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
 						AND (GENRE LIKE ? OR GENRE LIKE ? OR GENRE LIKE ?)
-					ORDER BY MNO
+					ORDER BY ADVANCE_RATE DESC, MNO
 					) A)
 		WHERE RNUM BETWEEN ? AND ?
 	 </entry>
@@ -438,7 +438,7 @@
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
 						AND GENRE LIKE ?
-					ORDER BY MNO
+					ORDER BY ADVANCE_RATE DESC, MNO
 					) A)
 	 </entry>
 	 <entry key="selectRecommendTwoAll">
@@ -465,7 +465,7 @@
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
 						AND (GENRE LIKE ? OR GENRE LIKE ?)
-					ORDER BY MNO
+					ORDER BY ADVANCE_RATE DESC, MNO
 					) A)
 	 </entry>
 	 <entry key="selectRecommendThreeAll">
@@ -492,7 +492,7 @@
 		            ) USING(MNO)
 					WHERE STATUS = 'Y' 
 						AND (GENRE LIKE ? OR GENRE LIKE ? OR GENRE LIKE ?)
-					ORDER BY MNO
+					ORDER BY ADVANCE_RATE DESC, MNO
 					) A)
 	 </entry>
 	 <entry key="countMovieByKeyword">
