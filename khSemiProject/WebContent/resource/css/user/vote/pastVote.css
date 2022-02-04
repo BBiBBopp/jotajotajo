@@ -34,3 +34,12 @@
         margin-top: auto;
         
     }
+    
+   #paging_btn>button{
+       color: rgb(13, 71, 161);
+       border: 1px solid rgb(13, 71, 161);
+    }
+    #paging_btn>button:hover{
+        background-color: rgb(13, 71, 161);
+    	color: white;
+    }
