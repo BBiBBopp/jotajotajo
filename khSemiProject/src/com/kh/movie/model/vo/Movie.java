@@ -19,6 +19,7 @@ public class Movie {
 	private double advanceRate;//예매율
 	private String myLike;
 	private String runDate;
+	private int reviewCount;
 	
 	public Movie() {
 		super();
@@ -53,6 +54,14 @@ public class Movie {
 		this.advanceRate = advanceRate;
 	}
 
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
 
 	public String getReleaseDate() {
 		return releaseDate;
