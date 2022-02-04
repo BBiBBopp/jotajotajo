@@ -89,6 +89,9 @@ body{
 	
 	position: absolute;
 }
+.submenu li{
+	display: inline-block; 
+}
 
 
 
