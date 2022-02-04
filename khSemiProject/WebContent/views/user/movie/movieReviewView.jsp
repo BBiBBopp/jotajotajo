@@ -63,18 +63,15 @@
 						<br clear="both">
 						<!-- 리뷰 목록 -->
 						<div>
-							<div id="reviewCount">총 0건</div>
+							<div id="reviewCount">총 <span><%= mv.getReviewCount() %></span>건</div>
 						</div>
 						<hr>
 							<ul id="reviewListView"></ul>
-						<button class="btn btn-light btn-unfold" onclick="moreReview();">펼쳐보기</button>
+						<button class="btn btn-light btn-unfold" onclick="addReviewList();">펼쳐보기</button>
 						
 						<script>
 						var sCount = 1;//첫 페이지 리뷰 시작 카운트
 						var eCount = 5;//첫 페이지 리뷰 엔드 카운트
-						var moreCount = 0;
-						var moreStart;
-						var moreEnd;
 						
 						var memNo = 0;
 						<% if(loginUser != null){ %>
@@ -83,7 +80,6 @@
 						
 						function selectReview(list){
 							var result = '';
-							//$('#reviewCount').text('총 '+list.length+'건');
 							
 							if(list.length == 0){
 								result='<li>리뷰가 존재하지 않습니다.</li>';
@@ -115,6 +111,12 @@
 										myLike = 'far fa-thumbs-up';
 									}
 									
+									//날짜 변환
+									var year = list[i].createDate.substr(list[i].createDate.length-4,4);
+									var mon = list[i].createDate.substring(0,list[i].createDate.indexOf('월'));
+									var day = list[i].createDate.substring(list[i].createDate.indexOf(' ')+1, list[i].createDate.indexOf(','));
+									var createDate = year+'년 '+mon+'월 '+day+'일 | ';
+									
 									result += '<li>'
 										+'<input type="hidden" value="'+list[i].reviewNo+'">'
 										+'<div class="review-emoji"><br><i class="'+emoji+'" style="font-size:36px"></i></div>'
@@ -125,7 +127,7 @@
 											+'<br>'
 											+'<span class="reviewContent">'+list[i].reviewContent+'</span>'
 											+'<br>'
-											+'<span class="createDate">'+list[i].createDate+'</span>'
+											+'<span class="createDate">'+createDate+'</span>'
 											+'<a onclick="'+mapping+'">'+content+'</a>'
 										+'</div>'
 										+'<div class="reviewLike" onclick="reviewLike();">'
@@ -138,8 +140,7 @@
 							return result;
 						}
 						
-
-						
+						//리뷰 불러오기
 						function selectReviewList(s, e){
 							$.ajax({
 								url: 'list.re',
@@ -150,16 +151,39 @@
 									'eCount': e
 									},
 								success: function(list){//리스트 뿌리기
-									$('#reviewListView').html(selectReview(list));
 									countReview();
+									$('#reviewListView').html(selectReview(list));
 								},
 								error: function(){
 									alert('AJAX 통신 실패');
 								}
-									
 							})
-							
-							
+							if(eCount>$('#reviewCount>span').text())
+								$('.btn-unfold').hide();
+						}
+						
+						//리뷰 펼쳐보기
+						function addReviewList(){
+							sCount += 5;
+							eCount += 5;
+
+							$.ajax({
+								url: 'list.re',
+								data: {	
+									'mno': <%= mv.getMovieNo() %>,
+									'uno': memNo,
+									'sCount': sCount,
+									'eCount': eCount
+									},
+								success: function(list){//리스트 뿌리기
+									$('#reviewListView').append(selectReview(list));
+								},
+								error: function(){
+									alert('AJAX 통신 실패');
+								}
+							})
+							if(eCount>$('#reviewCount>span').text())
+								$('.btn-unfold').hide();
 						}
 						
 						//전체 리뷰와 평점 받아오기 == 받아와야하는 값  : 영화의 전체 건수, 총 평점도 받아와야함
@@ -168,80 +192,39 @@
 								url:'count.re',
 								data:{'mno': <%= mv.getMovieNo() %>},
 								success: function(list){//double로 받아와서 소수점 떼기
-									$('#reviewCount').text('총 '+list[0]+'건');
+									$('#reviewCount>span').text(list[0]);
 									$('#movie-reTotal').children('strong').text(list[1].toFixed(1)+'/10');
 								}
 							})
 						}
-						
-						function addReviewList(s, e){
-							$.ajax({
-								url: 'list.re',
-								data: {	
-									'mno': <%= mv.getMovieNo() %>,
-									'uno': memNo,
-									'sCount': s,
-									'eCount': e
-									},
-								success: function(list){//리스트 뿌리기
-									$('#reviewListView').append(selectReview(list));
-									countReview();
-								},
-								error: function(){
-									alert('AJAX 통신 실패');
-								}
-									
-							})
-						}
-						
-						function moreReview(){
-							moreCount += 5;//펼쳐보면 늘어날 리뷰 수
-							moreStart = sCount+moreCount;
-							moreEnd = eCount+moreCount;
-							
-							$.ajax({
-								url: 'list.re',
-								data: {	
-									'mno': <%= mv.getMovieNo() %>,
-									'uno': memNo,
-									'sCount': moreStart,
-									'eCount': moreEnd
-									},
-								success: function(list){//리스트 뿌리기
-									addReviewList(moreStart, moreEnd);
-								},
-								error: function(){
-									alert('AJAX 통신 실패');
-								}
-							})
-						}
-						
-						
-						
-							
 							
 						//리뷰 등록 AJAX
 						function insertReview(){
 							<% if(loginUser == null){ %>
 								alert('로그인이 필요한 기능입니다.');
 							<% }else{ %>
-								$.ajax({
-									url: 'insert.re',
-									data: {
-										mno: <%= mv.getMovieNo() %>,
-										reviewContent: $('#reviewContent').val(),
-										uno: memNo,
-										starCount: $('#starCount').val()
-									},
-									type: 'post',
-									success: function(){
-										alert('리뷰 등록 성공!');
-										selectReviewList(sCount, eCount);
-									},
-									error: function(){
-										alert('리뷰 등록 실패! 오류가 계속된다면 문의 바랍니다.');
-									}
-								})
+								if($('#reviewContent').val()==''){
+									alert('내용을 입력해주세요.');
+								}else{
+									$.ajax({
+										url: 'insert.re',
+										data: {
+											mno: <%= mv.getMovieNo() %>,
+											reviewContent: $('#reviewContent').val(),
+											uno: memNo,
+											starCount: $('#starCount').val()
+										},
+										type: 'post',
+										success: function(){
+											alert('리뷰 등록 성공!');
+											selectReviewList(sCount, eCount);
+											$('#reviewContent').val('');
+										},
+										error: function(){
+											alert('리뷰 등록 실패! 오류가 계속된다면 문의 바랍니다.');
+										}
+									})
+								}
 							<% } %>
 						}
 						
@@ -329,7 +312,8 @@
 						
 						//DOM이 로드되면 실행할 함수들
 						$(function(){
-							selectReviewList(1, 10);
+							selectReviewList(1, 5);
+
 							
 							//미로그인 사용자는 비활성화
 							<% if(loginUser == null){ %>
@@ -337,9 +321,7 @@
 								$('#movie-myReview>form').submit(function(e){
 									e.preventDefault();
 								});
-								//지은씨 modal 가져와서 활성화하기
 							<% } %>
-							//리스트 조회하는 함수
 							
 								
 							//별에 불 들어오기
