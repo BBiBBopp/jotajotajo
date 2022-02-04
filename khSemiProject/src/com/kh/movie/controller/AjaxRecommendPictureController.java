@@ -36,9 +36,11 @@ public class AjaxRecommendPictureController extends HttpServlet {
 		//받아온 영화의 번호를 담기
 		String recommendNoString = request.getParameter("recommendNo");
 		String[] recommendNo = recommendNoString.split(",");
-		
+
+		ArrayList<Picture> picList = new ArrayList<>();
 		//받아온 영화의 포스터들만 조회
-		ArrayList<Picture> picList = new MovieService().selectPosterList(recommendNo);
+		if(recommendNo.length > 0)
+			picList = new MovieService().selectPosterList(recommendNo);
 	
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(picList, response.getWriter());
