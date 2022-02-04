@@ -29,11 +29,15 @@ public class ReportDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String list = request.getParameter("list");
-		String[] deleteList = list.split(",");
-		System.out.println(deleteList);
-		int result = new MovieService().deleteReviewByReport(deleteList);
-	
+		String deleteReview = request.getParameter("deleteReview");
+		String updateReport = request.getParameter("updateReport");
+		String[] deleteReviewList = deleteReview.split(",");//리뷰 번호
+		String[] updateReportList = updateReport.split(",");//리포트 번호
+		for(String str:deleteReviewList)
+			for(String stt:updateReportList)
+				System.out.println(str+":"+stt);
+		int result = new MovieService().deleteReviewByReport(deleteReviewList, updateReportList);
+		
 		if(result>0) {//삭제 성공
 			request.getSession().setAttribute("alertMsg", "리뷰 숨김처리 성공했습니다");
 		}else {
