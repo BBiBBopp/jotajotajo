@@ -42,7 +42,7 @@
                 		$('#btn-list>button').click(function(){
                 			var light = $(this).siblings('.btn-primary').length;
         					if($(this).hasClass('btn-light')){
-       							if(light != 3){
+       							if(light < 3){
 	       							$(this).removeClass('btn-light');
 	       							$(this).addClass('btn-primary');
        							}else{
@@ -56,6 +56,7 @@
         							alert('적어도 1개의 장르를 선택해주세요');
         						}
         					}
+        					ajaxRecommend();
         				})
                 		
                 		//로그인한 유저가 1개이상 선택했을 때는 선택한 장르, 아니면 랜덤장르 1개 불 들어오고 영화 선택됨
@@ -68,41 +69,35 @@
 	                			}
 	                		}
             			<% } %>
-            			$('#btn-list').children().click(function(){
-            				ajaxRecommend();
-            			})
+            			
+            			//현재 선택된 장르들 리스트 가져오기
+            			ajaxRecommend();
                 	})
                 	
                 	function ajaxRecommend(){
-                		//현재 버튼 불 켜기
-                		$(this).removeClass('btn-light');
-						$(this).addClass('btn-primary');
-						
                 		//현재 선택된 장르를 구하기
                 		var genres =[];
-                		if($('#btn-list').children().length==0){
-                			$('.movie-list').html('영화가 존재하지 않습니다.');
-                		}else{
-	        				for(var i in $('#btn-list').children()){
-	        					var $btnTarget = $('#btn-list').children().eq(i);
-	
-	        					if($btnTarget.hasClass('btn-primary'))
-	        						genres.push($btnTarget.text());
-	        				}
-	        				var genreString = genres.join(',');
-	        				
-	        				//구한 장르를 보내서 리스트 받아오기
-	        				var recommendNo = [];
-	        				var recommendList = [];
-	                		$.ajax({
-	                			url:'recommendMovie.mo',
-	                			data:{'genres': genreString},
-	                			success: function(list){
-	                				for(var i in list){
-	                					recommendNo.push(list[i].movieNo);
-	                					recommendList.push(list[i]);
-	                				}
-	                				var recommendNoString = recommendNo.join(',');
+        				for(var i in $('#btn-list').children()){
+        					var $btnTarget = $('#btn-list').children().eq(i);
+
+        					if($btnTarget.hasClass('btn-primary'))
+        						genres.push($btnTarget.text());
+        				}
+        				var genreString = genres.join(',');
+        				console.log(genreString);
+        				//구한 장르를 보내서 리스트 받아오기
+        				var recommendNo = [];
+        				var recommendList = [];
+                		$.ajax({
+                			url:'recommendMovie.mo',
+                			data:{'genres': genreString},
+                			success: function(list){
+                				for(var i in list){
+                					recommendNo.push(list[i].movieNo);
+                					recommendList.push(list[i]);
+                				}
+                				var recommendNoString = recommendNo.join(',');
+                				if(recommendNoString != ''){
 	                				$.ajax({
 	                					url:'recommendPicture.mo',
 	                					data:{'recommendNo': recommendNoString},
@@ -120,37 +115,38 @@
 	                						$('.movie-list').html(result);
 	                					}
 	                				})
-	                			}
-	                		})
-                		}
+                				}else{
+                					$('.movie-list').html('<div class="not">영화가 존재하지 않습니다.</div>');
+                				}
+                			}
+                		})
                 	}
                 </script>
                 <div class="movie-list">
                     <% if(recommendList.size() == 0){ %>
-                    	영화가 존재하지 않습니다.
+                    	<div class="not">영화가 존재하지 않습니다.</div>
                     <% }else{ %>
-	                    <% for(int i = 0; i < recommendList.size();i++){ %>
-		                    <div class="movie-one">
-		                        <img src="<%=contextPath %><%= picList.get(i).getFilePath()+picList.get(i).getChangeName() %>" alt="" class="movie-poster">
-		                        <!-- 바로 전 요소에 마우스 오버하면 나오는 영역 -->
-		                        <div class="poster-button">
-									<br>
-		                            <a href="#" class="btn btn-light">예매하기</a><br><br>
-		                            <a href="<%=contextPath %>/detail.mo?mno=<%= recommendList.get(i).getMovieNo() %>" class="btn btn-light">상세정보</a>
-		                        </div>
-		                        <ul>
-		                            <li>
-		                                <span><%= recommendList.get(i).getMovieName() %></span>
-		                            </li>
-		                            <li>
-		                                <span>예매율</span>
-		                                <em><%= recommendList.get(i).getAdvanceRate() %></em>
-		                            </li>
-		                        </ul>
+	                <% for(int i = 0; i < recommendList.size();i++){ %>
+		                 <div class="movie-one">
+		                    <img src="<%=contextPath %><%= picList.get(i).getFilePath()+picList.get(i).getChangeName() %>" alt="" class="movie-poster">
+		                    <!-- 바로 전 요소에 마우스 오버하면 나오는 영역 -->
+		                    <div class="poster-button">
+			  	        <br>
+		                        <a href="#" class="btn btn-light">예매하기</a><br><br>
+		                        <a href="<%=contextPath %>/detail.mo?mno=<%= recommendList.get(i).getMovieNo() %>" class="btn btn-light">상세정보</a>
 		                    </div>
-		                <% } %>  
-		           <% } %>  
-                    
+		                    <ul>
+		                        <li>
+		                            <span><%= recommendList.get(i).getMovieName() %></span>
+		                        </li>
+		                        <li>
+		                            <span>예매율</span>
+		                            <em><%= recommendList.get(i).getAdvanceRate() %></em>
+		                        </li>
+		                    </ul>
+		                </div>
+		            <% } %>  
+		       <% } %>
                 </div>
                 <!-- 스틸컷 이미지 -->
                 <div class="ad-pic">
