@@ -18,11 +18,7 @@
 <meta charset="UTF-8">
 <title>이전 투표 목록</title>
 <link rel="stylesheet" href="../../../resource/css/00_stylesheet.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/user/vote/pastVote.css"/>
-	<style>
-
-
-    </style>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resource/css/user/vote/pastVote.css">
 
 
 </head>
@@ -73,21 +69,21 @@
                 <div id="paging_btn" class="paging-area">
                     <!-- 페이징 버튼 -->
 					<% if(currentPage != 1) { %>
-		            	<button onclick="location.href='<%= contextPath%>/vote.pa?currentPage=<%= currentPage - 1 %>'">&lt;</button>
+		            	<button class="btn btn-sm btn-outline-primary" onclick="location.href='<%= contextPath%>/vote.pa?currentPage=<%= currentPage - 1 %>'">&lt;</button>
 					<% } %>
 			
 		
 					<%for(int i = startPage; i <= endPage; i++) { %>
 						<% if( i != currentPage){ %>
-		            		<button onclick="location.href='<%= contextPath%>/vote.pa?currentPage=<%= i %>'"><%= i %></button>
+		            		<button class="btn btn-sm btn-outline-primary" onclick="location.href='<%= contextPath%>/vote.pa?currentPage=<%= i %>'"><%= i %></button>
 						<% }else{ %>
-			            	<button disabled><%= i %></button>
+			            	<button class="btn btn-outline-primary" disabled><%= i %></button>
 		            	<% } %>
 		            <% } %>
 		            
 		            <!-- 페이징바에서 > 를 담당 : 다음페이지 이동 -->
 		            <% if(currentPage != maxPage) { %>
-		            	<button onclick="location.href='<%= contextPath%>/vote.pa?currentPage=<%= currentPage + 1 %>'">&gt;</button>
+		            	<button class="btn btn-sm btn-outline-primary" onclick="location.href='<%= contextPath%>/vote.pa?currentPage=<%= currentPage + 1 %>'">&gt;</button>
 					<% } %>
         		</div>
           	</div>
