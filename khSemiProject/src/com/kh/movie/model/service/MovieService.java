@@ -238,17 +238,17 @@ public class MovieService {
 		return list;
 	}
 
-	public int deleteReviewByReport(String[] deleteList) {
+	public int deleteReviewByReport(String[] deleteReviewList, String[] updateReportList) {
 		Connection conn = getConnection();
 
-		int deleteReview = new MovieDao().deleteReviewByReport(conn, deleteList);
+		int deleteReview = new MovieDao().deleteReviewByReport(conn, deleteReviewList);
 		int processReport = 0;
 
 		int result = 0;
 
-		if (deleteReview == deleteList.length) {
-			processReport = new MovieDao().processReport(conn, deleteList);
-			if (processReport == deleteList.length) {
+		if (deleteReview == deleteReviewList.length) {
+			processReport = new MovieDao().processReport(conn, updateReportList);
+			if (processReport == updateReportList.length) {
 				commit(conn);
 				result = 1;
 			}

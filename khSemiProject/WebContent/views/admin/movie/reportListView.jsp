@@ -125,8 +125,8 @@
 									<tr>
 										<td>
 											<input type="checkbox" class="rows" value="<%= rp.getReportNo() %>">
-										<% } %>
-									
+								<% } %>
+										<input type="hidden" value="<%= rp.getReviewNo() %>">
 									</td>
 									<td><%= rp.getReportNo() %></td>
 									<td><%= rp.getReviewContent() %></td>
@@ -186,17 +186,21 @@
        		
        		//체크가 될 경우 modal에 삭제 목록에 들어감. 해제될 경우 사라짐
        		$('.rows').change('checked', function(){
-       			var deleteTitle = $(this).parent().siblings().eq(0).text();
+       			var deleteReportNo = $(this).parent().siblings().eq(0).text();
+       			var deleteReviewNo = $(this).siblings('input:hidden').val();
+       			var deleteReviewContent = $(this).parent().siblings().eq(1).text();
        			if ($(this).prop('checked'))
-       				$('#deleteList').append('<li class='+deleteTitle+'>'+deleteTitle+'</li>');
+       				$('#deleteList').append('<li class='+deleteReportNo+'><input type="hidden" class="reportNo" value="'+deleteReportNo
+       											+'"><span>'+deleteReviewContent+'</span><input type="hidden" class="reviewNo" value="'+deleteReviewNo+'"></li>');
        			else
-       				$('#deleteList').find('.'+deleteTitle).remove();
+       				$('#deleteList').find('.'+deleteReportNo).remove();
        		})
        		
        		//보류modal-보류 누르면 holdByReport.re에 리스트로 전달
        		$('#holdSubmit').click(function(){
        			var holdList = [];
-       			for(var i = 0; i < $('#holdList>li').length; i++){
+       			var holdLength = $('#holdList>li').length;
+       			for(var i = 0; i < holdLength; i++){
        				holdList.push($('#holdList').children().eq(i).text());
        			}
        			location.href='<%= contextPath %>/holdByReport.re?list='+holdList;
@@ -204,11 +208,18 @@
        		
        		//삭제modal-삭제 누르면 deleteByReport.re에 리스트로 전달
        		$('#deleteSubmit').click(function(){
-       			var deleteList = [];
-       			for(var i = 0; i < $('#deleteList>li').length; i++){
-       				deleteList.push($('#deleteList').children().eq(i).text());
+       			var deleteReview = [];//review 'N'으로 숨김
+       			var updateReport = [];//report 'Y'으로 처리완료 
+       			var deleteLength = $('#deleteList>li').length;
+       			
+       			for(var i = 0; i < deleteLength; i++){
+       				deleteReview.push($('#deleteList').children().eq(i).children('.reportNo').val());
+       				updateReport.push($('#deleteList').children().eq(i).children('.reviewNo').val());
        			}
-       			location.href='<%= contextPath %>/deleteByReport.re?list='+deleteList;
+       			
+       			var deleteReviewString = deleteReview.join(',');
+       			var updateReviewString = updateReport.join(',');
+       			location.href='<%= contextPath %>/deleteByReport.re?deleteReview='+deleteReviewString+'&updateReport='+updateReviewString;
        		})
        		
 		})	
