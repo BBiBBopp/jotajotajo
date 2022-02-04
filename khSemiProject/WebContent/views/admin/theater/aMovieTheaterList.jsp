@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.kh.theater.model.vo.Theater, com.kh.theater.model.vo.Auditorium, com.kh.common.model.vo.PageInfo" %>
+<%@ page import="java.util.ArrayList, com.kh.theater.model.vo.Theater, com.kh.theater.model.vo.Auditorium, com.kh.theater.model.vo.TheaterAuditorium, com.kh.common.model.vo.PageInfo" %>
 <%
+	
 	ArrayList<Theater> theaterList = (ArrayList<Theater>)session.getAttribute("theaterList");
 	
 	ArrayList<Auditorium> auditoriumList = (ArrayList<Auditorium>)session.getAttribute("auditoriumList");
@@ -46,10 +47,40 @@
                 </div>
                     <div id="add_delete_btn_div">
                         <a class="btn btn-outline-primary" href="<%= contextPath%>/atEnrollForm.th">영화관 등록</a>
-                        <form action="<%= contextPath%>/atDelete.th">
-                        <button type="submit" class="btn btn-outline-primary">영화관 삭제</button>
+                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteTheater">영화관 삭제</button>
                     </div>
             </div>
+            
+			<!-- The Modal -->
+			<div class="modal" id="deleteTheater">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+
+			      <!-- Modal Header -->
+    			  <div class="modal-header">
+    			    <h4 class="modal-title">영화관 삭제</h4>
+    			    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    			  </div>
+
+    			  <!-- Modal body -->
+    			  <div class="modal-body">
+    			  	삭제할 영화관, 상영관 : 
+    			    <ul id="deleteList">
+    			    
+    			    </ul>
+    			  </div>
+		
+    			  <!-- Modal footer -->
+    			  <div class="modal-footer">
+    			    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+    			    <button type="submit" id="delete" class="btn btn-danger" data-dismiss="modal">삭제</button>
+    			  </div>
+
+			    </div>
+			  </div>
+			</div>
+            
+            
             <div id="content_2">
                 <table class="table">
                     <thead>
@@ -68,24 +99,23 @@
                     		<td colspan="5">조회된 게시글이 없습니다.</td>
                     	</tr>
                     <% } else { %>
-						<% for(Theater t : theaterList) { %>
-                        <tr>
+						<% for(int i = 0; i < theaterList.size(); i++) { %>
+                        <tr class="listTr">
                             <th>
                             	<input type="checkbox" class="chk" name="checked">
-                            	<input type="hidden" name="tno" value="<%= t.getTheaterNo() %>">
-                            	<input type="hidden" name="ano" value="<%= auditoriumList.get(0).getAuditoriumNo() %>">
+                            	<input type="hidden" name="tno" value="<%= theaterList.get(i).getTheaterNo() %>">
+                            	<input type="hidden" name="ano" value="<%= auditoriumList.get(i).getAuditoriumNo() %>">
                             </th>
-                            <td><%= t.getTheaterNo() %></td>
-                            <td><%= t.getTheaterName() %></td>
-                            <td><%= t.getAddress() %></td>
-                            <td><%= t.getPhone() %></td>
-                            <td><%= t.getUploadDate().substring(0, 10) %></td>
+                            <td><%= theaterList.get(i).getTheaterNo() %></td>
+                            <td><%= theaterList.get(i).getTheaterName() %></td>
+                            <td><%= theaterList.get(i).getAddress() %></td>
+                            <td><%= theaterList.get(i).getPhone() %></td>
+                            <td><%= theaterList.get(i).getUploadDate().substring(0, 10) %></td>
                         </tr>
                         <% } %>
                     <% } %>
                     </tbody>
                 </table>
-            </form>
             </div>
             <br>
             
@@ -108,7 +138,35 @@
 						}
 					})
 					
+					$('.chk').change('checked',function(){
+						var deleteTno = $(this).parent().children().eq(1).val();
+						var deleteAno = $(this).parent().children().eq(-1).val();
+						if($(this).prop('checked')){
+							$('#deleteList').append('<li class='+deleteTno+'>'+deleteTno+'</li>');
+							$('#deleteList').append('<li class='+deleteAno+'>'+deleteAno+'</li>');
+							
+							console.log(deleteAno);
+						}else{
+							$('#deleteList>th').find('.'+deleteTitle).remove();
+						}	
+					})
+					$('#delete').click(function(){
+						var deleteList = [];
+						for(var i = 0; i < $('#deleteList>li').length; i++){
+							deleteList.push($('#deleteList').children().eq(i).text());
+						}
+						location.href='<%= contextPath %>/atDelete.th?list='+deleteList;
+					})
+					
+					
+					
+					
+					
             	})
+            	
+            	
+            	
+            	
             </script>
             
             

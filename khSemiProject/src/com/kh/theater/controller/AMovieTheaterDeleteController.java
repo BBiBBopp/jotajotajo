@@ -31,17 +31,12 @@ public class AMovieTheaterDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		String[] theaterNoArr = request.getParameterValues("checked");
+		String list = request.getParameter("list");
+		String[] deleteList = list.split(",");
 		
-		int theaterNo = Integer.parseInt(request.getParameter("tno"));
+		System.out.println(deleteList.toString());
 		
-		System.out.println("ano : " + request.getParameter("ano"));
-		
-		int auditoriumNo = Integer.parseInt(request.getParameter("ano"));
-		System.out.println("tno"+theaterNo);
-		System.out.println("ano"+auditoriumNo);
-		
-		int result = new TheaterService().deleteTheater(theaterNo, auditoriumNo);
+		int result = new TheaterService().deleteTheater(deleteList);
 		
 		if(result > 0) {
 			

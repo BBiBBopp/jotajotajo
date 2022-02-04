@@ -13,6 +13,7 @@ import com.kh.common.model.vo.PageInfo;
 import com.kh.theater.model.service.TheaterService;
 import com.kh.theater.model.vo.Auditorium;
 import com.kh.theater.model.vo.Theater;
+import com.kh.theater.model.vo.TheaterAuditorium;
 
 /**
  * Servlet implementation class AMovieTheaterListController
@@ -75,11 +76,10 @@ public class AMovieTheaterListController extends HttpServlet {
 				ArrayList<Auditorium> auditoriumList = new TheaterService().aSelectAuditorium(pi);
 				
 				request.getSession().setAttribute("theaterList", theaterList);
+				request.getSession().setAttribute("auditoriumList", auditoriumList);
 
 				request.setAttribute("pi", pi);
 				
-				request.getSession().setAttribute("auditoriumList", auditoriumList);
-		
 				request.getRequestDispatcher("views/admin/theater/aMovieTheaterList.jsp").forward(request, response);
 	
 	}

@@ -84,15 +84,16 @@
 	</entry>
 	
 	<entry key="aSelectAuditorium">
-		SELECT *
-			FROM (
-				SELECT ROWNUM RNUM, A.*
-				FROM (
-						SELECT *
-						 FROM AUDITORIUM
-						ORDER 
-		 				   BY AUDITORIUM_NO DESC) A)
-				WHERE RNUM BETWEEN ? AND ?
+		SELECT * 
+    FROM (
+            SELECT ROWNUM RNUM, A.*
+            FROM (
+                    SELECT *
+                    FROM AUDITORIUM
+                    ORDER BY AUDITORIUM_NO DESC) A
+            WHERE AUDITORIUM_NAME = '1관'
+        )
+WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="deleteAuditorium">

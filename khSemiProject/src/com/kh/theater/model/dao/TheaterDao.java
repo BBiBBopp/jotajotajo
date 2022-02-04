@@ -168,16 +168,16 @@ public class TheaterDao {
 			while(rset.next()) {
 				
 				list.add(new Theater(rset.getInt("THEATER_NO"),
-								   rset.getString("THEATER_NAME"),
-								   rset.getInt("AUDITORIUM_NUM"),
-								   rset.getInt("SEAT_NUM"),
-								   rset.getString("ADDRESS"),
-								   rset.getString("PHONE"),
-								   rset.getString("TRAFFIC"),
-								   rset.getString("LOCATION"),
-								   rset.getString("PARKING"),
-								   rset.getInt("THEATER_IMG"),
-								   rset.getString("UPLOAD_DATE")));
+						   			 rset.getString("THEATER_NAME"),
+						   			 rset.getInt("AUDITORIUM_NUM"),
+						   			 rset.getInt("SEAT_NUM"),
+						   			 rset.getString("ADDRESS"),
+						   			 rset.getString("PHONE"),
+						   			 rset.getString("TRAFFIC"),
+						   			 rset.getString("LOCATION"),
+						   			 rset.getString("PARKING"),
+						   			 rset.getInt("THEATER_IMG"),
+						   			 rset.getString("UPLOAD_DATE")));
 			}
 			
 		} catch (SQLException e) {
@@ -374,11 +374,10 @@ public class TheaterDao {
 			int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit() - 1;
 			
-			pstmt.setInt(1, 1);
-			pstmt.setInt(2, 1);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			
 			rset = pstmt.executeQuery();
-			
 			
 			while(rset.next()) {
 				list.add(new Auditorium(rset.getInt("AUDITORIUM_NO"),

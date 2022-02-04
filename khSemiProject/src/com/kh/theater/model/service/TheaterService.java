@@ -49,6 +49,21 @@ public class TheaterService {
 		
 		return t;
 	}
+	
+//	public ArrayList<TheaterAuditorium> aSelectList(PageInfo pi) {
+//
+//		Connection conn = getConnection();
+//		
+//		ArrayList<TheaterAuditorium> list = new TheaterDao().aSelectList(conn, pi);
+//		
+//		close(conn);
+//		
+//		return list;
+//	}
+//	
+	
+	
+	//---------------------------------------------------------
 
 	public ArrayList<Theater> aSelectList(PageInfo pi) {
 
@@ -160,17 +175,28 @@ public class TheaterService {
 		return (result * result2 * result3);
 	}
 
-	public int deleteTheater(int theaterNo, int auditoriumNo) {
+	public int deleteTheater(String[] deleteList) {
 
 		Connection conn = getConnection();
 		
-		int result = new TheaterDao().deleteTheater(conn, theaterNo);
+		String theaterNo = null;
+		String auditoriumNo = null;
 		
-		int result2 = new TheaterDao().deleteAuditorium(conn, theaterNo);
+		int result = 0;
+		int result2 = 0;
+		int result3 = 0;
 		
-		int result3 = new SeatDao().deleteSeat(conn, auditoriumNo);
 		
-		System.out.println("result3 : " + result3);
+		for(int i = 0; i < deleteList.length; i++) {
+			if(i % 2 == 0) {
+				theaterNo = deleteList[i];
+			}else {
+				auditoriumNo = deleteList[i];
+			}
+			result = new SeatDao().deleteSeat(conn, Integer.parseInt(auditoriumNo));
+			result2 = new TheaterDao().deleteAuditorium(conn, Integer.parseInt(theaterNo));
+			result3 = new TheaterDao().deleteTheater(conn, Integer.parseInt(theaterNo));
+		}
 		
 		if(result * result2 * result3 > 0) {
 			commit(conn);
@@ -217,6 +243,8 @@ public class TheaterService {
 		
 		return result;
 	}
+
+	
 
 	
 	
