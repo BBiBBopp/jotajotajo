@@ -74,35 +74,30 @@
 		    ,CASE WHEN RELEASE_DATE IS NULL THEN '개봉 미정'
 			    ELSE TO_CHAR(RELEASE_DATE, 'YYYY-MM-DD') 
 			    END RELEASE_DATE 
-		    , NVL(RE_AVG,0) RE_AVG, NVL(MO_LIKE, 0) MO_LIKE, NVL(MY_LIKE, 'N') MY_LIKE, SYNOPSIS, ACTOR, M.STATUS, NVL(ADVANCE_RATE, 0) ADVANCE_RATE
+		    , NVL(RE_AVG,0) RE_AVG, NVL(MO_LIKE, 0) MO_LIKE, NVL(MY_LIKE, 'N') MY_LIKE, SYNOPSIS, ACTOR, M.STATUS, NVL(ADVANCE_RATE, 0) ADVANCE_RATE, REVIEW_COUNT
 		FROM MOVIE M
-		LEFT JOIN (SELECT TRUNC(AVG(REVIEW_GRADE),1) RE_AVG, MNO
+		LEFT JOIN (SELECT TRUNC(AVG(REVIEW_GRADE),1) RE_AVG, MNO, COUNT(REVIEW_NO) REVIEW_COUNT
 		            FROM REVIEW
 		            GROUP BY MNO) R USING(MNO)
 		LEFT JOIN (SELECT MNO, COUNT(MO_LIKE_NO) MO_LIKE
 		            FROM MOVIE_LIKE
 		            GROUP BY MNO) L USING(MNO)
-		LEFT JOIN (SELECT MNO, CASE WHEN MNO = ? AND MEMBER_NO = ? THEN 'Y'
-		            ELSE 'N'
-		            END MY_LIKE
-		            FROM MOVIE_LIKE) ML USING(MNO)
-	    LEFT JOIN (
-                   SELECT MNO, ROUND(ALL_TICKET/
-                   								(SELECT COUNT(*) COUNT
-                                                FROM PAYMENT
-                                                    JOIN TICKET USING(PAY_NO)
-                                                WHERE PAY_STATUS='Y'
-                                                	AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
-                                                )
-                   	*100,1) ADVANCE_RATE
-                    FROM(
-                        SELECT MNO, COUNT(MNO) ALL_TICKET
-                        FROM PAYMENT
-                        JOIN TICKET USING(PAY_NO)
-                        JOIN SCHEDULE USING(RUN_NO)
-                        WHERE PAY_STATUS='Y'
-                        	AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
-                        GROUP BY MNO)
+		LEFT JOIN (SELECT MNO, CASE WHEN MNO=? THEN 'Y'  ELSE 'N'    END MY_LIKE
+		            FROM MOVIE_LIKE
+		            WHERE MEMBER_NO=?) ML USING(MNO)
+	    LEFT JOIN (SELECT MNO, ROUND(ALL_TICKET/(SELECT COUNT(*) COUNT
+                                        FROM PAYMENT
+                                            JOIN TICKET USING(PAY_NO)
+                                        WHERE PAY_STATUS='Y'
+                                            AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE)*100,1) ADVANCE_RATE
+                FROM(
+                    SELECT MNO, COUNT(MNO) ALL_TICKET
+                    FROM PAYMENT
+                    	JOIN TICKET USING(PAY_NO)
+                    	JOIN SCHEDULE USING(RUN_NO)
+                    WHERE PAY_STATUS='Y'
+                        AND PAY_DATE BETWEEN SYSDATE - 7 AND SYSDATE
+                    GROUP BY MNO)
             ) USING(MNO)
 		WHERE MNO = ?
 	 </entry>
