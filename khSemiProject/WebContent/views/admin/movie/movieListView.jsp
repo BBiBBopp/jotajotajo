@@ -38,7 +38,7 @@
 					<button type="button" class="btn btn-primary" onclick="location.href='<%= contextPath %>/insertForm.mo?'">
 						추가
 					</button>
-					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteForm">
+					<button type="button" id="popModal" class="btn btn-danger" data-toggle="modal" data-target="#deleteForm">
 						삭제
 					</button>
 					
@@ -67,7 +67,7 @@
 						<!-- Modal body -->
 						<div class="modal-body">
 							<ul id="deleteList"></ul>
-								삭제하시겠습니까? 
+							<span></span>
 						</div>
 					
 						<!-- Modal footer -->
@@ -160,18 +160,30 @@
 						
 						//체크가 될 경우 modal에 삭제 목록에 들어감. 해제될 경우 사라짐
 						$('.rows').change('checked', function(){
-							var deleteTitle = $(this).parent().siblings().eq(0).text();
+							var deleteNo = $(this).parent().siblings().eq(0).text();
+							var deleteTitle = $(this).parent().siblings().eq(1).text();
 							if ($(this).prop('checked'))
-								$('#deleteList').append('<li class='+deleteTitle+'>'+deleteTitle+'</li>');
+								$('#deleteList').append('<li class='+deleteNo+'>'+deleteTitle+'</li>');
 							else
-								$('#deleteList').find('.'+deleteTitle).remove();
+								$('#deleteList').find('.'+deleteNo).remove();
 						})
 						
-						//삭제modal-삭제 누르면 delete.mo에 리스트로 전달
+						//삭제 버튼 누르기
+						$('#popModal').click(function(){
+							if($('#notice-body input:checked').length > 0){
+								$('.modal-body>span').html('삭제하시겠습니까?');
+								$('#deleteSubmit').show();
+							}else{
+								$('.modal-body>span').html('삭제할 영화를 선택해주세요');
+								$('#deleteSubmit').hide();
+							}
+						})
+						//modal-삭제 누르면 delete.mo에 리스트로 전달
 						$('#deleteSubmit').click(function(){
 							var deleteList = [];
-							for(var i = 0; i < $('#deleteList>li').length; i++){
-								deleteList.push($('#deleteList').children().eq(i).text());
+							var deleteLength = $('#deleteList>li').length;
+							for(var i = 0; i < deleteLength; i++){
+								deleteList.push($('#deleteList').children().eq(i).attr('class'));
 							}
 							location.href='<%= contextPath %>/delete.mo?list='+deleteList;
 						})
