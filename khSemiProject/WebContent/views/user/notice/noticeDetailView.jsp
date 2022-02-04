@@ -23,7 +23,7 @@
 
 			<!-- 게시글 1개 조회 -->
 			<div id="notice-body">
-				<h3>공지사항</h3>
+				<h3 class="headline">공지사항</h3>
 				<table class="table">
 					<thead>
 						<tr>
@@ -45,7 +45,8 @@
 								<%= n.getNoticeContent() %>
 							</td>
 						</tr>
-
+					</tbody>
+					<tfoot>
 						<!-- 다음 글이 존재할 경우 -->
 						<% if(n.getNextNoticeNo() != 0){ %>
 							<tr>
@@ -58,7 +59,7 @@
 								<td><a href="<%= contextPath %>/detail.no?nno=<%= n.getPrevNoticeNo() %>">이전글 : <%= n.getPrevNoticeTitle() %></a></td>
 							</tr>
 						<% } %>
-					</tbody>
+					</tfoot>
 				</table>
 				<!-- 목록으로 이동 -->
 				<a href="<%= contextPath %>/list.no?currentPage=1" class="btn btn-secondary" id="goToList">목록 이동</a>
