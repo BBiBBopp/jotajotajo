@@ -1,8 +1,11 @@
 package com.kh.ticket.controller;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
@@ -17,8 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-import com.kh.ticket.model.service.TicketService;
 
 /**
  * Servlet implementation class KakaopayController
@@ -45,14 +46,10 @@ public class KakaopayController extends HttpServlet {
 		
 		// 값 뽑기
 		String mName = request.getParameter("title");
-		String theaterName = request.getParameter("selectedTheater");
 		int runNo = Integer.parseInt(request.getParameter("runNo"));
-		String runSch = request.getParameter("movieDate");
-		String runTime = request.getParameter("runningTime");
-		String rate = request.getParameter("movieAge");
 		int ticketNumber = Integer.parseInt(request.getParameter("ticketNumber"));
-		String selectedSeat = request.getParameter("selectedSeat");
 		String payment = request.getParameter("payMoney");
+		
 		
 		String successUrl = "";
 			URL address = new URL("https://kapi.kakao.com/v1/payment/ready");
@@ -83,17 +80,29 @@ public class KakaopayController extends HttpServlet {
 			}
 			
 			// 연결된 url에 바꿔준 파라미터 전달
-			connection.getOutputStream().write(string_params.getBytes());
+			// connection.getOutputStream().write(string_params.getBytes());
+			OutputStream send = connection.getOutputStream();
+			DataOutputStream dataSend = new DataOutputStream(send);
+			dataSend.write(string_params.getBytes());
+			dataSend.close();
+			
+			// 전송 번호 받기
+			int result = connection.getResponseCode();
+			InputStream receive;
+			
+			if(result == 200) {
+				receive = connection.getInputStream();
+			} else {
+				receive = connection.getErrorStream();
+			}
 			
 			// 응답받은 코드 in에 담기
-			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			BufferedReader in = new BufferedReader(new InputStreamReader(receive));
 			
 			// json으로 응답할 수 있도록 객체 변환
 			JSONParser parser = new JSONParser();
 			JSONObject obj;
-			
-			
-			
+
 			try {
 				obj = (JSONObject)parser.parse(in);
 				successUrl = (String)obj.get("next_redirect_pc_url"); // Object
@@ -103,14 +112,11 @@ public class KakaopayController extends HttpServlet {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			
-			if(successUrl == "http://localhost:8222/cinemaHeaven/list.ti?currentPage=1") {
-				// service로 넘기기
-				int result = new TicketService().insertTicket();
-			}
 
 		// 응답
-		response.sendRedirect(successUrl);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().print(successUrl);
+
 
 	}
 

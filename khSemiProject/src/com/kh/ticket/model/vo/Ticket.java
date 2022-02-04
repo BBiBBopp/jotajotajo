@@ -100,6 +100,15 @@ public class Ticket {
 		this.remain = remain;
 	}
 
+	public Ticket(String payment, int memberNo, String ticketType, int seatPk, int runNo) {
+		super();
+		this.payment = payment;
+		this.memberNo = memberNo;
+		this.ticketType = ticketType;
+		this.seatPk = seatPk;
+		this.runNo = runNo;
+	}
+
 	public int getrNum() {
 		return rNum;
 	}

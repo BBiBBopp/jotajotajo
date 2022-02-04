@@ -101,12 +101,12 @@
 								<div class="ticket-price-title">가격</div>
 								<div class="ticket-price">0원</div>
 							</div>
-							<form action="<%=contextPath%>/pay.ti" class="seatForm" method="post">
-								<input type="hidden" name="runNo" value="<%= t.getRunNo() %>">
+								<input type="hidden" class="memberNo" name="memberNo" value="<%= loginUser.getMemberNo() %>">
+								<input type="hidden" class="runNo" name="runNo" value="<%= t.getRunNo() %>">
  								<!-- 영화 정보 -->
 								<input type="hidden" class="title" name="title" value="<%= t.getmName() %>"> 
 								<input type="hidden" class="selectedTheater" name="selectedTheater" value="<%= t.getTheaterName() %>">
-								<input type="hidden" class="reserveDate" name="movieDate" value="2022/02/01">
+								<input type="hidden" class="reserveDate" name="reserveDate" value="2022/02/01">
 								<input type="hidden" class="runningTime" name="runningTime" value="<%= t.getRunSch() %>">
 								<input type="hidden" class="movieAge" name="movieAge" value="<%= t.getRate() %>">
 								<!-- 티켓의수(선택한 좌석) -->
@@ -115,37 +115,8 @@
 								<input type="hidden" class="selectedSeat" name="selectedSeat">
 								<!-- 결제 정보 -->
 								<input type="hidden" class="payMoney" name="payMoney">
-								<button type="submit" class="reserve-button" ><img src="<%= contextPath %>/resource/image/user/pay.jpg" alt="결제하기" width="70px"></button>
-							</form>
+								<button type="button" class="reserve-button" onclick="kakaopay();"><img src="<%= contextPath %>/resource/image/user/pay.jpg" alt="결제하기" width="70px"></button>
 						</div>
-						
-						<script>
-							function kakaopay(){
-								$.ajax({
-									url : "pay.ti",
-									type : 'POST',
-									dataType : 'json',
-									contentType: 'application/json; charset=UTF-8',
-									data: {
-										title : 'title', // mName in MOVIE
-										selectedTheater : 'selectedTheater', // theaterName in THEATER
-										runNo : 'runNo', // runNo in SCHEDULE
-										movieDate : 'movieDate', // runSch in SCHEDULE
-										runningTime : 'runningTime', // runTime in MOVIE
-										movieAge : 'movieAge', // rate in MOVIE
-										ticketNumber : 'ticketNumber', // ticketNumber 
-										selectedSeat : 'selectedSeat', // seatNo in seat (,로 구분)
-										payMoney : 'payMoney' // payment in PAYMENT
-									},
-									success : function(result){
-										alert(result.tid);
-									},
-									error : function(){
-										alert("결제에 실패했습니다.");
-									}
-								})
-							}
-						</script>
 
 					</div>
 					<div class="seat-container">
@@ -185,7 +156,7 @@
 			</div>
 			<br><br><br>
 		</div>
-        <!-- <%@ include file="../common/footer.jsp" %> -->
+        <%@ include file="../common/footer.jsp" %>
     </div>
 </body>
 </html>

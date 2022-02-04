@@ -8,6 +8,11 @@ $(function () {
     // 선택된 좌석 hover 넣기
     $(".select-seat-ul").children().removeClass("select-seat-ul-active");
     $(this).addClass("select-seat-ul-active");
+    
+    // 좌석 번호 지우기
+    $(".selected-seats").text('선택한 좌석이 없습니다.');
+    $('button').addClass("btn-outline-secondary");
+    $('button').removeClass('btn-primary');
 
     // 좌석 수 넣기
     if ($(this).attr("class").match("select-number-normal")) {
@@ -23,7 +28,7 @@ $(function () {
       price = 9000 * seatNum;
       ticketType = "우대";
     }
-
+    
     // 인원, 티켓 타입, 결제금액 넘기기
     $(".ticketNumber").val(seatNum);
     $(".ticketType").val(ticketType);
@@ -94,4 +99,46 @@ $(function () {
 function addComma(value) {
   value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return value;
+}
+
+// 결제 api
+function kakaopay(){
+	$.ajax({
+		url : "pay.ti",
+		type : 'POST',
+		data: {
+			runNo: $('.runNo').val(), // runNo in SCHEDULE
+			title : $('.title').val(), // mName in MOVIE
+			ticketNumber : $('.ticketNumber').val(), // ticketNumber 
+			payMoney : $('.payMoney').val() // payment in PAYMENT
+		}
+	}).done(function(result){
+		if(result.status === 500){
+			alert("카카오페이 결제를 실패했습니다.")
+		} else { 
+
+			var box = result;
+			
+			location.href = box;
+			
+			// 결제 성공하면 결제테이블에 값 넣기
+			$.ajax({
+				url : "insert.ti",
+				type : 'POST',
+				data: {
+					memberNo : $('.memberNo').val(), // memberNo in MEMBER
+					runNo: $('.runNo').val(), // runNo in SCHEDULE
+					ticketType : $('.ticketType').val(),
+					selectedSeat : $('.selectedSeat').val(), // seatNo in seat (,로 구분)
+					payMoney : $('.payMoney').val() // payment in PAYMENT
+				}, success : function(result){
+					console.log(result);
+				}, error: function(){
+					alert("결제정보 저장에 실패했습니다.");
+				}
+			})
+		}
+	}).fail(function(error){
+		window.open(JSON.stringify(error));
+	})
 }

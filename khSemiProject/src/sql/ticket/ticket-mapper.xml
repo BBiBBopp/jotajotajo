@@ -275,4 +275,45 @@ FROM
 	WHERE 
 			RUN_NO = ?
 </entry>
+<entry key="selectSeatPK">
+	SELECT 
+			SEAT_PK
+	FROM 
+			V_MOVIE
+	JOIN 
+			SEAT 
+	USING
+			(AUDITORIUM_NO)
+	WHERE 
+			RUN_NO = ? 
+	AND 
+			SEAT_NO = ? 
+</entry>
+<entry key="insertPayment">
+	INSERT INTO 
+				PAYMENT
+					   (
+					   	PAY_NO,
+					   	PAYMENT, 
+					   	MEMBER_NO
+					   )
+	VALUES 
+			(
+			 SEQ_PAY_NO.NEXTVAL,
+			 ?, 
+			 ?
+			)
+</entry>
+<entry key="insertTicket">
+	INSERT INTO 
+				TICKET
+	VALUES 
+			(
+			 SEQ_TIC_NO.NEXTVAL, 
+			 SEQ_PAY_NO.CURRVAL, 
+			 ?, 
+			 ?, 
+			 ?
+			)
+</entry>
 </properties>

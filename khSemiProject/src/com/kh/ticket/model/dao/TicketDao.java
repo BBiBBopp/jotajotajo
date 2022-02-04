@@ -405,4 +405,74 @@ public class TicketDao {
 		return selectedSeatList;
 	}
 
+	public ArrayList<Integer> selectSeatPK(Connection conn, int runNo, String[] sArr) {
+		ArrayList<Integer> seatPKList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectSeatPK");
+		
+			try {
+				for(int i = 0; i < sArr.length; i++) {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, runNo);
+					pstmt.setString(2, sArr[i]);
+					
+					rset = pstmt.executeQuery();
+					if(rset.next()) {
+						seatPKList.add(rset.getInt("SEAT_PK"));
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+		
+		return seatPKList;
+	}
+
+	public int insertPayment(Connection conn, ArrayList<Ticket> ticketList) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertPayment");
+		
+		try {
+			for(Ticket t : ticketList) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, t.getPayment());
+				pstmt.setInt(2, t.getMemberNo());
+				
+				result = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertTicket(Connection conn, ArrayList<Ticket> ticketList) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertTicket");
+		
+		try {
+			for(Ticket t : ticketList) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, t.getTicketType());
+				pstmt.setInt(2, t.getSeatPk());
+				pstmt.setInt(3, t.getRunNo());
+				
+				result = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

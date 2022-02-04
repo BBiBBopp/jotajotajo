@@ -138,11 +138,6 @@ public class TicketService {
 		return tlist;
 	}
 
-	public int insertTicket() {
-		
-		return 0;
-	}
-
 	public ArrayList<String> selectedSeat(int runNo) {
 		Connection conn = getConnection();
 		
@@ -152,6 +147,35 @@ public class TicketService {
 		
 		return selectedSeatList;
 		
+	}
+
+	public ArrayList<Integer> selectSeatPK(int runNo, String[] sArr) {
+		Connection conn = getConnection();
+		
+		ArrayList<Integer> seatPKList = new TicketDao().selectSeatPK(conn, runNo, sArr);
+		
+		close(conn);
+		
+		return seatPKList;
 	}	
+	
+	public int insertTicket(ArrayList<Ticket> ticketList) {
+		Connection conn = getConnection();
+		
+		int result1 = new TicketDao().insertPayment(conn, ticketList);
+		int result2 = 0;
+		
+		if(result1 > 0) {
+			result2 = new TicketDao().insertTicket(conn, ticketList);
+		}
+		
+		if((result1 * result2) > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result1 * result2;
+	}
 
 }
