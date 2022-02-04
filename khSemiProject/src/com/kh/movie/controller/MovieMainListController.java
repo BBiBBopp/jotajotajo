@@ -49,7 +49,7 @@ public class MovieMainListController extends HttpServlet {
 		//추천상영작
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");//로그인 유저 조회
 		ArrayList<Movie> recommendList = new ArrayList<>();
-		String[] genres;
+		String[] genres = null;
 		//로그인한 유저가 아니면 랜덤 장르 하나 선택해오기
 		//로그인한 유저는 장르 가져오기,선택한게 없다면 랜덤장르 하나
 		if(loginUser != null && !loginUser.getInterest().equals("")) {
