@@ -33,7 +33,7 @@
 					<%@ include file="../common/customerNavigation.jsp" %>
 				</div>
                 <div id="notice-body">
-					<h3>공지사항</h3>
+					<h3 class="headline">공지사항</h3>
 					<div class="notice-search">
 						<form action="search.no" method="get">
 							<input type="hidden" name="currentPage" value="1">
