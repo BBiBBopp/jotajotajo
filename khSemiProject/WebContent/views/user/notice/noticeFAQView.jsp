@@ -23,13 +23,14 @@
 		</div>
 		<!-- FAQ  -->
 		<div id="notice-body">
+			<h3 class="headline">FAQ</h3>
 			<div class="toolbar">
 				<p>더 궁금한 점이 있거나, 이미 문의한 내용과 답변을 확인하려면?</p>
 				<a href="<%= contextPath %>/enroll-form.qu" style="text-decoration: underline;">1:1문의 바로가기</a>
 			</div>
 			<div class="FAQ-class">
 				<ul>
-					<li class="actice"><a href="<%=contextPath%>/faq.no?category=100&currentPage=1">
+					<li><a href="<%=contextPath%>/faq.no?category=100&currentPage=1">
 						<i class='fas fa-ticket-alt' style='font-size:36px'></i> <br>
 						예매
 						</a></li>
@@ -103,6 +104,26 @@
 			</ul>
 		</div>
 	</div>
+	<script>
+		$(function(){
+			var category = '100';
+			<% if(request.getAttribute("category") != null){ %>
+				category = '<%= request.getAttribute("category") %>';
+			<% } %>
+				console.log(category);
+				console.log($('.FAQ-class>ul>li'));
+			switch(category){
+				case '700': $('.FAQ-class>ul>li').eq(6).addClass('ac'); break;
+				case '600': $('.FAQ-class>ul>li').eq(5).addClass('ac'); break;
+				case '500': $('.FAQ-class>ul>li').eq(4).addClass('ac'); break;
+				case '400': $('.FAQ-class>ul>li').eq(3).addClass('ac'); break;
+				case '300': $('.FAQ-class>ul>li').eq(2).addClass('ac'); break;
+				case '200': $('.FAQ-class>ul>li').eq(1).addClass('ac'); break;
+				case '100': $('.FAQ-class>ul>li').eq(0).addClass('ac'); break;
+			}
+		})
+	</script>
+	<br><br><br><br><br><br><br>
 	<!--footer-->
 	<%@ include file="../common/footer.jsp" %>
 </body>
