@@ -2,9 +2,14 @@
 .headline{
     text-align: center;
     margin-top:30px;
+    font-weight: 800;
+    color: RGB(13,71, 161);
 }
 .headline+a{
     float: right;
+    text-decoration: none;
+    color:gray;
+    font-size: 14px;
 }
 .movie-one{
     width:180px;
@@ -54,4 +59,9 @@
 }
 #review-count{
 	width:50px;
+}
+.movie-list>.not{
+	text-align: center;
+	font-weight: 800;
+	padding: 20px;
 }
