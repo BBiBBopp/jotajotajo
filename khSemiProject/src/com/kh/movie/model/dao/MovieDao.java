@@ -152,6 +152,7 @@ public class MovieDao {
 				mv.setMyLike(rset.getString("MY_LIKE"));
 				mv.setStatus(rset.getString("STATUS"));
 				mv.setAdvanceRate(rset.getDouble("ADVANCE_RATE"));
+				mv.setReviewCount(rset.getInt("REVIEW_COUNT"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
