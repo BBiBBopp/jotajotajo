@@ -28,7 +28,7 @@ public class SeatDao {
 		
 	}
 	
-	public int insertSeatOne(Connection conn, TheaterAuditorium ta) {
+	public int insertSeatOne(Connection conn, int auditoriumNo) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -87,7 +87,7 @@ public class SeatDao {
 		return result;
 	}
 
-	public int insertSeatTwo(Connection conn, TheaterAuditorium ta) {
+	public int insertSeatTwo(Connection conn, int auditoriumNo) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -147,7 +147,7 @@ public class SeatDao {
 	}
 	
 	
-	public int insertSeatSix(Connection conn, TheaterAuditorium ta) {
+	public int insertSeatSix(Connection conn, int auditoriumNo) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -391,7 +391,7 @@ public class SeatDao {
 	}
 
 	
-	public int deleteSeat(Connection conn, int auditoriumNo) {
+	public int deleteSeat(Connection conn, int theaterNo) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -401,7 +401,7 @@ public class SeatDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, auditoriumNo);
+			pstmt.setInt(1, theaterNo);
 			
 			result = pstmt.executeUpdate();
 			
@@ -410,7 +410,6 @@ public class SeatDao {
 		}finally {
 			close(pstmt);
 		}
-		System.out.println("SEATDAO result : " + result);
 		
 		return result;
 	}

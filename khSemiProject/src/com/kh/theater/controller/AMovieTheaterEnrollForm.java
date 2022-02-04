@@ -27,6 +27,12 @@ public class AMovieTheaterEnrollForm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String auditoriumNo = request.getParameter("auditoriumNo");
+		
+		System.out.println("EnrollForm auditoriumNo : " + auditoriumNo);
+		
+		request.setAttribute("auditoriumNo", auditoriumNo);
+		
 		request.getRequestDispatcher("views/admin/theater/aMovieTheaterInsert.jsp").forward(request, response);
 		
 		

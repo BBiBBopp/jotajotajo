@@ -265,7 +265,7 @@ public class TheaterDao {
 	}
 
 
-	public int insertAuditorium(Connection conn, String auditoriumName, String auditoriumSeatNum) {
+	public int insertAuditorium(Connection conn, TheaterAuditorium ta, String auditoriumName, String auditoriumSeatNum) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -476,6 +476,60 @@ public class TheaterDao {
 		}
 		
 		return auList;
+	}
+
+	public int theaterNextVal(Connection conn) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("theaterNextVal");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = 1;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int auditoriumNextVal(Connection conn) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("theaterNextVal");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = 1;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return result;
 	}
 	
 	

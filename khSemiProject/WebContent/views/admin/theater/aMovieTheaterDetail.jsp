@@ -96,8 +96,7 @@
 	                    <button class="btn btn-outline-primary" type="submit">수정하기</button>
                 	</form>
                 	<form action="<%= contextPath%>/atDelete.th">
-                		<input type="hidden" name="tno" value=<%= taList.get(0).getTheaterNo() %>>
-                		<input type="hidden" name="ano" value=<%= taList.get(0).getAuditoriumNo() %>>
+                		<input type="hidden" name="list" value=<%= taList.get(0).getTheaterNo() %>>
 	                    <button class="btn btn-outline-primary" type="submit">삭제하기</button>
                 	</form>
                 </div>

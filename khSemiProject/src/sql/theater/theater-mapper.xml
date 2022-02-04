@@ -108,7 +108,13 @@ WHERE RNUM BETWEEN ? AND ?
 		ORDER BY THEATER_NO DESC
 	</entry>
 	
+	<entry key="theaterNextVal">
+		SELECT SEQ_THE_NO.NEXTVAL FROM DUAL
+	</entry>
 	
+	<entry key="auditoriumNextVal">
+		SELECT SEQ_AU_NO.NEXTVAL FROM DUAL
+	</entry>
 	
 	
 	

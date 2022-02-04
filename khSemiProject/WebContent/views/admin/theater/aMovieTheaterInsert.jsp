@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String auditoriumNo = (String)request.getAttribute("auditoriumNo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +38,7 @@
                             	<input type="text" name="auditoriumNum"><br>
                             	<input type="text" name="phone"><br>
                             	<input type="text" name="seatNum"><br>
+                            	<input type="hidden" name="auditoriumNo" value="<%= auditoriumNo%>">
                         	</div>
                     	</div>
                     	<!-- 타입번호를 받아서 1이면 cgv로 등록되는 형식으로 변경 -->
@@ -54,8 +58,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="checkbox" value="1관" name="auditoriumName">1관</td>
-                                <td><input type="checkbox" value="100" name="auditoriumSeatNum">100석</td>
+                                <td><input type="checkbox" value="1관" name="auditoriumName" checked>1관</td>
+                                <td><input type="checkbox" value="100" name="auditoriumSeatNum" >100석</td>
                                 <td><input type="checkbox" value="120" name="auditoriumSeatNum">120석</td>
                                 <td><input type="checkbox" value="160" name="auditoriumSeatNum">160석</td>
                             </tr>

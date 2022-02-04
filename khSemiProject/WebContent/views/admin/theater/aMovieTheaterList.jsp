@@ -46,8 +46,11 @@
                     <h2>등록된 영화관</h2>
                 </div>
                     <div id="add_delete_btn_div">
-                        <a class="btn btn-outline-primary" href="<%= contextPath%>/atEnrollForm.th">영화관 등록</a>
-                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteTheater">영화관 삭제</button>
+                        <form action="<%= contextPath%>/atEnrollForm.th" method="post">
+                        	<input type="hidden" name="auditoriumNo" value="<%= auditoriumList.get(0).getAuditoriumNo()%>">
+                        	<button type="submit" class="btn btn-outline-primary">영화관 등록</button>
+                        </form>
+                        <button type="button" id="clickModal" class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteTheater">영화관 삭제</button>
                     </div>
             </div>
             
@@ -64,8 +67,9 @@
 
     			  <!-- Modal body -->
     			  <div class="modal-body">
-    			  	삭제할 영화관, 상영관 : 
+    			  	<span></span>
     			    <ul id="deleteList">
+    			    	
     			    
     			    </ul>
     			  </div>
@@ -138,21 +142,34 @@
 						}
 					})
 					
+					$('#clickModal').click(function(){
+						if($('.listTr input:checked').length > 0){
+							$('.modal-body>span').html('삭제할 영화관 : ');
+							$('#delete').show();
+						}else{
+							$('.modal-body>span').html('선택된 영화관이 없습니다.');
+							$('#delete').hide();
+						}
+					})
+					
 					$('.chk').change('checked',function(){
 						var deleteTno = $(this).parent().children().eq(1).val();
 						var deleteAno = $(this).parent().children().eq(-1).val();
+						
 						if($(this).prop('checked')){
 							$('#deleteList').append('<li class='+deleteTno+'>'+deleteTno+'</li>');
-							$('#deleteList').append('<li class='+deleteAno+'>'+deleteAno+'</li>');
+							// $('#deleteList').append('<li class='+deleteAno+'>'+deleteAno+'</li>');
 							
 							console.log(deleteAno);
 						}else{
-							$('#deleteList>th').find('.'+deleteTitle).remove();
+							$('#deleteList').find('.'+deleteTno).remove();
 						}	
 					})
+					
 					$('#delete').click(function(){
 						var deleteList = [];
-						for(var i = 0; i < $('#deleteList>li').length; i++){
+						var deleteLength = $('#deleteList>li').length;
+						for(var i = 0; i < deleteLength; i++){
 							deleteList.push($('#deleteList').children().eq(i).text());
 						}
 						location.href='<%= contextPath %>/atDelete.th?list='+deleteList;

@@ -7,8 +7,11 @@
 	</entry>
 	
 	<entry key="deleteSeat">
-		DELETE FROM SEAT
-		WHERE AUDITORIUM_NO = ?
+		DELETE
+		FROM (SELECT * 
+   			  FROM SEAT
+    		  LEFT JOIN AUDITORIUM USING(AUDITORIUM_NO)
+    		  WHERE THEATER_NO = ?)
 	</entry>
 	
 	<entry key="updateSeat">

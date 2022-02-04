@@ -34,9 +34,14 @@ public class AMovieTheaterDeleteController extends HttpServlet {
 		String list = request.getParameter("list");
 		String[] deleteList = list.split(",");
 		
-		System.out.println(deleteList.toString());
+		for(int i = 0; i < deleteList.length; i++) {
+			
+			System.out.println("deleteList[]"+deleteList[i]);
+		}
 		
 		int result = new TheaterService().deleteTheater(deleteList);
+		
+		System.out.println("controller : " + result);
 		
 		if(result > 0) {
 			

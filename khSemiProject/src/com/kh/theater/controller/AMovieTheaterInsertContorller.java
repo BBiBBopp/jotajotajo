@@ -38,6 +38,9 @@ public class AMovieTheaterInsertContorller extends HttpServlet {
 		int auditoriumNum = Integer.parseInt(request.getParameter("auditoriumNum"));
 		String phone = request.getParameter("phone");
 		int seatNum = Integer.parseInt(request.getParameter("seatNum"));
+		int auditoriumNo = Integer.parseInt(request.getParameter("auditoriumNo")); // 추가될 첫 상영관번호
+		auditoriumNo++;
+		System.out.println(auditoriumNo);
 		int theaterImg = Integer.parseInt(request.getParameter("theaterImg"));
 		String[] auditoriumNameArr = request.getParameterValues(("auditoriumName"));
 		String[] auditoriumSeatNumArr = request.getParameterValues("auditoriumSeatNum");
@@ -65,6 +68,7 @@ public class AMovieTheaterInsertContorller extends HttpServlet {
 		ta.setAuditoriumNum(auditoriumNum);
 		ta.setPhone(phone);
 		ta.setSeatNum(seatNum);
+		ta.setAuditoriumNo(auditoriumNo);
 		ta.setTheaterImg(theaterImg);
 		ta.setAuditoriumName(auditoriumName);
 		ta.setAuditoriumSeatNum(auditoriumSeatNum);
@@ -72,9 +76,17 @@ public class AMovieTheaterInsertContorller extends HttpServlet {
 		ta.setTraffic(traffic);
 		ta.setParking(parking);
 		
-		int result = new TheaterService().insertTheater(ta);
+		int nextVal = new TheaterService().nextVal();
 		
-		if(result > 0) {
+		System.out.println(nextVal);
+		
+		int result = 0;
+		
+		if(nextVal > 0) {
+			result = new TheaterService().insertTheater(ta);
+		}
+		
+		if((result) > 0) {
 			
 			request.getSession().setAttribute("alertMsg", "등록되었습니다.");
 			
