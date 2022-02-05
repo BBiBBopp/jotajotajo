@@ -33,6 +33,8 @@ public class AMovieTheaterInsertContorller extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		
+		System.out.println("INSERTFORM");
+		
 		String theaterName = request.getParameter("theaterName");
 		String address = request.getParameter("address");
 		int auditoriumNum = Integer.parseInt(request.getParameter("auditoriumNum"));

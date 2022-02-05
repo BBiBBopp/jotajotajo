@@ -318,11 +318,44 @@ public class TheaterDao {
 		}finally {
 			close(pstmt);
 		}
+		
+		System.out.println("극장 업데이트 result : " + result);
 
 		return result;
 	}
 
 
+	public int updateAuditorium(Connection conn, TheaterAuditorium ta, String auditoriumName, String auditoriumSeatNum) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateAuditorium");
+		
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, auditoriumName);
+				pstmt.setString(2, auditoriumSeatNum);
+				pstmt.setInt(3, ta.getTheaterNo());
+				
+				result = pstmt.executeUpdate();
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	/*
 	public int updateAuditorium(Connection conn, TheaterAuditorium ta, String auditoriumName, String auditoriumSeatNum) {
 
 		int result = 0;
@@ -357,7 +390,7 @@ public class TheaterDao {
 		
 		return result;
 	}
-	
+	*/
 	
 	public ArrayList<Auditorium> aSelectAuditorium(Connection conn, PageInfo pi) {
 
@@ -432,9 +465,8 @@ public class TheaterDao {
 			
 			pstmt.setInt(1, theaterNo);
 			
-			result = pstmt.executeUpdate();
-			
-			System.out.println("dao : " + result);
+			pstmt.executeUpdate();
+			result++;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

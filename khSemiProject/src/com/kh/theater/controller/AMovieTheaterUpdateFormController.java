@@ -33,6 +33,7 @@ public class AMovieTheaterUpdateFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		System.out.println("UPDATEFORM");
 		
 		int theaterNo = Integer.parseInt(request.getParameter("tno"));
 		

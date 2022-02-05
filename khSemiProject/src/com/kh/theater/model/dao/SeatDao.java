@@ -158,7 +158,7 @@ public class SeatDao {
 		
 		try {
 
-			for(int i = 1; i < 11; i++) {
+			for(int i = 1; i < 17; i++) {
 				switch(i) {
 				case 1 : str = "A";
 				break;
@@ -206,7 +206,7 @@ public class SeatDao {
 		return result;
 	}
 	
-	public int updateSeatOne(Connection conn, TheaterAuditorium ta) {
+	public int updateSeatOne(Connection conn, int auditoriumNo) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -246,14 +246,14 @@ public class SeatDao {
 					String str2 = str + "열 " + j;
 					
 					pstmt.setString(1, str2);
-					pstmt.setInt(2, ta.getAuditoriumNo());
 					
 					pstmt.executeUpdate();
 					result++;
 				}
+				System.out.println("seatDao의 result : " + result);
 			}
 			
-			if(result != 160) {
+			if(result != 100) {
 				result = 0;
 			}
 			
@@ -264,10 +264,9 @@ public class SeatDao {
 		}
 		
 		return result;
-		
 	}
 	
-	public int updateSeatTwo(Connection conn, TheaterAuditorium ta) {
+	public int updateSeatTwo(Connection conn, int auditoriumNo) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -307,14 +306,14 @@ public class SeatDao {
 					String str2 = str + "열 " + j;
 					
 					pstmt.setString(1, str2);
-					pstmt.setInt(2, ta.getAuditoriumNo());
 					
 					pstmt.executeUpdate();
 					result++;
 				}
+				System.out.println("2seatDao의 result : " + result);
 			}
 			
-			if(result != 160) {
+			if(result != 120) {
 				result = 0;
 			}
 			
@@ -325,11 +324,9 @@ public class SeatDao {
 		}
 		
 		return result;
-		
-		
 	}
 
-	public int updateSeatSix(Connection conn, TheaterAuditorium ta) {
+	public int updateSeatSix(Connection conn, int auditoriumNo) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -369,7 +366,6 @@ public class SeatDao {
 					String str2 = str + "열 " + j;
 					
 					pstmt.setString(1, str2);
-					pstmt.setInt(2, ta.getAuditoriumNo());
 					
 					pstmt.executeUpdate();
 					result++;
@@ -387,7 +383,6 @@ public class SeatDao {
 		}
 		
 		return result;
-		
 	}
 
 	
@@ -403,7 +398,8 @@ public class SeatDao {
 
 			pstmt.setInt(1, theaterNo);
 			
-			result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
+			result++;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

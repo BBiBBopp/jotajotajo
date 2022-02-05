@@ -77,21 +77,27 @@ public class AMovieTheaterUpdateController extends HttpServlet {
 		System.out.println("auditoriumName :" + auditoriumName);
 		int result = 0;
 		
+		result = new TheaterService().updateTheater(ta);
+		
+		/*
 		if(auditoriumNameArr != null) { // 상영관정보에 데이터가 있을 경우 -> 유지 또는 변경
 			result = new TheaterService().updateTheater(ta);
 		} else { // 상영관 정보에 데이터가 없을 경우 -> 제거
 			result = new TheaterService().deleteAuditorium(theaterNo);
 			System.out.println("theaterNo : " + theaterNo);
 		}
+		*/
 		
 		System.out.println("controller : " + result);
 		
 		if(result > 0) {
 			System.out.println(ta);
-			request.setAttribute("ta", ta);
+			//request.getSession().setAttribute("ta", ta);
 			request.getSession().setAttribute("alertMsg", "수정되었습니다.");
 			
-			request.getRequestDispatcher("views/admin/theater/aMovieTheaterDetail.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/atDetail.th?tno="+ta.getTheaterNo());
+			
+			//request.getRequestDispatcher(request.getContextPath()+"/atDetail.th?tno="+ta.getTheaterNo()).forward(request, response);
 			
 		}
 		

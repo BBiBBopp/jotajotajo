@@ -15,9 +15,7 @@
 	</entry>
 	
 	<entry key="updateSeat">
-		UPDATE SEAT
-		SET SEAT_NO = ?
-		WHERE AUDITORIUM_NO = ?
+		INSERT INTO SEAT (SEAT_PK, SEAT_NO, AUDITORIUM_NO) VALUES (SEQ_SEAT_NO.NEXTVAL, ?, SEQ_AU_NO.CURRVAL)
 	</entry>
 	
 	

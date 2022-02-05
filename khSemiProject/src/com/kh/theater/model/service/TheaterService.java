@@ -86,7 +86,7 @@ public class TheaterService {
 		String[] auditoriumNameArr = ta.getAuditoriumName().split(",");
 		String[] auditoriumSeatNumArr = ta.getAuditoriumSeatNum().split(",");
 		
-//		 상영관 스플릿으로 나누고 이프문안에 넣어서 좌석과 세트로 실행되게
+//		 상영관 스플릿으로 나누고 이프문안에 넣어서 영화관이 등록되면 상영관, 상영관이 등록되면 좌석 순으로 등록
 		if(result > 0) {
 			for(int i = 1; i <= auditoriumNameArr.length; i++){
 				if(auditoriumNameArr[i-1].equals((i) + "관")) {
@@ -130,13 +130,67 @@ public class TheaterService {
 		
 		Connection conn = getConnection();
 		
-		int result = new TheaterDao().updateTheater(conn, ta);
+		int result = new TheaterDao().updateTheater(conn, ta); // 영화관 업데이트
+		System.out.println("service result : " + result);
 		int result2 = 1;
 		int result3 = 1;
 		
 		String[] auditoriumNameArr = ta.getAuditoriumName().split(",");
+		for(int i = 0; i < auditoriumNameArr.length; i++) {
+			System.out.println(auditoriumNameArr[i]);
+		}
+		
 		String[] auditoriumSeatNumArr = ta.getAuditoriumSeatNum().split(",");
 		
+		
+		if(result > 0) { // 영화관 업데이트 성공시 실행
+			result3 = new SeatDao().deleteSeat(conn, ta.getTheaterNo()); // 기존에 있던 좌석 정보 삭제
+			result2 = new TheaterDao().deleteAuditorium(conn, ta.getTheaterNo()); // 기존에 있던 상영관 정보 삭제
+			System.out.println("service result3 : " + result3);
+			System.out.println("service result2 : " + result2);
+			
+			for(int i = 1; i <= auditoriumNameArr.length; i++){
+				if(auditoriumNameArr[i-1].equals((i) + "관")) {
+					if(auditoriumSeatNumArr[i-1].equals("100")) {
+						if((result2 * result3) > 0) { // 상영관, 좌석 모두 삭제에 성공할 시
+							// 업데이트할 상영관정보 등록
+							result2 = new TheaterDao().updateAuditorium(conn, ta, auditoriumNameArr[i-1].toString(), auditoriumSeatNumArr[i-1].toString());
+							System.out.println("이프문 안의 service result2 : " + result2);
+							if(result2 > 0) { // 상영관 정보 등록 성공시
+								// 업데이트할 좌석정보 등록
+								result3 = new SeatDao().updateSeatOne(conn, ta.getAuditoriumNo());
+								System.out.println("이프문 안의 service result3 : " + result3);
+							}
+						}
+					} else if (auditoriumSeatNumArr[i-1].equals("120")) {
+						if((result2 * result3) > 0) { // 상영관, 좌석 모두 삭제에 성공할 시
+							// 업데이트할 상영관정보 등록
+							result2 = new TheaterDao().updateAuditorium(conn, ta, auditoriumNameArr[i-1].toString(), auditoriumSeatNumArr[i-1].toString());
+							if(result2 > 0) { // 상영관 정보 등록 성공시
+								// 업데이트할 좌석정보 등록
+								result3 = new SeatDao().updateSeatTwo(conn, ta.getAuditoriumNo()+1);
+								System.out.println("2이프문 안의 service result3 : " + result3);
+							}
+						}
+					} else if(auditoriumSeatNumArr[i-1].equals("160")) {
+						if((result2 * result3) > 0) { // 상영관, 좌석 모두 삭제에 성공할 시
+							// 업데이트할 상영관정보 등록
+							result2 = new TheaterDao().updateAuditorium(conn, ta, auditoriumNameArr[i-1].toString(), auditoriumSeatNumArr[i-1].toString());
+							if(result2 > 0) { // 상영관 정보 등록 성공시
+								// 업데이트할 좌석정보 등록
+								result3 = new SeatDao().updateSeatSix(conn, ta.getAuditoriumNo()+2);
+							}
+						}
+					} 
+					/*
+					else { // 상영관만 선택하고 좌석수를 선택하지 않았을 경우
+						break;
+					}
+					*/
+				}
+			}
+		}
+		/*
 		for(int i = 1; i <= auditoriumNameArr.length; i++){
 			if(auditoriumNameArr[i-1].equals((i) + "관")) {
 				if(auditoriumSeatNumArr[i-1].equals("100")) {
@@ -156,6 +210,11 @@ public class TheaterService {
 				}
 			}
 		}
+		*/
+		
+		System.out.println("service2 result : " + result);
+		System.out.println("service2 result2 : " + result2);
+		System.out.println("service2 result3 : " + result3);
 		
 		if(result * result2 * result3 > 0) {
 			commit(conn);
@@ -168,56 +227,7 @@ public class TheaterService {
 		return (result * result2 * result3);
 	}
 
-	/*
-	public int deleteTheater(String[] deleteList) {
-
-		Connection conn = getConnection();
-		
-		String theaterNoStr = null;
-		String auditoriumNoStr = null;
-		
-		int result = 0;
-		int result2 = 0;
-		int result3 = 0;
-		
-		int auditoriumNo = 0;
-		int theaterNo = 0;
-		
-		for(int i = 0; i < deleteList.length; i++) {
-			if(i % 2 != 0) {
-				auditoriumNoStr = deleteList[i];
-				auditoriumNo = Integer.parseInt(auditoriumNoStr);
-				result = new SeatDao().deleteSeat(conn, auditoriumNo);
-			}else {
-				theaterNoStr = deleteList[i];
-				if(result > 0) {
-					theaterNoStr = deleteList[i];
-					theaterNo = Integer.parseInt(theaterNoStr);
-					result2 = new TheaterDao().deleteAuditorium(conn, theaterNo);
-				}
-				if(result2 > 0) {
-					result3 = new TheaterDao().deleteTheater(conn, theaterNo);
-				}
-			}
-		}
-		
-		System.out.println("service의 result");
-		System.out.println(result);
-		System.out.println(result2);
-		System.out.println(result3);
-		
-		if(result * result2 * result3 > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		
-		return (result * result2 * result3);
-	}
 	
-	*/
 
 	public int deleteTheater(String[] deleteList) {
 
@@ -244,30 +254,6 @@ public class TheaterService {
 			}
 		}
 		
-		System.out.println("service1 : " + result);
-		System.out.println("service2 : " + result2);
-		System.out.println("service3 : " + result3);
-		
-		/*
-		for(int i = 0; i < deleteList.length; i++) {
-			if(i % 2 != 0) {
-				auditoriumNoStr = deleteList[i];
-				auditoriumNo = Integer.parseInt(auditoriumNoStr);
-				result = new SeatDao().deleteSeat(conn, auditoriumNo);
-			}else {
-				theaterNoStr = deleteList[i];
-				if(result > 0) {
-					theaterNoStr = deleteList[i];
-					theaterNo = Integer.parseInt(theaterNoStr);
-					result2 = new TheaterDao().deleteAuditorium(conn, theaterNo);
-				}
-				if(result2 > 0) {
-					result3 = new TheaterDao().deleteTheater(conn, theaterNo);
-				}
-			}
-		}
-		*/
-		
 		if(result * result2 * result3 > 0) {
 			commit(conn);
 		}else {
@@ -278,7 +264,6 @@ public class TheaterService {
 		
 		return (result * result2 * result3);
 	}
-	
 	
 	
 	public ArrayList<Auditorium> aSelectAuditorium(PageInfo pi) {
