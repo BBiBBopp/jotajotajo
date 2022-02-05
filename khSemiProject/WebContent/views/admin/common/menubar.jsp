@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% String contextPath = request.getContextPath(); %>
+<% String alertMsg = (String)session.getAttribute("alertMsg");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="<%=contextPath %>/resource/css/admin/common/menubar.css">
 <title>메뉴바</title>
+<script>
+	var msg = "<%= alertMsg%>"
+	if(msg != "null"){ // 성공, 경고 메세지 문구가 담겨있을 경우
+		alert(msg);
+		
+		<% session.removeAttribute("alertMsg"); %>
+		// 해당 페이지가 로딩 될 때마다 뜨는 alert제거			
+	}
+</script>
 </head>
 <body>
 	<div class="menubar">
