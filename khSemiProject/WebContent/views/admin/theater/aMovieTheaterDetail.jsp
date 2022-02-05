@@ -3,8 +3,6 @@
 <%@ page import="com.kh.theater.model.vo.TheaterAuditorium, java.util.ArrayList" %>
 <%
 	ArrayList<TheaterAuditorium> taList = (ArrayList<TheaterAuditorium>)request.getAttribute("taList");
-
-	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
 <html>
@@ -15,17 +13,6 @@
 </head>
 <body>
 
-	<script>
-			var msg = "<%= alertMsg%>"
-			if(msg != "null"){ // 성공, 경고 메세지 문구가 담겨있을 경우
-				alert(msg);
-			
-			<% session.removeAttribute("alertMsg"); %>
-			// 해당 페이지가 로딩 될 때마다 뜨는 alert제거			
-			}
-		</script>
-		
-		
 		<div id="container">
 			<div class="menutab">
        	 		<%@ include file="../common/menubar.jsp" %>
@@ -40,12 +27,12 @@
                 	<div class="input_info">
                     	<div id="movietheater_info">
                         	<div id="input_ment">
-                           	 영화관명 <br>
-                            	주소 <br>
-                            	상영관수 <br>
-                            	전화번호 <br>
-                            	좌석수 <br>
-                            	영화관 로고<br>
+                           	 영화관명 : <br>
+                            	주소 : <br>
+                            	상영관수 : <br>
+                            	전화번호 : <br>
+                            	좌석수 : <br>
+                            	영화관 로고 : <br>
                         	</div>
                             	
                         	<div id="input_tag">
@@ -54,8 +41,8 @@
                             	<%= taList.get(0).getAuditoriumNum() %><br>
                             	<%= taList.get(0).getPhone() %><br>
                             	<%= taList.get(0).getSeatNum() %><br>
-                            	<%= taList.get(0).getTheaterImg() %><br>
-                            	(1: CGV / 2: 롯데시네마 / 3: 메가박스)
+                            	<%= taList.get(0).getTheaterImg() %> (1: CGV / 2: 롯데시네마 / 3: 메가박스)<br>
+                            	
                         	</div>
                     	</div>
                     	<br clear="both">
@@ -84,13 +71,14 @@
             <div id="content_3">
                 <hr>
                 <div id="ex_info">
-                    위치안내 &emsp;<%= taList.get(0).getLocation() %><br><br>
-                    교통안내 &emsp;<pre><%= taList.get(0).getTraffic()%></pre>
-                    주차안내 &emsp;<pre><%= taList.get(0).getParking()%></pre>
+                    위치안내 :  &emsp;<%= taList.get(0).getLocation() %><br><br>
+                    교통안내 :  &emsp;<pre><%= taList.get(0).getTraffic()%></pre>
+                    주차안내 :  &emsp;<pre><%= taList.get(0).getParking()%></pre>
                 </div>
             </div>
             <div id="content_4">
                 <div>
+                	<a href="<%= contextPath%>/atList.th?currentPage=1" class="btn btn-outline-primary">목록가기</a>
                 	<form action="<%= contextPath%>/atUpdateForm.th">
                 		<input type="hidden" name="tno" value=<%= taList.get(0).getTheaterNo() %>>
 	                    <button class="btn btn-outline-primary" type="submit">수정하기</button>

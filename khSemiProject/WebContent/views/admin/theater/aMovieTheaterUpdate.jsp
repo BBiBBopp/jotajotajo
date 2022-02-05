@@ -159,15 +159,15 @@
             <div id="content_3">
                 <hr>
                 <div id="ex_info">
-                    위치안내 &emsp;<input type="text" name="location" value="<%= taList.get(0).getLocation() %>" placeholder="위도, 경도를 ','를 포함하여 작성해주세요." style="width:380px;"></input><br><br>
-                    교통안내 &emsp;<textarea name="traffic" style="resize: none; height:300px;"><%= taList.get(0).getTraffic() %></textarea><br><br>
-                    주차안내 &emsp;<textarea name="parking" style="resize: none; height:200px;"><%= taList.get(0).getParking() %></textarea><br><br>
+                    위치안내 &emsp;<input type="text" name="location" value="<%= taList.get(0).getLocation() %>" placeholder="위도, 경도를 ','를 포함하여 작성해주세요. ex) 36.12345, 127.123456" style="width:500px;"></input><br><br>
+                    교통안내 &emsp;<textarea name="traffic" style="resize: none; height:300px;" placeholder="줄바꿈대신 '&'를 사용해주세요."><%= taList.get(0).getTraffic() %></textarea><br><br>
+                    주차안내 &emsp;<textarea name="parking" style="resize: none; height:200px;" placeholder="줄바꿈대신 '&'를 사용해주세요."><%= taList.get(0).getParking() %></textarea><br><br>
                 </div>
             </div>
             <div id="content_4">
-                <div>
+                	<a href="<%= contextPath%>/atList.th?currentPage=1" class="btn btn-outline-primary">목록가기</a>
+                    <button class="btn btn-outline-primary" type="reset">취소하기</button>
                     <button class="btn btn-outline-primary" type="submit">수정하기</button>
-                </div>
             </div>
             </form>
         </div>

@@ -84,15 +84,15 @@
 	
 	<entry key="aSelectAuditorium">
 		SELECT * 
-    FROM (
-            SELECT ROWNUM RNUM, A.*
-            FROM (
-                    SELECT *
-                    FROM AUDITORIUM
-                    ORDER BY AUDITORIUM_NO DESC) A
-            WHERE AUDITORIUM_NAME = '1관'
-        )
-WHERE RNUM BETWEEN ? AND ?
+		    FROM (
+		            SELECT ROWNUM RNUM, A.*
+		            FROM (
+		                    SELECT *
+		                    FROM AUDITORIUM
+		                    ORDER BY AUDITORIUM_NO DESC) A
+		            WHERE AUDITORIUM_NAME = '1관'
+		        )
+		WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="deleteAuditorium">
@@ -106,18 +106,6 @@ WHERE RNUM BETWEEN ? AND ?
 		WHERE THEATER_NO = ?
 		ORDER BY AUDITORIUM_NO ASC
 	</entry>
-	
-	<entry key="theaterNextVal">
-		SELECT SEQ_THE_NO.NEXTVAL FROM DUAL
-	</entry>
-	
-	<entry key="auditoriumNextVal">
-		SELECT SEQ_AU_NO.NEXTVAL FROM DUAL
-	</entry>
-	
-	
-	
-	
 	
 	
 	

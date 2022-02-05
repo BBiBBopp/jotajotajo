@@ -43,7 +43,8 @@ div {
     float: left;
 }
 .input_info{
-    width: 50%;
+    width: 60%;
+    padding-left: 90px;
 }
 #movietheater_file{
     width: 100%;
@@ -59,10 +60,15 @@ div {
 }
 #input_ment{
     width: 20%;
-    line-height: 36px;
+    line-height: 48px;
 }
 #input_tag{
     width: 69%;
+}
+#input_tag>input{
+	width:230px;
+	margin-top: 6px;
+	margin-bottom: 6px;
 }
 #content_3{
     width: 100%;
@@ -80,10 +86,8 @@ div {
     width: 100%;
     height: 90px;
 }
-#content_4>div{
-    width: 30%;
-    height: 100%;
-    margin-left: 600px;
+#content_4>a{
+	margin-left:600px;
 }
 #content_4 .btn-outline-primary{
     color: rgb(13, 71, 161);
@@ -94,5 +98,6 @@ div {
      color: white;
 }
 
-
-
+form{
+	display:inline;
+}

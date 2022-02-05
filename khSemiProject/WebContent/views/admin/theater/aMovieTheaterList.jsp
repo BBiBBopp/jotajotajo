@@ -9,8 +9,6 @@
 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	
-	String alertMsg = (String)session.getAttribute("alertMsg");
-
 	// 페이징 바 만들 때 필요한 변수 미리 세팅
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
@@ -25,16 +23,6 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/admin/theater/05_z01_admin_movietheater.css">
 </head>
 <body>
-
-	<script>
-			var msg = "<%= alertMsg%>"
-			if(msg != "null"){ // 성공, 경고 메세지 문구가 담겨있을 경우
-				alert(msg);
-			
-			<% session.removeAttribute("alertMsg"); %>
-			// 해당 페이지가 로딩 될 때마다 뜨는 alert제거			
-			}
-		</script>
 	
 	<div id="container">
 		<div class="menutab">

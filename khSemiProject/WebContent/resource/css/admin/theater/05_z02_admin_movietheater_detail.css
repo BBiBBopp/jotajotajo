@@ -44,6 +44,7 @@ div {
 }
 .input_info{
     width: 70%;
+    padding-left: 60px;
 }
 #movietheater_file{
     width: 100%;
@@ -96,6 +97,8 @@ div {
      background-color: rgb(13, 71, 161);
      color: white;
 }
-
+form{
+	display:inline;
+}
 
 

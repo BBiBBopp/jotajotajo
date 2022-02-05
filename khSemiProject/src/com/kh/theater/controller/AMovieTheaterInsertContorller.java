@@ -78,21 +78,18 @@ public class AMovieTheaterInsertContorller extends HttpServlet {
 		ta.setTraffic(traffic);
 		ta.setParking(parking);
 		
-		int nextVal = new TheaterService().nextVal();
 		
-		System.out.println(nextVal);
-		
-		int result = 0;
-		
-		if(nextVal > 0) {
-			result = new TheaterService().insertTheater(ta);
-		}
+		int result = new TheaterService().insertTheater(ta);
 		
 		if((result) > 0) {
 			
 			request.getSession().setAttribute("alertMsg", "등록되었습니다.");
-			
 			response.sendRedirect(request.getContextPath() + "/atList.th?currentPage=1");
+			
+		}else {
+			request.getSession().setAttribute("alertMsg", "등록에 실패하였습니다.");
+			response.sendRedirect(request.getContextPath() + "/atList.th?currentPage=1");
+			
 		}
 
 	}

@@ -86,5 +86,7 @@ div {
     background-color: rgb(13, 71, 161);
     color: white;
 }
-
+form{
+	display:inline;
+}
 
