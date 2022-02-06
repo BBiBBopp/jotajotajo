@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.kh.question.model.vo.Question, com.kh.common.model.vo.PageInfo" %>
 <%
-	String alertMsg = (String)request.getSession().getAttribute("alertMsg");
 	ArrayList<Question> qlist = (ArrayList<Question>)request.getAttribute("qlist");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	
@@ -20,14 +19,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/admin/question/question.css">
 </head>
 <body>
-	<script>
-		var msg = "<%= alertMsg %>";
-		if(msg != "null") {
-			alert(msg);
-			
-			<% session.removeAttribute("alertMsg"); %>
-		}
-	</script>
+	
 	<div id="admin-menu">
 		<%@ include file="../common/menubar.jsp" %>
 	</div>

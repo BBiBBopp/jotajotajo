@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.kh.question.model.vo.Question, com.kh.question.model.vo.Q_Attachment" %>
 <%
-	String alertMsg = (String)request.getSession().getAttribute("alertMsg");
 	Question q = (Question)request.getAttribute("Qdetail");	
 	Q_Attachment at = (Q_Attachment)request.getAttribute("Qat");
 %>
@@ -13,14 +12,6 @@
 <title>문의 답변하기</title>
 </head>
 <body>
-	<script>
-		var msg = "<%= alertMsg %>";
-		if(msg != "null") {
-			alert(msg);
-			
-			<% session.removeAttribute("alertMsg"); %>
-		}
-	</script>
 	<div id="admin-menu">
 		<%@ include file="../common/menubar.jsp" %>
 	</div>

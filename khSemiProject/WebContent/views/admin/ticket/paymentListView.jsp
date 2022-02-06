@@ -24,17 +24,6 @@
 	<div id="container">
         <h1><b>결제 내역 관리</b></h1>
         <br>
-            <div class="pay-button-area">
-                <input type="checkbox" name="all" class="check-button"> <label for="all">전체 선택</label> 
-                <input type="checkbox" name="reserve" class="check-button"> <label for="reserve">예매 완료</label>
-                <input type="checkbox" name="cancel" class="check-button"> <label for="cancel">예매 취소</label> 
-                
-                <select name="month" id="" style="float: right; margin-right: 10px;">
-                    <option value="">12월</option>
-                    <option value="">11월</option>
-                    <option value="">10월</option>
-                </select>
-            </div>
             
             <table class="table table-hover table-dark">
                 <thead>
